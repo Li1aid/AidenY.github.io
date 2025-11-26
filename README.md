@@ -4,11 +4,11 @@ A bilingual (EN/中文) portfolio website showcasing design and technology proje
 
 ## Features
 
-- 🎨 **Modern Design** - Clean, minimalist interface with smooth animations
-- 🌐 **Bilingual** - Seamless switching between English and Chinese
-- 💬 **AI Chatbot** - Interactive chatbot powered by Google Gemini API (integration pending)
-- 📱 **Responsive** - Fully responsive across all devices
-- ⚡ **Performance** - Optimized with GSAP animations and particle effects
+-  **Modern Design** - Clean, minimalist interface with smooth animations
+-  **Bilingual** - Seamless switching between English and Chinese
+-  **AI Chatbot** - Interactive chatbot powered by Google Gemini API (integration pending)
+-  **Responsive** - Fully responsive across all devices
+-  **Performance** - Optimized with GSAP animations and particle effects
 
 ## Projects
 
