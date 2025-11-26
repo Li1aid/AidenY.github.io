@@ -4,6 +4,13 @@
            ======================================== */
 
         /* ========================================
+           Font Imports
+           ======================================== */
+
+        /* Chinese Pixel Font - Zpix */
+        @import url('https://cdn.jsdelivr.net/npm/zpix-pixel-font@latest/dist/zpix.css');
+
+        /* ========================================
            CSS Variables & Reset
            ======================================== */
 
@@ -85,20 +92,50 @@
         }
 
         /* ========================================
-           Custom Cursor
+           Custom Cursor - High Contrast Monochrome
            ======================================== */
 
         .cursor {
-            width: 24px;
-            height: 24px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            border: 2px solid rgba(255, 255, 255, 0.95);
+            background: rgba(240, 240, 240, 0.3);
+            backdrop-filter: blur(6px);
             position: fixed;
             transform: translate(-50%, -50%);
             pointer-events: none;
-            transition: width 0.3s, height 0.3s, background-color 0.3s;
             z-index: 10000;
-            mix-blend-mode: difference;
+            transition: all 0.12s ease-out;
+            clip-path: polygon(
+                0% 0%,
+                calc(100% - 5px) 0%,
+                100% 5px,
+                100% 100%,
+                5px 100%,
+                0% calc(100% - 5px)
+            );
+            box-shadow:
+                0 0 0 1px rgba(0, 0, 0, 0.85),
+                0 2px 10px rgba(0, 0, 0, 0.5),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+        }
+
+        .cursor::before {
+            content: '';
+            position: absolute;
+            inset: -12px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            clip-path: polygon(
+                0% 0%,
+                calc(100% - 6px) 0%,
+                100% 6px,
+                100% 100%,
+                6px 100%,
+                0% calc(100% - 6px)
+            );
+            opacity: 0;
+            transition: opacity 0.15s ease;
+            box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.6);
         }
 
         .cursor-glow {
@@ -108,17 +145,26 @@
             transform: translate(-50%, -50%);
             width: 50px;
             height: 50px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
-            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.15s ease;
+            filter: blur(6px);
         }
 
         .cursor.hover {
-            width: 50px;
-            height: 50px;
-            border-color: var(--accent);
-            background: var(--accent-subtle);
+            width: 18px;
+            height: 18px;
+            border-color: rgba(255, 255, 255, 1);
+            background: rgba(230, 230, 230, 0.4);
+            box-shadow:
+                0 0 0 1px rgba(0, 0, 0, 0.9),
+                0 3px 15px rgba(0, 0, 0, 0.6),
+                0 0 20px rgba(255, 255, 255, 0.4),
+                inset 0 0 8px rgba(255, 255, 255, 0.3);
+        }
+
+        .cursor.hover::before {
+            opacity: 1;
         }
 
         .cursor.hover .cursor-glow {
@@ -126,14 +172,27 @@
         }
 
         .cursor-dot {
-            width: 6px;
-            height: 6px;
-            background: var(--text-white);
-            border-radius: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgb(255, 255, 255);
             position: fixed;
             transform: translate(-50%, -50%);
             pointer-events: none;
             z-index: 10001;
+            box-shadow:
+                0 0 0 1.5px rgba(0, 0, 0, 0.9),
+                0 2px 6px rgba(0, 0, 0, 0.7),
+                0 0 8px rgba(255, 255, 255, 0.8);
+            clip-path: polygon(
+                30% 0%,
+                70% 0%,
+                100% 30%,
+                100% 70%,
+                70% 100%,
+                30% 100%,
+                0% 70%,
+                0% 30%
+            );
         }
 
         /* ========================================
@@ -461,13 +520,6 @@
         .about-avatar {
             position: relative;
             opacity: 0;
-            transform: translateY(50px);
-            transition: none;
-        }
-
-        .about-avatar.animated {
-            opacity: 1;
-            transform: translateY(0);
         }
 
         .about-avatar::before {
@@ -518,21 +570,15 @@
 
         .about-text {
             opacity: 0;
-            transform: translateY(30px);
-            transition: none;
-        }
-
-        .about-text.animated {
-            opacity: 1;
-            transform: translateY(0);
         }
 
         .about-title {
-            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
             font-weight: 300;
             margin-bottom: 3rem;
-            color: var(--text-white);
-            letter-spacing: 0.05em;
+            color: #444444;
+            letter-spacing: 0.15em;
+            opacity: 0;
         }
 
         .about-description {
@@ -543,15 +589,15 @@
             max-width: 900px;
             margin-bottom: 2rem;
             letter-spacing: 0.02em;
+            opacity: 0;
         }
 
         .about-line {
             display: block;
-            opacity: 0;
-            transform: translateY(20px);
         }
 
-        .about-text.animated .about-line {
+        /* Removed CSS animation to prevent double animation - GSAP handles this in script.js */
+        /* .about-text.animated .about-line {
             animation: lineSlideIn 0.8s ease forwards;
         }
 
@@ -565,7 +611,7 @@
                 opacity: 1;
                 transform: translateY(0);
             }
-        }
+        } */
 
         .keyword {
             color: var(--text-white);
@@ -627,11 +673,11 @@
         }
 
         .philosophy-title {
-            font-size: 2rem;
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
             font-weight: 300;
             margin-bottom: 5rem;
-            color: #888888;
-            letter-spacing: 0.1em;
+            color: #444444;
+            letter-spacing: 0.15em;
         }
 
         .philosophy-item {
@@ -699,14 +745,14 @@
         }
 
         .timeline-title {
-            font-size: 2rem;
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
             font-weight: 300;
             margin-bottom: 5rem;
             text-align: left;
-            color: #888888;
+            color: #444444;
             opacity: 0;
             transform: translateY(30px);
-            letter-spacing: 0.1em;
+            letter-spacing: 0.15em;
         }
 
         .timeline-track {
@@ -910,6 +956,13 @@
         .hero-main-title.loaded .title-line-2::after {
             animation: pixelBlink 1s infinite;
             opacity: 1;
+        }
+
+        /* Chinese pixel font for hero slogan only when in Chinese mode */
+        body.lang-zh .hero-main-title {
+            font-family: 'Zpix', 'Press Start 2P', cursive;
+            font-size: clamp(1.1rem, 2.8vw, 1.9rem);
+            line-height: 2.6;
         }
 
         /* Scanline effect overlay on hero */
@@ -1137,10 +1190,7 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 12px;
             overflow: hidden;
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-                        border-color 0.3s ease,
-                        background 0.3s ease,
-                        box-shadow 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             opacity: 0;
             transform: translateY(50px);
             position: relative;
@@ -1150,33 +1200,57 @@
             min-height: 600px;
         }
 
-        /* MODIFIED: Hover effect - Lift up without scale */
+        /* Enhanced Hover Effect - Smoother with refined glow */
         .project-card:hover {
-            border-color: rgba(255, 255, 255, 0.3);
-            background: rgba(20, 20, 20, 0.8);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-            transform: translateY(-8px);
+            border-color: rgba(255, 255, 255, 0.4);
+            background: rgba(20, 20, 20, 0.9);
+            box-shadow:
+                0 0 0 1px rgba(255, 255, 255, 0.1),
+                0 25px 50px rgba(0, 0, 0, 0.5),
+                0 0 40px rgba(255, 255, 255, 0.05);
+            transform: translateY(-12px);
             z-index: 10;
         }
 
-        /* Sheen Effect */
+        /* Glass Sheen Effect - Using transform for better performance */
         .project-card::after {
             content: '';
             position: absolute;
             top: 0;
-            left: -100%;
+            left: 0;
             width: 50%;
             height: 100%;
-            background: linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent);
-            transform: skewX(-25deg);
-            z-index: 20;
+            background: linear-gradient(to right,
+                transparent,
+                rgba(255, 255, 255, 0.1),
+                transparent);
+            transform: translateX(-200%) skewX(-25deg);
+            z-index: 5;
             pointer-events: none;
-            /* Removed transition from here so it resets instantly */
+            will-change: transform;
+            transition: transform 0s;
         }
 
         .project-card:hover::after {
-            left: 200%;
-            transition: left 0.7s ease; /* Only animate on hover entry */
+            transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateX(400%) skewX(-25deg);
+        }
+
+        @keyframes scanLine {
+            0% {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(600px);
+                opacity: 0;
+            }
         }
 
         .project-image {
@@ -1190,59 +1264,80 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.8s var(--ease-smooth);
-            filter: grayscale(20%);
+            transform: scale(1);
+            filter: grayscale(20%) brightness(0.9);
+            will-change: transform;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                        filter 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .project-card:hover .project-image img {
-            transform: scale(1.05);
-            filter: grayscale(0%);
+            transform: scale(1.08);
+            filter: grayscale(0%) brightness(1.05);
         }
 
-        /* Grey overlay - default visible, disappears on hover */
+        /* Grey overlay - default visible, smooth fade on hover */
         .project-overlay {
             position: absolute;
             inset: 0;
-            background: rgba(0, 0, 0, 0.6);
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            padding-bottom: 3rem;
-            opacity: 1;
-            transition: all 0.4s ease;
+            background: linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0) 0%,
+                rgba(0, 0, 0, 0.4) 60%,
+                rgba(0, 0, 0, 0.7) 100%
+            );
+            transition: background 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             pointer-events: none;
+            z-index: 10;
         }
 
         .project-card:hover .project-overlay {
-            background: rgba(0, 0, 0, 0);
+            background: linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0) 0%,
+                rgba(0, 0, 0, 0) 100%
+            );
         }
 
-        /* View button - hidden by default, shows on hover */
+        /* View button - positioned absolutely, independent of overlay */
         .project-btn {
             color: var(--text-white);
             text-decoration: none;
             font-size: 0.9rem;
-            font-weight: 500;
-            padding: 0.6rem 2.5rem;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            padding: 0.7rem 2.8rem;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.4);
             border-radius: 50px;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             display: inline-block;
             opacity: 0;
-            transform: translateY(20px);
+            transform: translateY(30px) scale(0.9);
             pointer-events: auto;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(30px) scale(0.9);
+            z-index: 15;
         }
 
         .project-card:hover .project-btn {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateX(-50%) translateY(0) scale(1);
         }
 
         .project-btn:hover {
             background: rgba(255, 255, 255, 0.25);
-            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.7);
+            transform: translateX(-50%) translateY(-3px) scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
+        }
+
+        .project-btn:active {
+            transform: translateX(-50%) translateY(-1px) scale(0.98);
         }
 
         /* Coming Soon Styles */
@@ -1324,18 +1419,31 @@
         .project-tech span {
             padding: 0.4rem 1rem;
             background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
             border-radius: 20px;
             font-size: 0.75rem;
             color: var(--text-grey);
-            white-space: nowrap; 
+            white-space: nowrap;
             flex-shrink: 0;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transform: translateY(0);
         }
-        
+
         .project-card:hover .project-tech span {
-            background: rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.12);
+            border-color: rgba(255,255,255,0.2);
             color: var(--text-white);
+            transform: translateY(-2px);
+        }
+
+        .project-tech span:nth-child(1) {
+            transition-delay: 0s;
+        }
+        .project-tech span:nth-child(2) {
+            transition-delay: 0.05s;
+        }
+        .project-tech span:nth-child(3) {
+            transition-delay: 0.1s;
         }
 
         /* ========================================

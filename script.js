@@ -245,17 +245,18 @@ class CustomCursor {
 
     init() {
         document.addEventListener('mousemove', (e) => {
+            // Ultra fast cursor for smooth tracking
             gsap.to(this.cursor, {
                 x: e.clientX,
                 y: e.clientY,
-                duration: 0.3,
-                ease: 'power2.out'
+                duration: 0.15,
+                ease: 'power1.out'
             });
 
             gsap.to(this.cursorDot, {
                 x: e.clientX,
                 y: e.clientY,
-                duration: 0.1
+                duration: 0.03
             });
         });
 
@@ -520,37 +521,56 @@ function animateProjectCards() {
 }
 
 function animateAbout() {
-    // Animate avatar image
+    // Animate avatar - fade in only on scroll, trigger earlier and faster
     gsap.to('.about-avatar', {
         scrollTrigger: {
             trigger: '.about-avatar',
-            start: 'top 80%',
-            once: true,
-            onEnter: () => {
-                document.querySelector('.about-avatar').classList.add('animated');
-            }
+            start: 'top 85%',
+            once: true
         },
         opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: 'power3.out'
+        duration: 0.6,
+        ease: 'power2.out'
     });
 
-    // Animate about text
+    // Animate text container - fade in only on scroll, trigger earlier and faster
     gsap.to('.about-text', {
         scrollTrigger: {
             trigger: '.about-text',
-            start: 'top 80%',
-            once: true,
-            onEnter: () => {
-                document.querySelector('.about-text').classList.add('animated');
-            }
+            start: 'top 85%',
+            once: true
         },
         opacity: 1,
-        y: 0,
-        duration: 1,
+        duration: 0.6,
+        delay: 0.1,
+        ease: 'power2.out'
+    });
+
+    // Animate title specifically - trigger earlier and faster
+    gsap.to('.about-title', {
+        scrollTrigger: {
+            trigger: '.about-text',
+            start: 'top 85%',
+            once: true
+        },
+        opacity: 1,
+        duration: 0.6,
+        delay: 0.15,
+        ease: 'power2.out'
+    });
+
+    // Animate descriptions - trigger earlier and faster
+    gsap.to('.about-description', {
+        scrollTrigger: {
+            trigger: '.about-text',
+            start: 'top 85%',
+            once: true
+        },
+        opacity: 1,
+        duration: 0.6,
         delay: 0.2,
-        ease: 'power3.out'
+        stagger: 0.08,
+        ease: 'power2.out'
     });
 
     // Animate philosophy section
@@ -799,6 +819,16 @@ let currentLang = 'en';
 
 function switchLanguage(lang) {
     currentLang = lang;
+
+    // Toggle body class for language-specific styling (e.g., Chinese pixel font)
+    if (lang === 'zh') {
+        document.body.classList.add('lang-zh');
+        document.body.classList.remove('lang-en');
+    } else {
+        document.body.classList.add('lang-en');
+        document.body.classList.remove('lang-zh');
+    }
+
     document.querySelectorAll('[data-en][data-zh]').forEach(el => {
         const text = lang === 'en' ? el.getAttribute('data-en') : el.getAttribute('data-zh');
 
