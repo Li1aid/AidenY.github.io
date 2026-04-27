@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoLab — Aiden Yang</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Press+Start+2P&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="project.css">
+</head>
+
+<body class="project-page">
+    <!-- Animated Background -->
+    <canvas id="particles-canvas"></canvas>
+    <div class="grid-background"></div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor">
+        <div class="cursor-glow"></div>
+    </div>
+    <div class="cursor-dot"></div>
+
+    <!-- Subpage Top Bar -->
+    <nav class="project-nav">
+        <a href="../index.html#showcase" class="project-nav-btn project-nav-back">
+            <span class="arrow">←</span>
+            <span data-en="Back to Works" data-zh="返回作品">Back to Works</span>
+        </a>
+        <a href="../index.html" class="project-nav-btn project-nav-home">
+            <span data-en="Visit Main Site" data-zh="进入主页">Visit Main Site</span>
+            <span class="arrow">→</span>
+        </a>
+    </nav>
+
+    <!-- Hero -->
+    <section class="project-hero">
+        <div class="project-hero-inner">
+            <div class="project-tagline" data-en="EDUCATION PLATFORM · 2024" data-zh="教育平台 · 2024">EDUCATION PLATFORM · 2024</div>
+            <h1 class="project-title-xl">CoLab</h1>
+            <p class="project-subtitle" data-en="A learning experience as refreshing as a sip of Coke." data-zh="像一口可乐般清爽的学习体验。">
+                A learning experience as refreshing as a sip of Coke.
+            </p>
+
+            <div class="project-meta-grid">
+                <div class="meta-cell">
+                    <div class="meta-label" data-en="ROLE" data-zh="角色">ROLE</div>
+                    <div class="meta-value" data-en="UI/UX · Frontend" data-zh="UI/UX · 前端">UI/UX · Frontend</div>
+                </div>
+                <div class="meta-cell">
+                    <div class="meta-label" data-en="YEAR" data-zh="年份">YEAR</div>
+                    <div class="meta-value">2024</div>
+                </div>
+                <div class="meta-cell">
+                    <div class="meta-label" data-en="TYPE" data-zh="类型">TYPE</div>
+                    <div class="meta-value" data-en="Hybrid Learning" data-zh="混合式学习">Hybrid Learning</div>
+                </div>
+                <div class="meta-cell">
+                    <div class="meta-label" data-en="TOOLS" data-zh="工具">TOOLS</div>
+                    <div class="meta-value">Figma · Web</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-cover">
+            <img src="../Assets/1.jpg" alt="CoLab cover">
+            <div class="project-cover-overlay"></div>
+        </div>
+    </section>
+
+    <!-- Overview -->
+    <section class="project-section bg-medium">
+        <div class="project-container">
+            <div class="section-eyebrow" data-en="OVERVIEW" data-zh="概述">OVERVIEW</div>
+            <h2 class="project-h2" data-en="What is CoLab?" data-zh="CoLab 是什么？">What is CoLab?</h2>
+            <p class="project-lead" data-en="CoLab is a hybrid learning platform built for international design students. It pairs standardized online lectures and quizzes with an in-person tutorial space — letting students freely form skill-based teams, follow lectures at their own pace, and ask questions in real time through an embedded AI assistant and live chat." data-zh="CoLab 是一个为国际设计学生打造的混合式学习平台。它将标准化的线上 lecture 与考试，结合线下 tutorial 空间——让学生自由组队、按自己节奏学习，并通过嵌入式 AI 助手与直播聊天室随时提问。">
+                CoLab is a hybrid learning platform built for international design students. It pairs standardized online lectures and quizzes with an in-person tutorial space — letting students freely form skill-based teams, follow lectures at their own pace, and ask questions in real time through an embedded AI assistant and live chat.
+            </p>
+        </div>
+    </section>
+
+    <!-- Key Features -->
+    <section class="project-section">
+        <div class="project-container">
+            <div class="section-eyebrow" data-en="KEY FEATURES" data-zh="核心功能">KEY FEATURES</div>
+            <h2 class="project-h2" data-en="Four pillars" data-zh="四大支柱">Four pillars</h2>
+
+            <div class="features-grid">
+                <a href="#demo-teamup" class="feature-card">
+                    <div class="feature-num">01</div>
+                    <h3 class="feature-title" data-en="Free Team-Up" data-zh="自由组队">Free Team-Up</h3>
+                    <p class="feature-desc" data-en="Skill-based profiles let students find compatible teammates in the same course — no more random groups." data-zh="基于技能的档案，让学生在同一门课中找到合适的队友——告别随机分组。">
+                        Skill-based profiles let students find compatible teammates in the same course — no more random groups.
+                    </p>
+                    <span class="feature-cta" data-en="Try the demo →" data-zh="试用演示 →">Try the demo →</span>
+                </a>
+
+                <a href="#demo-lecture" class="feature-card">
+                    <div class="feature-num">02</div>
+                    <h3 class="feature-title" data-en="Standardized Online Lectures" data-zh="标准化线上 Lecture">Standardized Online Lectures</h3>
+                    <p class="feature-desc" data-en="Lecture content is delivered online with quiz-verified attendance — students can pace themselves, replay sections, and reduce language load." data-zh="线上交付 lecture 内容，配合考试验证出勤——学生可自定节奏、回看片段、降低语言负担。">
+                        Lecture content is delivered online with quiz-verified attendance — students can pace themselves, replay sections, and reduce language load.
+                    </p>
+                    <span class="feature-cta" data-en="Try the demo →" data-zh="试用演示 →">Try the demo →</span>
+                </a>
+
+                <a href="#demo-quiz" class="feature-card">
+                    <div class="feature-num">03</div>
+                    <h3 class="feature-title" data-en="Quiz-verified Attendance" data-zh="考试验证出勤">Quiz-verified Attendance</h3>
+                    <p class="feature-desc" data-en="Lecture quizzes confirm participation while giving students immediate feedback on what they understood." data-zh="Lecture 考试确认参与度，同时给学生即时反馈，让他们清楚自己掌握了什么。">
+                        Lecture quizzes confirm participation while giving students immediate feedback on what they understood.
+                    </p>
+                    <span class="feature-cta" data-en="Try the demo →" data-zh="试用演示 →">Try the demo →</span>
+                </a>
+
+                <a href="#demo-tutorial" class="feature-card">
+                    <div class="feature-num">04</div>
+                    <h3 class="feature-title" data-en="In-class Tutorial Whiteboard" data-zh="课堂 Tutorial 白板">In-class Tutorial Whiteboard</h3>
+                    <p class="feature-desc" data-en="During tutorials, every student sees richer content on their own screen, hovers terms for AI explanations, and joins a live chat — without interrupting the class." data-zh="Tutorial 期间，每位学生在自己电脑上看到更丰富的内容，悬停术语获取 AI 解释，并通过直播聊天室提问——不打断课堂。">
+                        During tutorials, every student sees richer content on their own screen, hovers terms for AI explanations, and joins a live chat — without interrupting the class.
+                    </p>
+                    <span class="feature-cta" data-en="Try the demo →" data-zh="试用演示 →">Try the demo →</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Demos -->
+    <section class="project-section bg-medium">
+        <div class="project-container">
+            <div class="section-eyebrow" data-en="INTERACTIVE DEMOS" data-zh="交互演示">INTERACTIVE DEMOS</div>
+            <h2 class="project-h2" data-en="Try it yourself" data-zh="亲手试试">Try it yourself</h2>
+            <p class="demos-hint" data-en="Click around — every panel below is live." data-zh="点点看——下面每个面板都是可交互的。">Click around — every panel below is live.</p>
+
+            <div class="demos-stack">
+
+                <!-- DEMO 1: Team Up -->
+                <article class="demo-card" id="demo-teamup">
+                    <header class="demo-head">
+                        <div class="demo-num">01</div>
+                        <div class="demo-meta">
+                            <h3 class="demo-title" data-en="Team Up" data-zh="组队">Team Up</h3>
+                            <p class="demo-sub" data-en="Find compatible teammates by skill tags." data-zh="通过技能标签找到合适的队友。">Find compatible teammates by skill tags.</p>
+                        </div>
+                    </header>
+
+                    <div class="demo-body">
+                        <div class="teamup-tabs">
+                            <button class="teamup-tab active" data-tab="all" data-en="Card List" data-zh="卡片列表">Card List</button>
+                            <button class="teamup-tab" data-tab="saved" data-en="Saved" data-zh="已保存">Saved</button>
+                            <button class="teamup-tab" data-tab="myteam" data-en="My Team" data-zh="我的队伍">My Team</button>
+                        </div>
+
+                        <div class="teamup-grid" id="teamup-grid">
+                            <!-- cards injected by JS -->
+                        </div>
+
+                        <div class="teamup-status" id="teamup-status" data-en="0 connected" data-zh="已连接 0 人">0 connected</div>
+                    </div>
+                </article>
+
+                <!-- DEMO 2: Lecture Player -->
+                <article class="demo-card" id="demo-lecture">
+                    <header class="demo-head">
+                        <div class="demo-num">02</div>
+                        <div class="demo-meta">
+                            <h3 class="demo-title" data-en="Online Lecture" data-zh="线上 Lecture">Online Lecture</h3>
+                            <p class="demo-sub" data-en="Self-paced player with chapter jumps." data-zh="支持章节跳转的自定节奏播放器。">Self-paced player with chapter jumps.</p>
+                        </div>
+                    </header>
+
+                    <div class="demo-body">
+                        <div class="lecture-player">
+                            <div class="lecture-stage">
+                                <div class="lecture-stage-title">Grid Systems in Interaction Design</div>
+                                <div class="lecture-stage-chapter" id="lecture-chapter">— Why grids?</div>
+                                <div class="lecture-playstate" id="lecture-playstate">
+                                    <svg class="play-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+                                        <polygon points="7,5 19,12 7,19" fill="currentColor"></polygon>
+                                    </svg>
+                                </div>
+                            </div>
+
+                            <div class="lecture-controls">
+                                <button class="lecture-play" id="lecture-play" aria-label="Play/Pause">
+                                    <svg class="play-icon-btn" viewBox="0 0 24 24" aria-hidden="true">
+                                        <polygon class="icon-play" points="8,5 19,12 8,19" fill="currentColor"></polygon>
+                                        <g class="icon-pause" fill="currentColor">
+                                            <rect x="7" y="5" width="3" height="14" rx="0.5"></rect>
+                                            <rect x="14" y="5" width="3" height="14" rx="0.5"></rect>
+                                        </g>
+                                    </svg>
+                                </button>
+                                <div class="lecture-progress-wrap">
+                                    <div class="lecture-progress" id="lecture-progress">
+                                        <div class="lecture-progress-fill" id="lecture-progress-fill"></div>
+                                        <div class="lecture-progress-knob" id="lecture-progress-knob"></div>
+                                    </div>
+                                    <div class="lecture-time"><span id="lecture-current">00:00</span> / 12:45</div>
+                                </div>
+                            </div>
+
+                            <div class="lecture-chapters">
+                                <button class="chapter-chip" data-time="45" data-label="Why grids?">00:45 · Why grids?</button>
+                                <button class="chapter-chip" data-time="185" data-label="Column systems">03:05 · Column systems</button>
+                                <button class="chapter-chip" data-time="332" data-label="Baseline rhythm">05:32 · Baseline rhythm</button>
+                                <button class="chapter-chip" data-time="550" data-label="Responsive balance">09:10 · Responsive balance</button>
+                                <button class="chapter-chip" data-time="680" data-label="Breaking conventions">11:20 · Breaking conventions</button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- DEMO 3: Quiz -->
+                <article class="demo-card" id="demo-quiz">
+                    <header class="demo-head">
+                        <div class="demo-num">03</div>
+                        <div class="demo-meta">
+                            <h3 class="demo-title" data-en="Lecture Quiz" data-zh="Lecture 考试">Lecture Quiz</h3>
+                            <p class="demo-sub" data-en="Quiz-verified attendance — answer to continue." data-zh="考试验证出勤——答对方能继续。">Quiz-verified attendance — answer to continue.</p>
+                        </div>
+                    </header>
+
+                    <div class="demo-body">
+                        <div class="quiz-card" id="quiz-card">
+                            <div class="quiz-progress">
+                                <span data-en="Question" data-zh="题目">Question</span>
+                                <span><span id="quiz-q-num">1</span> / 3</span>
+                            </div>
+                            <h4 class="quiz-question" id="quiz-question">What is the primary purpose of a grid system in interaction design?</h4>
+                            <div class="quiz-options" id="quiz-options">
+                                <!-- options injected by JS -->
+                            </div>
+                            <div class="quiz-feedback" id="quiz-feedback"></div>
+                            <button class="quiz-next" id="quiz-next" disabled data-en="Next" data-zh="下一题">Next</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- DEMO 4: Tutorial Whiteboard -->
+                <article class="demo-card" id="demo-tutorial">
+                    <header class="demo-head">
+                        <div class="demo-num">04</div>
+                        <div class="demo-meta">
+                            <h3 class="demo-title" data-en="In-class Tutorial Whiteboard" data-zh="课堂 Tutorial 白板">In-class Tutorial Whiteboard</h3>
+                            <p class="demo-sub" data-en="Hover any highlighted term to see an inline explanation." data-zh="悬停任意高亮术语即可查看解释。">Hover any highlighted term to see an inline explanation.</p>
+                        </div>
+                    </header>
+
+                    <div class="demo-body tutorial-body">
+
+                        <!-- LEFT: whiteboard -->
+                        <div class="whiteboard">
+                            <div class="whiteboard-meta">
+                                <span class="live-badge"><span class="live-dot"></span>LIVE</span>
+                                <span class="meta-item"><span class="meta-icon">●</span> <span id="tutorial-viewers">1,247</span></span>
+                                <span class="meta-item">1:23:45</span>
+                            </div>
+                            <div class="whiteboard-stage">
+                                <div class="whiteboard-title">Typography Composition Workshop</div>
+                                <div class="whiteboard-instructor">Dr. Hannah Lee · Visual Communication</div>
+                                <p class="whiteboard-caption">
+                                    Today: <span class="term term-light" data-term="kerning">kerning</span>,
+                                    <span class="term term-light" data-term="baseline">baseline grid</span>,
+                                    <span class="term term-light" data-term="negative">negative space</span>,
+                                    and <span class="term term-light" data-term="hierarchy">hierarchy</span>.
+                                </p>
+                                <p class="whiteboard-hint" data-en="Hover any underlined term for an inline explanation." data-zh="悬停任意下划线术语查看解释。">Hover any underlined term for an inline explanation.</p>
+                            </div>
+                            <div class="whiteboard-toolbar">
+                                <button class="wb-tool active" data-tool="pen" aria-label="Pen">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+                                </button>
+                                <button class="wb-tool" data-tool="eraser" aria-label="Eraser">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 6 6-6 6H6l-3-3z"/><path d="M9 11l8-8 4 4-8 8"/></svg>
+                                </button>
+                                <button class="wb-tool" data-tool="color" aria-label="Color">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="7" r="1.5" fill="currentColor"/><circle cx="17" cy="12" r="1.5" fill="currentColor"/><circle cx="7" cy="12" r="1.5" fill="currentColor"/></svg>
+                                </button>
+                                <button class="wb-tool" data-tool="upload" aria-label="Upload">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                                </button>
+                                <div class="wb-toolbar-divider"></div>
+                                <button class="wb-toggle" id="wb-toggle">
+                                    <span class="wb-toggle-label">Drawing</span>
+                                    <span class="wb-toggle-state" id="wb-toggle-state">OFF</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- RIGHT: narrow live chat (matches whiteboard height) -->
+                        <aside class="tutorial-side">
+                            <div class="chat-panel">
+                                <div class="chat-head">
+                                    <span class="chat-live-dot"></span>
+                                    <span data-en="Live Chat" data-zh="直播聊天">Live Chat</span>
+                                    <span class="chat-count" id="chat-count">847</span>
+                                </div>
+                                <div class="chat-stream" id="chat-stream">
+                                    <!-- messages injected by JS -->
+                                </div>
+                                <form class="chat-form" id="chat-form">
+                                    <input type="text" id="chat-input" class="chat-input" placeholder="Message…" autocomplete="off">
+                                    <button type="submit" class="chat-send" aria-label="Send">↵</button>
+                                </form>
+                            </div>
+                        </aside>
+
+                        <!-- Bottom: principles list (full width) -->
+                        <div class="tutorial-content">
+                            <h4 class="tutorial-content-title">Core Design Principles</h4>
+                            <ul class="tutorial-list">
+                                <li>Proper <span class="term" data-term="kerning">letter spacing</span> enhances readability.</li>
+                                <li><span class="term" data-term="baseline">Baseline grids</span> create vertical rhythm.</li>
+                                <li><span class="term" data-term="negative">White space</span> is an active design element.</li>
+                                <li><span class="term" data-term="hierarchy">Hierarchy</span> directs attention effectively.</li>
+                            </ul>
+
+                            <!-- Tooltip injected here by JS -->
+                            <div class="term-tooltip" id="term-tooltip" role="tooltip" aria-hidden="true"></div>
+                        </div>
+                    </div>
+
+                    <!-- Bottom AI bar -->
+                    <div class="ai-bar">
+                        <div class="ai-bar-head">
+                            <span class="ai-dot"></span>
+                            <span class="ai-bar-title" data-en="Ask AI" data-zh="问 AI">Ask AI</span>
+                            <span class="ai-bar-hint" id="ai-bar-hint" data-en="Hover a highlighted term, or type below." data-zh="悬停高亮术语，或在下方输入。">Hover a highlighted term, or type below.</span>
+                        </div>
+                        <form class="ai-bar-form" id="ai-form">
+                            <input type="text" id="ai-input" class="ai-bar-input" placeholder="Ask anything about this tutorial…" autocomplete="off">
+                            <button type="submit" class="ai-bar-send" aria-label="Send">→</button>
+                        </form>
+                        <div class="ai-bar-stream" id="ai-stream">
+                            <!-- AI replies appear here -->
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom Nav -->
+    <section class="project-end">
+        <a href="../index.html#showcase" class="project-end-link">
+            <span class="arrow">←</span>
+            <span data-en="Back to all works" data-zh="返回全部作品">Back to all works</span>
+        </a>
+    </section>
+
+    <script src="../script.js"></script>
+    <script src="colab-demos.js"></script>
+    <script>
+        // Skip the loader logic from script.js for subpages — make sure body is visible.
+        document.body.classList.add('loaded');
+        const loaderEl = document.querySelector('.loader');
+        if (loaderEl) loaderEl.remove();
+    </script>
+</body>
+
+</html>

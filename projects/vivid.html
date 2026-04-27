@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vividXperience — Aiden Yang</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Press+Start+2P&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="project.css">
+    <link rel="stylesheet" href="vivid.css">
+</head>
+
+<body class="project-page vivid-page">
+    <!-- Animated Background -->
+    <canvas id="particles-canvas"></canvas>
+    <div class="grid-background"></div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor">
+        <div class="cursor-glow"></div>
+    </div>
+    <div class="cursor-dot"></div>
+
+    <!-- Subpage Top Bar -->
+    <nav class="project-nav">
+        <a href="../index.html#showcase" class="project-nav-btn project-nav-back">
+            <span class="arrow">←</span>
+            <span data-en="Back to Works" data-zh="返回作品">Back to Works</span>
+        </a>
+        <a href="../index.html" class="project-nav-btn project-nav-home">
+            <span data-en="Visit Main Site" data-zh="进入主页">Visit Main Site</span>
+            <span class="arrow">→</span>
+        </a>
+    </nav>
+
+    <!-- Hero -->
+    <section class="project-hero vivid-hero">
+        <div class="vivid-hero-bg" aria-hidden="true">
+            <div class="vivid-hero-glow vivid-glow-1"></div>
+            <div class="vivid-hero-glow vivid-glow-2"></div>
+            <div class="vivid-hero-glow vivid-glow-3"></div>
+        </div>
+
+        <div class="project-hero-inner">
+            <div class="project-tagline" data-en="SPATIAL DESIGN · 2024 · IDEA9105" data-zh="空间设计 · 2024 · IDEA9105">SPATIAL DESIGN · 2024 · IDEA9105</div>
+            <h1 class="project-title-xl vivid-title">vividXperience</h1>
+            <p class="project-subtitle" data-en="Bring the magic of Vivid Sydney into your living room — through Vision Pro." data-zh="把 Vivid Sydney 的魔法带进你的客厅——通过 Vision Pro。">
+                Bring the magic of Vivid Sydney into your living room — through Vision Pro.
+            </p>
+
+            <div class="project-meta-grid">
+                <div class="meta-cell">
+                    <div class="meta-label" data-en="ROLE" data-zh="角色">ROLE</div>
+                    <div class="meta-value" data-en="UI/UX · Spatial" data-zh="UI/UX · 空间设计">UI/UX · Spatial</div>
+                </div>
+                <div class="meta-cell">
+                    <div class="meta-label" data-en="YEAR" data-zh="年份">YEAR</div>
+                    <div class="meta-value">2024</div>
+                </div>
+                <div class="meta-cell">
+                    <div class="meta-label" data-en="TYPE" data-zh="类型">TYPE</div>
+                    <div class="meta-value" data-en="Vision Pro AR/VR" data-zh="Vision Pro AR/VR">Vision Pro AR/VR</div>
+                </div>
+                <div class="meta-cell">
+                    <div class="meta-label" data-en="TOOLS" data-zh="工具">TOOLS</div>
+                    <div class="meta-value">Figma · AE</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-cover vivid-cover">
+            <img src="../Assets/vivid.png" alt="vividXperience cover">
+            <div class="vivid-cover-overlay"></div>
+            <div class="vivid-cover-marquee">
+                <span>VIVID SYDNEY · LIGHT · MUSIC · IDEAS · VIVID SYDNEY · LIGHT · MUSIC · IDEAS · </span>
+                <span aria-hidden="true">VIVID SYDNEY · LIGHT · MUSIC · IDEAS · VIVID SYDNEY · LIGHT · MUSIC · IDEAS · </span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overview -->
+    <section class="project-section bg-medium">
+        <div class="project-container">
+            <div class="section-eyebrow" data-en="OVERVIEW" data-zh="概述">OVERVIEW</div>
+            <h2 class="project-h2" data-en="What is vividXperience?" data-zh="vividXperience 是什么？">What is vividXperience?</h2>
+            <p class="project-lead" data-en="vividXperience is a Vision Pro application that lets users experience the vibrant atmosphere of Vivid Sydney from home. Through immersive AR/VR, users explore digital replicas of light installations, navigate a 3D panoramic map of the festival, and interact with key highlights — making the festival accessible to anyone who can't attend in person." data-zh="vividXperience 是一款 Vision Pro 应用，让用户在家就能感受 Vivid Sydney 的氛围。通过沉浸式 AR/VR，用户可以探索灯光装置的数字复刻、在 3D 全景地图中漫游festival，并与关键亮点交互——让无法到场的人也能共享盛会。">
+                vividXperience is a Vision Pro application that lets users experience the vibrant atmosphere of Vivid Sydney from home. Through immersive AR/VR, users explore digital replicas of light installations, navigate a 3D panoramic map of the festival, and interact with key highlights — making the festival accessible to anyone who can't attend in person.
+            </p>
+        </div>
+    </section>
+
+    <!-- Key Features -->
+    <section class="project-section">
+        <div class="project-container">
+            <div class="section-eyebrow" data-en="KEY FEATURES" data-zh="核心功能">KEY FEATURES</div>
+            <h2 class="project-h2" data-en="Four entry points" data-zh="四个入口">Four entry points</h2>
+
+            <div class="features-grid">
+                <a href="#vivid-demo" data-jump="map" class="feature-card vivid-feature">
+                    <div class="feature-num">01</div>
+                    <h3 class="feature-title" data-en="3D Panoramic Map" data-zh="3D 全景地图">3D Panoramic Map</h3>
+                    <p class="feature-desc" data-en="A bird's-eye view of the festival. Spin, zoom, and tap any landmark to drop into its immersive scene." data-zh="festival 的鸟瞰视角。旋转、缩放、点击任意地标即可进入其沉浸场景。">
+                        A bird's-eye view of the festival. Spin, zoom, and tap any landmark to drop into its immersive scene.
+                    </p>
+                    <span class="feature-cta" data-en="Try the demo →" data-zh="试用演示 →">Try the demo →</span>
+                </a>
+
+                <a href="#vivid-demo" data-jump="events" class="feature-card vivid-feature">
+                    <div class="feature-num">02</div>
+                    <h3 class="feature-title" data-en="Event Discovery" data-zh="活动探索">Event Discovery</h3>
+                    <p class="feature-desc" data-en="Browse light shows, drone performances, and creative workshops by category. Cards animate forward on hover." data-zh="按类别浏览灯光秀、无人机表演和创意工坊。卡片悬停即放大。">
+                        Browse light shows, drone performances, and creative workshops by category. Cards animate forward on hover.
+                    </p>
+                    <span class="feature-cta" data-en="Try the demo →" data-zh="试用演示 →">Try the demo →</span>
+                </a>
+
+                <a href="#vivid-demo" data-jump="immersive" class="feature-card vivid-feature">
+                    <div class="feature-num">03</div>
+                    <h3 class="feature-title" data-en="Immersive Experience" data-zh="沉浸式体验">Immersive Experience</h3>
+                    <p class="feature-desc" data-en="Step inside Vivid Sydney. Tap to summon a sidebar with pause, scene-switch, and a progress bar — without breaking the spell." data-zh="走进 Vivid Sydney。轻点呼出侧边栏：暂停、切换场景、进度条——不打断沉浸感。">
+                        Step inside Vivid Sydney. Tap to summon a sidebar with pause, scene-switch, and a progress bar — without breaking the spell.
+                    </p>
+                    <span class="feature-cta" data-en="Try the demo →" data-zh="试用演示 →">Try the demo →</span>
+                </a>
+
+                <a href="#vivid-demo" data-jump="album" class="feature-card vivid-feature">
+                    <div class="feature-num">04</div>
+                    <h3 class="feature-title" data-en="Cross-device Album" data-zh="跨设备相册">Cross-device Album</h3>
+                    <p class="feature-desc" data-en="Record AR moments on your phone, then replay them in 3D inside Vision Pro. One album, two devices, one memory." data-zh="在手机上录下 AR 瞬间，回到 Vision Pro 用 3D 重温。一个相册，两台设备，一段记忆。">
+                        Record AR moments on your phone, then replay them in 3D inside Vision Pro. One album, two devices, one memory.
+                    </p>
+                    <span class="feature-cta" data-en="Try the demo →" data-zh="试用演示 →">Try the demo →</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Demo: Vision Pro Simulator -->
+    <section class="project-section bg-medium" id="vivid-demo-section">
+        <div class="project-container">
+            <div class="section-eyebrow" data-en="INTERACTIVE DEMO" data-zh="交互演示">INTERACTIVE DEMO</div>
+            <h2 class="project-h2" data-en="Step inside" data-zh="走进去看看">Step inside</h2>
+            <p class="demos-hint" data-en="A miniature Vision Pro view. Click anywhere inside to start." data-zh="一个迷你 Vision Pro 视野。点击容器内任意位置开始。">A miniature Vision Pro view. Click anywhere inside to start.</p>
+
+            <div class="vp-frame" id="vivid-demo">
+                <!-- Pre-launch poster -->
+                <div class="vp-poster" id="vp-poster">
+                    <div class="vp-poster-glow"></div>
+                    <div class="vp-poster-inner">
+                        <div class="vp-poster-eyebrow" data-en="POWERED BY VISION PRO" data-zh="由 VISION PRO 驱动">POWERED BY VISION PRO</div>
+                        <h3 class="vp-poster-title">vividXperience</h3>
+                        <p class="vp-poster-sub" data-en="Click anywhere to enter the experience." data-zh="点击任意处进入体验。">Click anywhere to enter the experience.</p>
+                        <button class="vp-enter-btn" id="vp-enter">
+                            <span data-en="ENTER" data-zh="进入">ENTER</span>
+                            <span class="vp-enter-arrow">→</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Vision Pro UI shell -->
+                <div class="vp-shell" id="vp-shell" aria-hidden="true">
+                    <!-- Sidebar -->
+                    <aside class="vp-sidebar">
+                        <button class="vp-sb-item active" data-screen="home" aria-label="Home">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12l9-9 9 9"/><path d="M5 10v10a1 1 0 0 0 1 1h4v-7h4v7h4a1 1 0 0 0 1-1V10"/></svg>
+                            <span class="vp-sb-label">Home</span>
+                        </button>
+                        <button class="vp-sb-item" data-screen="map" aria-label="Map">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><polygon points="1 6 8 3 16 6 23 3 23 18 16 21 8 18 1 21 1 6"/><line x1="8" y1="3" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="21"/></svg>
+                            <span class="vp-sb-label">Map</span>
+                        </button>
+                        <button class="vp-sb-item" data-screen="favs" aria-label="Favorites">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                            <span class="vp-sb-label">Album</span>
+                        </button>
+                        <button class="vp-sb-item" data-screen="notif" aria-label="Notifications">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                            <span class="vp-sb-label">Bell</span>
+                        </button>
+                        <button class="vp-sb-item" data-screen="settings" aria-label="Settings">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                            <span class="vp-sb-label">Settings</span>
+                        </button>
+                    </aside>
+
+                    <!-- Main stage: screens swap here -->
+                    <main class="vp-stage" id="vp-stage">
+
+                        <!-- HOME -->
+                        <section class="vp-screen vp-screen-home active" data-screen="home">
+                            <div class="vp-search">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                                <span class="vp-search-placeholder" data-en="What events do you want to explore?" data-zh="想探索哪些活动？">What events do you want to explore?</span>
+                            </div>
+
+                            <!-- Two major entry points: 3D Map (large) + Menu Grid (2x2) -->
+                            <div class="vp-home-main">
+                                <button class="vp-home-map-entry" data-jump="map">
+                                    <div class="vp-home-map-preview" aria-hidden="true">
+                                        <div class="vp-home-map-grid"></div>
+                                        <span class="vp-home-map-pin" style="left: 30%; top: 60%;"></span>
+                                        <span class="vp-home-map-pin" style="left: 55%; top: 38%;"></span>
+                                        <span class="vp-home-map-pin" style="left: 72%; top: 65%;"></span>
+                                        <span class="vp-home-map-pin" style="left: 42%; top: 78%;"></span>
+                                    </div>
+                                    <div class="vp-home-map-label">
+                                        <div class="vp-home-map-eyebrow">3D MAP</div>
+                                        <div class="vp-home-map-title" data-en="Explore Vivid Sydney" data-zh="探索 Vivid Sydney">Explore Vivid Sydney</div>
+                                    </div>
+                                </button>
+
+                                <div class="vp-home-grid">
+                                    <button class="vp-tile vp-tile-events" data-jump="events">
+                                        <div class="vp-tile-bg vp-tile-bg-events"></div>
+                                        <div class="vp-tile-label" data-en="Explore Events" data-zh="探索活动">EXPLORE EVENTS</div>
+                                    </button>
+                                    <button class="vp-tile vp-tile-quick" data-jump="immersive">
+                                        <div class="vp-tile-bg vp-tile-bg-quick"></div>
+                                        <div class="vp-tile-label" data-en="Quick Experience" data-zh="快速体验">QUICK EXPERIENCE</div>
+                                    </button>
+                                    <button class="vp-tile vp-tile-album" data-jump="album">
+                                        <div class="vp-tile-bg vp-tile-bg-album"></div>
+                                        <div class="vp-tile-label" data-en="My Album" data-zh="我的相册">MY ALBUM</div>
+                                    </button>
+                                    <button class="vp-tile vp-tile-settings" data-jump="settings">
+                                        <div class="vp-tile-bg vp-tile-bg-settings"></div>
+                                        <div class="vp-tile-label" data-en="Settings" data-zh="设置">SETTINGS</div>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Bottom row: Recommended + Latest News -->
+                            <div class="vp-home-footer">
+                                <div class="vp-home-col">
+                                    <div class="vp-home-col-head" data-en="RECOMMENDED" data-zh="推荐">RECOMMENDED</div>
+                                    <div class="vp-recommend-row">
+                                        <button class="vp-rec-card" data-jump="immersive" data-event="Drone Show">
+                                            <div class="vp-rec-thumb vp-rec-thumb-1"></div>
+                                            <div class="vp-rec-name">Drone Show</div>
+                                        </button>
+                                        <button class="vp-rec-card" data-jump="immersive" data-event="Opera Light">
+                                            <div class="vp-rec-thumb vp-rec-thumb-2"></div>
+                                            <div class="vp-rec-name">Opera Light</div>
+                                        </button>
+                                        <button class="vp-rec-card" data-jump="immersive" data-event="Harbour Bridge">
+                                            <div class="vp-rec-thumb vp-rec-thumb-3"></div>
+                                            <div class="vp-rec-name">Harbour Bridge</div>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="vp-home-col vp-home-col-news">
+                                    <div class="vp-home-col-head" data-en="LATEST NEWS" data-zh="最新动态">LATEST NEWS</div>
+                                    <ul class="vp-news-list">
+                                        <li><span class="vp-news-dot"></span><span class="vp-news-title">Vivid 2024 opens with record drone show</span><span class="vp-news-date">2d</span></li>
+                                        <li><span class="vp-news-dot"></span><span class="vp-news-title">Opera House projection wins design award</span><span class="vp-news-date">3d</span></li>
+                                        <li><span class="vp-news-dot"></span><span class="vp-news-title">Harbour Bridge fireworks finale tonight</span><span class="vp-news-date">5d</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- 3D MAP — game-engine perspective plane -->
+                        <section class="vp-screen vp-screen-map" data-screen="map">
+                            <div class="vp-map-canvas" id="vp-map-canvas" tabindex="0">
+                                <!-- Sky / horizon -->
+                                <div class="vp-map-sky"></div>
+                                <div class="vp-map-horizon-glow"></div>
+
+                                <!-- World container: rotates and translates as a whole based on camera -->
+                                <div class="vp-world" id="vp-world">
+                                    <!-- The infinite-ish ground plane lives in 3D space -->
+                                    <div class="vp-ground" id="vp-ground">
+                                        <div class="vp-ground-grid"></div>
+                                    </div>
+
+                                    <!-- LANDMARKS — multi-layer Z-depth billboards.
+                                         Each landmark consists of multiple SVG layers placed at
+                                         different Z heights inside a preserve-3d wrapper.
+                                         When the world rotates, layers parallax against each
+                                         other, producing real volume. -->
+
+                                    <!-- Opera House landmark: dual-layer SVG wireframe.
+                                         Back layer is pushed away on Z and dimmed; front layer
+                                         sits at Z=0 at full glow. Together they parallax when
+                                         the camera rotates, producing real volume. -->
+                                    <div class="vp-landmark vp-landmark-opera vp-landmark-cyan vp-landmark-wire" style="--wx: -200px; --wz: 100px;" data-event="Opera Light" data-target="opera">
+                                        <div class="vp-lm-footprint vp-lm-footprint-opera"></div>
+                                        <div class="vp-lm-layers">
+                                            <!-- Back layer: dimmer silhouette outlines for depth parallax -->
+                                            <svg class="vp-lm-wire vp-lm-wire-back" viewBox="-105 -65 210 95" aria-hidden="true">
+                                                <g class="wf-stroke" fill="none" stroke-width="0.9" opacity="0.7">
+                                                    <path d="M -70.2 6 Q -79.3 -11.1 -86.2 -24.9 Q -69.1 -27.1 -52 -15.8 Q -57.8 -4.2 -60 6"/>
+                                                    <path d="M -60 6 Q -64.7 -20.2 -63.3 -40.9 Q -40.7 -39.8 -22.2 -15.8 Q -37.1 -3.1 -40.7 6"/>
+                                                    <path d="M -40.7 6 Q -45.1 -24.9 -53.1 -56.9 Q -24.7 -54.7 -0.7 -15.8 Q -16.7 -0.9 -22.2 6"/>
+                                                    <path d="M -18.9 6 Q 12 -31.8 53.1 -40.9 Q 52.7 -18 72.7 6"/>
+                                                    <path d="M 51 6 Q 63.6 -15.8 90.9 -19.1 Q 82.9 -4.2 72.7 6"/>
+                                                </g>
+                                            </svg>
+                                            <!-- Front layer: same silhouette as detail page, scaled to landmark size -->
+                                            <svg class="vp-lm-wire vp-lm-wire-front" viewBox="-105 -65 210 95" aria-hidden="true">
+                                                <g class="wf-stroke-bright" fill="none">
+                                                    <!-- Sail 1 -->
+                                                    <path d="M -70.2 6 Q -79.3 -11.1 -86.2 -24.9 Q -69.1 -27.1 -52 -15.8 Q -57.8 -4.2 -60 6"/>
+                                                    <!-- Sail 2 -->
+                                                    <path d="M -60 6 Q -64.7 -20.2 -63.3 -40.9 Q -40.7 -39.8 -22.2 -15.8 Q -37.1 -3.1 -40.7 6"/>
+                                                    <!-- Sail 3 (tallest) -->
+                                                    <path d="M -40.7 6 Q -45.1 -24.9 -53.1 -56.9 Q -24.7 -54.7 -0.7 -15.8 Q -16.7 -0.9 -22.2 6"/>
+                                                    <!-- Sail 4 (large right) — extends all the way to x≈73 -->
+                                                    <path d="M -18.9 6 Q 12 -31.8 53.1 -40.9 Q 52.7 -18 72.7 6"/>
+                                                    <!-- Sail 4 inner ridge -->
+                                                    <path d="M 12.7 6 Q 25.5 -18 42.9 -28.9"/>
+                                                    <!-- Sail 5 (small) — left base inside sail 4 at x≈51 -->
+                                                    <path d="M 51 6 Q 63.6 -15.8 90.9 -19.1 Q 82.9 -4.2 72.7 6"/>
+                                                    <!-- Sail 5 inner ridge -->
+                                                    <path d="M 63.6 6 Q 72.7 -9.3 84.4 -14.4"/>
+                                                </g>
+                                                <!-- Stepped podium — single clean outline -->
+                                                <g class="wf-stroke" fill="none" stroke-width="0.8">
+                                                    <path d="M -100 22 L 100 22"/>
+                                                    <path d="M -100 22 L -100 18.7 L -87.3 18.7 L -87.3 10.7 L -82.9 10.7 L -82.9 6 L 93.1 6 L 93.1 12.9 L 100 12.9 L 100 22"/>
+                                                </g>
+                                            </svg>
+                                        </div>
+                                        <button class="vp-landmark-pin" data-event="Opera Light" data-target="opera">
+                                            <span class="vp-pin-dot"></span>
+                                            <span class="vp-pin-label">Opera House</span>
+                                        </button>
+                                    </div>
+
+                                    <!-- Harbour Bridge landmark: dual-layer wireframe arch.
+                                         Back layer = simple silhouette arch; front layer = full
+                                         truss + hangers + deck. -->
+                                    <div class="vp-landmark vp-landmark-bridge vp-landmark-cyan vp-landmark-wire" style="--wx: 0px; --wz: -160px;" data-event="Harbour Bridge" data-target="bridge">
+                                        <div class="vp-lm-footprint vp-lm-footprint-bridge"></div>
+                                        <div class="vp-lm-layers">
+                                            <svg class="vp-lm-wire vp-lm-wire-back" viewBox="-150 -80 300 110" aria-hidden="true">
+                                                <g class="wf-stroke" fill="none">
+                                                    <path d="M -130 18 Q 0 -65 130 18"/>
+                                                    <line x1="-140" y1="18" x2="140" y2="18" stroke-width="1.2"/>
+                                                </g>
+                                            </svg>
+                                            <svg class="vp-lm-wire vp-lm-wire-front" viewBox="-160 -85 320 120" aria-hidden="true">
+                                                <!-- Outer arch -->
+                                                <path class="wf-stroke-bright" fill="none" d="M -140 22 Q 0 -78 140 22"/>
+                                                <!-- Inner arch chord -->
+                                                <path class="wf-stroke" fill="none" d="M -140 22 Q 0 -56 140 22" stroke-width="1.2"/>
+                                                <!-- Vertical hangers -->
+                                                <g class="wf-stroke" fill="none" stroke-width="0.8" opacity="0.85">
+                                                    <line x1="-110" y1="22" x2="-110" y2="-2"/>
+                                                    <line x1="-80"  y1="22" x2="-80"  y2="-26"/>
+                                                    <line x1="-50"  y1="22" x2="-50"  y2="-46"/>
+                                                    <line x1="-20"  y1="22" x2="-20"  y2="-58"/>
+                                                    <line x1="10"   y1="22" x2="10"   y2="-58"/>
+                                                    <line x1="40"   y1="22" x2="40"   y2="-50"/>
+                                                    <line x1="70"   y1="22" x2="70"   y2="-32"/>
+                                                    <line x1="100"  y1="22" x2="100"  y2="-6"/>
+                                                </g>
+                                                <!-- Cross truss zigzag -->
+                                                <path class="wf-stroke" fill="none" stroke-width="0.6" opacity="0.55"
+                                                      d="M -110 -2 L -80 22 L -50 -46 L -20 22 L 10 -58 L 40 22 L 70 -32 L 100 22"/>
+                                                <!-- Deck (3 lines) -->
+                                                <line class="wf-stroke-bright" x1="-150" y1="22" x2="150" y2="22"/>
+                                                <line class="wf-stroke" x1="-150" y1="28" x2="150" y2="28" stroke-width="0.9"/>
+                                                <!-- Pylons -->
+                                                <g class="wf-stroke" fill="none" stroke-width="1">
+                                                    <rect x="-148" y="-2" width="10" height="38"/>
+                                                    <rect x="138"  y="-2" width="10" height="38"/>
+                                                </g>
+                                            </svg>
+                                        </div>
+                                        <button class="vp-landmark-pin" data-event="Harbour Bridge" data-target="bridge">
+                                            <span class="vp-pin-dot"></span>
+                                            <span class="vp-pin-label">Harbour Bridge</span>
+                                        </button>
+                                    </div>
+
+                                    <!-- Drone Show landmark: stylised swarm rising from a launch pad,
+                                         with concentric ground rings on the back layer for depth. -->
+                                    <div class="vp-landmark vp-landmark-drones vp-landmark-cyan vp-landmark-wire" style="--wx: 220px; --wz: 100px;" data-event="Drone Show" data-target="drones">
+                                        <div class="vp-lm-footprint vp-lm-footprint-drones"></div>
+                                        <div class="vp-lm-layers">
+                                            <svg class="vp-lm-wire vp-lm-wire-back" viewBox="-80 -85 160 105" aria-hidden="true">
+                                                <!-- Concentric ground rings for the launch pad -->
+                                                <g class="wf-stroke" fill="none" opacity="0.7">
+                                                    <ellipse cx="0" cy="18" rx="62" ry="9"/>
+                                                    <ellipse cx="0" cy="18" rx="42" ry="6"/>
+                                                    <ellipse cx="0" cy="18" rx="22" ry="3"/>
+                                                </g>
+                                                <!-- Trailing back drones -->
+                                                <g class="wf-stroke" fill="currentColor" opacity="0.6">
+                                                    <circle cx="-30" cy="-22" r="1.4"/>
+                                                    <circle cx="14"  cy="-46" r="1.4"/>
+                                                    <circle cx="-10" cy="-66" r="1.4"/>
+                                                </g>
+                                            </svg>
+                                            <svg class="vp-lm-wire vp-lm-wire-front" viewBox="-90 -90 180 110" aria-hidden="true">
+                                                <!-- Front swarm: drones tracing an infinity loop in mid-air -->
+                                                <path class="wf-stroke-bright" fill="none" stroke-width="1.4"
+                                                      d="M -50 -40 Q -30 -60 0 -40 Q 30 -20 50 -40 Q 30 -60 0 -40 Q -30 -20 -50 -40 Z"/>
+                                                <!-- Drones along the path (highlight beats) -->
+                                                <g fill="currentColor" class="wf-stroke-bright">
+                                                    <circle cx="-50" cy="-40" r="1.6"/>
+                                                    <circle cx="-30" cy="-52" r="1.4"/>
+                                                    <circle cx="0"   cy="-40" r="1.8"/>
+                                                    <circle cx="30"  cy="-28" r="1.4"/>
+                                                    <circle cx="50"  cy="-40" r="1.6"/>
+                                                    <circle cx="30"  cy="-52" r="1.4"/>
+                                                    <circle cx="-30" cy="-28" r="1.4"/>
+                                                </g>
+                                                <!-- Vertical light beams from pad -->
+                                                <g class="wf-stroke" fill="none" stroke-width="0.6" opacity="0.6" stroke-dasharray="2 3">
+                                                    <line x1="-50" y1="20" x2="-50" y2="-30"/>
+                                                    <line x1="-25" y1="20" x2="-25" y2="-50"/>
+                                                    <line x1="0"   y1="20" x2="0"   y2="-70"/>
+                                                    <line x1="25"  y1="20" x2="25"  y2="-50"/>
+                                                    <line x1="50"  y1="20" x2="50"  y2="-30"/>
+                                                </g>
+                                                <!-- Launch pad ring -->
+                                                <ellipse class="wf-stroke-bright" cx="0" cy="20" rx="68" ry="10" fill="none"/>
+                                            </svg>
+                                        </div>
+                                        <button class="vp-landmark-pin" data-event="Drone Show" data-target="drones">
+                                            <span class="vp-pin-dot"></span>
+                                            <span class="vp-pin-label">Drone Show</span>
+                                        </button>
+                                    </div>
+
+                                </div>
+
+                                <!-- Compass / reset -->
+                                <button class="vp-map-reset" id="vp-map-reset" aria-label="Reset camera">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                                        <circle cx="12" cy="12" r="9"/>
+                                        <line x1="12" y1="3" x2="12" y2="6"/>
+                                        <polygon points="12,7 14,12 12,11 10,12" fill="currentColor"/>
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <aside class="vp-map-sidepanel" id="vp-map-sidepanel">
+                                <div class="vp-side-eyebrow" data-en="SELECT A LANDMARK" data-zh="选择一个地标">SELECT A LANDMARK</div>
+                                <h4 class="vp-side-title" id="vp-map-title">Pick a glowing point</h4>
+                                <p class="vp-side-desc" id="vp-map-desc" data-en="Drag the world to look around. Use WASD to fly across the harbour. Click any pin to enter its scene." data-zh="拖拽场景旋转视角。按 WASD 在港口上空飞行。点击任意标记进入对应场景。">Drag the world to look around. Use WASD to fly across the harbour. Click any pin to enter its scene.</p>
+                                <button class="vp-side-cta" id="vp-map-start" disabled>
+                                    <span data-en="START" data-zh="开始">START</span>
+                                    <span>→</span>
+                                </button>
+                            </aside>
+                        </section>
+
+                        <!-- EVENTS -->
+                        <section class="vp-screen vp-screen-events" data-screen="events">
+                            <div class="vp-events-tabs">
+                                <button class="vp-evt-tab active" data-cat="all">All</button>
+                                <button class="vp-evt-tab" data-cat="light">Light Show</button>
+                                <button class="vp-evt-tab" data-cat="drone">Drone</button>
+                                <button class="vp-evt-tab" data-cat="vr">Virtual Tour</button>
+                                <button class="vp-evt-tab" data-cat="workshop">Workshop</button>
+                            </div>
+
+                            <div class="vp-events-grid" id="vp-events-grid">
+                                <!-- cards injected by JS -->
+                            </div>
+                        </section>
+
+                        <!-- IMMERSIVE -->
+                        <section class="vp-screen vp-screen-immersive" data-screen="immersive">
+                            <div class="vp-imm-stage" id="vp-imm-stage">
+                                <div class="vp-imm-bg scene-Drone-Show" id="vp-imm-bg" data-scene="Drone Show"></div>
+                                <div class="vp-imm-stars" id="vp-imm-stars" aria-hidden="true"></div>
+                                <div class="vp-imm-parallax" id="vp-imm-parallax">
+                                    <!-- Scene: Opera Light — Sydney Opera House silhouette built from
+                                         two overlapping sail clusters (matching the actual building):
+                                         a larger left/major hall cluster and a smaller right/minor hall
+                                         cluster, plus the small detached Bennelong restaurant sail.
+                                         Each sail uses a curved-leaf path that overlaps its neighbour,
+                                         giving the iconic stacked-shell appearance.
+                                         Projection effects are switchable via the light-mode picker below. -->
+                                    <svg class="vp-imm-art vp-imm-art-opera" data-scene="Opera Light" data-light-mode="projection" viewBox="-340 -200 680 320" aria-hidden="true">
+                                        <defs>
+                                            <!-- ===== Light mode gradients ===== -->
+                                            <!-- Mode: projection — animated rainbow stops -->
+                                            <linearGradient id="operaProjection" x1="0%" y1="0%" x2="100%" y2="100%">
+                                                <stop offset="0%"   stop-color="#ff3da6">
+                                                    <animate attributeName="stop-color" values="#ff3da6;#ffc864;#2cd9ff;#c45cff;#ff3da6" dur="6s" repeatCount="indefinite"/>
+                                                </stop>
+                                                <stop offset="50%"  stop-color="#c45cff">
+                                                    <animate attributeName="stop-color" values="#c45cff;#ff3da6;#ffc864;#2cd9ff;#c45cff" dur="6s" repeatCount="indefinite"/>
+                                                </stop>
+                                                <stop offset="100%" stop-color="#2cd9ff">
+                                                    <animate attributeName="stop-color" values="#2cd9ff;#c45cff;#ff3da6;#ffc864;#2cd9ff" dur="6s" repeatCount="indefinite"/>
+                                                </stop>
+                                            </linearGradient>
+
+                                            <!-- Mode: aurora — green/teal/violet vertical sweep -->
+                                            <linearGradient id="operaAurora" x1="0%" y1="100%" x2="0%" y2="0%">
+                                                <stop offset="0%"   stop-color="#0a3a5a"/>
+                                                <stop offset="35%"  stop-color="#16d2a8"/>
+                                                <stop offset="70%"  stop-color="#6b9bff"/>
+                                                <stop offset="100%" stop-color="#c45cff"/>
+                                            </linearGradient>
+
+                                            <!-- Mode: fire — warm red/orange/yellow -->
+                                            <linearGradient id="operaFire" x1="0%" y1="100%" x2="0%" y2="0%">
+                                                <stop offset="0%"   stop-color="#3a0a0a"/>
+                                                <stop offset="35%"  stop-color="#ff3a1a"/>
+                                                <stop offset="75%"  stop-color="#ffc864"/>
+                                                <stop offset="100%" stop-color="#fff5b0"/>
+                                            </linearGradient>
+
+                                            <!-- Mode: pulse — pure cyan/violet pulse -->
+                                            <linearGradient id="operaPulse" x1="0%" y1="100%" x2="0%" y2="0%">
+                                                <stop offset="0%"   stop-color="#070d3a"/>
+                                                <stop offset="50%"  stop-color="#2cd9ff"/>
+                                                <stop offset="100%" stop-color="#ffffff"/>
+                                            </linearGradient>
+                                        </defs>
+
+                                        <!-- Water reflection -->
+                                        <g class="opera-water" stroke-width="1" fill="none">
+                                            <path d="M -290 130 Q -100 124 50 130 T 290 130" stroke-dasharray="3 6"/>
+                                            <path d="M -270 144 Q -80 138 70 144 T 270 144" stroke-dasharray="3 6" opacity="0.6"/>
+                                        </g>
+
+                                        <!-- ===== Sail FILL silhouettes (back layer) =====
+                                             Closed shells used purely as colour canvases for the
+                                             light-mode gradients. They sit BEHIND the stroke lines,
+                                             provide no outline, only the colour wash that morphs with
+                                             projection / aurora / fire / pulse modes. =====-->
+                                        <g class="opera-fill-layer" stroke="none">
+                                            <!-- Sail 1 silhouette -->
+                                            <path class="opera-shell-fill" d="M -196 6 Q -218 -41 -237 -79 Q -190 -85 -143 -54 Q -159 -22 -165 6 Z"/>
+                                            <!-- Sail 2 silhouette -->
+                                            <path class="opera-shell-fill" d="M -165 6 Q -178 -66 -174 -123 Q -112 -120 -61 -54 Q -102 -19 -112 6 Z"/>
+                                            <!-- Sail 3 silhouette (tallest) -->
+                                            <path class="opera-shell-fill" d="M -112 6 Q -124 -79 -146 -167 Q -68 -161 -2 -54 Q -46 -13 -61 6 Z"/>
+                                            <!-- Sail 4 silhouette (large right). Base extends all the way to
+                                                 x=200 so it physically overlaps sail 5 — matches op.png where
+                                                 sail 5 emerges from inside sail 4's right slope. -->
+                                            <path class="opera-shell-fill" d="M -52 6 Q 33 -98 146 -123 Q 145 -55 200 6 Z"/>
+                                            <!-- Sail 5 silhouette (far right small shell). Left base sits
+                                                 INSIDE sail 4 (around x=140) so the two shells visually
+                                                 overlap rather than stand apart. -->
+                                            <path class="opera-shell-fill" d="M 140 6 Q 175 -54 250 -63 Q 228 -22 200 6 Z"/>
+                                            <!-- Podium body fill (matches the cleaned stroke outline) -->
+                                            <path class="opera-podium-fill" d="M -275 50 L -275 41 L -240 41 L -240 19 L -228 19 L -228 6 L 256 6 L 256 25 L 275 25 L 275 50 Z"/>
+                                        </g>
+
+                                        <!-- ===== Stroke lines (top layer) =====
+                                             Sails traced from the user's reference SVG. Base reduced
+                                             to a clean two-line podium (top edge + bottom edge) so the
+                                             building reads as one solid platform without overlapping
+                                             interior steps. ===== -->
+                                        <g class="opera-stroke-layer" fill="none">
+                                            <!-- Plinth bottom edge -->
+                                            <path class="opera-line" d="M -275 50 L 275 50"/>
+                                            <!-- Podium TOP edge: starts at lower-left, climbs the
+                                                 left-side staircase, runs flat along the top of the
+                                                 podium under all the sails, then drops back down to
+                                                 the right edge. Single continuous polyline. -->
+                                            <path class="opera-line" d="M -275 50 L -275 41 L -240 41 L -240 19 L -228 19 L -228 6 L 256 6 L 256 25 L 275 25 L 275 50"/>
+
+                                            <!-- ===== Sails ===== -->
+                                            <!-- Sail 1: far-left small shell -->
+                                            <path class="opera-line" d="M -193 6 Q -218 -41 -237 -79 Q -190 -85 -143 -54 Q -159 -22 -165 6"/>
+                                            <!-- Sail 2: left middle shell -->
+                                            <path class="opera-line" d="M -165 6 Q -178 -66 -174 -123 Q -112 -120 -61 -54 Q -102 -19 -112 6"/>
+                                            <!-- Sail 3: tall centre shell (tallest) -->
+                                            <path class="opera-line" d="M -112 6 Q -124 -79 -146 -167 Q -68 -161 -2 -54 Q -46 -13 -61 6"/>
+                                            <!-- Sail 4: large right-half shell. Right side now sweeps all
+                                                 the way down to x≈200 (overlapping sail 5's territory) so
+                                                 the two shells visually nest, matching op.png. -->
+                                            <path class="opera-line" d="M -52 6 Q 33 -98 146 -123 Q 145 -55 200 6"/>
+                                            <!-- Sail 4 inner ridge (single clean inner curve) -->
+                                            <path class="opera-line" d="M 35 6 Q 70 -60 118 -90"/>
+                                            <!-- Sail 5: small far-right shell. Its left edge starts INSIDE
+                                                 sail 4 at (140,6), curves up to apex, and comes back down
+                                                 to the podium at x=200 — overlapping sail 4's right base. -->
+                                            <path class="opera-line" d="M 140 6 Q 175 -54 250 -63 Q 228 -22 200 6"/>
+                                            <!-- Sail 5 inner ridge -->
+                                            <path class="opera-line" d="M 175 6 Q 200 -36 232 -50"/>
+                                        </g>
+                                    </svg>
+
+                                    <!-- Light-mode picker for the Opera scene -->
+                                    <div class="opera-mode-picker" id="opera-mode-picker" data-scene-only="Opera Light">
+                                        <button class="opera-mode-btn active" data-mode="projection">
+                                            <span class="opera-mode-dot"></span>
+                                            <span class="opera-mode-label" data-en="Projection" data-zh="投影映射">Projection</span>
+                                        </button>
+                                        <button class="opera-mode-btn" data-mode="aurora">
+                                            <span class="opera-mode-dot"></span>
+                                            <span class="opera-mode-label" data-en="Aurora" data-zh="极光">Aurora</span>
+                                        </button>
+                                        <button class="opera-mode-btn" data-mode="fire">
+                                            <span class="opera-mode-dot"></span>
+                                            <span class="opera-mode-label" data-en="Fire" data-zh="烈焰">Fire</span>
+                                        </button>
+                                        <button class="opera-mode-btn" data-mode="pulse">
+                                            <span class="opera-mode-dot"></span>
+                                            <span class="opera-mode-label" data-en="Pulse" data-zh="脉冲">Pulse</span>
+                                        </button>
+                                    </div>
+
+                                    <!-- Scene: Harbour Bridge — true shape (single arch + dense hangers + deck + pylons + flag) -->
+                                    <svg class="vp-imm-art vp-imm-art-bridge" data-scene="Harbour Bridge" viewBox="-340 -220 680 360" aria-hidden="true">
+                                        <defs>
+                                            <linearGradient id="bridgeArch" x1="0%" y1="0%" x2="100%" y2="0%">
+                                                <stop offset="0%"   stop-color="rgba(44, 217, 255, 0.95)"/>
+                                                <stop offset="50%"  stop-color="rgba(255, 220, 130, 0.95)"/>
+                                                <stop offset="100%" stop-color="rgba(255, 100, 100, 0.95)"/>
+                                            </linearGradient>
+                                        </defs>
+
+                                        <g class="wf-glow" stroke="url(#bridgeArch)" stroke-width="2" fill="none">
+                                            <!-- The single iconic arch (top) -->
+                                            <path d="M -270 90 Q 0 -130 270 90"/>
+                                            <!-- Lower arch chord (the inner arch is structural reality) -->
+                                            <path d="M -270 90 Q 0 -90 270 90" stroke-width="1.4"/>
+                                        </g>
+
+                                        <!-- Dense vertical hangers connecting arch to deck (realistic count) -->
+                                        <g class="wf-glow" stroke="rgba(255, 200, 130, 0.75)" stroke-width="1" fill="none">
+                                            <line x1="-240" y1="92" x2="-240" y2="40"/>
+                                            <line x1="-210" y1="92" x2="-210" y2="10"/>
+                                            <line x1="-180" y1="92" x2="-180" y2="-18"/>
+                                            <line x1="-150" y1="92" x2="-150" y2="-44"/>
+                                            <line x1="-120" y1="92" x2="-120" y2="-66"/>
+                                            <line x1="-90"  y1="92" x2="-90"  y2="-86"/>
+                                            <line x1="-60"  y1="92" x2="-60"  y2="-100"/>
+                                            <line x1="-30"  y1="92" x2="-30"  y2="-114"/>
+                                            <line x1="0"    y1="92" x2="0"    y2="-122"/>
+                                            <line x1="30"   y1="92" x2="30"   y2="-114"/>
+                                            <line x1="60"   y1="92" x2="60"   y2="-100"/>
+                                            <line x1="90"   y1="92" x2="90"   y2="-86"/>
+                                            <line x1="120"  y1="92" x2="120"  y2="-66"/>
+                                            <line x1="150"  y1="92" x2="150"  y2="-44"/>
+                                            <line x1="180"  y1="92" x2="180"  y2="-18"/>
+                                            <line x1="210"  y1="92" x2="210"  y2="10"/>
+                                            <line x1="240"  y1="92" x2="240"  y2="40"/>
+                                        </g>
+
+                                        <!-- Cross trusses (zigzag inside the arch) -->
+                                        <g class="wf-glow" stroke="rgba(255, 200, 130, 0.35)" stroke-width="0.7" fill="none">
+                                            <path d="M -240 40 L -210 92 L -180 -18 L -150 92 L -120 -66 L -90 92 L -60 -100 L -30 92 L 0 -122 L 30 92 L 60 -100 L 90 92 L 120 -66 L 150 92 L 180 -18 L 210 92 L 240 40"/>
+                                        </g>
+
+                                        <!-- The deck (road surface — bridge level) -->
+                                        <g class="wf-glow" stroke="rgba(255, 220, 130, 0.95)" stroke-width="2" fill="none">
+                                            <line x1="-280" y1="92" x2="280" y2="92"/>
+                                            <line x1="-280" y1="100" x2="280" y2="100"/>
+                                            <line x1="-280" y1="108" x2="280" y2="108"/>
+                                        </g>
+
+                                        <!-- Stone pylon towers (4 of them, two on each end) -->
+                                        <g class="wf-glow" stroke="rgba(180, 180, 180, 0.85)" stroke-width="1.4" fill="rgba(40, 30, 60, 0.6)">
+                                            <!-- Far-left pylon -->
+                                            <rect x="-292" y="56" width="14" height="56"/>
+                                            <line x1="-292" y1="68" x2="-278" y2="68" stroke="rgba(180, 180, 180, 0.5)" stroke-width="0.8"/>
+                                            <line x1="-292" y1="84" x2="-278" y2="84" stroke="rgba(180, 180, 180, 0.5)" stroke-width="0.8"/>
+                                            <!-- Inner-left pylon -->
+                                            <rect x="-272" y="60" width="10" height="52"/>
+                                            <!-- Inner-right pylon -->
+                                            <rect x="262" y="60" width="10" height="52"/>
+                                            <!-- Far-right pylon -->
+                                            <rect x="278" y="56" width="14" height="56"/>
+                                            <line x1="278" y1="68" x2="292" y2="68" stroke="rgba(180, 180, 180, 0.5)" stroke-width="0.8"/>
+                                            <line x1="278" y1="84" x2="292" y2="84" stroke="rgba(180, 180, 180, 0.5)" stroke-width="0.8"/>
+                                        </g>
+
+                                        <!-- Australian flag at the top of the arch.
+                                             Flag is 36×18, blue field, with:
+                                             - Union Jack canton (top-left 18×9)
+                                             - Federation Star (large 7-point) below canton
+                                             - Southern Cross (5 stars) on the fly side -->
+                                        <g class="bridge-flag" transform="translate(0 -150)">
+                                            <!-- Flagpole -->
+                                            <line x1="0" y1="28" x2="0" y2="0" stroke="rgba(220, 220, 220, 0.9)" stroke-width="0.8"/>
+                                            <circle cx="0" cy="0" r="1" fill="rgba(255, 220, 100, 0.95)"/>
+
+                                            <!-- Blue flag field -->
+                                            <rect x="0" y="2" width="36" height="18" fill="rgba(0, 35, 102, 0.95)" stroke="rgba(255, 255, 255, 0.6)" stroke-width="0.4"/>
+
+                                            <!-- Union Jack canton: 18×9 in top-left.
+                                                 Construction: blue base + white diagonals + red diagonals + white cross + red cross. -->
+                                            <!-- Diagonal white (St Andrew + St Patrick combined) -->
+                                            <line x1="0" y1="2"  x2="18" y2="11" stroke="rgba(255, 255, 255, 0.95)" stroke-width="1.6"/>
+                                            <line x1="18" y1="2" x2="0"  y2="11" stroke="rgba(255, 255, 255, 0.95)" stroke-width="1.6"/>
+                                            <!-- Diagonal red (St Patrick), thinner, offset -->
+                                            <line x1="0" y1="2"  x2="18" y2="11" stroke="rgba(204, 33, 41, 1)" stroke-width="0.7"/>
+                                            <line x1="18" y1="2" x2="0"  y2="11" stroke="rgba(204, 33, 41, 1)" stroke-width="0.7"/>
+                                            <!-- Cross of St George: white background then red on top -->
+                                            <rect x="0" y="6"  width="18" height="1.6" fill="rgba(255, 255, 255, 0.95)"/>
+                                            <rect x="8.2" y="2" width="1.6" height="9"  fill="rgba(255, 255, 255, 0.95)"/>
+                                            <rect x="0" y="6.4" width="18" height="0.9" fill="rgba(204, 33, 41, 1)"/>
+                                            <rect x="8.5" y="2" width="0.9" height="9"  fill="rgba(204, 33, 41, 1)"/>
+
+                                            <!-- Federation Star (large white star, below canton) -->
+                                            <circle cx="9" cy="15.5" r="2.2" fill="rgba(255, 255, 255, 0.98)"/>
+                                            <!-- 7-point hint with cross spikes -->
+                                            <line x1="9" y1="13.3" x2="9" y2="17.7" stroke="rgba(0, 35, 102, 0.6)" stroke-width="0.3"/>
+                                            <line x1="6.8" y1="15.5" x2="11.2" y2="15.5" stroke="rgba(0, 35, 102, 0.6)" stroke-width="0.3"/>
+
+                                            <!-- Southern Cross: 5 stars on the fly half -->
+                                            <!-- Alpha (largest, lower) -->
+                                            <circle cx="29" cy="13" r="1.1" fill="rgba(255, 255, 255, 0.98)"/>
+                                            <!-- Beta -->
+                                            <circle cx="32" cy="9" r="1.0" fill="rgba(255, 255, 255, 0.98)"/>
+                                            <!-- Gamma -->
+                                            <circle cx="29" cy="6" r="0.95" fill="rgba(255, 255, 255, 0.98)"/>
+                                            <!-- Delta -->
+                                            <circle cx="25" cy="9" r="0.95" fill="rgba(255, 255, 255, 0.98)"/>
+                                            <!-- Epsilon (smallest 5-point) -->
+                                            <circle cx="28" cy="10" r="0.55" fill="rgba(255, 255, 255, 0.95)"/>
+                                        </g>
+
+                                        <!-- Water reflection -->
+                                        <g class="wf-glow" stroke="rgba(44, 217, 255, 0.4)" stroke-width="1" fill="none">
+                                            <path d="M -270 130 Q 0 122 270 130" stroke-dasharray="4 6"/>
+                                            <path d="M -250 142 Q 0 134 250 142" stroke-dasharray="4 6" opacity="0.6"/>
+                                        </g>
+
+                                        <!-- Fireworks layer (populated by JS) -->
+                                        <g class="bridge-fireworks" id="bridge-fireworks"></g>
+                                    </svg>
+
+                                    <!-- Scene: Drone Show - prev/next arrows + current shape label -->
+                                    <div class="vp-imm-art vp-imm-art-drones" data-scene="Drone Show" aria-hidden="true">
+                                        <div class="drone-swarm" id="drone-swarm"></div>
+                                        <!-- Stepper: ← shape name → -->
+                                        <div class="drone-shape-stepper" id="drone-shape-stepper">
+                                            <button class="drone-stepper-btn" id="drone-shape-prev" aria-label="Previous shape">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+                                            </button>
+                                            <div class="drone-shape-label" id="drone-shape-label">INFINITY</div>
+                                            <button class="drone-stepper-btn" id="drone-shape-next" aria-label="Next shape">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="vp-imm-vignette"></div>
+                                <div class="vp-imm-title" id="vp-imm-title">Drone Show</div>
+                            </div>
+
+                            <!-- Scene-switch panel right side -->
+                            <div class="vp-imm-scenes" id="vp-imm-scenes">
+                                <button class="vp-imm-scene active" data-scene="Drone Show">Drone Show</button>
+                                <button class="vp-imm-scene" data-scene="Opera Light">Opera Light</button>
+                                <button class="vp-imm-scene" data-scene="Harbour Bridge">Harbour Bridge</button>
+                            </div>
+
+                            <!-- Floating EXIT (top-right, only when controls visible) -->
+                            <button class="vp-imm-exit" id="vp-imm-exit" data-en="EXIT" data-zh="退出">EXIT</button>
+                        </section>
+
+                        <!-- ALBUM -->
+                        <section class="vp-screen vp-screen-album" data-screen="favs">
+                            <div class="vp-album-tabs">
+                                <button class="vp-album-tab active" data-album="all" data-en="All Memories" data-zh="全部记忆">All Memories</button>
+                                <button class="vp-album-tab" data-album="phone" data-en="From Phone (AR)" data-zh="来自手机 (AR)">From Phone (AR)</button>
+                                <button class="vp-album-tab" data-album="vp" data-en="From Vision Pro (3D)" data-zh="来自 Vision Pro (3D)">From Vision Pro (3D)</button>
+                            </div>
+                            <div class="vp-album-grid" id="vp-album-grid">
+                                <!-- thumbs injected by JS -->
+                            </div>
+                            <button class="vp-album-record" id="vp-album-record">
+                                <span class="vp-album-rec-dot"></span>
+                                <span data-en="Record New 3D Clip" data-zh="录制新 3D 片段">Record New 3D Clip</span>
+                            </button>
+                        </section>
+
+                        <!-- NOTIFICATIONS / SETTINGS placeholders -->
+                        <section class="vp-screen vp-screen-stub" data-screen="notif">
+                            <div class="vp-stub">
+                                <div class="vp-stub-icon">🔔</div>
+                                <h4 data-en="No new notifications" data-zh="暂无通知">No new notifications</h4>
+                                <p data-en="You're all caught up." data-zh="你都看过啦。">You're all caught up.</p>
+                            </div>
+                        </section>
+                        <section class="vp-screen vp-screen-stub" data-screen="settings">
+                            <div class="vp-stub">
+                                <div class="vp-stub-icon">⚙</div>
+                                <h4>Settings</h4>
+                                <p data-en="Display, audio and accessibility live here." data-zh="显示、音频与辅助功能设置在这里。">Display, audio and accessibility live here.</p>
+                            </div>
+                        </section>
+
+                    </main>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Prototype CTA -->
+    <section class="project-section bg-medium vivid-cta-section">
+        <div class="project-container vivid-cta-inner">
+            <div class="section-eyebrow" data-en="REAL PROTOTYPE" data-zh="真实原型">REAL PROTOTYPE</div>
+            <h2 class="project-h2" data-en="Open the Figma prototype" data-zh="打开 Figma 原型">Open the Figma prototype</h2>
+            <p class="vivid-cta-text" data-en="Want to drive the actual flows yourself? Jump into the live Figma prototype." data-zh="想亲手过一遍完整流程？打开 Figma 原型。">Want to drive the actual flows yourself? Jump into the live Figma prototype.</p>
+            <a href="https://www.figma.com/proto/pBlwlGPbSkKHGuwY6FfVLJ/Untitled?node-id=2-466&page-id=0%3A1&t=DlUesGIgp7iuU4Tv-1" target="_blank" rel="noopener" class="vivid-cta-btn">
+                <span data-en="Launch on Figma" data-zh="在 Figma 中启动">Launch on Figma</span>
+                <span class="vivid-cta-arrow">↗</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Bottom Nav -->
+    <section class="project-end">
+        <a href="../index.html#showcase" class="project-end-link">
+            <span class="arrow">←</span>
+            <span data-en="Back to all works" data-zh="返回全部作品">Back to all works</span>
+        </a>
+    </section>
+
+    <script src="../script.js"></script>
+    <script src="vivid-demos.js"></script>
+    <script>
+        document.body.classList.add('loaded');
+        const loaderEl = document.querySelector('.loader');
+        if (loaderEl) loaderEl.remove();
+    </script>
+</body>
+
+</html>

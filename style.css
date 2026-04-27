@@ -1529,6 +1529,10 @@
            Contact Section
            ======================================== */
 
+        .contact {
+            padding-top: 5rem;
+        }
+
         .contact-content {
             max-width: 900px; /* Adjusted for 2 columns centered */
             margin: 0 auto;

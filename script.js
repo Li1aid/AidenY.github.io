@@ -244,6 +244,14 @@ class CustomCursor {
     }
 
     init() {
+        // Place cursor at viewport center on init so it's visible
+        // even before the user moves the mouse (otherwise the default
+        // translate(-50%, -50%) parks it in the top-left corner).
+        const cx = window.innerWidth / 2;
+        const cy = window.innerHeight / 2;
+        gsap.set(this.cursor, { x: cx, y: cy });
+        gsap.set(this.cursorDot, { x: cx, y: cy });
+
         document.addEventListener('mousemove', (e) => {
             // Ultra fast cursor for smooth tracking
             gsap.to(this.cursor, {
@@ -325,6 +333,16 @@ function initLoader() {
 
     if (!loaderProgress || !loaderPercent || !loader) return;
 
+    // Skip loader + intro animations after the first visit in this session.
+    // sessionStorage clears when the browser/tab session ends, so the loader
+    // plays again on a genuinely new visit but not on back-navigation or refresh.
+    const alreadyVisited = sessionStorage.getItem('aiden-visited') === '1';
+    if (alreadyVisited) {
+        loader.style.display = 'none';
+        initAnimations({ skipIntro: true });
+        return;
+    }
+
     let progress = 0;
     const interval = setInterval(() => {
         progress += Math.random() * 10;
@@ -341,7 +359,8 @@ function initLoader() {
                     duration: 0.5,
                     onComplete: () => {
                         loader.style.display = 'none';
-                        initAnimations();
+                        sessionStorage.setItem('aiden-visited', '1');
+                        initAnimations({ skipIntro: false });
                     }
                 });
             }, 500);
@@ -353,22 +372,31 @@ function initLoader() {
 // Main Animations with GSAP
 // ========================================
 
-function initAnimations() {
+function initAnimations(options = {}) {
+    const { skipIntro = false } = options;
     gsap.registerPlugin(ScrollTrigger);
 
-    gsap.to('.main-nav', {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: 'power3.out'
-    });
+    if (skipIntro) {
+        gsap.set('.main-nav', { opacity: 1, y: 0 });
+    } else {
+        gsap.to('.main-nav', {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            ease: 'power3.out'
+        });
+    }
 
     // Pixel-style digital decode animation
     const titleLine1 = document.querySelector('.title-line-1');
     const titleLine2 = document.querySelector('.title-line-2');
     const heroTitle = document.querySelector('.hero-main-title');
 
-    if (titleLine1 && titleLine2 && heroTitle) {
+    if (skipIntro && titleLine1 && titleLine2 && heroTitle) {
+        titleLine1.style.opacity = '1';
+        titleLine2.style.opacity = '1';
+        heroTitle.classList.add('loaded');
+    } else if (titleLine1 && titleLine2 && heroTitle) {
         const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*';
 
         function decodeText(element, finalText, delay) {
@@ -435,29 +463,35 @@ function initAnimations() {
         }, 2500);
     }
 
-    gsap.to('.hero-info-grid', {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        delay: 0.5,
-        ease: 'power3.out'
-    });
+    if (skipIntro) {
+        gsap.set('.hero-info-grid', { opacity: 1, y: 0 });
+        gsap.set('.info-column', { opacity: 1, y: 0 });
+        gsap.set('.scroll-indicator', { opacity: 0.6 });
+    } else {
+        gsap.to('.hero-info-grid', {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            delay: 0.5,
+            ease: 'power3.out'
+        });
 
-    gsap.to('.info-column', {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        stagger: 0.1,
-        delay: 0.5,
-        ease: 'power3.out'
-    });
+        gsap.to('.info-column', {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            stagger: 0.1,
+            delay: 0.5,
+            ease: 'power3.out'
+        });
 
-    gsap.to('.scroll-indicator', {
-        opacity: 0.6,
-        duration: 1,
-        delay: 2,
-        ease: 'power2.out'
-    });
+        gsap.to('.scroll-indicator', {
+            opacity: 0.6,
+            duration: 1,
+            delay: 2,
+            ease: 'power2.out'
+        });
+    }
 
     animateSections();
     animateAbout();

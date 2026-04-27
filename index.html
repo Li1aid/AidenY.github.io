@@ -12,6 +12,24 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
     <link rel="stylesheet" href="style.css">
+    <script>
+        // Hide loader before paint if user has already seen it this session
+        (function () {
+            try {
+                if (sessionStorage.getItem('aiden-visited') === '1') {
+                    document.documentElement.classList.add('skip-intro');
+                }
+            } catch (e) {}
+        })();
+    </script>
+    <style>
+        html.skip-intro .loader { display: none !important; }
+        html.skip-intro .main-nav { opacity: 1 !important; transform: none !important; }
+        html.skip-intro .title-line-1,
+        html.skip-intro .title-line-2 { opacity: 1 !important; }
+        html.skip-intro .hero-info-grid,
+        html.skip-intro .info-column { opacity: 1 !important; transform: none !important; }
+    </style>
 </head>
 
 <body>
@@ -224,7 +242,7 @@
                 <div class="project-image">
                     <img src="Assets/1.jpg" alt="CoLab">
                     <div class="project-overlay"></div>
-                    <a href="#" class="project-btn" data-en="View" data-zh="查看">View</a>
+                    <a href="projects/colab.html" class="project-btn" data-en="View" data-zh="查看">View</a>
                 </div>
                 <div class="project-info">
                     <div class="project-meta">
@@ -244,9 +262,9 @@
             <!-- Project 2: VividXpirence -->
             <article class="project-card">
                 <div class="project-image">
-                    <img src="Assets/2.jpg" alt="VividXpirence">
+                    <img src="Assets/vivid.png" alt="vividXperience">
                     <div class="project-overlay"></div>
-                    <a href="#" class="project-btn" data-en="View" data-zh="查看">View</a>
+                    <a href="projects/vivid.html" class="project-btn" data-en="View" data-zh="查看">View</a>
                 </div>
                 <div class="project-info">
                     <div class="project-meta">
