@@ -1,0 +1,1183 @@
+/* ============================================================
+   WHISPER FIELD — Detail Page Styles
+   Cube (immersive panorama + grass) + Catenary (blooming canopy)
+   Inherits typography/layout from project.css / style.css
+   ============================================================ */
+
+:root {
+    --w-night:        #0b1020;
+    --w-night-2:      #0f1a2c;
+    --w-meadow:       #1c3024;
+    --w-grass-1:      #3eea8a;
+    --w-grass-2:      #5fc1ff;
+    --w-blossom:      #ff8eb1;
+    --w-blossom-2:    #ffc2d6;
+    --w-amber:        #ffc864;
+    --w-violet:       #a78bff;
+    --w-glass-bd:     rgba(255, 255, 255, 0.10);
+    --w-glass-bd-2:   rgba(255, 255, 255, 0.16);
+    --w-glass-bg:     rgba(15, 22, 36, 0.55);
+}
+
+/* ============ Hero ============ */
+.whisper-hero { position: relative; overflow: hidden; }
+.whisper-hero-bg {
+    position: absolute; inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+.whisper-hero-glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.4;
+    mix-blend-mode: screen;
+}
+.whisper-glow-1 {
+    width: 540px; height: 540px;
+    background: radial-gradient(circle, rgba(95, 193, 255, 0.45), transparent 70%);
+    top: -120px; left: -100px;
+}
+.whisper-glow-2 {
+    width: 480px; height: 480px;
+    background: radial-gradient(circle, rgba(167, 139, 255, 0.35), transparent 70%);
+    bottom: -80px; right: -80px;
+}
+.whisper-glow-3 {
+    width: 360px; height: 360px;
+    background: radial-gradient(circle, rgba(255, 142, 177, 0.25), transparent 70%);
+    top: 40%; left: 40%;
+}
+.whisper-hero-grass {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 18%;
+    background:
+        repeating-linear-gradient(
+            90deg,
+            rgba(95, 193, 255, 0.0) 0,
+            rgba(95, 193, 255, 0.0) 8px,
+            rgba(95, 193, 255, 0.18) 9px,
+            rgba(95, 193, 255, 0.0) 11px
+        ),
+        linear-gradient(180deg, transparent 0%, rgba(11, 16, 32, 0.4) 60%, rgba(11, 16, 32, 0.85) 100%);
+    mask-image: linear-gradient(180deg, transparent 0%, #000 60%);
+    opacity: 0.7;
+}
+
+.whisper-hero .project-hero-inner { position: relative; z-index: 1; }
+
+.whisper-title {
+    color: #ffffff;
+    background: linear-gradient(135deg, #ffffff 0%, #c2dcff 60%, #a78bff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    text-shadow: 0 0 40px rgba(167, 139, 255, 0.18);
+}
+
+.whisper-cover {
+    border-color: rgba(167, 139, 255, 0.18);
+    box-shadow: 0 0 60px rgba(95, 193, 255, 0.12);
+    position: relative;
+    z-index: 1;
+}
+.whisper-cover-overlay {
+    position: absolute; inset: 0;
+    background:
+        radial-gradient(ellipse at 30% 30%, rgba(95, 193, 255, 0.12), transparent 55%),
+        radial-gradient(ellipse at 70% 70%, rgba(255, 142, 177, 0.10), transparent 55%),
+        linear-gradient(180deg, transparent 50%, rgba(5, 5, 5, 0.55) 100%);
+    pointer-events: none;
+}
+
+/* ============ Feature grid ============ */
+.whisper-features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.4rem;
+}
+.whisper-feature {
+    transition: all 0.4s var(--ease-smooth);
+}
+.whisper-feature:hover {
+    border-color: rgba(95, 193, 255, 0.5);
+    box-shadow: 0 0 28px rgba(95, 193, 255, 0.16);
+}
+@media (max-width: 1024px) {
+    .whisper-features-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+    .whisper-features-grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   ============ CUBE INTERACTIVE STAGE =========================
+   ============================================================ */
+
+.whisper-cube-stage {
+    margin-top: 2rem;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0)),
+        rgba(10, 14, 22, 0.55);
+    border: 1px solid var(--w-glass-bd);
+    border-radius: 20px;
+    padding: 1.4rem;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+/* Phase picker bar */
+.whisper-phase-picker {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    padding: 0.5rem;
+    margin-bottom: 1.4rem;
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid var(--w-glass-bd);
+    border-radius: 999px;
+}
+.whisper-phase-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.55rem 1.1rem;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    color: rgba(255, 255, 255, 0.65);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.25s var(--ease-smooth);
+}
+.whisper-phase-btn:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.05);
+}
+.whisper-phase-btn.active {
+    color: #fff;
+    background: linear-gradient(135deg, rgba(95, 193, 255, 0.35), rgba(167, 139, 255, 0.25));
+    border-color: rgba(95, 193, 255, 0.55);
+    box-shadow: 0 0 18px rgba(95, 193, 255, 0.4);
+}
+.whisper-phase-num { font-size: 0.6rem; opacity: 0.7; }
+.whisper-phase-name { font-weight: 600; }
+.whisper-phase-arrow {
+    color: rgba(255, 255, 255, 0.35);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.85rem;
+}
+.whisper-phase-arrow-loop { color: rgba(255, 255, 255, 0.3); }
+
+/* Cube room layout */
+.whisper-cube-room {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 1.2rem;
+    min-height: 560px;
+    border-radius: 16px;
+    overflow: hidden;
+}
+@media (max-width: 980px) {
+    .whisper-cube-room { grid-template-columns: 1fr; }
+}
+
+/* The Cube view */
+.whisper-cube-view {
+    position: relative;
+    border-radius: 14px;
+    overflow: hidden;
+    background: linear-gradient(180deg, #060912 0%, #0a1426 60%, #0f1c34 100%);
+    border: 1px solid var(--w-glass-bd-2);
+    min-height: 520px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Ceiling track lights */
+.whisper-cube-ceiling {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 26px;
+    z-index: 3;
+    pointer-events: none;
+}
+.whisper-ceiling-rail {
+    position: absolute;
+    top: 12px; left: 6%; right: 6%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+}
+.whisper-ceiling-spot {
+    position: absolute;
+    top: 8px;
+    width: 18px; height: 14px;
+    background: linear-gradient(180deg, #1d2638, #0a0f1c);
+    border-radius: 3px;
+    box-shadow: 0 6px 16px rgba(255, 220, 150, 0.35);
+}
+.whisper-ceiling-spot::after {
+    content: '';
+    position: absolute;
+    top: 14px; left: 50%;
+    width: 60px; height: 80px;
+    transform: translateX(-50%);
+    background: radial-gradient(ellipse at top, rgba(255, 230, 180, 0.25), transparent 70%);
+    pointer-events: none;
+}
+.whisper-ceiling-spot-1 { left: 22%; }
+.whisper-ceiling-spot-2 { left: 50%; transform: translateX(-50%); }
+.whisper-ceiling-spot-3 { left: 78%; }
+
+/* Walls — three panels visible (left, centre, right of the panorama) */
+.whisper-cube-walls {
+    position: relative;
+    flex: 1.2;
+    display: grid;
+    grid-template-columns: 1fr 1.4fr 1fr;
+    gap: 4px;
+    margin: 30px 12px 0;
+    perspective: 1200px;
+    perspective-origin: 50% 60%;
+    z-index: 1;
+}
+.whisper-wall {
+    position: relative;
+    background: #06090f;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 4px;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    cursor: pointer;
+    transition: filter 0.4s ease;
+}
+.whisper-wall:hover { filter: brightness(1.1); }
+.whisper-wall-l { transform: rotateY(22deg); transform-origin: right center; }
+.whisper-wall-r { transform: rotateY(-22deg); transform-origin: left center; }
+.whisper-wall-c { transform: none; }
+
+.whisper-wall-scene {
+    position: absolute; inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1.4s ease;
+}
+.whisper-wall-scene.show { opacity: 1; }
+
+/* Per-scene gradients (no external assets) — render the "library" thumbnails */
+.scene-mountain  { background: linear-gradient(180deg, #2a3a52 0%, #3a4d6e 30%, #1a2436 65%, #0a1019 100%); }
+.scene-mountain::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+        radial-gradient(ellipse 80% 30% at 50% 40%, rgba(255, 200, 160, 0.18), transparent 70%),
+        linear-gradient(180deg, transparent 60%, #0a0f18 100%);
+}
+.scene-forest    { background: linear-gradient(180deg, #243828 0%, #16261a 60%, #0a130c 100%); }
+.scene-forest::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 30%, rgba(255, 220, 140, 0.18), transparent 60%);
+}
+.scene-shore     { background: linear-gradient(180deg, #ff8a4a 0%, #c25fa3 40%, #5a3a82 80%, #1c1a36 100%); }
+.scene-shore::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+        radial-gradient(circle at 60% 65%, rgba(255, 220, 120, 0.55), transparent 30%),
+        linear-gradient(180deg, transparent 65%, rgba(0,0,0,0.5) 100%);
+}
+.scene-river     { background: linear-gradient(180deg, #3a4a5a 0%, #1c2a3a 50%, #0a131c 100%); }
+.scene-river::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(180deg, transparent 0 16px, rgba(255,255,255,0.06) 16px 17px);
+}
+.scene-night     { background: linear-gradient(180deg, #07091a 0%, #0d1734 60%, #1a2a4a 100%); }
+.scene-night::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+        radial-gradient(circle at 50% 40%, rgba(255, 255, 255, 0.4), transparent 4%),
+        radial-gradient(circle at 30% 60%, rgba(255,255,255,0.6), transparent 1%),
+        radial-gradient(circle at 70% 30%, rgba(255,255,255,0.55), transparent 1%),
+        radial-gradient(circle at 80% 70%, rgba(255,255,255,0.5), transparent 1%),
+        radial-gradient(circle at 20% 25%, rgba(255,255,255,0.5), transparent 1%);
+}
+
+.whisper-wall-particles {
+    position: absolute; inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+/* Floor */
+.whisper-cube-floor {
+    position: relative;
+    height: 220px;
+    margin: 0 12px 12px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: linear-gradient(180deg, rgba(20, 30, 40, 0.65) 0%, rgba(10, 18, 28, 0.95) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    cursor: crosshair;
+    z-index: 2;
+}
+.whisper-floor-glow {
+    position: absolute;
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(95, 193, 255, 0.32), transparent 65%);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    filter: blur(12px);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    will-change: transform, opacity;
+    mix-blend-mode: screen;
+}
+.whisper-floor-glow.active { opacity: 1; }
+.whisper-grass {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+}
+.whisper-seat {
+    position: absolute;
+    bottom: 14px;
+    width: 90px; height: 46px;
+    pointer-events: none;
+    opacity: 0.7;
+}
+.whisper-seat-l { left: 16%; transform: rotate(-4deg); }
+.whisper-seat-r { right: 14%; transform: rotate(6deg) scaleX(-1); }
+
+.whisper-floor-hint {
+    position: absolute;
+    bottom: 8px; left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: rgba(255, 255, 255, 0.45);
+    text-transform: uppercase;
+    pointer-events: none;
+    z-index: 3;
+}
+
+/* Phase HUD */
+.whisper-phase-hud {
+    position: absolute;
+    top: 38px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background: rgba(6, 10, 20, 0.55);
+    border: 1px solid var(--w-glass-bd);
+    border-radius: 999px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    pointer-events: none;
+}
+.whisper-hud-eyebrow {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    color: rgba(255, 255, 255, 0.85);
+    text-transform: uppercase;
+}
+.whisper-hud-bar {
+    width: 160px;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 2px;
+    overflow: hidden;
+}
+.whisper-hud-bar span {
+    display: block;
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--w-grass-2), var(--w-violet));
+    transition: width 0.6s ease;
+}
+.whisper-hud-meta {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Side controls panel */
+.whisper-cube-panel {
+    position: relative;
+    z-index: 2;
+    background: rgba(10, 14, 22, 0.75);
+    border: 1px solid var(--w-glass-bd);
+    border-radius: 14px;
+    padding: 1.4rem;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    min-height: 520px;
+}
+.whisper-panel-eyebrow {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.32em;
+    color: var(--w-grass-2);
+    text-transform: uppercase;
+}
+.whisper-panel-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #fff;
+    margin: 0;
+    line-height: 1.2;
+}
+.whisper-panel-desc {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+.whisper-panel-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.08);
+    margin: 0.4rem 0;
+}
+
+/* Scene grid */
+.whisper-scene-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
+}
+.whisper-scene-card {
+    position: relative;
+    overflow: hidden;
+    height: 70px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: #0a0f18;
+    cursor: pointer;
+    color: #fff;
+    transition: all 0.25s var(--ease-smooth);
+}
+.whisper-scene-card .whisper-scene-thumb {
+    position: absolute; inset: 0;
+}
+.whisper-scene-card .whisper-scene-name {
+    position: absolute;
+    left: 8px; bottom: 6px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #fff;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+    z-index: 2;
+}
+.whisper-scene-card.active {
+    border-color: rgba(95, 193, 255, 0.6);
+    box-shadow: 0 0 14px rgba(95, 193, 255, 0.35);
+}
+.whisper-scene-card:hover { transform: translateY(-2px); }
+
+/* Range controls */
+.whisper-grass-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+.whisper-control-row {
+    display: grid;
+    grid-template-columns: 110px 1fr 40px;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.78);
+}
+.whisper-control-label {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.65);
+}
+.whisper-range {
+    width: 100%;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 2px;
+    outline: none;
+}
+.whisper-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--w-grass-2), var(--w-violet));
+    box-shadow: 0 0 8px rgba(95, 193, 255, 0.6);
+    cursor: pointer;
+}
+.whisper-range::-moz-range-thumb {
+    width: 14px; height: 14px;
+    border: none;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--w-grass-2), var(--w-violet));
+    box-shadow: 0 0 8px rgba(95, 193, 255, 0.6);
+    cursor: pointer;
+}
+.whisper-control-out {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.78rem;
+    color: #fff;
+    text-align: right;
+}
+.whisper-cycle-btn {
+    margin-top: 0.4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.65rem 0.9rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    color: #fff;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+.whisper-cycle-btn:hover { border-color: rgba(95, 193, 255, 0.5); }
+.whisper-cycle-btn.on {
+    background: linear-gradient(135deg, rgba(95, 193, 255, 0.25), rgba(167, 139, 255, 0.18));
+    border-color: rgba(95, 193, 255, 0.55);
+}
+.whisper-cycle-state {
+    font-size: 0.62rem;
+    color: var(--w-grass-2);
+}
+.whisper-cycle-btn.on .whisper-cycle-state { color: #fff; }
+
+/* ============================================================
+   ============ STORYBOARD ====================================
+   ============================================================ */
+
+.whisper-storyboard {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+.whisper-story-card {
+    position: relative;
+    padding: 1.4rem 1.4rem 1.6rem;
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid var(--w-glass-bd);
+    border-radius: 10px;
+    transition: all 0.3s var(--ease-smooth);
+}
+.whisper-story-card:hover {
+    border-color: rgba(95, 193, 255, 0.4);
+    background: rgba(255, 255, 255, 0.04);
+    transform: translateY(-3px);
+}
+.whisper-story-num {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: var(--w-grass-2);
+    margin-bottom: 0.7rem;
+}
+.whisper-story-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #fff;
+    margin: 0 0 0.6rem;
+}
+.whisper-story-desc {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.88rem;
+    line-height: 1.55;
+}
+@media (max-width: 980px) {
+    .whisper-storyboard { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+    .whisper-storyboard { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   ============ ITERATION HISTORY ==============================
+   ============================================================ */
+
+.whisper-iter-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem;
+}
+.whisper-iter-card {
+    position: relative;
+    padding: 1.6rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--w-glass-bd);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+.whisper-iter-card-final {
+    border-color: rgba(255, 142, 177, 0.4);
+    background: linear-gradient(180deg, rgba(255, 142, 177, 0.06), rgba(255, 255, 255, 0.02));
+    box-shadow: 0 0 24px rgba(255, 142, 177, 0.12);
+}
+.whisper-iter-tag {
+    align-self: flex-start;
+    padding: 0.25rem 0.7rem;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 999px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: rgba(255, 255, 255, 0.65);
+    text-transform: uppercase;
+}
+.whisper-iter-tag-final {
+    background: linear-gradient(135deg, rgba(255, 142, 177, 0.3), rgba(255, 200, 100, 0.2));
+    color: #fff;
+}
+.whisper-iter-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #fff;
+    margin: 0;
+}
+.whisper-iter-features {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 0.9rem;
+}
+.whisper-iter-features li {
+    position: relative;
+    padding-left: 1.1rem;
+    line-height: 1.5;
+}
+.whisper-iter-features li::before {
+    content: '◆';
+    position: absolute;
+    left: 0; top: 0;
+    color: var(--w-grass-2);
+    font-size: 0.7rem;
+}
+.whisper-iter-card-final .whisper-iter-features li::before { color: var(--w-blossom); }
+
+.whisper-iter-reason {
+    margin-top: auto;
+    padding: 0.85rem 1rem;
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    border-left: 2px solid rgba(95, 193, 255, 0.45);
+}
+.whisper-iter-reason-final {
+    border-left-color: var(--w-blossom);
+}
+.whisper-iter-reason-label {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.22em;
+    color: var(--w-grass-2);
+    margin-bottom: 0.4rem;
+    text-transform: uppercase;
+}
+.whisper-iter-reason-final .whisper-iter-reason-label { color: var(--w-blossom); }
+.whisper-iter-reason p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 0.85rem;
+    line-height: 1.55;
+}
+
+@media (max-width: 980px) {
+    .whisper-iter-grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   ============ CATENARY DEMO STAGE ============================
+   ============================================================ */
+
+.whisper-cat-stage {
+    margin-top: 2rem;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0)),
+        rgba(8, 10, 16, 0.8);
+    border: 1px solid var(--w-glass-bd);
+    border-radius: 20px;
+    padding: 1.4rem;
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    grid-template-rows: auto auto;
+    gap: 1.2rem;
+}
+.whisper-cat-canopy {
+    grid-column: 1;
+    grid-row: 1;
+    position: relative;
+    height: 360px;
+    border-radius: 14px;
+    overflow: hidden;
+    background:
+        radial-gradient(ellipse at 50% 100%, rgba(255, 200, 130, 0.06), transparent 65%),
+        linear-gradient(180deg, #060812 0%, #0a0f1c 50%, #0c0e16 100%);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+.whisper-cat-skyglow {
+    position: absolute;
+    top: -30%; left: 20%;
+    width: 60%; height: 60%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(167, 139, 255, 0.18), transparent 70%);
+    filter: blur(60px);
+    pointer-events: none;
+}
+.whisper-cat-strings {
+    position: absolute;
+    top: 12px; left: 0; right: 0;
+    width: 100%;
+    height: 240px;
+    pointer-events: none;
+}
+.whisper-cat-post {
+    position: absolute;
+    bottom: 10%;
+    width: 4px;
+    height: 78%;
+    background: linear-gradient(180deg, #2a2e3a 0%, #14161e 100%);
+    border-radius: 1px;
+}
+.whisper-cat-post-l { left: 6%; }
+.whisper-cat-post-r { right: 6%; }
+.whisper-cat-post::after {
+    content: '';
+    position: absolute;
+    bottom: -6px; left: -8px;
+    width: 20px; height: 6px;
+    background: #2a2e3a;
+    border-radius: 2px;
+}
+.whisper-cat-flowers {
+    position: absolute;
+    top: 12px; left: 0; right: 0;
+    height: 240px;
+    pointer-events: none;
+}
+.whisper-cat-bulb {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    transition: filter 0.6s ease;
+}
+.whisper-cat-bulb-core {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: rgba(255, 240, 200, 0.4);
+    box-shadow: 0 0 0 rgba(255, 240, 200, 0);
+    transition: background 0.6s ease, box-shadow 0.6s ease;
+}
+
+/* Flower-light: SVG petals scaled by --bloom (0..1) */
+.whisper-cat-flower {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 38px; height: 38px;
+    pointer-events: none;
+}
+.whisper-cat-flower svg {
+    width: 100%; height: 100%;
+    overflow: visible;
+}
+.whisper-cat-flower .petal {
+    transform-origin: 19px 19px;
+    transform: scale(calc(0.18 + 0.82 * var(--bloom, 0))) rotate(var(--rot, 0deg));
+    transition: transform 0.8s var(--ease-smooth), fill 0.6s ease, opacity 0.6s ease;
+    fill: rgba(255, 200, 220, calc(0.4 + 0.6 * var(--bloom, 0)));
+    opacity: calc(0.5 + 0.5 * var(--bloom, 0));
+}
+.whisper-cat-flower .core {
+    fill: rgba(255, 230, 180, calc(0.3 + 0.7 * var(--bloom, 0)));
+    filter: drop-shadow(0 0 calc(8px * var(--bloom, 0)) currentColor);
+    color: var(--mode-glow, rgba(255, 220, 170, 0.7));
+}
+
+/* People silhouettes */
+.whisper-cat-people {
+    position: absolute;
+    bottom: 8%;
+    left: 8%; right: 8%;
+    height: 30%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 12px;
+}
+.whisper-cat-person {
+    width: 28px;
+    height: 60%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.18) 100%);
+    border-radius: 14px 14px 0 0;
+    position: relative;
+    animation: whisperPersonIn 0.5s var(--ease-smooth);
+}
+.whisper-cat-person::before {
+    content: '';
+    position: absolute;
+    top: -16px; left: 50%;
+    transform: translateX(-50%);
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.55);
+}
+@keyframes whisperPersonIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.whisper-cat-ground {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 8%;
+    background: linear-gradient(180deg, rgba(255, 200, 130, 0.05), transparent);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Controls strip */
+.whisper-cat-controls {
+    grid-column: 1;
+    grid-row: 2;
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 1.2rem;
+    padding: 1rem 1.2rem;
+    background: rgba(10, 14, 22, 0.6);
+    border: 1px solid var(--w-glass-bd);
+    border-radius: 12px;
+}
+.whisper-cat-control-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+}
+.whisper-cat-control-eyebrow {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.28em;
+    color: rgba(255, 255, 255, 0.55);
+    text-transform: uppercase;
+}
+.whisper-cat-counter {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+.whisper-cat-counter-btn {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.04);
+    color: #fff;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.whisper-cat-counter-btn:hover {
+    border-color: rgba(95, 193, 255, 0.55);
+    background: rgba(95, 193, 255, 0.12);
+}
+.whisper-cat-counter-out {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.4rem;
+    color: #fff;
+    min-width: 36px;
+    text-align: center;
+}
+.whisper-cat-bloom-meter {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+}
+.whisper-cat-bloom-label {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    color: rgba(255, 255, 255, 0.65);
+    text-transform: uppercase;
+}
+.whisper-cat-bloom-bar {
+    flex: 1;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+}
+.whisper-cat-bloom-bar span {
+    display: block;
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--w-blossom), var(--w-amber));
+    transition: width 0.5s ease;
+}
+.whisper-cat-bloom-pct {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.7rem;
+    color: #fff;
+    min-width: 36px;
+    text-align: right;
+}
+
+.whisper-cat-modes {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+}
+.whisper-cat-mode {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+    padding: 0.65rem 0.75rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    color: rgba(255, 255, 255, 0.78);
+    cursor: pointer;
+    transition: all 0.25s ease;
+    text-align: left;
+}
+.whisper-cat-mode:hover { background: rgba(255, 255, 255, 0.06); }
+.whisper-cat-mode.active {
+    border-color: rgba(255, 142, 177, 0.6);
+    background: linear-gradient(135deg, rgba(255, 142, 177, 0.18), rgba(255, 200, 100, 0.08));
+    color: #fff;
+    box-shadow: 0 0 14px rgba(255, 142, 177, 0.25);
+}
+.whisper-cat-mode-swatch {
+    width: 22px; height: 22px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.1);
+}
+.swatch-rest    { background: linear-gradient(135deg, #fff8d6, #d8c899); }
+.swatch-rainbow { background: linear-gradient(135deg, #ff5277 0%, #ff8a3a 25%, #ffd84a 50%, #5bd96b 70%, #4ab9ff 90%, #a86bff 100%); }
+.swatch-awareness { background: linear-gradient(135deg, #ff7b3a, #ffb84a, #c93b1c); }
+.swatch-custom  { background: rgb(255, 142, 177); }
+
+.whisper-cat-mode-label {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    line-height: 1.3;
+}
+
+.whisper-cat-custom-row {
+    margin-top: 0.5rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.6rem;
+    padding: 0.6rem 0.8rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+.whisper-cat-rgb {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+.whisper-cat-rgb span {
+    width: 12px;
+    color: #fff;
+}
+.whisper-cat-rgb input[type="range"] {
+    flex: 1;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 2px;
+    outline: none;
+}
+.whisper-cat-rgb input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: #fff;
+    cursor: pointer;
+}
+.whisper-cat-rgb output {
+    width: 24px;
+    text-align: right;
+    color: #fff;
+    font-size: 0.6rem;
+}
+
+/* Phone mockup */
+.whisper-cat-phone {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    position: relative;
+    border-radius: 38px;
+    background: linear-gradient(180deg, #18202c 0%, #0a0f18 100%);
+    border: 1.5px solid rgba(255, 255, 255, 0.12);
+    padding: 18px 14px;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+    display: flex;
+    flex-direction: column;
+}
+.whisper-cat-phone-notch {
+    position: absolute;
+    top: 12px; left: 50%;
+    transform: translateX(-50%);
+    width: 100px; height: 22px;
+    background: #000;
+    border-radius: 14px;
+    z-index: 2;
+}
+.whisper-cat-phone-screen {
+    background: linear-gradient(180deg, #0e1320 0%, #1a2032 100%);
+    border-radius: 24px;
+    flex: 1;
+    padding: 36px 14px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    overflow: hidden;
+}
+.whisper-cat-phone-head {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.95rem;
+    color: #fff;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 4px;
+}
+.whisper-cat-phone-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+}
+.whisper-phone-item {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.55rem 0.7rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.85);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.22s ease;
+}
+.whisper-phone-item:hover { background: rgba(255, 255, 255, 0.08); }
+.whisper-phone-item.active {
+    background: linear-gradient(135deg, rgba(255, 142, 177, 0.25), rgba(255, 200, 100, 0.15));
+    border-color: rgba(255, 142, 177, 0.5);
+    color: #fff;
+}
+.whisper-phone-swatch {
+    width: 16px; height: 16px;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.whisper-cat-phone-info {
+    margin-top: auto;
+    padding: 0.7rem 0.8rem;
+    background: rgba(0, 0, 0, 0.35);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+.whisper-cat-phone-info-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.78rem;
+    color: #fff;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+}
+.whisper-cat-phone-info-desc {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.7rem;
+    line-height: 1.45;
+}
+.whisper-cat-phone-btn {
+    margin-top: 0.5rem;
+    padding: 0.7rem;
+    background: linear-gradient(135deg, var(--w-blossom), var(--w-amber));
+    border: none;
+    border-radius: 999px;
+    color: #1a0f18;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+.whisper-cat-phone-btn:hover { transform: translateY(-1px); }
+
+@media (max-width: 980px) {
+    .whisper-cat-stage {
+        grid-template-columns: 1fr;
+    }
+    .whisper-cat-phone {
+        grid-column: 1;
+        grid-row: 3;
+        max-width: 280px;
+        margin: 0 auto;
+    }
+    .whisper-cat-controls {
+        grid-template-columns: 1fr;
+    }
+    .whisper-cat-modes { grid-template-columns: repeat(2, 1fr); }
+}

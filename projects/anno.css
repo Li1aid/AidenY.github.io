@@ -1,0 +1,883 @@
+/* ============================================================
+   ANNO — Detail Page Styles
+   Adds:  hero accents · interactive demo stage · observation map
+   Inherits typography & nav from project.css / style.css
+   ============================================================ */
+
+:root {
+    --anno-cream:     #f5efe4;
+    --anno-deep:      #1f3556;
+    --anno-deep-2:    #294b7a;
+    --anno-warm:      #ffc864;
+    --anno-coral:     #ff8eb1;
+    --anno-mint:      #7afff0;
+    --anno-violet:    #a78bff;
+    --anno-screen:    #0e1320;
+    --anno-glass-bg:  rgba(255, 255, 255, 0.03);
+    --anno-glass-bd:  rgba(255, 255, 255, 0.12);
+}
+
+/* ============ Hero accents ============ */
+.anno-hero { position: relative; }
+.anno-hero-bg {
+    position: absolute; inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+.anno-hero-glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.45;
+}
+.anno-glow-1 {
+    width: 520px; height: 520px;
+    /* Cool tech-blue, not violet */
+    background: radial-gradient(circle, rgba(140, 180, 230, 0.32), transparent 70%);
+    top: -120px; left: -80px;
+}
+.anno-glow-2 {
+    width: 480px; height: 480px;
+    /* Soft white-blue */
+    background: radial-gradient(circle, rgba(200, 220, 245, 0.22), transparent 70%);
+    bottom: -100px; right: -60px;
+}
+.anno-hero .project-hero-inner { position: relative; z-index: 1; }
+
+/* Title: pure white with a faint tech-blue glow halo, matching the
+   monochrome + clean-tech feel of the homepage hero. */
+.anno-title {
+    color: #ffffff;
+    text-shadow:
+        0 0 24px rgba(160, 200, 240, 0.18),
+        0 0 1px rgba(255, 255, 255, 0.6);
+}
+
+.anno-cover {
+    border-color: rgba(255, 255, 255, 0.14);
+    box-shadow: 0 0 50px rgba(140, 180, 230, 0.1);
+    position: relative;
+    z-index: 1;
+}
+.anno-cover-overlay {
+    position: absolute; inset: 0;
+    background:
+        radial-gradient(ellipse at 30% 30%, rgba(160, 200, 240, 0.08), transparent 55%),
+        linear-gradient(180deg, transparent 50%, rgba(5, 5, 5, 0.5) 100%);
+    pointer-events: none;
+}
+
+/* ============ Feature grid (6 cards) ============ */
+.anno-features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.4rem;
+}
+.anno-feature {
+    transition: all 0.4s var(--ease-smooth);
+}
+.anno-feature:hover {
+    border-color: rgba(167, 139, 255, 0.5);
+    box-shadow: 0 0 30px rgba(167, 139, 255, 0.18);
+}
+.anno-feature-static {
+    cursor: default;
+    opacity: 0.92;
+}
+.anno-feature-static:hover {
+    box-shadow: none;
+    border-color: var(--border-color);
+    transform: none;
+}
+
+@media (max-width: 1024px) {
+    .anno-features-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+    .anno-features-grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   ============ INTERACTIVE DEMO STAGE ========================
+   ============================================================ */
+
+.anno-stage {
+    margin-top: 2rem;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0)),
+        rgba(15, 18, 28, 0.55);
+    border: 1px solid var(--anno-glass-bd);
+    border-radius: 20px;
+    padding: 1.4rem;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+/* ----- Scene picker (top) ----- */
+.anno-scenes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    padding: 0.4rem;
+    margin-bottom: 1.4rem;
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid var(--anno-glass-bd);
+    border-radius: 999px;
+}
+.anno-scene-btn {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    padding: 0.55rem 1rem;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    color: rgba(255, 255, 255, 0.65);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.25s var(--ease-smooth);
+}
+.anno-scene-btn:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.05);
+}
+.anno-scene-btn.active {
+    color: #fff;
+    background: linear-gradient(135deg, rgba(167, 139, 255, 0.35), rgba(122, 255, 240, 0.25));
+    border-color: rgba(167, 139, 255, 0.55);
+    box-shadow: 0 0 18px rgba(167, 139, 255, 0.45);
+}
+.anno-scene-num {
+    font-size: 0.6rem;
+    opacity: 0.7;
+}
+.anno-scene-name {
+    font-weight: 600;
+}
+
+@media (max-width: 720px) {
+    .anno-scenes { border-radius: 16px; }
+    .anno-scene-btn { flex-basis: calc(50% - 0.6rem); }
+}
+
+/* ----- Main room ----- */
+.anno-room {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 1.2rem;
+    min-height: 460px;
+    border-radius: 16px;
+    overflow: hidden;
+}
+@media (max-width: 900px) {
+    .anno-room { grid-template-columns: 1fr; }
+}
+
+.anno-room-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    border-radius: 16px;
+    overflow: hidden;
+}
+.anno-room-wall {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(180deg, #2a3a58 0%, #1a253c 60%, #11192c 100%);
+}
+.anno-room-rug {
+    position: absolute;
+    bottom: -10%;
+    left: -5%;
+    right: -5%;
+    height: 55%;
+    background:
+        radial-gradient(ellipse at center top, rgba(167, 139, 255, 0.18), transparent 70%),
+        linear-gradient(180deg, rgba(255, 200, 100, 0.18), rgba(255, 200, 100, 0.04));
+    border-radius: 50%;
+    transform: perspective(800px) rotateX(60deg);
+    transform-origin: center top;
+    filter: blur(6px);
+}
+.anno-room-light {
+    position: absolute;
+    top: -20%;
+    left: 30%;
+    width: 60%;
+    height: 60%;
+    background: radial-gradient(circle, rgba(255, 220, 150, 0.15), transparent 70%);
+    filter: blur(40px);
+}
+
+/* ----- Anno dog (SVG container) ----- */
+.anno-dog-wrap {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 1rem;
+    padding: 2.4rem 1rem 1rem;
+    flex-wrap: wrap;
+}
+.anno-dog {
+    height: auto;
+    filter: drop-shadow(0 18px 24px rgba(0, 0, 0, 0.45));
+}
+/* Both views now share the same viewBox aspect ratio (≈1.5:1) so they
+   render at identical visual size when given equal width. */
+.anno-dog-side,
+.anno-dog-front {
+    flex: 1 1 0;
+    width: 100%;
+    max-width: 360px;
+    min-width: 220px;
+    height: auto;
+}
+
+/* View labels above each SVG, aligned 50/50 */
+.anno-view-labels {
+    position: absolute;
+    top: 0.4rem;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-around;
+    pointer-events: none;
+    padding: 0 8%;
+}
+.anno-view-label {
+    flex: 1 1 0;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.32em;
+    color: rgba(255, 255, 255, 0.45);
+    text-transform: uppercase;
+    text-align: center;
+}
+
+@media (max-width: 700px) {
+    .anno-dog-front { display: none; }
+    .anno-view-labels { display: none; }
+}
+
+/* ----- Dog animations ----- */
+@keyframes annoTailWag {
+    0%, 100% { transform: rotate(-6deg); }
+    50%      { transform: rotate(14deg); }
+}
+@keyframes annoBodyBreathe {
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.012); }
+}
+@keyframes annoHeadTilt {
+    0%, 100% { transform: rotate(0deg); }
+    50%      { transform: rotate(-6deg); }
+}
+@keyframes annoEyeBlink {
+    0%, 92%, 100% { transform: scaleY(1); }
+    95%, 99%      { transform: scaleY(0.1); }
+}
+@keyframes annoBubblePop {
+    0%   { opacity: 0; transform: translateY(6px) scale(0.92); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes annoBpmPulse {
+    /* Reserved for genuine "alarm" pulses on UI elements, not the heart. */
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.06); }
+}
+@keyframes annoHeartGlow {
+    /* Calm heartbeat: gentle opacity dip + 4% breath. No jumping. */
+    0%, 100% { transform: scale(1);    opacity: 1;   }
+    50%      { transform: scale(1.04); opacity: 0.78;}
+}
+@keyframes annoWristbandPulse {
+    0%, 100% { opacity: 1; r: 2; }
+    50%      { opacity: 0.5; r: 3.2; }
+}
+@keyframes annoLegWiggle {
+    0%, 100% { transform: rotate(0deg); }
+    50%      { transform: rotate(2deg); }
+}
+
+/* Default chill state — animation origins use transform-box: fill-box
+   so they're relative to each element's own box, not the SVG origin.
+   This keeps tail wag, head tilt, eye blink, and heart pulse aligned
+   regardless of how we lay the SVG out. */
+.anno-tail {
+    transform-origin: right center;
+    transform-box: fill-box;
+    animation: annoTailWag 1.6s ease-in-out infinite;
+}
+.anno-body {
+    transform-origin: center;
+    transform-box: fill-box;
+    animation: annoBodyBreathe 3.6s ease-in-out infinite;
+}
+.anno-head {
+    /* Pivot at the neck/shoulder mount where the head meets the body. */
+    transform-origin: 162px 144px;
+    transition: transform 0.6s var(--ease-smooth);
+}
+.anno-eye {
+    transform-origin: center;
+    transform-box: fill-box;
+    animation: annoEyeBlink 4.2s infinite;
+}
+.anno-screen-heart {
+    transform-origin: center;
+    transform-box: fill-box;
+    /* Subtle gentle pulse — opacity instead of scale so the icon doesn't
+       leap off the screen. */
+    animation: annoHeartGlow 1.1s ease-in-out infinite;
+}
+.anno-wristband-pulse {
+    transform-origin: center;
+    transform-box: fill-box;
+    animation: annoWristbandPulse 1.4s ease-in-out infinite;
+}
+
+/* Speech bubble — HTML overlay above the dog. Wraps long messages,
+   stays clipped to a sensible max-width, never collides with the body. */
+.anno-bubble {
+    position: absolute;
+    top: 6%;
+    left: 50%;
+    transform: translate(-30%, 0) scale(0.95);
+    max-width: 78%;
+    min-width: 140px;
+    padding: 0.7rem 1rem;
+    background: rgba(14, 19, 32, 0.95);
+    border: 1px solid #3b4358;
+    border-radius: 18px;
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.92rem;
+    line-height: 1.4;
+    text-align: center;
+    word-break: break-word;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s var(--ease-smooth), transform 0.4s var(--ease-smooth);
+    z-index: 4;
+}
+.anno-bubble.show {
+    opacity: 1;
+    transform: translate(-30%, 0) scale(1);
+}
+.anno-bubble-tail {
+    position: absolute;
+    bottom: -8px;
+    left: 60%;
+    width: 14px;
+    height: 14px;
+    background: rgba(14, 19, 32, 0.95);
+    border-right: 1px solid #3b4358;
+    border-bottom: 1px solid #3b4358;
+    transform: rotate(45deg);
+}
+
+/* Scene-specific dog states (toggled by JS via data-anno-mode on .anno-stage) */
+.anno-stage[data-anno-mode="alert"] .anno-tail   { animation: none; transform: rotate(-2deg); }
+.anno-stage[data-anno-mode="alert"] .anno-head   { transform: rotate(-8deg); }
+.anno-stage[data-anno-mode="alert"] .anno-eye    { fill: var(--anno-coral); animation: annoBpmPulse 0.7s ease-in-out infinite; }
+.anno-stage[data-anno-mode="alert"] .anno-screen-heart { animation: annoHeartGlow 0.45s ease-in-out infinite; fill: var(--anno-coral); }
+
+.anno-stage[data-anno-mode="happy"] .anno-tail   { animation-duration: 0.7s; }
+.anno-stage[data-anno-mode="happy"] .anno-head   { transform: rotate(-3deg); }
+
+.anno-stage[data-anno-mode="sleep"] .anno-tail   { animation-duration: 4s; }
+.anno-stage[data-anno-mode="sleep"] .anno-eye    { transform: scaleY(0.18); transform-origin: center; transform-box: fill-box; animation: none; }
+.anno-stage[data-anno-mode="sleep"] .anno-head   { transform: rotate(2deg) translateY(2px); }
+
+.anno-stage[data-anno-mode="curious"] .anno-head { transform: rotate(-10deg); }
+.anno-stage[data-anno-mode="curious"] .anno-tail { animation-duration: 2.4s; }
+
+/* ----- Side panel (right) ----- */
+.anno-panel {
+    position: relative;
+    z-index: 2;
+    background: rgba(10, 14, 22, 0.7);
+    border: 1px solid var(--anno-glass-bd);
+    border-radius: 14px;
+    padding: 1.4rem 1.4rem 1.6rem;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+}
+.anno-panel-eyebrow {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.32em;
+    color: var(--anno-mint);
+    text-transform: uppercase;
+}
+.anno-panel-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 1.25;
+    color: #fff;
+    margin: 0;
+}
+.anno-panel-body {
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 0.92rem;
+    line-height: 1.6;
+}
+.anno-panel-body p {
+    margin: 0 0 0.8rem;
+}
+.anno-panel-body p:last-child { margin-bottom: 0; }
+
+/* Lists / items inside the panel — different layouts per scene */
+.anno-pill-row {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.7rem 0.9rem;
+    margin-bottom: 0.5rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    transition: all 0.3s var(--ease-smooth);
+}
+.anno-pill-row.taken {
+    border-color: rgba(122, 255, 240, 0.45);
+    background: rgba(122, 255, 240, 0.08);
+}
+.anno-pill-icon {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+.anno-pill-icon.morning { background: linear-gradient(135deg, #ffd86a, #ff9b50); }
+.anno-pill-icon.noon    { background: linear-gradient(135deg, #ff8eb1, #c45cff); }
+.anno-pill-icon.evening { background: linear-gradient(135deg, #5b8eff, #3a4d8f); }
+.anno-pill-info {
+    flex: 1;
+    min-width: 0;
+}
+.anno-pill-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.95rem;
+    color: #fff;
+    font-weight: 500;
+}
+.anno-pill-time {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.55);
+    letter-spacing: 0.1em;
+    margin-top: 2px;
+}
+.anno-pill-status {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.6rem;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.6);
+}
+.anno-pill-row.taken .anno-pill-status {
+    background: rgba(62, 234, 138, 0.15);
+    color: #5dffa3;
+}
+
+/* Vital stat block */
+.anno-vital {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.6rem;
+}
+.anno-vital-cell {
+    padding: 0.7rem 0.8rem;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.anno-vital-cell.alert {
+    border-color: rgba(255, 100, 130, 0.65);
+    background: rgba(255, 100, 130, 0.12);
+    animation: annoAlertGlow 1.4s ease-in-out infinite;
+}
+@keyframes annoAlertGlow {
+    0%, 100% { box-shadow: 0 0 0 rgba(255, 100, 130, 0); }
+    50%      { box-shadow: 0 0 18px rgba(255, 100, 130, 0.45); }
+}
+.anno-vital-label {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    color: rgba(255, 255, 255, 0.55);
+    text-transform: uppercase;
+}
+.anno-vital-value {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.4rem;
+    color: #fff;
+    margin-top: 4px;
+    font-weight: 600;
+}
+.anno-vital-unit {
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-left: 3px;
+}
+
+/* SOS countdown */
+.anno-sos {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.9rem 1rem;
+    background: rgba(255, 100, 130, 0.12);
+    border: 1px solid rgba(255, 100, 130, 0.4);
+    border-radius: 10px;
+}
+.anno-sos-num {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #ff8eb1;
+    min-width: 2.4rem;
+    text-align: center;
+    line-height: 1;
+}
+.anno-sos-text {
+    flex: 1;
+    color: #fff;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+.anno-sos-cancel {
+    padding: 0.45rem 0.9rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 8px;
+    color: #fff;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+.anno-sos-cancel:hover { background: rgba(255, 255, 255, 0.18); }
+
+/* Emotion mode picker */
+.anno-emo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
+}
+.anno-emo-btn {
+    padding: 0.85rem 0.7rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.25s var(--ease-smooth);
+}
+.anno-emo-btn:hover {
+    background: rgba(167, 139, 255, 0.1);
+    border-color: rgba(167, 139, 255, 0.4);
+}
+.anno-emo-btn.active {
+    background: linear-gradient(135deg, rgba(167, 139, 255, 0.25), rgba(122, 255, 240, 0.15));
+    border-color: rgba(167, 139, 255, 0.6);
+    box-shadow: 0 0 14px rgba(167, 139, 255, 0.3);
+}
+.anno-emo-emoji {
+    font-size: 1.4rem;
+    display: block;
+    margin-bottom: 4px;
+}
+.anno-emo-label {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+/* Privacy view toggle */
+.anno-privacy-tabs {
+    display: flex;
+    gap: 0.4rem;
+    padding: 0.3rem;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+    margin-bottom: 0.8rem;
+}
+.anno-privacy-tab {
+    flex: 1;
+    padding: 0.45rem 0.6rem;
+    background: transparent;
+    border: none;
+    border-radius: 999px;
+    color: rgba(255, 255, 255, 0.6);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+.anno-privacy-tab.active {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+.anno-privacy-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.6rem 0.8rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.88rem;
+}
+.anno-privacy-row:last-child { border-bottom: none; }
+.anno-privacy-row .anno-privacy-key {
+    color: rgba(255, 255, 255, 0.55);
+}
+.anno-privacy-row .anno-privacy-val {
+    font-family: 'Orbitron', sans-serif;
+    color: #fff;
+}
+.anno-privacy-redacted {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    padding: 2px 8px;
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+/* ----- Voice prompts bar (bottom) ----- */
+.anno-voice {
+    grid-column: 1 / -1;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-top: 0.5rem;
+    padding: 0.7rem 1rem;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--anno-glass-bd);
+    border-radius: 999px;
+}
+.anno-voice-mic {
+    width: 38px; height: 38px;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, var(--anno-violet), var(--anno-mint));
+    border: none;
+    border-radius: 50%;
+    color: #0e1320;
+    cursor: pointer;
+    box-shadow: 0 0 14px rgba(167, 139, 255, 0.5);
+    transition: transform 0.2s ease;
+}
+.anno-voice-mic:hover { transform: scale(1.06); }
+.anno-voice-mic svg { width: 18px; height: 18px; }
+.anno-voice-mic.listening {
+    animation: annoMicPulse 0.9s ease-in-out infinite;
+}
+@keyframes annoMicPulse {
+    0%, 100% { box-shadow: 0 0 14px rgba(167, 139, 255, 0.5); }
+    50%      { box-shadow: 0 0 26px rgba(167, 139, 255, 0.95); }
+}
+
+.anno-voice-prompts {
+    flex: 1;
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+.anno-voice-prompts::-webkit-scrollbar { display: none; }
+.anno-voice-prompt {
+    flex-shrink: 0;
+    padding: 0.45rem 0.95rem;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 999px;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.82rem;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+}
+.anno-voice-prompt:hover {
+    background: rgba(167, 139, 255, 0.18);
+    border-color: rgba(167, 139, 255, 0.5);
+    color: #fff;
+}
+
+/* ============================================================
+   ============ OBSERVATION JOURNEY MAP =======================
+   ============================================================ */
+
+.anno-journey {
+    margin-top: 2rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--anno-glass-bd);
+    border-radius: 16px;
+    padding: 1.4rem 1.4rem 1.8rem;
+    overflow-x: auto;
+}
+
+.anno-journey-stages {
+    display: grid;
+    grid-template-columns: 130px 1fr 5fr;
+    gap: 0;
+    margin-bottom: 0.8rem;
+}
+.anno-journey-stages::before { content: ""; }
+.anno-journey-stage {
+    padding: 0.7rem 1rem;
+    background: var(--anno-deep);
+    color: #fff;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-align: center;
+    border-right: 1px solid rgba(255, 255, 255, 0.12);
+}
+.anno-stage-aware { border-radius: 8px 0 0 8px; }
+.anno-stage-usage { border-radius: 0 8px 8px 0; border-right: none; }
+
+.anno-journey-row {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 1rem;
+    margin-bottom: 0.8rem;
+    align-items: stretch;
+}
+
+.anno-journey-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--anno-deep);
+    color: #fff;
+    border-radius: 12px;
+    padding: 0.7rem;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    min-height: 60px;
+}
+
+.anno-journey-cells {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0.6rem;
+}
+
+.anno-journey-cell {
+    padding: 0.75rem 0.85rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    color: rgba(255, 255, 255, 0.88);
+    font-size: 0.84rem;
+    line-height: 1.45;
+    display: flex;
+    align-items: center;
+}
+.anno-journey-cell-2col { grid-column: span 2; }
+.anno-journey-cell-2col ul {
+    list-style: disc;
+    padding-left: 1.1rem;
+    margin: 0;
+}
+.anno-journey-cell-2col ul li {
+    margin-bottom: 0.3rem;
+}
+.anno-journey-cell-2col ul li:last-child { margin-bottom: 0; }
+.anno-journey-empty {
+    background: transparent;
+    border: 1px dashed rgba(255, 255, 255, 0.06);
+}
+.anno-journey-issue {
+    background: rgba(255, 142, 177, 0.1);
+    border-color: rgba(255, 142, 177, 0.35);
+    color: #ffd1de;
+}
+.anno-journey-opp {
+    background: rgba(122, 255, 240, 0.08);
+    border-color: rgba(122, 255, 240, 0.4);
+    color: #c5fff7;
+}
+
+/* Emotion row */
+.anno-journey-emotion-row .anno-journey-cells {
+    display: block;
+}
+.anno-journey-emotion {
+    position: relative;
+    display: flex;
+    gap: 0.6rem;
+    height: 130px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: linear-gradient(180deg, #6cc5ff 0%, #1d3a73 100%);
+}
+.anno-emotion-legend {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 0.4rem 0.4rem 0.4rem 0.6rem;
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+.anno-emotion-legend span {
+    font-size: 1rem;
+    line-height: 1;
+}
+.anno-emotion-curve {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+}
+
+/* Mobile collapse for journey map */
+@media (max-width: 880px) {
+    .anno-journey-stages,
+    .anno-journey-row {
+        grid-template-columns: 100px 1fr;
+    }
+    .anno-journey-cells {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .anno-journey-cell-2col { grid-column: span 2; }
+    .anno-journey-empty { display: none; }
+}

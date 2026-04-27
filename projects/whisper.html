@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whisper Field — Aiden Yang</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="project.css">
+    <link rel="stylesheet" href="whisper.css">
+</head>
+
+<body class="project-page">
+    <!-- Animated Background -->
+    <canvas id="particles-canvas"></canvas>
+    <div class="grid-background"></div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor"><div class="cursor-glow"></div></div>
+    <div class="cursor-dot"></div>
+
+    <!-- Subpage Top Bar -->
+    <nav class="project-nav">
+        <a href="../index.html#showcase" class="project-nav-btn project-nav-back">
+            <span class="arrow">←</span>
+            <span data-en="Back to Works" data-zh="返回作品">Back to Works</span>
+        </a>
+        <a href="../index.html" class="project-nav-btn project-nav-home">
+            <span data-en="Visit Main Site" data-zh="进入主页">Visit Main Site</span>
+            <span class="arrow">→</span>
+        </a>
+    </nav>
+
+    <!-- Hero -->
+    <section class="project-hero whisper-hero">
+        <div class="whisper-hero-bg" aria-hidden="true">
+            <div class="whisper-hero-glow whisper-glow-1"></div>
+            <div class="whisper-hero-glow whisper-glow-2"></div>
+            <div class="whisper-hero-glow whisper-glow-3"></div>
+            <div class="whisper-hero-grass" id="whisper-hero-grass"></div>
+        </div>
+
+        <div class="project-hero-inner">
+            <div class="project-tagline" data-en="IMMERSIVE EXPERIENCE · 2024" data-zh="沉浸式体验 · 2024">IMMERSIVE EXPERIENCE · 2024</div>
+            <h1 class="project-title-xl whisper-title">Whisper Field</h1>
+            <p class="project-subtitle" data-en="A non-intrusive, multi-sensory space for ADHD and broader neurodiversity." data-zh="为 ADHD 与更广泛的神经多样性人群打造的非侵入式多感官空间。">
+                A non-intrusive, multi-sensory space for ADHD and broader neurodiversity.
+            </p>
+
+            <div class="project-meta-grid">
+                <div class="meta-cell">
+                    <div class="meta-label" data-en="ROLE" data-zh="角色">ROLE</div>
+                    <div class="meta-value" data-en="Spatial · Interaction" data-zh="空间 · 交互">Spatial · Interaction</div>
+                </div>
+                <div class="meta-cell">
+                    <div class="meta-label" data-en="YEAR" data-zh="年份">YEAR</div>
+                    <div class="meta-value">2024</div>
+                </div>
+                <div class="meta-cell">
+                    <div class="meta-label" data-en="TYPE" data-zh="类型">TYPE</div>
+                    <div class="meta-value" data-en="Installation · Public Light" data-zh="装置 · 公共光环境">Installation · Public Light</div>
+                </div>
+                <div class="meta-cell">
+                    <div class="meta-label" data-en="TOOLS" data-zh="工具">TOOLS</div>
+                    <div class="meta-value">UE5 · Processing · Figma</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-cover whisper-cover">
+            <img src="../Assets/4.jpg" alt="Whisper Field cover">
+            <div class="whisper-cover-overlay"></div>
+        </div>
+    </section>
+
+    <!-- Overview -->
+    <section class="project-section bg-medium">
+        <div class="project-container">
+            <div class="section-eyebrow" data-en="OVERVIEW" data-zh="概述">OVERVIEW</div>
+            <h2 class="project-h2" data-en="What is Whisper Field?" data-zh="Whisper Field 是什么？">What is Whisper Field?</h2>
+            <p class="project-lead" data-en="Whisper Field is a two-part immersive system for individuals with ADHD and broader neurodiversity. Inside the Cube, four screens and a tactile grass floor co-create AI-generated landscapes that breathe through generation, presentation and deconstruction. Outside, a Catenary canopy of flower-shaped lights blooms gently as people gather beneath. Both parts share one principle — guiding, never dominating — using delayed responses, low contrast and per-person interaction zones to support free exploration without overstimulation." data-zh="Whisper Field 由两部分组成，为 ADHD 与更广泛的神经多样性人群而设计。Cube 内部以四块屏幕与触觉草地共同生成 AI 风景，在「生成 → 呈现 → 解构」之间不断呼吸。Cube 外部则悬挂着花朵造型的 Catenary 灯阵，随着人群聚集逐渐绽放。两者共享同一原则——引导而非主导——通过延迟反馈、低对比度与个人化交互范围，支持自由探索而不致过载。">
+                Whisper Field is a two-part immersive system for individuals with ADHD and broader neurodiversity. Inside the Cube, four screens and a tactile grass floor co-create AI-generated landscapes that breathe through generation, presentation and deconstruction. Outside, a Catenary canopy of flower-shaped lights blooms gently as people gather beneath. Both parts share one principle — guiding, never dominating — using delayed responses, low contrast and per-person interaction zones to support free exploration without overstimulation.
+            </p>
+        </div>
+    </section>
+
+    <!-- Key Pillars -->
+    <section class="project-section">
+        <div class="project-container">
+            <div class="section-eyebrow" data-en="DESIGN PRINCIPLES" data-zh="设计原则">DESIGN PRINCIPLES</div>
+            <h2 class="project-h2" data-en="Six soft pillars" data-zh="六大柔性支柱">Six soft pillars</h2>
+
+            <div class="features-grid whisper-features-grid">
+                <a href="#whisper-cube-demo" data-jump="generation" class="feature-card whisper-feature">
+                    <div class="feature-num">01</div>
+                    <h3 class="feature-title" data-en="Soft Perception" data-zh="柔性感知">Soft Perception</h3>
+                    <p class="feature-desc" data-en="Mid-thigh artificial grass forms a 'visible yet gentle' boundary — present without ever feeling rigid." data-zh="中腿高的人造草坪构建出「可见但温柔」的边界——存在却毫不僵硬。">
+                        Mid-thigh artificial grass forms a "visible yet gentle" boundary — present without ever feeling rigid.
+                    </p>
+                    <span class="feature-cta" data-en="Enter the Cube →" data-zh="进入 Cube →">Enter the Cube →</span>
+                </a>
+
+                <a href="#whisper-cube-demo" data-jump="generation" class="feature-card whisper-feature">
+                    <div class="feature-num">02</div>
+                    <h3 class="feature-title" data-en="Dynamic Generation" data-zh="动态生成">Dynamic Generation</h3>
+                    <p class="feature-desc" data-en="AI-generated landscapes evolve with user interaction — a reciprocal shaping between visitor and environment." data-zh="AI 生成的风景随用户交互而演变——访客与环境之间的相互塑造。">
+                        AI-generated landscapes evolve with user interaction — a reciprocal shaping between visitor and environment.
+                    </p>
+                    <span class="feature-cta" data-en="See the cycle →" data-zh="查看循环 →">See the cycle →</span>
+                </a>
+
+                <a href="#whisper-cube-demo" data-jump="presentation" class="feature-card whisper-feature">
+                    <div class="feature-num">03</div>
+                    <h3 class="feature-title" data-en="Sensory Delay" data-zh="感知延迟">Sensory Delay</h3>
+                    <p class="feature-desc" data-en="Every interaction carries an 80–150 ms delayed response, preventing the rapid feedback that triggers ADHD overstimulation." data-zh="每次交互都带有 80–150 毫秒的延迟反馈，避免触发 ADHD 的过度刺激。">
+                        Every interaction carries an 80–150 ms delayed response, preventing the rapid feedback that triggers ADHD overstimulation.
+                    </p>
+                    <span class="feature-cta" data-en="Feel the rhythm →" data-zh="感受节奏 →">Feel the rhythm →</span>
+                </a>
+
+                <a href="#whisper-cube-demo" data-jump="deconstruction" class="feature-card whisper-feature">
+                    <div class="feature-num">04</div>
+                    <h3 class="feature-title" data-en="Folded Information" data-zh="层叠信息">Folded Information</h3>
+                    <p class="feature-desc" data-en="The same element reveals different appearances and outcomes at different stages — visitors gradually 'unlock' the scene." data-zh="同一元素在不同阶段呈现不同样貌与交互结果——访客逐步「解锁」场景。">
+                        The same element reveals different appearances and outcomes at different stages — visitors gradually "unlock" the scene.
+                    </p>
+                    <span class="feature-cta" data-en="Watch it unfold →" data-zh="观察展开 →">Watch it unfold →</span>
+                </a>
+
+                <a href="#whisper-cat-demo" data-jump="bloom" class="feature-card whisper-feature">
+                    <div class="feature-num">05</div>
+                    <h3 class="feature-title" data-en="Blooming Canopy" data-zh="绽放灯幕">Blooming Canopy</h3>
+                    <p class="feature-desc" data-en="A catenary of flower-shaped lights opens as more people gather — turning unseen presence into a glowing field." data-zh="花朵造型的悬链灯阵随人群聚集而绽放——将无形的存在化为发光的花田。">
+                        A catenary of flower-shaped lights opens as more people gather — turning unseen presence into a glowing field.
+                    </p>
+                    <span class="feature-cta" data-en="Walk beneath →" data-zh="走入花下 →">Walk beneath →</span>
+                </a>
+
+                <a href="#whisper-cat-demo" data-jump="modes" class="feature-card whisper-feature">
+                    <div class="feature-num">06</div>
+                    <h3 class="feature-title" data-en="Pride-Coloured Light Modes" data-zh="多彩灯光模式">Pride-Coloured Light Modes</h3>
+                    <p class="feature-desc" data-en="Light modes draw from ADHD pride and neurodivergent symbols — visitors scan a QR to choose, customise, and learn." data-zh="灯光模式取自 ADHD 骄傲色与神经多样性符号——观众扫码选择、自定义并了解背后含义。">
+                        Light modes draw from ADHD pride and neurodivergent symbols — visitors scan a QR to choose, customise, and learn.
+                    </p>
+                    <span class="feature-cta" data-en="Try the modes →" data-zh="试试模式 →">Try the modes →</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============== CUBE INTERACTIVE DEMO ============== -->
+    <section class="project-section bg-medium" id="whisper-cube-demo-section">
+        <div class="project-container">
+            <div class="section-eyebrow" data-en="INTERACTIVE DEMO · CUBE" data-zh="交互演示 · CUBE">INTERACTIVE DEMO · CUBE</div>
+            <h2 class="project-h2" data-en="Step inside the Cube" data-zh="走进 Cube">Step inside the Cube</h2>
+            <p class="demos-hint" data-en="Move through the three breathing phases. Touch the grass, swap a scene, and watch the panorama respond." data-zh="在三个呼吸阶段之间切换。触碰草地、切换场景，观察全景如何回应。">
+                Move through the three breathing phases. Touch the grass, swap a scene, and watch the panorama respond.
+            </p>
+
+            <div class="whisper-cube-stage" id="whisper-cube-demo">
+                <!-- Phase picker -->
+                <div class="whisper-phase-picker" id="whisper-phase-picker">
+                    <button class="whisper-phase-btn active" data-phase="generation">
+                        <span class="whisper-phase-num">01</span>
+                        <span class="whisper-phase-name" data-en="Generation" data-zh="生成">Generation</span>
+                    </button>
+                    <span class="whisper-phase-arrow" aria-hidden="true">→</span>
+                    <button class="whisper-phase-btn" data-phase="presentation">
+                        <span class="whisper-phase-num">02</span>
+                        <span class="whisper-phase-name" data-en="Presentation" data-zh="呈现">Presentation</span>
+                    </button>
+                    <span class="whisper-phase-arrow" aria-hidden="true">→</span>
+                    <button class="whisper-phase-btn" data-phase="deconstruction">
+                        <span class="whisper-phase-num">03</span>
+                        <span class="whisper-phase-name" data-en="Deconstruction" data-zh="解构">Deconstruction</span>
+                    </button>
+                    <span class="whisper-phase-arrow whisper-phase-arrow-loop" aria-hidden="true">↺</span>
+                </div>
+
+                <div class="whisper-cube-room" id="whisper-cube-room">
+                    <!-- The Cube view: panoramic 4-wall + ceiling + floor (grass) -->
+                    <div class="whisper-cube-view" id="whisper-cube-view">
+                        <!-- Ceiling track lights -->
+                        <div class="whisper-cube-ceiling" aria-hidden="true">
+                            <span class="whisper-ceiling-rail"></span>
+                            <span class="whisper-ceiling-spot whisper-ceiling-spot-1"></span>
+                            <span class="whisper-ceiling-spot whisper-ceiling-spot-2"></span>
+                            <span class="whisper-ceiling-spot whisper-ceiling-spot-3"></span>
+                        </div>
+
+                        <!-- The four walls — panorama screens -->
+                        <div class="whisper-cube-walls" id="whisper-cube-walls">
+                            <div class="whisper-wall whisper-wall-l">
+                                <div class="whisper-wall-scene" data-wall="l"></div>
+                                <canvas class="whisper-wall-particles" data-wall="l"></canvas>
+                            </div>
+                            <div class="whisper-wall whisper-wall-c">
+                                <div class="whisper-wall-scene" data-wall="c"></div>
+                                <canvas class="whisper-wall-particles" data-wall="c"></canvas>
+                            </div>
+                            <div class="whisper-wall whisper-wall-r">
+                                <div class="whisper-wall-scene" data-wall="r"></div>
+                                <canvas class="whisper-wall-particles" data-wall="r"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Floor: grass + seats + interactive glow follow -->
+                        <div class="whisper-cube-floor" id="whisper-cube-floor">
+                            <div class="whisper-floor-glow" id="whisper-floor-glow"></div>
+                            <canvas class="whisper-grass" id="whisper-grass"></canvas>
+                            <!-- Two infinity-shaped seats facing slightly inward -->
+                            <svg class="whisper-seat whisper-seat-l" viewBox="0 0 120 60" aria-hidden="true">
+                                <path d="M 8 42 Q 8 12 38 12 Q 60 12 60 30 Q 60 48 82 48 Q 112 48 112 18"
+                                      fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="6" stroke-linecap="round"/>
+                            </svg>
+                            <svg class="whisper-seat whisper-seat-r" viewBox="0 0 120 60" aria-hidden="true">
+                                <path d="M 8 42 Q 8 12 38 12 Q 60 12 60 30 Q 60 48 82 48 Q 112 48 112 18"
+                                      fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="6" stroke-linecap="round"/>
+                            </svg>
+                            <div class="whisper-floor-hint" id="whisper-floor-hint" data-en="Click or drag the grass" data-zh="点击或拖动草地">Click or drag the grass</div>
+                        </div>
+
+                        <!-- Phase HUD overlay -->
+                        <div class="whisper-phase-hud" id="whisper-phase-hud">
+                            <div class="whisper-hud-eyebrow" id="whisper-hud-eyebrow">PHASE 01 · GENERATION</div>
+                            <div class="whisper-hud-bar"><span id="whisper-hud-fill"></span></div>
+                            <div class="whisper-hud-meta"><span id="whisper-hud-meta">Particles converging</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Side controls panel -->
+                    <aside class="whisper-cube-panel" id="whisper-cube-panel">
+                        <div class="whisper-panel-eyebrow" id="whisper-panel-eyebrow" data-en="LANDSCAPE LIBRARY" data-zh="风景库">LANDSCAPE LIBRARY</div>
+                        <h3 class="whisper-panel-title" id="whisper-panel-title">Pick a scene</h3>
+                        <p class="whisper-panel-desc" id="whisper-panel-desc" data-en="Each scene is time-sensitive — its rhythm shifts in response to phase, time, and presence." data-zh="每个场景都对时间敏感——其节奏会随阶段、时间与存在感而改变。">
+                            Each scene is time-sensitive — its rhythm shifts in response to phase, time, and presence.
+                        </p>
+
+                        <div class="whisper-scene-grid" id="whisper-scene-grid">
+                            <!-- injected by JS -->
+                        </div>
+
+                        <div class="whisper-panel-divider"></div>
+
+                        <div class="whisper-panel-eyebrow" data-en="GRASS RESPONSE" data-zh="草地响应">GRASS RESPONSE</div>
+                        <div class="whisper-grass-controls">
+                            <label class="whisper-control-row">
+                                <span class="whisper-control-label" data-en="Delay (ms)" data-zh="延迟 (毫秒)">Delay (ms)</span>
+                                <input type="range" id="whisper-delay" min="0" max="300" step="10" value="120" class="whisper-range">
+                                <output class="whisper-control-out" id="whisper-delay-out">120</output>
+                            </label>
+                            <label class="whisper-control-row">
+                                <span class="whisper-control-label" data-en="Glow radius (cm)" data-zh="光斑半径 (cm)">Glow radius (cm)</span>
+                                <input type="range" id="whisper-radius" min="5" max="40" step="1" value="15" class="whisper-range">
+                                <output class="whisper-control-out" id="whisper-radius-out">15</output>
+                            </label>
+                            <button class="whisper-cycle-btn" id="whisper-cycle-btn">
+                                <span data-en="Auto-breathe cycle" data-zh="自动呼吸循环">Auto-breathe cycle</span>
+                                <span class="whisper-cycle-state" id="whisper-cycle-state" data-en="OFF" data-zh="关闭">OFF</span>
+                            </button>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Storyboard -->
+    <section class="project-section">
+        <div class="project-container">
+            <div class="section-eyebrow" data-en="STORYBOARD · CUBE" data-zh="故事板 · CUBE">STORYBOARD · CUBE</div>
+            <h2 class="project-h2" data-en="A walk through Whisper Field" data-zh="一次穿越 Whisper Field 的漫步">A walk through Whisper Field</h2>
+
+            <div class="whisper-storyboard">
+                <article class="whisper-story-card">
+                    <div class="whisper-story-num">01</div>
+                    <h4 class="whisper-story-title" data-en="Generation Phase" data-zh="生成阶段">Generation Phase</h4>
+                    <p class="whisper-story-desc" data-en="Screens start black. Particles slowly form. The grass tips glow with soft blue light." data-zh="屏幕一开始全黑，粒子缓缓汇聚。草尖泛起柔和的蓝光。">Screens start black. Particles slowly form. The grass tips glow with soft blue light.</p>
+                </article>
+                <article class="whisper-story-card">
+                    <div class="whisper-story-num">02</div>
+                    <h4 class="whisper-story-title" data-en="Approach" data-zh="靠近">Approach</h4>
+                    <p class="whisper-story-desc" data-en="As visitors move, particles around them respond — brightness, drift direction and motion patterns shift in resonance." data-zh="访客移动时，周围粒子随之回应——亮度、漂移方向与运动模式都与之共振。">As visitors move, particles around them respond — brightness, drift direction and motion patterns shift in resonance.</p>
+                </article>
+                <article class="whisper-story-card">
+                    <div class="whisper-story-num">03</div>
+                    <h4 class="whisper-story-title" data-en="Co-creation" data-zh="共同创造">Co-creation</h4>
+                    <p class="whisper-story-desc" data-en="Lightly touching the wall summons new particles in that interaction zone — and the scene in that region updates accordingly." data-zh="轻触墙面会在该交互区域生成新粒子——该区域的场景也会随之更新。">Lightly touching the wall summons new particles in that interaction zone — and the scene in that region updates accordingly.</p>
+                </article>
+                <article class="whisper-story-card">
+                    <div class="whisper-story-num">04</div>
+                    <h4 class="whisper-story-title" data-en="Landscape Emerges" data-zh="风景浮现">Landscape Emerges</h4>
+                    <p class="whisper-story-desc" data-en="After interaction during generation, the resulting landscape gradually emerges — never quite the same twice." data-zh="生成阶段的交互之后，最终风景逐渐浮现——永不重复相同模样。">After interaction during generation, the resulting landscape gradually emerges — never quite the same twice.</p>
+                </article>
+                <article class="whisper-story-card">
+                    <div class="whisper-story-num">05</div>
+                    <h4 class="whisper-story-title" data-en="Stable Scene" data-zh="稳定场景">Stable Scene</h4>
+                    <p class="whisper-story-desc" data-en="Once the scene is fully generated, interaction triggers secondary elements — birds, wind across grass, drifting clouds." data-zh="场景完全生成后，交互会触发次级元素——飞鸟、拂草的风、漂浮的云。">Once the scene is fully generated, interaction triggers secondary elements — birds, wind across grass, drifting clouds.</p>
+                </article>
+                <article class="whisper-story-card">
+                    <div class="whisper-story-num">06</div>
+                    <h4 class="whisper-story-title" data-en="Shared Solitude" data-zh="共处的独处">Shared Solitude</h4>
+                    <p class="whisper-story-desc" data-en="Multiple people immerse simultaneously — some interact, others sit still. Interaction zones stay within 15 cm, so privacy holds." data-zh="多人同时沉浸——有的人互动，有的人静坐。交互范围限定在 15 cm 之内，私密感不被打破。">Multiple people immerse simultaneously — some interact, others sit still. Interaction zones stay within 15 cm, so privacy holds.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Iteration History -->
+    <section class="project-section bg-medium">
+        <div class="project-container">
+            <div class="section-eyebrow" data-en="DESIGN PROCESS · CATENARY" data-zh="设计过程 · 悬链灯">DESIGN PROCESS · CATENARY</div>
+            <h2 class="project-h2" data-en="Three iterations" data-zh="三次迭代">Three iterations</h2>
+
+            <div class="whisper-iter-grid">
+                <article class="whisper-iter-card">
+                    <div class="whisper-iter-tag" data-en="VERSION 1" data-zh="版本 1">VERSION 1</div>
+                    <h4 class="whisper-iter-title" data-en="Wandering Light, Blooming Night" data-zh="游走之光，绽放之夜">Wandering Light, Blooming Night</h4>
+                    <ul class="whisper-iter-features">
+                        <li data-en="Nature themes and meditation" data-zh="自然主题与冥想">Nature themes and meditation</li>
+                        <li data-en="Flowers gradually bloom as the audience approaches" data-zh="花朵随观众靠近逐渐绽放">Flowers gradually bloom as the audience approaches</li>
+                        <li data-en="Color-blind friendly palette" data-zh="色盲友好色板">Color-blind friendly palette</li>
+                    </ul>
+                    <div class="whisper-iter-reason">
+                        <div class="whisper-iter-reason-label" data-en="REASON FOR ITERATION" data-zh="迭代原因">REASON FOR ITERATION</div>
+                        <p data-en="Research revealed colour blindness is more a perceptual 'mismatch' than a medical condition — so the target audience was reframed." data-zh="研究表明色盲更像是感知上的「错配」而非医学问题——目标用户因此重新调整。">Research revealed colour blindness is more a perceptual "mismatch" than a medical condition — so the target audience was reframed.</p>
+                    </div>
+                </article>
+
+                <article class="whisper-iter-card">
+                    <div class="whisper-iter-tag" data-en="VERSION 2" data-zh="版本 2">VERSION 2</div>
+                    <h4 class="whisper-iter-title" data-en="Infinite Rainbow" data-zh="无尽彩虹">Infinite Rainbow</h4>
+                    <ul class="whisper-iter-features">
+                        <li data-en="Inspired by the neurodivergent infinity symbol" data-zh="灵感来自神经多样性的无穷符号">Inspired by the neurodivergent infinity symbol</li>
+                        <li data-en="Focuses on dazzling lighting and smooth transitions" data-zh="专注于眩目的灯光与平滑过渡">Focuses on dazzling lighting and smooth transitions</li>
+                    </ul>
+                    <div class="whisper-iter-reason">
+                        <div class="whisper-iter-reason-label" data-en="REASON FOR ITERATION" data-zh="迭代原因">REASON FOR ITERATION</div>
+                        <p data-en="Spatial boundaries felt too strong. The centralised focal point limited engagement with the rest of the space." data-zh="空间边界过强，集中式焦点限制了其他区域的参与感。">Spatial boundaries felt too strong. The centralised focal point limited engagement with the rest of the space.</p>
+                    </div>
+                </article>
+
+                <article class="whisper-iter-card whisper-iter-card-final">
+                    <div class="whisper-iter-tag whisper-iter-tag-final" data-en="FINAL VERSION" data-zh="最终版本">FINAL VERSION</div>
+                    <h4 class="whisper-iter-title" data-en="Mind in Bloom" data-zh="心绪绽放">Mind in Bloom</h4>
+                    <ul class="whisper-iter-features">
+                        <li data-en="Blooming flowers as a metaphor for neurodiversity" data-zh="以绽放的花朵隐喻神经多样性">Blooming flowers as a metaphor for neurodiversity</li>
+                        <li data-en="Shifts the theme toward understanding and empowerment for ADHD" data-zh="将主题转向对 ADHD 的理解与赋能">Shifts the theme toward understanding and empowerment for ADHD</li>
+                        <li data-en="Figma prototype + QR-driven interactive light modes" data-zh="Figma 原型 + 二维码驱动的交互灯光模式">Figma prototype + QR-driven interactive light modes</li>
+                    </ul>
+                    <div class="whisper-iter-reason whisper-iter-reason-final">
+                        <div class="whisper-iter-reason-label" data-en="WHY IT LANDED" data-zh="为何选定">WHY IT LANDED</div>
+                        <p data-en="Combines the calming effect of nature with neurodivergent symbolism — public-facing, educational, and gentle." data-zh="将自然的平静与神经多样性符号结合——面向公众，兼具教育性与温柔感。">Combines the calming effect of nature with neurodivergent symbolism — public-facing, educational, and gentle.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============== CATENARY INTERACTIVE DEMO ============== -->
+    <section class="project-section" id="whisper-cat-demo-section">
+        <div class="project-container">
+            <div class="section-eyebrow" data-en="INTERACTIVE DEMO · CATENARY" data-zh="交互演示 · 悬链灯">INTERACTIVE DEMO · CATENARY</div>
+            <h2 class="project-h2" data-en="Walk beneath Mind in Bloom" data-zh="走入「心绪绽放」">Walk beneath Mind in Bloom</h2>
+            <p class="demos-hint" data-en="Add visitors to the canopy, then pick a light mode. Flowers bloom further with every body that gathers." data-zh="为灯下添加访客，再选择灯光模式。每多一个人，花朵便更绽放一些。">
+                Add visitors to the canopy, then pick a light mode. Flowers bloom further with every body that gathers.
+            </p>
+
+            <div class="whisper-cat-stage" id="whisper-cat-demo">
+                <div class="whisper-cat-canopy" id="whisper-cat-canopy">
+                    <div class="whisper-cat-skyglow"></div>
+
+                    <!-- The catenary strings (3 sagging lines of bulbs+flowers) -->
+                    <svg class="whisper-cat-strings" viewBox="0 0 1000 240" preserveAspectRatio="none" aria-hidden="true">
+                        <!-- 3 catenary curves anchored to two posts -->
+                        <path id="whisper-cat-curve-1" class="whisper-cat-wire" d="M 60 30 Q 500 200 940 60" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="1.2"/>
+                        <path id="whisper-cat-curve-2" class="whisper-cat-wire" d="M 60 60 Q 500 220 940 90" fill="none" stroke="rgba(255,255,255,0.14)" stroke-width="1"/>
+                        <path id="whisper-cat-curve-3" class="whisper-cat-wire" d="M 60 90 Q 500 240 940 120" fill="none" stroke="rgba(255,255,255,0.10)" stroke-width="0.8"/>
+                    </svg>
+
+                    <!-- Posts -->
+                    <div class="whisper-cat-post whisper-cat-post-l" aria-hidden="true"></div>
+                    <div class="whisper-cat-post whisper-cat-post-r" aria-hidden="true"></div>
+
+                    <!-- Bulbs + Flowers — JS will plot them along the curves -->
+                    <div class="whisper-cat-flowers" id="whisper-cat-flowers"></div>
+
+                    <!-- Visitors silhouettes -->
+                    <div class="whisper-cat-people" id="whisper-cat-people"></div>
+
+                    <!-- Floor shadow/ground line -->
+                    <div class="whisper-cat-ground"></div>
+                </div>
+
+                <!-- Controls strip -->
+                <div class="whisper-cat-controls">
+                    <div class="whisper-cat-control-block">
+                        <div class="whisper-cat-control-eyebrow" data-en="VISITORS" data-zh="访客">VISITORS</div>
+                        <div class="whisper-cat-counter">
+                            <button class="whisper-cat-counter-btn" id="whisper-people-minus" aria-label="Remove person">−</button>
+                            <output class="whisper-cat-counter-out" id="whisper-people-count">0</output>
+                            <button class="whisper-cat-counter-btn" id="whisper-people-plus" aria-label="Add person">+</button>
+                        </div>
+                        <div class="whisper-cat-bloom-meter">
+                            <span class="whisper-cat-bloom-label" data-en="Bloom" data-zh="绽放">Bloom</span>
+                            <span class="whisper-cat-bloom-bar"><span id="whisper-bloom-fill"></span></span>
+                            <span class="whisper-cat-bloom-pct" id="whisper-bloom-pct">0%</span>
+                        </div>
+                    </div>
+
+                    <div class="whisper-cat-control-block whisper-cat-modes-block">
+                        <div class="whisper-cat-control-eyebrow" data-en="LIGHT MODE" data-zh="灯光模式">LIGHT MODE</div>
+                        <div class="whisper-cat-modes" id="whisper-cat-modes">
+                            <button class="whisper-cat-mode active" data-mode="rest">
+                                <span class="whisper-cat-mode-swatch swatch-rest"></span>
+                                <span class="whisper-cat-mode-label" data-en="Rest" data-zh="静默">Rest</span>
+                            </button>
+                            <button class="whisper-cat-mode" data-mode="rainbow">
+                                <span class="whisper-cat-mode-swatch swatch-rainbow"></span>
+                                <span class="whisper-cat-mode-label" data-en="Rainbow Butterfly" data-zh="彩虹蝶翼">Rainbow Butterfly</span>
+                            </button>
+                            <button class="whisper-cat-mode" data-mode="awareness">
+                                <span class="whisper-cat-mode-swatch swatch-awareness"></span>
+                                <span class="whisper-cat-mode-label" data-en="Awareness Ribbon" data-zh="意识丝带">Awareness Ribbon</span>
+                            </button>
+                            <button class="whisper-cat-mode" data-mode="custom">
+                                <span class="whisper-cat-mode-swatch swatch-custom" id="whisper-custom-swatch"></span>
+                                <span class="whisper-cat-mode-label" data-en="Paint Your Color" data-zh="自定义颜色">Paint Your Color</span>
+                            </button>
+                        </div>
+                        <div class="whisper-cat-custom-row" id="whisper-custom-row" hidden>
+                            <label class="whisper-cat-rgb">
+                                <span>R</span>
+                                <input type="range" id="whisper-rgb-r" min="0" max="255" value="255">
+                                <output id="whisper-rgb-r-out">255</output>
+                            </label>
+                            <label class="whisper-cat-rgb">
+                                <span>G</span>
+                                <input type="range" id="whisper-rgb-g" min="0" max="255" value="142">
+                                <output id="whisper-rgb-g-out">142</output>
+                            </label>
+                            <label class="whisper-cat-rgb">
+                                <span>B</span>
+                                <input type="range" id="whisper-rgb-b" min="0" max="255" value="177">
+                                <output id="whisper-rgb-b-out">177</output>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phone mockup for QR / mode picker -->
+                <aside class="whisper-cat-phone" aria-hidden="false">
+                    <div class="whisper-cat-phone-notch"></div>
+                    <div class="whisper-cat-phone-screen" id="whisper-cat-phone-screen">
+                        <div class="whisper-cat-phone-head" data-en="Light Mode" data-zh="灯光模式">Light Mode</div>
+                        <div class="whisper-cat-phone-grid" id="whisper-cat-phone-grid">
+                            <!-- mirror of modes injected by JS -->
+                        </div>
+                        <div class="whisper-cat-phone-info" id="whisper-cat-phone-info">
+                            <div class="whisper-cat-phone-info-title" id="whisper-cat-phone-info-title">Rest</div>
+                            <p class="whisper-cat-phone-info-desc" id="whisper-cat-phone-info-desc">Lights stay calm. Flowers remain closed when no one is here.</p>
+                        </div>
+                        <button class="whisper-cat-phone-btn" id="whisper-cat-phone-btn" data-en="Light it up" data-zh="点亮">Light it up</button>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom Nav -->
+    <section class="project-end">
+        <a href="../index.html#showcase" class="project-end-link">
+            <span class="arrow">←</span>
+            <span data-en="Back to all works" data-zh="返回全部作品">Back to all works</span>
+        </a>
+    </section>
+
+    <script src="../script.js"></script>
+    <script src="whisper-demos.js"></script>
+    <script>
+        document.body.classList.add('loaded');
+        const loaderEl = document.querySelector('.loader');
+        if (loaderEl) loaderEl.remove();
+    </script>
+</body>
+
+</html>

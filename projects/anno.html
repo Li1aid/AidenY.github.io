@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anno — Aiden Yang</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="project.css">
+    <link rel="stylesheet" href="anno.css">
+</head>
+
+<body class="project-page">
+    <!-- Animated Background -->
+    <canvas id="particles-canvas"></canvas>
+    <div class="grid-background"></div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor"><div class="cursor-glow"></div></div>
+    <div class="cursor-dot"></div>
+
+    <!-- Subpage Top Bar -->
+    <nav class="project-nav">
+        <a href="../index.html#showcase" class="project-nav-btn project-nav-back">
+            <span class="arrow">←</span>
+            <span data-en="Back to Works" data-zh="返回作品">Back to Works</span>
+        </a>
+        <a href="../index.html" class="project-nav-btn project-nav-home">
+            <span data-en="Visit Main Site" data-zh="进入主页">Visit Main Site</span>
+            <span class="arrow">→</span>
+        </a>
+    </nav>
+
+    <!-- Hero -->
+    <section class="project-hero anno-hero">
+        <div class="anno-hero-bg" aria-hidden="true">
+            <div class="anno-hero-glow anno-glow-1"></div>
+            <div class="anno-hero-glow anno-glow-2"></div>
+        </div>
+
+        <div class="project-hero-inner">
+            <div class="project-tagline" data-en="HEALTH TECH · 2024" data-zh="健康科技 · 2024">HEALTH TECH · 2024</div>
+            <h1 class="project-title-xl anno-title">Anno</h1>
+            <p class="project-subtitle" data-en="A companion-shaped health system for older adults living alone." data-zh="为独居老人设计的陪伴式健康系统。">
+                A companion-shaped health system for older adults living alone.
+            </p>
+
+            <div class="project-meta-grid">
+                <div class="meta-cell">
+                    <div class="meta-label" data-en="ROLE" data-zh="角色">ROLE</div>
+                    <div class="meta-value" data-en="Product · UX" data-zh="产品 · UX">Product · UX</div>
+                </div>
+                <div class="meta-cell">
+                    <div class="meta-label" data-en="YEAR" data-zh="年份">YEAR</div>
+                    <div class="meta-value">2024</div>
+                </div>
+                <div class="meta-cell">
+                    <div class="meta-label" data-en="TYPE" data-zh="类型">TYPE</div>
+                    <div class="meta-value" data-en="Companion Robot" data-zh="陪伴机器人">Companion Robot</div>
+                </div>
+                <div class="meta-cell">
+                    <div class="meta-label" data-en="TOOLS" data-zh="工具">TOOLS</div>
+                    <div class="meta-value">Figma · Rhino · Web</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-cover anno-cover">
+            <img src="../Assets/3.jpg" alt="Anno cover">
+            <div class="anno-cover-overlay"></div>
+        </div>
+    </section>
+
+    <!-- Overview -->
+    <section class="project-section bg-medium">
+        <div class="project-container">
+            <div class="section-eyebrow" data-en="OVERVIEW" data-zh="概述">OVERVIEW</div>
+            <h2 class="project-h2" data-en="What is Anno?" data-zh="Anno 是什么？">What is Anno?</h2>
+            <p class="project-lead" data-en="Anno is a puppy-shaped smart health companion designed for older adults living alone. It blends quiet, ambient health monitoring with the warmth of a pet — using voice, gentle body language, and a small side screen instead of apps and notifications. Medication reminders, anomaly detection, SOS protocols, and emotional feedback are all wrapped in a form that feels like company, not a medical device." data-zh="Anno 是一款犬形智能健康陪伴机器人，专为独居老人设计。它将无感的健康监测与宠物的温度结合——用语音、温和的肢体语言和一块小侧屏取代 app 与推送。用药提醒、异常检测、SOS 协议、情感反馈都被包裹在一个像家人而非医疗设备的形态里。">
+                Anno is a puppy-shaped smart health companion designed for older adults living alone. It blends quiet, ambient health monitoring with the warmth of a pet — using voice, gentle body language, and a small side screen instead of apps and notifications. Medication reminders, anomaly detection, SOS protocols, and emotional feedback are all wrapped in a form that feels like company, not a medical device.
+            </p>
+        </div>
+    </section>
+
+    <!-- Key Features -->
+    <section class="project-section">
+        <div class="project-container">
+            <div class="section-eyebrow" data-en="KEY FEATURES" data-zh="核心功能">KEY FEATURES</div>
+            <h2 class="project-h2" data-en="Six pillars" data-zh="六大支柱">Six pillars</h2>
+
+            <div class="features-grid anno-features-grid">
+                <a href="#anno-demo" data-jump="meds" class="feature-card anno-feature">
+                    <div class="feature-num">01</div>
+                    <h3 class="feature-title" data-en="Voice-Guided Conversation" data-zh="语音引导对话">Voice-Guided Conversation</h3>
+                    <p class="feature-desc" data-en="Set medication reminders, check health data, or configure alarms with natural voice — no apps, no smartphones, suitable for low digital literacy." data-zh="用自然语音设置用药提醒、查询健康数据或配置警报——无需 app、无需智能手机，适合低数字素养老人。">
+                        Set medication reminders, check health data, or configure alarms with natural voice — no apps, no smartphones, suitable for low digital literacy.
+                    </p>
+                    <span class="feature-cta" data-en="Try the demo →" data-zh="试用演示 →">Try the demo →</span>
+                </a>
+
+                <a href="#anno-demo" data-jump="health" class="feature-card anno-feature">
+                    <div class="feature-num">02</div>
+                    <h3 class="feature-title" data-en="Health Monitoring + SOS" data-zh="健康监测 + SOS">Health Monitoring + SOS</h3>
+                    <p class="feature-desc" data-en="Built-in sensors and a wearable wristband passively monitor heart rate, temperature, and activity. Anomalies trigger a voice prompt — or an SOS automatically." data-zh="内置传感器与可穿戴腕带被动监测心率、体温与活动量。异常会触发语音询问，必要时自动 SOS。">
+                        Built-in sensors and a wearable wristband passively monitor heart rate, temperature, and activity. Anomalies trigger a voice prompt — or an SOS automatically.
+                    </p>
+                    <span class="feature-cta" data-en="Try the demo →" data-zh="试用演示 →">Try the demo →</span>
+                </a>
+
+                <a href="#anno-demo" data-jump="dispenser" class="feature-card anno-feature">
+                    <div class="feature-num">03</div>
+                    <h3 class="feature-title" data-en="Smart Medication Dispenser" data-zh="智能药盒">Smart Medication Dispenser</h3>
+                    <p class="feature-desc" data-en="Anno's internal dispenser prepares the right pills at scheduled times. Feedback comes through voice and subtle body movement, with prescription uploads via GP integration." data-zh="Anno 内部药盒按时备药，通过语音与微动作给出反馈，并支持 GP 处方上传。">
+                        Anno's internal dispenser prepares the right pills at scheduled times. Feedback comes through voice and subtle body movement, with prescription uploads via GP integration.
+                    </p>
+                    <span class="feature-cta" data-en="Try the demo →" data-zh="试用演示 →">Try the demo →</span>
+                </a>
+
+                <a href="#anno-demo" data-jump="emotion" class="feature-card anno-feature">
+                    <div class="feature-num">04</div>
+                    <h3 class="feature-title" data-en="Emotion-Based Companion" data-zh="情感陪伴反馈">Emotion-Based Companion</h3>
+                    <p class="feature-desc" data-en="Anno wags its tail, tilts its head, or moves slowly based on the user's health state. In critical moments an animated screen shows heart-rate status — turning a tool into a companion." data-zh="Anno 通过摇尾、歪头或慢动作回应用户健康状态。关键时刻屏幕动画展示心率——让设备从工具变成陪伴。">
+                        Anno wags its tail, tilts its head, or moves slowly based on the user's health state. In critical moments an animated screen shows heart-rate status — turning a tool into a companion.
+                    </p>
+                    <span class="feature-cta" data-en="Try the demo →" data-zh="试用演示 →">Try the demo →</span>
+                </a>
+
+                <a href="#anno-demo" data-jump="privacy" class="feature-card anno-feature">
+                    <div class="feature-num">05</div>
+                    <h3 class="feature-title" data-en="Privacy-Respecting Display" data-zh="尊重隐私的展示">Privacy-Respecting Display</h3>
+                    <p class="feature-desc" data-en="A side screen shows daily health summaries to the user. Doctors and family receive only critical alerts — clarity without information overload, autonomy with safety." data-zh="侧屏向用户展示每日健康摘要，医生与家属只收到关键警报——清晰不过载，安全不越界。">
+                        A side screen shows daily health summaries to the user. Doctors and family receive only critical alerts — clarity without information overload, autonomy with safety.
+                    </p>
+                    <span class="feature-cta" data-en="Try the demo →" data-zh="试用演示 →">Try the demo →</span>
+                </a>
+
+                <div class="feature-card anno-feature anno-feature-static">
+                    <div class="feature-num">06</div>
+                    <h3 class="feature-title" data-en="Senior-Friendly Form" data-zh="适老化外形">Senior-Friendly Form</h3>
+                    <p class="feature-desc" data-en="Visible, easy-press buttons; magnetic wristband docking; soft coverings hiding tech components — Anno blends into the home, not the hospital." data-zh="醒目的大按钮；磁吸腕带充电；软质包覆遮蔽技术元件——Anno 融入家庭，而不是医院。">
+                        Visible, easy-press buttons; magnetic wristband docking; soft coverings hiding tech components — Anno blends into the home, not the hospital.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============== INTERACTIVE DEMO ============== -->
+    <section class="project-section bg-medium" id="anno-demo-section">
+        <div class="project-container">
+            <div class="section-eyebrow" data-en="INTERACTIVE DEMO" data-zh="交互演示">INTERACTIVE DEMO</div>
+            <h2 class="project-h2" data-en="A day with Anno" data-zh="与 Anno 的一天">A day with Anno</h2>
+            <p class="demos-hint" data-en="Five scenes from a typical day. Pick a scene, then tap or speak to Anno." data-zh="一天中的五个场景。选择一个场景，然后点击或对 Anno 说话。">
+                Five scenes from a typical day. Pick a scene, then tap or speak to Anno.
+            </p>
+
+            <div class="anno-stage" id="anno-demo">
+                <!-- Scene picker (top) -->
+                <div class="anno-scenes" id="anno-scenes">
+                    <button class="anno-scene-btn active" data-scene="meds">
+                        <span class="anno-scene-num">01</span>
+                        <span class="anno-scene-name" data-en="Medication" data-zh="用药">Medication</span>
+                    </button>
+                    <button class="anno-scene-btn" data-scene="health">
+                        <span class="anno-scene-num">02</span>
+                        <span class="anno-scene-name" data-en="Anomaly + SOS" data-zh="异常 + SOS">Anomaly + SOS</span>
+                    </button>
+                    <button class="anno-scene-btn" data-scene="dispenser">
+                        <span class="anno-scene-num">03</span>
+                        <span class="anno-scene-name" data-en="Dispenser" data-zh="药盒">Dispenser</span>
+                    </button>
+                    <button class="anno-scene-btn" data-scene="emotion">
+                        <span class="anno-scene-num">04</span>
+                        <span class="anno-scene-name" data-en="Emotion" data-zh="情感">Emotion</span>
+                    </button>
+                    <button class="anno-scene-btn" data-scene="privacy">
+                        <span class="anno-scene-num">05</span>
+                        <span class="anno-scene-name" data-en="Privacy" data-zh="隐私">Privacy</span>
+                    </button>
+                </div>
+
+                <!-- Main stage: living-room scene with Anno + UI panels -->
+                <div class="anno-room" id="anno-room">
+                    <!-- Background room (rug + wall) -->
+                    <div class="anno-room-bg">
+                        <div class="anno-room-wall"></div>
+                        <div class="anno-room-rug"></div>
+                        <div class="anno-room-light"></div>
+                    </div>
+
+                    <!-- Anno robot dog (SVG) — two synchronized views: side + front -->
+                    <div class="anno-dog-wrap" id="anno-dog-wrap">
+                        <!-- View labels -->
+                        <div class="anno-view-labels">
+                            <span class="anno-view-label">SIDE</span>
+                            <span class="anno-view-label">FRONT</span>
+                        </div>
+
+                        <!-- ========== SIDE VIEW (primary, carries screen + animations) ========== -->
+                        <svg class="anno-dog anno-dog-side" id="anno-dog" viewBox="0 0 440 300" aria-hidden="true">
+                            <!--
+                              Robot-dog layout (Spot/Aibo style, faces LEFT):
+                                Body is a rectangular chassis with rounded corners
+                                and a visible joint-seam separating "torso" and "rear".
+                                Head is a flat-top block with a chin shelf (snout box)
+                                and a wide black visor across the eyes.
+                                Tail is a short rectangular nub joined directly to
+                                the rear panel (no gap).
+                                4 legs: each leg = upper segment + knee + lower segment
+                                + foot pad. Front-pair legs lean slightly forward,
+                                rear-pair legs lean slightly backward.
+
+                              Z-order (back to front):
+                                tail · back-side legs · body chassis · neck · head ·
+                                front-side legs (so the foreground legs sit in front
+                                of the body, conveying depth).
+                            -->
+
+                            <defs>
+                                <!-- Body shading: soft top-light -->
+                                <linearGradient id="annoBodyGrad" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0"   stop-color="#ffffff"/>
+                                    <stop offset="0.6" stop-color="#f4f5f9"/>
+                                    <stop offset="1"   stop-color="#dadde6"/>
+                                </linearGradient>
+                                <linearGradient id="annoLegGrad" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0"   stop-color="#f4f5f9"/>
+                                    <stop offset="1"   stop-color="#c9cdd8"/>
+                                </linearGradient>
+                                <linearGradient id="annoHeadGrad" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0"   stop-color="#ffffff"/>
+                                    <stop offset="1"   stop-color="#dee1ea"/>
+                                </linearGradient>
+                            </defs>
+
+                            <!-- Floor shadow -->
+                            <ellipse cx="240" cy="286" rx="170" ry="9" fill="#000" opacity="0.22"/>
+
+                            <!-- ===== Tail (short rectangular nub joined to rear panel) ===== -->
+                            <g class="anno-tail" id="anno-tail">
+                                <!-- Tail base (anchored to body) -->
+                                <rect x="372" y="118" width="14" height="22" rx="3"
+                                      fill="#dde0e8" stroke="#b8bcc8" stroke-width="1.2"/>
+                                <!-- Tail tip -->
+                                <rect x="386" y="120" width="22" height="18" rx="4"
+                                      fill="#eef0f4" stroke="#c8ccd6" stroke-width="1.2"/>
+                                <!-- Joint seam between base and tip -->
+                                <line x1="386" y1="124" x2="386" y2="136" stroke="#b8bcc8" stroke-width="0.8"/>
+                            </g>
+
+                            <!-- ===== BACK-SIDE LEGS (behind the body) =====
+                                 Each leg = upper rectangle + knee circle + lower
+                                 rectangle + foot pad. Slight angle to suggest a
+                                 stance. Drawn dimmer to recede. -->
+                            <g class="anno-leg anno-leg-back-hind">
+                                <!-- Upper segment -->
+                                <rect x="320" y="194" width="22" height="44" rx="6"
+                                      fill="#d8dbe4" stroke="#a8aebd" stroke-width="1.3"/>
+                                <!-- Knee joint -->
+                                <circle cx="331" cy="238" r="7" fill="#cdd1dc" stroke="#9da3b3" stroke-width="1.2"/>
+                                <!-- Lower segment -->
+                                <rect x="325" y="238" width="14" height="36" rx="5"
+                                      fill="#d8dbe4" stroke="#a8aebd" stroke-width="1.2"/>
+                                <!-- Foot pad -->
+                                <rect x="320" y="272" width="24" height="10" rx="4"
+                                      fill="#bfc3cf" stroke="#969ba9" stroke-width="1.2"/>
+                            </g>
+                            <g class="anno-leg anno-leg-back-front">
+                                <!-- Background-version of front-front leg, slightly offset for parallax -->
+                                <rect x="170" y="194" width="22" height="44" rx="6"
+                                      fill="#d8dbe4" stroke="#a8aebd" stroke-width="1.3"/>
+                                <circle cx="181" cy="238" r="7" fill="#cdd1dc" stroke="#9da3b3" stroke-width="1.2"/>
+                                <rect x="175" y="238" width="14" height="36" rx="5"
+                                      fill="#d8dbe4" stroke="#a8aebd" stroke-width="1.2"/>
+                                <rect x="170" y="272" width="24" height="10" rx="4"
+                                      fill="#bfc3cf" stroke="#969ba9" stroke-width="1.2"/>
+                            </g>
+
+                            <!-- ===== BODY CHASSIS =====
+                                 Single rounded-rectangle chassis with a visible
+                                 dashed seam in the middle separating "front torso"
+                                 and "rear panel". Top edge is flat (no neck hump). -->
+                            <g class="anno-body">
+                                <path d="M 158 96
+                                         L 374 96
+                                         Q 386 96 386 110
+                                         L 386 196
+                                         Q 386 210 374 210
+                                         L 158 210
+                                         Q 144 210 144 196
+                                         L 144 110
+                                         Q 144 96 158 96 Z"
+                                      fill="url(#annoBodyGrad)" stroke="#b8bcc8" stroke-width="1.6" stroke-linejoin="round"/>
+                                <!-- Joint seam between front torso and rear panel -->
+                                <line x1="280" y1="96" x2="280" y2="210"
+                                      stroke="#a8aebd" stroke-width="1.4" stroke-dasharray="3 3"/>
+                                <!-- Belly chamfer / lower seam -->
+                                <line x1="160" y1="200" x2="378" y2="200"
+                                      stroke="#c8ccd6" stroke-width="0.8" opacity="0.7"/>
+
+                                <!-- ===== Side display screen (front torso) ===== -->
+                                <g class="anno-screen" id="anno-screen">
+                                    <rect x="170" y="124" width="92" height="58" rx="8"
+                                          fill="#0e1320" stroke="#3b4358" stroke-width="1.4"/>
+                                    <rect x="174" y="128" width="84" height="50" rx="5" fill="#0a0f1c"/>
+                                    <!-- Row 1: heart + BPM -->
+                                    <path class="anno-screen-heart"
+                                          d="M 184 144
+                                             a 2.8 2.8 0 0 1 5.6 0
+                                             a 2.8 2.8 0 0 1 5.6 0
+                                             q 0 3.4 -5.6 7
+                                             q -5.6 -3.6 -5.6 -7 Z"
+                                          fill="#ff5577"/>
+                                    <text class="anno-screen-bpm" id="anno-screen-bpm"
+                                          x="200" y="150" fill="#fff" font-family="Orbitron, sans-serif" font-size="13" font-weight="700">72</text>
+                                    <text x="225" y="150" fill="#9aa3b8" font-family="Orbitron, sans-serif" font-size="7">bpm</text>
+                                    <!-- Row 2: BP -->
+                                    <circle cx="187" cy="166" r="2.8" fill="none" stroke="#7fb3ff" stroke-width="1"/>
+                                    <line x1="187" y1="164" x2="187" y2="166" stroke="#7fb3ff" stroke-width="1"/>
+                                    <text class="anno-screen-bp" id="anno-screen-bp"
+                                          x="196" y="170" fill="#fff" font-family="Orbitron, sans-serif" font-size="10" font-weight="600">118/78</text>
+                                    <text x="234" y="170" fill="#9aa3b8" font-family="Orbitron, sans-serif" font-size="7">mmHg</text>
+                                </g>
+
+                                <!-- ===== Physical buttons (rear panel) ===== -->
+                                <g class="anno-buttons">
+                                    <rect x="296" y="124" width="36" height="48" rx="6"
+                                          fill="#e3e6ee" stroke="#b8bcc8" stroke-width="1.2"/>
+                                    <circle cx="306" cy="138" r="4" fill="#fff" stroke="#aab0bf" stroke-width="0.9"/>
+                                    <circle cx="322" cy="138" r="4" fill="#fff" stroke="#aab0bf" stroke-width="0.9"/>
+                                    <circle cx="306" cy="158" r="4" fill="#fff" stroke="#aab0bf" stroke-width="0.9"/>
+                                    <circle cx="322" cy="158" r="4" fill="#fff" stroke="#aab0bf" stroke-width="0.9"/>
+                                </g>
+                                <!-- Speaker grille on rear panel -->
+                                <g class="anno-grille" opacity="0.6">
+                                    <circle cx="346" cy="146" r="1.4" fill="#888d9b"/>
+                                    <circle cx="354" cy="146" r="1.4" fill="#888d9b"/>
+                                    <circle cx="362" cy="146" r="1.4" fill="#888d9b"/>
+                                    <circle cx="346" cy="154" r="1.4" fill="#888d9b"/>
+                                    <circle cx="354" cy="154" r="1.4" fill="#888d9b"/>
+                                    <circle cx="362" cy="154" r="1.4" fill="#888d9b"/>
+                                </g>
+                            </g>
+
+                            <!-- ===== HEAD (true side-view profile) =====
+                                 In a side view we only see ONE eye, ONE ear (the
+                                 near one), and the snout extending forward (left).
+                                 The far ear is hidden behind the skull. -->
+                            <g class="anno-head" id="anno-head">
+                                <!-- Far-side ear: only the tip pokes out behind the near ear -->
+                                <path class="anno-ear anno-ear-r"
+                                      d="M 138 28 L 144 10 L 150 34 Z"
+                                      fill="#cdd1dc" stroke="#a8aebd" stroke-width="1.1" stroke-linejoin="round"
+                                      opacity="0.9"/>
+
+                                <!-- SKULL: chunky rounded-rect block. -->
+                                <path d="M 96 110
+                                         L 96 58
+                                         Q 96 38 116 36
+                                         L 168 36
+                                         Q 188 38 188 58
+                                         L 188 100
+                                         Q 188 112 178 112
+                                         L 96 112 Z"
+                                      fill="url(#annoHeadGrad)" stroke="#b8bcc8" stroke-width="1.7" stroke-linejoin="round"/>
+
+                                <!-- Near-side ear (the one closest to viewer) -->
+                                <path class="anno-ear anno-ear-l"
+                                      d="M 116 38 L 124 8 L 134 38 Z"
+                                      fill="url(#annoHeadGrad)" stroke="#a8aebd" stroke-width="1.3" stroke-linejoin="round"/>
+                                <!-- Inner-ear shadow for depth -->
+                                <path d="M 119 36 L 124 16 L 130 36 Z"
+                                      fill="#cdd1dc" opacity="0.7"/>
+
+                                <!-- SNOUT: smaller stepped block sticking out the front-bottom -->
+                                <path d="M 56 86
+                                         Q 50 80 56 74
+                                         L 96 74
+                                         L 96 110
+                                         L 60 110
+                                         Q 50 110 56 102 Z"
+                                      fill="url(#annoHeadGrad)" stroke="#b8bcc8" stroke-width="1.6" stroke-linejoin="round"/>
+                                <!-- Snout-to-skull seam (subtle highlight) -->
+                                <line x1="96" y1="76" x2="96" y2="110"
+                                      stroke="#dde0e8" stroke-width="1" opacity="0.8"/>
+
+                                <!-- VISOR -->
+                                <rect x="100" y="56" width="50" height="22" rx="11"
+                                      fill="#0e1320" stroke="#262d3f" stroke-width="1.2"/>
+                                <!-- Visor lens highlight -->
+                                <path d="M 108 60 Q 124 56 142 60"
+                                      fill="none" stroke="#3b4358" stroke-width="0.8" opacity="0.85"/>
+
+                                <!-- ONE eye visible (near-side) -->
+                                <g class="anno-eyes" id="anno-eyes">
+                                    <ellipse class="anno-eye anno-eye-l" cx="120" cy="67" rx="6" ry="6.5" fill="#5b8eff"/>
+                                    <ellipse class="anno-eye-shine" cx="118" cy="64" rx="1.6" ry="1.6" fill="#ffffff" opacity="0.85"/>
+                                </g>
+
+                                <!-- Nose pad on the front of the snout -->
+                                <ellipse cx="58" cy="90" rx="5" ry="4.5" fill="#1a1f2c"/>
+
+                                <!-- Mouth line on the snout underside -->
+                                <path class="anno-mouth" id="anno-mouth"
+                                      d="M 68 100 Q 80 103 92 100"
+                                      fill="none" stroke="#5a6072" stroke-width="1.1" stroke-linecap="round"/>
+                            </g>
+
+                            <!-- ===== FRONT-SIDE LEGS (in front of body) ===== -->
+                            <g class="anno-leg anno-leg-front-hind">
+                                <rect x="352" y="194" width="24" height="46" rx="6"
+                                      fill="url(#annoLegGrad)" stroke="#a8aebd" stroke-width="1.3"/>
+                                <circle cx="364" cy="240" r="8" fill="#dadde6" stroke="#9da3b3" stroke-width="1.2"/>
+                                <rect x="358" y="240" width="14" height="34" rx="5"
+                                      fill="url(#annoLegGrad)" stroke="#a8aebd" stroke-width="1.2"/>
+                                <rect x="352" y="272" width="26" height="10" rx="4"
+                                      fill="#cdd1dc" stroke="#969ba9" stroke-width="1.2"/>
+                            </g>
+                            <g class="anno-leg anno-leg-front-front">
+                                <!-- Front-most leg at x=148 — sits just inside the body's lower-left -->
+                                <rect x="148" y="194" width="24" height="46" rx="6"
+                                      fill="url(#annoLegGrad)" stroke="#a8aebd" stroke-width="1.3"/>
+                                <circle cx="160" cy="240" r="8" fill="#dadde6" stroke="#9da3b3" stroke-width="1.2"/>
+                                <rect x="154" y="240" width="14" height="34" rx="5"
+                                      fill="url(#annoLegGrad)" stroke="#a8aebd" stroke-width="1.2"/>
+                                <rect x="148" y="272" width="26" height="10" rx="4"
+                                      fill="#cdd1dc" stroke="#969ba9" stroke-width="1.2"/>
+                                <!-- Wristband on the visible front leg -->
+                                <g class="anno-wristband" id="anno-wristband">
+                                    <rect x="146" y="256" width="30" height="14" rx="3"
+                                          fill="#fff" stroke="#9aa3b8" stroke-width="1.2"/>
+                                    <rect x="152" y="259" width="18" height="8" rx="2" fill="#0e1320"/>
+                                    <circle class="anno-wristband-pulse" cx="161" cy="263" r="2" fill="#3eea8a"/>
+                                </g>
+                            </g>
+
+                        </svg>
+
+                        <!-- ========== FRONT VIEW (decorative, mirrors emotion state)
+                                       viewBox 460×300 matches the side-view aspect ratio (≈1.5:1)
+                                       so both SVGs render at the same visual size when sized
+                                       by width. All original front-view content (designed for
+                                       a 280-wide canvas) is wrapped in a translate(90,0) group
+                                       so it sits centred in the wider canvas. ========== -->
+                        <svg class="anno-dog anno-dog-front" viewBox="0 0 460 300" aria-hidden="true">
+                            <!-- Floor shadow (positioned in the new canvas centre) -->
+                            <ellipse cx="230" cy="284" rx="100" ry="7" fill="#000" opacity="0.22"/>
+                            <g transform="translate(90, 0)">
+
+                            <!-- ===== Rear legs (drawn BEFORE body so the body
+                                       hides the top of the rear legs, giving real
+                                       depth). They're narrower + slightly shorter
+                                       than front legs to convey perspective. ===== -->
+                            <g class="anno-leg-rear-l" opacity="0.85">
+                                <rect x="100" y="158" width="18" height="92" rx="5"
+                                      fill="#d8dbe4" stroke="#9da3b3" stroke-width="1.1"/>
+                                <circle cx="109" cy="252" r="6" fill="#cdd1dc" stroke="#9da3b3" stroke-width="1.1"/>
+                                <rect x="104" y="252" width="10" height="22" rx="4"
+                                      fill="#d8dbe4" stroke="#9da3b3" stroke-width="1.1"/>
+                                <rect x="100" y="274" width="18" height="9" rx="3"
+                                      fill="#bfc3cf" stroke="#969ba9" stroke-width="1.1"/>
+                            </g>
+                            <g class="anno-leg-rear-r" opacity="0.85">
+                                <rect x="162" y="158" width="18" height="92" rx="5"
+                                      fill="#d8dbe4" stroke="#9da3b3" stroke-width="1.1"/>
+                                <circle cx="171" cy="252" r="6" fill="#cdd1dc" stroke="#9da3b3" stroke-width="1.1"/>
+                                <rect x="166" y="252" width="10" height="22" rx="4"
+                                      fill="#d8dbe4" stroke="#9da3b3" stroke-width="1.1"/>
+                                <rect x="162" y="274" width="18" height="9" rx="3"
+                                      fill="#bfc3cf" stroke="#969ba9" stroke-width="1.1"/>
+                            </g>
+
+                            <!-- Body chassis (rectangular, rounded corners) — covers tops of rear legs -->
+                            <rect x="56" y="120" width="168" height="100" rx="20"
+                                  fill="url(#annoBodyGrad)" stroke="#b8bcc8" stroke-width="1.7"/>
+
+                            <!-- Side display screen (mounted on left flank, partially visible from front) -->
+                            <rect x="50" y="150" width="14" height="40" rx="3"
+                                  fill="#0e1320" stroke="#3b4358" stroke-width="1"/>
+
+                            <!-- Side buttons block (mounted on right flank) -->
+                            <rect x="216" y="150" width="14" height="40" rx="3"
+                                  fill="#dde0e8" stroke="#b8bcc8" stroke-width="1"/>
+
+                            <!-- ===== Front legs (drawn AFTER body so they sit in front) ===== -->
+                            <g class="anno-leg-front-fl">
+                                <rect x="64" y="218" width="22" height="40" rx="6"
+                                      fill="url(#annoLegGrad)" stroke="#a8aebd" stroke-width="1.3"/>
+                                <circle cx="75" cy="258" r="7" fill="#dadde6" stroke="#9da3b3" stroke-width="1.2"/>
+                                <rect x="69" y="258" width="12" height="22" rx="4"
+                                      fill="url(#annoLegGrad)" stroke="#a8aebd" stroke-width="1.2"/>
+                                <rect x="62" y="278" width="26" height="9" rx="3"
+                                      fill="#cdd1dc" stroke="#969ba9" stroke-width="1.2"/>
+                                <!-- Wristband -->
+                                <rect x="62" y="246" width="26" height="11" rx="2.5"
+                                      fill="#fff" stroke="#9aa3b8" stroke-width="1.2"/>
+                                <rect x="67" y="248" width="16" height="7" rx="1.5" fill="#0e1320"/>
+                                <circle class="anno-wristband-pulse" cx="75" cy="251.5" r="1.6" fill="#3eea8a"/>
+                            </g>
+                            <g class="anno-leg-front-fr">
+                                <rect x="194" y="218" width="22" height="40" rx="6"
+                                      fill="url(#annoLegGrad)" stroke="#a8aebd" stroke-width="1.3"/>
+                                <circle cx="205" cy="258" r="7" fill="#dadde6" stroke="#9da3b3" stroke-width="1.2"/>
+                                <rect x="199" y="258" width="12" height="22" rx="4"
+                                      fill="url(#annoLegGrad)" stroke="#a8aebd" stroke-width="1.2"/>
+                                <rect x="192" y="278" width="26" height="9" rx="3"
+                                      fill="#cdd1dc" stroke="#969ba9" stroke-width="1.2"/>
+                            </g>
+
+                            <!-- ===== Head (front view) ===== -->
+                            <g class="anno-head-front">
+                                <!-- Two upright ears (slightly outward) -->
+                                <path d="M 96 50 L 106 22 L 118 50 Z"
+                                      fill="url(#annoHeadGrad)" stroke="#a8aebd" stroke-width="1.3" stroke-linejoin="round"/>
+                                <path d="M 162 50 L 174 22 L 184 50 Z"
+                                      fill="url(#annoHeadGrad)" stroke="#a8aebd" stroke-width="1.3" stroke-linejoin="round"/>
+                                <!-- Inner-ear shadows -->
+                                <path d="M 100 48 L 106 30 L 114 48 Z" fill="#cdd1dc" opacity="0.7"/>
+                                <path d="M 166 48 L 174 30 L 180 48 Z" fill="#cdd1dc" opacity="0.7"/>
+
+                                <!-- Skull: chunky front face -->
+                                <path d="M 92 118
+                                         L 92 64
+                                         Q 92 46 112 44
+                                         L 168 44
+                                         Q 188 46 188 64
+                                         L 188 118
+                                         Q 188 128 178 128
+                                         L 102 128
+                                         Q 92 128 92 118 Z"
+                                      fill="url(#annoHeadGrad)" stroke="#b8bcc8" stroke-width="1.7" stroke-linejoin="round"/>
+
+                                <!-- Visor: wide rounded band -->
+                                <rect x="100" y="68" width="80" height="28" rx="14"
+                                      fill="#0e1320" stroke="#262d3f" stroke-width="1.2"/>
+                                <!-- Visor top highlight -->
+                                <path d="M 108 73 Q 140 70 172 73"
+                                      fill="none" stroke="#3b4358" stroke-width="0.9" opacity="0.85"/>
+
+                                <!-- Two round blue eyes -->
+                                <ellipse class="anno-eye anno-eye-l-front" cx="122" cy="82" rx="6.5" ry="7" fill="#5b8eff"/>
+                                <ellipse class="anno-eye anno-eye-r-front" cx="158" cy="82" rx="6.5" ry="7" fill="#5b8eff"/>
+                                <!-- Highlights -->
+                                <ellipse cx="120" cy="79" rx="1.7" ry="1.7" fill="#fff" opacity="0.85"/>
+                                <ellipse cx="156" cy="79" rx="1.7" ry="1.7" fill="#fff" opacity="0.85"/>
+
+                                <!-- Snout: short rectangle protruding down -->
+                                <rect x="118" y="120" width="44" height="22" rx="9"
+                                      fill="url(#annoHeadGrad)" stroke="#b8bcc8" stroke-width="1.5"/>
+                                <!-- Nose -->
+                                <ellipse cx="140" cy="128" rx="6" ry="4" fill="#1a1f2c"/>
+                                <!-- Mouth -->
+                                <path d="M 132 138 Q 140 142 148 138"
+                                      fill="none" stroke="#5a6072" stroke-width="1.1" stroke-linecap="round"/>
+                            </g>
+
+                            <!-- Subtle tail-tip peeking from the right (front view shows the very tip) -->
+                            <path d="M 222 152 Q 240 148 246 162 L 222 168 Z"
+                                  fill="#eef0f4" stroke="#c8ccd6" stroke-width="1.2" opacity="0.85"/>
+                            </g>
+                        </svg>
+
+                        <!-- Speech bubble — HTML overlay so long messages wrap.
+                             Anchored to the top-right of the dog (above the head). -->
+                        <div class="anno-bubble" id="anno-bubble" aria-live="polite">
+                            <span id="anno-bubble-text">...</span>
+                            <span class="anno-bubble-tail" aria-hidden="true"></span>
+                        </div>
+                    </div>
+
+                    <!-- Side panel (right): contextual UI per scene -->
+                    <aside class="anno-panel" id="anno-panel">
+                        <div class="anno-panel-eyebrow" id="anno-panel-eyebrow" data-en="MEDICATION" data-zh="用药">MEDICATION</div>
+                        <h3 class="anno-panel-title" id="anno-panel-title">8:00 AM — Morning routine</h3>
+                        <div class="anno-panel-body" id="anno-panel-body">
+                            <!-- injected per scene -->
+                        </div>
+                    </aside>
+
+                    <!-- Voice input bar (bottom) -->
+                    <div class="anno-voice" id="anno-voice">
+                        <button class="anno-voice-mic" id="anno-voice-mic" aria-label="Speak to Anno">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="3" width="6" height="12" rx="3"/>
+                                <path d="M5 11a7 7 0 0 0 14 0"/>
+                                <line x1="12" y1="18" x2="12" y2="22"/>
+                                <line x1="8" y1="22" x2="16" y2="22"/>
+                            </svg>
+                        </button>
+                        <div class="anno-voice-prompts" id="anno-voice-prompts">
+                            <!-- prompts injected per scene -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Bottom Nav -->
+    <section class="project-end">
+        <a href="../index.html#showcase" class="project-end-link">
+            <span class="arrow">←</span>
+            <span data-en="Back to all works" data-zh="返回全部作品">Back to all works</span>
+        </a>
+    </section>
+
+    <script src="../script.js"></script>
+    <script src="anno-demos.js"></script>
+    <script>
+        document.body.classList.add('loaded');
+        const loaderEl = document.querySelector('.loader');
+        if (loaderEl) loaderEl.remove();
+    </script>
+</body>
+
+</html>
