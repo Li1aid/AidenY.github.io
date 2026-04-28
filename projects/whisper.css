@@ -253,45 +253,13 @@
 }
 .whisper-wall-scene.show { opacity: 1; }
 
-/* Per-scene gradients (no external assets) — render the "library" thumbnails */
-.scene-mountain  { background: linear-gradient(180deg, #2a3a52 0%, #3a4d6e 30%, #1a2436 65%, #0a1019 100%); }
-.scene-mountain::before {
-    content: '';
-    position: absolute; inset: 0;
-    background:
-        radial-gradient(ellipse 80% 30% at 50% 40%, rgba(255, 200, 160, 0.18), transparent 70%),
-        linear-gradient(180deg, transparent 60%, #0a0f18 100%);
-}
-.scene-forest    { background: linear-gradient(180deg, #243828 0%, #16261a 60%, #0a130c 100%); }
-.scene-forest::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse at 50% 30%, rgba(255, 220, 140, 0.18), transparent 60%);
-}
-.scene-shore     { background: linear-gradient(180deg, #ff8a4a 0%, #c25fa3 40%, #5a3a82 80%, #1c1a36 100%); }
-.scene-shore::before {
-    content: '';
-    position: absolute; inset: 0;
-    background:
-        radial-gradient(circle at 60% 65%, rgba(255, 220, 120, 0.55), transparent 30%),
-        linear-gradient(180deg, transparent 65%, rgba(0,0,0,0.5) 100%);
-}
-.scene-river     { background: linear-gradient(180deg, #3a4a5a 0%, #1c2a3a 50%, #0a131c 100%); }
-.scene-river::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: repeating-linear-gradient(180deg, transparent 0 16px, rgba(255,255,255,0.06) 16px 17px);
-}
-.scene-night     { background: linear-gradient(180deg, #07091a 0%, #0d1734 60%, #1a2a4a 100%); }
-.scene-night::before {
-    content: '';
-    position: absolute; inset: 0;
-    background:
-        radial-gradient(circle at 50% 40%, rgba(255, 255, 255, 0.4), transparent 4%),
-        radial-gradient(circle at 30% 60%, rgba(255,255,255,0.6), transparent 1%),
-        radial-gradient(circle at 70% 30%, rgba(255,255,255,0.55), transparent 1%),
-        radial-gradient(circle at 80% 70%, rgba(255,255,255,0.5), transparent 1%),
-        radial-gradient(circle at 20% 25%, rgba(255,255,255,0.5), transparent 1%);
+/* Scene SVGs are injected by JS into .whisper-wall-scene and
+   .whisper-scene-thumb. Make sure they fill the container. */
+.whisper-wall-scene svg,
+.whisper-scene-thumb svg {
+    width: 100%;
+    height: 100%;
+    display: block;
 }
 
 .whisper-wall-particles {
