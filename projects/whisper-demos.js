@@ -432,20 +432,6 @@
         }
         loop();
 
-        // Feature-card jump targets
-        $$('.whisper-feature[data-jump]').forEach(card => {
-            card.addEventListener('click', () => {
-                const j = card.dataset.jump;
-                if (!j) return;
-                const map = {
-                    generation: 'generation',
-                    presentation: 'presentation',
-                    deconstruction: 'deconstruction',
-                };
-                if (map[j]) setTimeout(() => applyPhase(map[j]), 250);
-            });
-        });
-
         // Init
         paintScenes();
         applyScene();
@@ -680,18 +666,6 @@
         }
         [rgbR, rgbG, rgbB].forEach(s => s.addEventListener('input', refreshCustom));
         refreshCustom();
-
-        // Feature-card jump
-        $$('.whisper-feature[data-jump]').forEach(card => {
-            card.addEventListener('click', () => {
-                const j = card.dataset.jump;
-                if (j === 'bloom') {
-                    setTimeout(() => setPeople(Math.max(people, 4)), 300);
-                } else if (j === 'modes') {
-                    setTimeout(() => setMode('rainbow'), 300);
-                }
-            });
-        });
 
         // Init
         buildPhoneModes();
