@@ -979,36 +979,64 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ========================================
-// AI Chatbot
+// AI Chatbot — talks to Cloudflare Worker (Anthropic proxy)
 // ========================================
+
+// 👇 After deploying the worker, paste its URL here
+//    (e.g. https://aiden-portfolio-ai.your-name.workers.dev)
+const CHATBOT_WORKER_URL = 'https://aiden-portfolio-ai.aidenyang5995.workers.dev';
 
 class AIChatbot {
     constructor() {
+        this.history = [];
+        this.busy = false;
         this.initUI();
+    }
+
+    getLang() {
+        const active = document.querySelector('.lang-option.active');
+        return active && active.dataset.lang === 'zh' ? 'zh' : 'en';
+    }
+
+    t(key) {
+        const strings = {
+            en: {
+                label: 'Chat with AI Aiden',
+                title: 'AI Aiden',
+                greet: "Hi! I'm Aiden's portfolio assistant. Ask me about his projects, skills, or how to get in touch.",
+                placeholder: 'Ask anything about Aiden\'s work…',
+                send: 'Send',
+                error: 'Sorry, something went wrong. Please try again.',
+                misconfigured: 'Chat is not configured yet. Set CHATBOT_WORKER_URL in script.js.',
+            },
+            zh: {
+                label: '和 AI Aiden 聊聊',
+                title: 'AI Aiden',
+                greet: '嗨！我是 Aiden 作品集助手。可以问我关于他的项目、技能，或者怎么联系他。',
+                placeholder: '随便问问 Aiden 的作品集…',
+                send: '发送',
+                error: '抱歉，出错了。请重试。',
+                misconfigured: '聊天功能还没配置。请在 script.js 里设置 worker URL。',
+            },
+        };
+        return strings[this.getLang()][key];
     }
 
     initUI() {
         const chatbotHTML = `
     <div class="chatbot-container" id="chatbot">
         <button class="chatbot-toggle" id="chatbot-toggle">
-            <span class="chatbot-label">Chat with AI Aiden</span>
+            <span class="chatbot-label" data-en="Chat with AI Aiden" data-zh="和 AI Aiden 聊聊">Chat with AI Aiden</span>
         </button>
         <div class="chatbot-window" id="chatbot-window">
             <div class="chatbot-header">
                 <h3>AI Aiden</h3>
                 <button class="chatbot-close" id="chatbot-close">×</button>
             </div>
-            <div class="chatbot-messages" id="chatbot-messages">
-                <div class="chatbot-message bot-message">
-                    <p data-en="Hi! I'm AI Aiden. Ask me about my work, skills, or experience!" data-zh="你好！我是 AI Aiden。问我关于作品、技能或经历的问题吧！">Hi! I'm AI Aiden. Ask me about my work, skills, or experience!</p>
-                </div>
-            </div>
+            <div class="chatbot-messages" id="chatbot-messages"></div>
             <div class="chatbot-input-area">
-                <input type="text" id="chatbot-input" placeholder="Ask me anything..." data-en="Ask me anything..." data-zh="问我任何问题...">
-                <button id="chatbot-send">Send</button>
-            </div>
-            <div class="chatbot-api-notice">
-                <small data-en="Note: Gemini API integration pending" data-zh="注意：Gemini API 集成待定">Note: Gemini API integration pending</small>
+                <input type="text" id="chatbot-input" placeholder="Ask me anything..." data-en="Ask anything about Aiden's work…" data-zh="随便问问 Aiden 的作品集…">
+                <button id="chatbot-send" data-en="Send" data-zh="发送">Send</button>
             </div>
         </div>
     </div>
@@ -1016,49 +1044,132 @@ class AIChatbot {
 
         document.body.insertAdjacentHTML('beforeend', chatbotHTML);
         this.attachEvents();
+        this.renderGreeting();
+    }
+
+    renderGreeting() {
+        const messagesContainer = document.getElementById('chatbot-messages');
+        messagesContainer.innerHTML = '';
+        this.addMessage(this.t('greet'), 'bot', { skipHistory: true });
     }
 
     attachEvents() {
         const toggle = document.getElementById('chatbot-toggle');
         const close = document.getElementById('chatbot-close');
-        const window = document.getElementById('chatbot-window');
+        const win = document.getElementById('chatbot-window');
         const input = document.getElementById('chatbot-input');
         const send = document.getElementById('chatbot-send');
 
         toggle.addEventListener('click', () => {
-            window.classList.toggle('active');
+            win.classList.toggle('active');
+            if (win.classList.contains('active')) {
+                setTimeout(() => input.focus(), 200);
+            }
         });
 
         close.addEventListener('click', () => {
-            window.classList.remove('active');
+            win.classList.remove('active');
         });
 
         send.addEventListener('click', () => this.sendMessage());
         input.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') this.sendMessage();
         });
+
+        const langToggle = document.getElementById('langToggle');
+        if (langToggle) {
+            langToggle.addEventListener('click', () => {
+                setTimeout(() => {
+                    if (this.history.length === 0) this.renderGreeting();
+                }, 50);
+            });
+        }
     }
 
     async sendMessage() {
+        if (this.busy) return;
         const input = document.getElementById('chatbot-input');
+        const send = document.getElementById('chatbot-send');
         const message = input.value.trim();
         if (!message) return;
 
+        this.busy = true;
+        input.disabled = true;
+        send.disabled = true;
         this.addMessage(message, 'user');
         input.value = '';
 
-        setTimeout(() => {
-             this.addMessage('This is a demo. API integration would happen here.', 'bot');
-        }, 1000);
+        const thinking = this.addThinking();
+
+        try {
+            if (!CHATBOT_WORKER_URL || CHATBOT_WORKER_URL.includes('REPLACE_WITH')) {
+                thinking.remove();
+                this.addMessage(this.t('misconfigured'), 'bot', { skipHistory: true });
+                return;
+            }
+            const res = await fetch(CHATBOT_WORKER_URL, {
+                method: 'POST',
+                headers: { 'content-type': 'application/json' },
+                body: JSON.stringify({ messages: this.history }),
+            });
+            thinking.remove();
+            if (!res.ok) {
+                this.addMessage(this.t('error'), 'bot', { skipHistory: true });
+                return;
+            }
+            const data = await res.json();
+            const reply = (data.reply || '').trim();
+            this.addMessage(reply || this.t('error'), 'bot');
+        } catch (e) {
+            thinking.remove();
+            this.addMessage(this.t('error'), 'bot', { skipHistory: true });
+        } finally {
+            this.busy = false;
+            input.disabled = false;
+            send.disabled = false;
+            input.focus();
+        }
     }
 
-    addMessage(text, sender) {
+    stripMarkdown(text) {
+        return text
+            .replace(/\*\*(.+?)\*\*/g, '$1')
+            .replace(/\*(.+?)\*/g, '$1')
+            .replace(/__(.+?)__/g, '$1')
+            .replace(/_(.+?)_/g, '$1')
+            .replace(/`(.+?)`/g, '$1')
+            .replace(/^#{1,6}\s+/gm, '')
+            .replace(/^\s*[-*+]\s+/gm, '')
+            .replace(/^\s*\d+\.\s+/gm, '')
+            .replace(/\n{3,}/g, '\n\n')
+            .trim();
+    }
+
+    addMessage(text, sender, opts = {}) {
         const messagesContainer = document.getElementById('chatbot-messages');
         const messageDiv = document.createElement('div');
         messageDiv.className = `chatbot-message ${sender}-message`;
-        messageDiv.innerHTML = `<p>${text}</p>`;
+        const p = document.createElement('p');
+        const clean = sender === 'bot' ? this.stripMarkdown(text) : text;
+        p.textContent = clean;
+        p.style.whiteSpace = 'pre-wrap';
+        messageDiv.appendChild(p);
         messagesContainer.appendChild(messageDiv);
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        if (!opts.skipHistory) {
+            this.history.push({ role: sender === 'user' ? 'user' : 'assistant', content: clean });
+        }
+        return messageDiv;
+    }
+
+    addThinking() {
+        const messagesContainer = document.getElementById('chatbot-messages');
+        const div = document.createElement('div');
+        div.className = 'chatbot-message bot-message chatbot-thinking';
+        div.innerHTML = '<p><span></span><span></span><span></span></p>';
+        messagesContainer.appendChild(div);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        return div;
     }
 }
 

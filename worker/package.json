@@ -1,0 +1,14 @@
+{
+  "name": "aiden-portfolio-ai",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build-knowledge": "node -e \"const fs=require('fs');fs.writeFileSync('src/knowledge.js','export default '+JSON.stringify(fs.readFileSync('../knowledge.md','utf8'))+';\\n')\"",
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^3.90.0"
+  }
+}
