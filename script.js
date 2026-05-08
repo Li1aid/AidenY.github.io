@@ -984,7 +984,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // 👇 After deploying the worker, paste its URL here
 //    (e.g. https://aiden-portfolio-ai.your-name.workers.dev)
-const CHATBOT_WORKER_URL = 'https://aiden-portfolio-ai.aidenyang5995.workers.dev';
+const CHATBOT_WORKER_URL = 'https://ai.aidenyang.me';
 
 class AIChatbot {
     constructor() {
@@ -1003,8 +1003,8 @@ class AIChatbot {
             en: {
                 label: 'Chat with AI Aiden',
                 title: 'AI Aiden',
-                greet: "Hi! I'm Aiden's portfolio assistant. Ask me about his projects, skills, or how to get in touch.",
-                placeholder: 'Ask anything about Aiden\'s work…',
+                greet: "Hey, I'm Aiden 👋 Ask me anything about my work, my skills, or what I'm into.",
+                placeholder: 'Ask me anything…',
                 send: 'Send',
                 error: 'Sorry, something went wrong. Please try again.',
                 misconfigured: 'Chat is not configured yet. Set CHATBOT_WORKER_URL in script.js.',
@@ -1012,8 +1012,8 @@ class AIChatbot {
             zh: {
                 label: '和 AI Aiden 聊聊',
                 title: 'AI Aiden',
-                greet: '嗨！我是 Aiden 作品集助手。可以问我关于他的项目、技能，或者怎么联系他。',
-                placeholder: '随便问问 Aiden 的作品集…',
+                greet: '嗨，我是 Aiden 👋 想了解我的项目、技能，或者随便聊聊都可以。',
+                placeholder: '随便问问吧…',
                 send: '发送',
                 error: '抱歉，出错了。请重试。',
                 misconfigured: '聊天功能还没配置。请在 script.js 里设置 worker URL。',
