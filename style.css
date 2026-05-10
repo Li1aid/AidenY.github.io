@@ -967,6 +967,20 @@
             line-height: 2.6;
         }
 
+        /* In Chinese mode, brackets render in a normal font so they scale with the CJK glyphs they wrap. */
+        body.lang-zh .emphasis-text {
+            font-family: 'Montserrat', sans-serif;
+        }
+        body.lang-zh .emphasis-text::before,
+        body.lang-zh .emphasis-text::after {
+            font-family: inherit;
+            font-size: 1em;
+            vertical-align: baseline;
+        }
+        body.lang-zh .title-line-2::after {
+            font-family: 'Montserrat', sans-serif;
+        }
+
         /* Scanline effect overlay on hero */
         .hero-section::before {
             content: '';

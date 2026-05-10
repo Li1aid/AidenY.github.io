@@ -866,17 +866,18 @@ function switchLanguage(lang) {
     document.querySelectorAll('[data-en][data-zh]').forEach(el => {
         const text = lang === 'en' ? el.getAttribute('data-en') : el.getAttribute('data-zh');
 
-        // Special handling for elements with children (like emphasis-text)
-        if (el.classList.contains('emphasis-text')) {
-            el.textContent = text;
-        } else if (el.classList.contains('info-content') || el.classList.contains('title-line-2')) {
-            // These may contain HTML tags like <br> or nested <span>
-            // We need to update only text nodes, not replace entire innerHTML
-            if (!el.querySelector('.emphasis-text')) {
-                el.innerHTML = text;
-            }
+        // Title lines (hero) and info-content carry HTML markup (emphasis spans, <br>) inside data-* attrs.
+        if (el.classList.contains('title-line-1') || el.classList.contains('title-line-2') || el.classList.contains('info-content')) {
+            el.innerHTML = text;
+            el.style.opacity = '1';
+            // Re-activate emphasis highlights (decode animation adds these on completion)
+            el.querySelectorAll('.emphasis-text').forEach((em, i) => {
+                setTimeout(() => em.classList.add('active'), i * 80);
+            });
+            const heroTitle = document.querySelector('.hero-main-title');
+            if (heroTitle) heroTitle.classList.add('loaded');
         } else if (el.classList.contains('about-line')) {
-            // About lines contain keyword spans - handle carefully
+            // About lines contain keyword spans — leave them, the parent <p>'s data-* drives the visible text.
             const keyword = el.querySelector('.keyword');
             if (!keyword) {
                 el.textContent = text;
