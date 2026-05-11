@@ -13,7 +13,7 @@ A bilingual (EN/中文) portfolio website showcasing design and technology proje
 ## Projects
 
 1. **CoLab** - Learning platform for international design students
-2. **Vivid Sydney Hyper Experience** - Vision Pro spatial computing project
+2. **Vivid Sydney Hyper Experience** - Vision Pro spatial design project
 3. **ANNO** - Smart health companion system for older adults
 4. **Whisperfield** - ADHD-focused immersive meditation experience
 

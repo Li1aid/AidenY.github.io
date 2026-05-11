@@ -1747,6 +1747,13 @@
             gap: 4rem;
         }
 
+        .footer-credit {
+            margin: 0;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.35);
+            letter-spacing: 0.05em;
+        }
+
         .footer-social-link {
             width: 30px;
             height: 30px;
