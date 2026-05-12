@@ -1,0 +1,16 @@
+/* TEAM */
+Designer & Creator: Xuejian Yang (杨雪健, Aiden)
+Site: https://aidenyang.me/
+Location: Sydney, Australia
+Contact: AidenYang5995 [at] gmail.com
+LinkedIn: https://www.linkedin.com/in/aiden-yang-ty
+
+Names: Xuejian Yang · 杨雪健 · Yang Xuejian · Aiden Yang · Xuejian Aiden Yang
+Role: UX/UI Designer & AIGC Creator
+Focus: Product Design, Vibecoding, AI-driven Experiences
+Education: Master of Interaction Design — University of Sydney
+
+/* SITE */
+Language: English / 简体中文
+Standards: HTML5, CSS3
+Components: GSAP, ScrollTrigger

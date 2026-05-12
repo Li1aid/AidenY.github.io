@@ -1,4 +1,24 @@
+# Xuejian Yang · 杨雪健 (Aiden) — https://aidenyang.me/
 User-agent: *
+Allow: /
+
+# Be friendly to AI crawlers — opt in explicitly
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: ClaudeBot
 Allow: /
 
 Sitemap: https://aidenyang.me/sitemap.xml

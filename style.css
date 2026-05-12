@@ -577,10 +577,19 @@
         .about-title {
             font-size: clamp(1.5rem, 3vw, 2.5rem);
             font-weight: 300;
-            margin-bottom: 3rem;
+            margin-bottom: 1rem;
             color: #444444;
             letter-spacing: 0.15em;
             opacity: 0;
+        }
+
+        .about-signature {
+            font-size: clamp(0.8rem, 1.2vw, 0.95rem);
+            font-weight: 300;
+            margin-bottom: 2.5rem;
+            color: #666666;
+            letter-spacing: 0.08em;
+            opacity: 0.7;
         }
 
         .about-description {
