@@ -2,6 +2,7 @@
 // Routes Chinese mainland visitors to DeepSeek; everyone else to Anthropic.
 
 import knowledgeBase from "./knowledge.js";
+import adminHtml from "./admin-html.js";
 
 const SYSTEM_PROMPT = `You ARE Aiden Yang. Speak in the FIRST PERSON ("I", "my", "me" / 中文用"我"、"我的"). Never refer to Aiden in the third person — you are him.
 
@@ -127,7 +128,27 @@ export default {
 
     const url = new URL(request.url);
 
-    // ── Admin routes (protected by Cloudflare Access) ─────────────────────
+    // ── Admin UI page — defense in depth: require Access identity at the
+    //     page level too, so the HTML shell is never served to the public
+    //     even if Cloudflare Access happens to be misconfigured.
+    if ((url.pathname === "/admin" || url.pathname === "/admin/") && request.method === "GET") {
+      const auth = verifyAccess(request, env);
+      if (!auth.ok) {
+        return new Response("Forbidden. This area is restricted.", {
+          status: 403,
+          headers: { "content-type": "text/plain; charset=utf-8", "x-robots-tag": "noindex, nofollow" },
+        });
+      }
+      return new Response(adminHtml, {
+        headers: {
+          "content-type": "text/html; charset=utf-8",
+          "cache-control": "no-store",
+          "x-robots-tag": "noindex, nofollow",
+        },
+      });
+    }
+
+    // ── Admin API routes (protected by Cloudflare Access) ─────────────────
     if (url.pathname.startsWith("/admin/")) {
       return handleAdmin(request, env, url);
     }

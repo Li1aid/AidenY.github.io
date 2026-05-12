@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+export default `<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -330,7 +330,7 @@
         // ─────────────────────────────────────────────────────────
         // Config — Worker base URL (same origin used by chatbot)
         // ─────────────────────────────────────────────────────────
-        const WORKER = 'https://ai.aidenyang.me';
+        const WORKER = '';
 
         // Tab switching
         document.querySelectorAll('.tab').forEach(tab => {
@@ -348,10 +348,10 @@
         // ─── API helper ────────────────────────────────────────────
         async function api(path) {
             // Cloudflare Access cookies are sent automatically with credentials: 'include'
-            const res = await fetch(WORKER + path, { credentials: 'include' });
+            const res = await fetch(WORKER + path);
             if (!res.ok) {
                 const t = await res.text();
-                throw new Error(`${res.status} ${t.slice(0, 200)}`);
+                throw new Error(\`\${res.status} \${t.slice(0, 200)}\`);
             }
             return res.json();
         }
@@ -368,7 +368,7 @@
                 drawChart('trend-chart-mini', t.trends);
             } catch (e) {
                 document.getElementById('stats-grid').insertAdjacentHTML('beforebegin',
-                    `<div class="error">Failed to load: ${e.message}. Check Cloudflare Access login and worker deployment.</div>`);
+                    \`<div class="error">Failed to load: \${e.message}. Check Cloudflare Access login and worker deployment.</div>\`);
             }
         }
 
@@ -392,7 +392,7 @@
                 renderConversations(filtered);
                 populateCountryFilter(conversations);
             } catch (e) {
-                c.innerHTML = `<div class="error">${e.message}</div>`;
+                c.innerHTML = \`<div class="error">\${e.message}</div>\`;
             }
         }
 
@@ -415,22 +415,22 @@
                 const isHigh = !!r.signal_tags;
                 const signals = (r.signal_tags || '').split(',').filter(Boolean);
                 const time = new Date(r.created_at + 'Z').toLocaleString();
-                return `
-                    <div class="conv ${isHigh ? 'high-value' : ''}">
+                return \`
+                    <div class="conv \${isHigh ? 'high-value' : ''}">
                         <div class="conv-meta">
-                            <span>${escapeHtml(time)}</span>
-                            <span class="pill">${escapeHtml(r.country || '??')}${r.city ? ' · ' + escapeHtml(r.city) : ''}</span>
-                            <span class="pill">${escapeHtml(r.language || '?')}</span>
-                            <span class="pill">${escapeHtml(r.provider || '')}</span>
-                            <span class="pill" style="opacity:0.6;">session ${escapeHtml(String(r.session_id).slice(0,8))}</span>
-                            ${signals.map(s => `<span class="pill signal">${escapeHtml(s)}</span>`).join('')}
+                            <span>\${escapeHtml(time)}</span>
+                            <span class="pill">\${escapeHtml(r.country || '??')}\${r.city ? ' · ' + escapeHtml(r.city) : ''}</span>
+                            <span class="pill">\${escapeHtml(r.language || '?')}</span>
+                            <span class="pill">\${escapeHtml(r.provider || '')}</span>
+                            <span class="pill" style="opacity:0.6;">session \${escapeHtml(String(r.session_id).slice(0,8))}</span>
+                            \${signals.map(s => \`<span class="pill signal">\${escapeHtml(s)}</span>\`).join('')}
                         </div>
                         <div class="conv-role">User</div>
-                        <div class="conv-user">${escapeHtml(r.user_msg)}</div>
+                        <div class="conv-user">\${escapeHtml(r.user_msg)}</div>
                         <div class="conv-role">AI Aiden</div>
-                        <div class="conv-bot">${escapeHtml(r.bot_reply)}</div>
+                        <div class="conv-bot">\${escapeHtml(r.bot_reply)}</div>
                     </div>
-                `;
+                \`;
             }).join('');
         }
 
@@ -450,14 +450,14 @@
             try {
                 const { top_questions } = await api('/admin/top-questions?limit=40');
                 if (!top_questions.length) { c.innerHTML = '<div class="empty">Not enough data yet.</div>'; return; }
-                c.innerHTML = top_questions.map(q => `
+                c.innerHTML = top_questions.map(q => \`
                     <div class="top-q-row">
-                        <div class="top-q-text">${escapeHtml(q.sample)}</div>
-                        <div class="top-q-count">${q.n}×</div>
+                        <div class="top-q-text">\${escapeHtml(q.sample)}</div>
+                        <div class="top-q-count">\${q.n}×</div>
                     </div>
-                `).join('');
+                \`).join('');
             } catch (e) {
-                c.innerHTML = `<div class="error">${e.message}</div>`;
+                c.innerHTML = \`<div class="error">\${e.message}</div>\`;
             }
         }
 
@@ -469,7 +469,7 @@
                 drawChart('trend-chart', trends);
             } catch (e) {
                 document.getElementById('panel-trends').insertAdjacentHTML('afterbegin',
-                    `<div class="error">${e.message}</div>`);
+                    \`<div class="error">\${e.message}</div>\`);
             }
         }
 
@@ -583,3 +583,4 @@
     </script>
 </body>
 </html>
+`;
