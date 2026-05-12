@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" preserveAspectRatio="xMidYMid slice">
+  <!-- 16:9 canvas. Node coords:
+       USER:    cx=110 cy=225, r=42  → right edge x=152
+       WORKER:  rect 320,195 240x60  → l=320 r=560 t=195 b=255  centre 440,225
+       AI:      rect 600,60  160x60  → l=600 r=760 t=60  b=120  centre 680,90
+       D1:      rect 600,330 160x60  → l=600 r=760 t=330 b=390  centre 680,360 -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0a0a12"/>
+      <stop offset="1" stop-color="#16161e"/>
+    </linearGradient>
+    <linearGradient id="lineH" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#6c8aff" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#6c8aff" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#6c8aff" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+
+  <rect width="800" height="450" fill="url(#bg)"/>
+
+  <!-- subtle grid -->
+  <g stroke="#1f1f2c" stroke-width="1" opacity="0.5">
+    <path d="M0 150 H800 M0 300 H800"/>
+    <path d="M200 0 V450 M400 0 V450 M600 0 V450"/>
+  </g>
+
+  <!-- ─── Connecting lines (request + response) ─── -->
+
+  <!-- ① USER → Worker  (outbound chat)  -->
+  <path d="M152 218 L320 210" stroke="url(#lineH)" stroke-width="1.5" fill="none"/>
+  <!-- ⑤ Worker → USER  (final reply)    -->
+  <path d="M320 240 L152 232" stroke="url(#lineH)" stroke-width="1.5" fill="none"/>
+
+  <!-- ② Worker → AI  (upstream call)    -->
+  <path d="M495 195 L645 120" stroke="url(#lineH)" stroke-width="1.5" fill="none"/>
+  <!-- ③ AI → Worker  (model reply)      -->
+  <path d="M715 120 L520 195" stroke="url(#lineH)" stroke-width="1.5" fill="none"/>
+
+  <!-- ④ Worker → D1  (log write)        -->
+  <path d="M440 255 L680 330" stroke="url(#lineH)" stroke-width="1.5" fill="none"/>
+
+  <!-- ─── Nodes ─── -->
+
+  <!-- USER (left) -->
+  <g filter="url(#glow)">
+    <circle cx="110" cy="225" r="42" fill="#16161e" stroke="#6c8aff" stroke-width="1.5"/>
+    <text x="110" y="221" text-anchor="middle" fill="#e6e6ec" font-family="ui-monospace, monospace" font-size="11" letter-spacing="0.12em">USER</text>
+    <text x="110" y="238" text-anchor="middle" fill="#888" font-family="ui-monospace, monospace" font-size="8" letter-spacing="0.12em">BROWSER</text>
+  </g>
+
+  <!-- CF Worker (centre) -->
+  <g filter="url(#glow)">
+    <rect x="320" y="195" width="240" height="60" rx="10" fill="#16161e" stroke="#ffb84d" stroke-width="1.5"/>
+    <text x="440" y="221" text-anchor="middle" fill="#e6e6ec" font-family="ui-monospace, monospace" font-size="12" letter-spacing="0.05em">CF Worker</text>
+    <text x="440" y="240" text-anchor="middle" fill="#888" font-family="ui-monospace, monospace" font-size="9" letter-spacing="0.12em">EDGE COMPUTE · ROUTING</text>
+  </g>
+
+  <!-- AI Models (top-right) -->
+  <g filter="url(#glow)">
+    <rect x="600" y="60" width="160" height="60" rx="8" fill="#16161e" stroke="#888" stroke-width="1"/>
+    <text x="680" y="86" text-anchor="middle" fill="#aaa" font-family="ui-monospace, monospace" font-size="11">Claude · DeepSeek</text>
+    <text x="680" y="105" text-anchor="middle" fill="#888" font-family="ui-monospace, monospace" font-size="9" letter-spacing="0.12em">LLM UPSTREAMS</text>
+  </g>
+
+  <!-- D1 (bottom-right) -->
+  <g filter="url(#glow)">
+    <rect x="600" y="330" width="160" height="60" rx="8" fill="#16161e" stroke="#888" stroke-width="1"/>
+    <text x="680" y="356" text-anchor="middle" fill="#aaa" font-family="ui-monospace, monospace" font-size="11">D1 Database</text>
+    <text x="680" y="375" text-anchor="middle" fill="#888" font-family="ui-monospace, monospace" font-size="9" letter-spacing="0.12em">CONVERSATION LOG</text>
+  </g>
+
+  <!-- ─── Step labels along the lines ─── -->
+  <g font-family="ui-monospace, monospace" font-size="9.5" letter-spacing="0.1em" fill="#6c8aff">
+    <text x="200" y="200">① msg</text>
+    <text x="200" y="257">⑤ reply</text>
+    <text x="555" y="150" transform="rotate(-26 555 150)">② ask</text>
+    <text x="555" y="186" transform="rotate(26 555 186)">③ answer</text>
+    <text x="540" y="305" transform="rotate(18 540 305)">④ log</text>
+  </g>
+
+  <!-- ─── Pulse: full 5-step journey ─── -->
+  <circle r="3.5" fill="#6c8aff">
+    <animateMotion dur="6s" repeatCount="indefinite"
+      path="M152 218 L320 210
+            M495 195 L645 120
+            M715 120 L520 195
+            M440 255 L680 330
+            M320 240 L152 232"/>
+    <animate attributeName="opacity"
+      keyTimes="0; 0.03; 0.18; 0.20; 0.21; 0.36; 0.38; 0.39; 0.54; 0.56; 0.57; 0.72; 0.74; 0.75; 0.97; 1"
+      values=  "0;   1;    1;    0;    1;    1;    0;    1;    1;    0;    1;    1;    0;    1;    1;    0"
+      dur="6s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Footer label -->
+  <text x="40" y="430" fill="#666" font-family="ui-monospace, monospace" font-size="9.5" letter-spacing="0.15em">VIBECODED · ~$3/MO · LIVE</text>
+</svg>

@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary SEO -->
+    <title>Investment Assistant — A Private Local Dashboard | Xuejian (Aiden) Yang, Sydney</title>
+    <meta name="description" content="A self-built portfolio tracker that runs entirely on my own laptop. Flask + SQLite + Cloudflare Tunnel. Case study by Xuejian (Aiden) Yang, Sydney designer.">
+    <meta name="keywords" content="Investment Assistant, local-first dashboard, Flask, SQLite, Cloudflare Tunnel, Aiden Yang, Xuejian Yang, vibecoding">
+    <meta name="author" content="Xuejian (Aiden) Yang · 杨雪健">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://aidenyang.me/projects/investment.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://aidenyang.me/projects/investment.html">
+    <meta property="og:title" content="Investment Assistant — A Private Local Dashboard | Aiden Yang">
+    <meta property="og:description" content="A portfolio tracker I built for myself. Flask + SQLite on my own laptop, tunneled through Cloudflare, accessible only by me.">
+    <meta property="og:image" content="https://aidenyang.me/Assets/investment.svg">
+    <meta property="og:site_name" content="Aiden Yang Portfolio">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Press+Start+2P&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="project.css">
+    <link rel="stylesheet" href="this-site.css">
+</head>
+
+<body class="project-page">
+    <canvas id="particles-canvas"></canvas>
+    <div class="grid-background"></div>
+
+    <div class="cursor"><div class="cursor-glow"></div></div>
+    <div class="cursor-dot"></div>
+
+    <nav class="project-nav">
+        <a href="../index.html#showcase" class="project-nav-btn project-nav-back">
+            <span class="arrow">←</span>
+            <span data-en="Back to Works" data-zh="返回作品">Back to Works</span>
+        </a>
+        <button class="lang-toggle" id="langToggle">
+            <span class="lang-option active" data-lang="en">EN</span>
+            <span class="lang-divider">/</span>
+            <span class="lang-option" data-lang="zh">中</span>
+        </button>
+        <a href="../index.html" class="project-nav-btn project-nav-home">
+            <span data-en="Visit Main Site" data-zh="进入主页">Visit Main Site</span>
+            <span class="arrow">→</span>
+        </a>
+    </nav>
+
+    <!-- ─── Hero ─── -->
+    <section class="project-hero">
+        <div class="project-hero-inner">
+            <div class="project-tagline" data-en="PERSONAL TOOL · VIBECODING · 2026" data-zh="个人工具 · VIBECODING · 2026">PERSONAL TOOL · VIBECODING · 2026</div>
+            <h1 class="project-title-xl">Investment Assistant</h1>
+            <p class="project-subtitle" data-en="A private dashboard I built for myself to track multi-market holdings." data-zh="一个我给自己做的私人面板，用来跟踪跨市场持仓。">
+                A private dashboard I built for myself to track multi-market holdings.
+            </p>
+
+            <div class="project-meta-grid">
+                <div class="meta-cell">
+                    <div class="meta-label" data-en="USE" data-zh="用途">USE</div>
+                    <div class="meta-value" data-en="Personal · Single user" data-zh="个人 · 单用户">Personal · Single user</div>
+                </div>
+                <div class="meta-cell">
+                    <div class="meta-label" data-en="YEAR" data-zh="年份">YEAR</div>
+                    <div class="meta-value">2026</div>
+                </div>
+                <div class="meta-cell">
+                    <div class="meta-label" data-en="STACK" data-zh="技术栈">STACK</div>
+                    <div class="meta-value">Flask · SQLite · Alpine.js</div>
+                </div>
+                <div class="meta-cell">
+                    <div class="meta-label" data-en="DATA" data-zh="数据">DATA</div>
+                    <div class="meta-value" data-en="Local-only" data-zh="仅本地">Local-only</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-cover">
+            <img src="../Assets/investment-poster.jpg" alt="Investment Assistant — poster">
+            <div class="project-cover-overlay"></div>
+        </div>
+    </section>
+
+    <!-- ─── What it does (features) ─── -->
+    <section class="project-section bg-dark">
+        <div class="project-container">
+            <div class="section-eyebrow" data-en="WHAT IT DOES" data-zh="它做什么">WHAT IT DOES</div>
+            <h2 class="project-h2" data-en="What it does." data-zh="它做什么。">
+                What it does.
+            </h2>
+            <p class="project-lead" data-en="A private dashboard for tracking multi-market holdings — and seeing whether my decisions agree with the AI's." data-zh="一个跟踪跨市场持仓的私人面板——顺便看看我的决定跟 AI 的建议是不是一致。">
+                A private dashboard for tracking multi-market holdings — and seeing whether my decisions agree with the AI's.
+            </p>
+
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-num">01</div>
+                    <h3 class="feature-title" data-en="Cross-market holdings" data-zh="跨市场持仓">Cross-market holdings</h3>
+                    <p class="feature-body" data-en="A-shares, ASX, HK, mainland funds, physical gold — five asset classes, four currencies, one screen." data-zh="A 股、澳股、港股、内地基金、实物黄金——五类资产、四种币种，一屏看全。">A-shares, ASX, HK, mainland funds, physical gold — five asset classes, four currencies, one screen.</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-num">02</div>
+                    <h3 class="feature-title" data-en="Daily AI advice" data-zh="每日 AI 建议">Daily AI advice</h3>
+                    <p class="feature-body" data-en="One button packages my holdings, indicators (MA, RSI) and filtered news; Claude returns a position-by-position recommendation." data-zh="一个按钮把持仓、技术指标（MA、RSI）、过滤后的新闻打包给 Claude，返回逐个标的的建议。">One button packages my holdings, indicators (MA, RSI) and filtered news; Claude returns a position-by-position recommendation.</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-num">03</div>
+                    <h3 class="feature-title" data-en="Action log + alignment" data-zh="操作日志 + 一致性">Action log + alignment</h3>
+                    <p class="feature-body" data-en="Every action I take is auto-classified against that day's AI advice: agreed, opposed, partial. Did I beat the model? Now I can tell." data-zh="我每次操作都被自动归类到当天的 AI 建议下：一致、反向、部分。我赢过模型吗？现在能看出来了。">Every action I take is auto-classified against that day's AI advice: agreed, opposed, partial. Did I beat the model? Now I can tell.</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-num">04</div>
+                    <h3 class="feature-title" data-en="Equity curve + calendar" data-zh="资金曲线 + 日历">Equity curve + calendar</h3>
+                    <p class="feature-body" data-en="Nightly snapshots build the equity curve. A daily P&L job paints each day green or red on a calendar — the shape of a month at a glance." data-zh="夜间快照构成资金曲线。日终任务把每一天画成绿色或红色——一个月的形状一眼能看懂。">Nightly snapshots build the equity curve. A daily P&L job paints each day green or red on a calendar — the shape of a month at a glance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── Live Demo (synthetic data) ─── -->
+    <section class="project-section bg-medium">
+        <div class="project-container">
+            <div class="section-eyebrow" data-en="DEMO" data-zh="演示">DEMO</div>
+            <h2 class="project-h2" data-en="Try it — synthetic data, real interactions." data-zh="试试看——假数据，真交互。">
+                Try it — synthetic data, real interactions.
+            </h2>
+            <p class="project-lead this-site-arch-intro" data-en="The dashboard below mirrors the real app's interactions. Holdings, prices and AI replies are all fabricated for this demo — but the buttons, currency switcher, calendar and live updates work exactly like the original." data-zh="下面这个面板复刻了真实 app 的交互。持仓、价格、AI 回复全部是为这个演示伪造的——但按钮、币种切换、日历、实时刷新都和原版一样工作。">
+                The dashboard below mirrors the real app's interactions. Holdings, prices and AI replies are all fabricated for this demo — but the buttons, currency switcher, calendar and live updates work exactly like the original.
+            </p>
+
+            <div class="demo-frame">
+                <div class="demo-chrome">
+                    <span class="demo-dot red"></span><span class="demo-dot yellow"></span><span class="demo-dot green"></span>
+                    <span class="demo-url">invest.aidenyang.me · demo</span>
+                </div>
+
+                <div class="demo-app" id="invest-demo">
+
+                    <!-- Header -->
+                    <header class="demo-header">
+                        <div>
+                            <h3 class="demo-title">Investment Assistant <span class="demo-subtitle" data-en="demo" data-zh="演示">demo</span></h3>
+                            <p class="demo-meta" id="demo-meta" data-en="Prices updated just now · 1 AUD = 4.72 CNY" data-zh="行情更新于 just now · 1 AUD = 4.72 CNY">Prices updated just now · 1 AUD = 4.72 CNY</p>
+                        </div>
+                        <div class="demo-actions">
+                            <div class="demo-ccy-switch" role="group" aria-label="display currency">
+                                <button data-ccy="CNY" class="demo-ccy active">CNY</button>
+                                <button data-ccy="AUD" class="demo-ccy">AUD</button>
+                                <button data-ccy="HKD" class="demo-ccy">HKD</button>
+                                <button data-ccy="USD" class="demo-ccy">USD</button>
+                            </div>
+                            <button id="demo-advice-btn" class="demo-btn-primary" data-en="Generate today's advice" data-zh="生成今日建议">Generate today's advice</button>
+                            <button id="demo-refresh-btn" class="demo-btn-ghost" data-en="Refresh prices" data-zh="刷新行情">Refresh prices</button>
+                        </div>
+                    </header>
+
+                    <!-- Totals -->
+                    <section class="demo-totals">
+                        <div class="demo-card demo-card-total">
+                            <div class="demo-label" data-en="Total value" data-zh="总资产">Total value</div>
+                            <div class="demo-total-amount" id="demo-total">¥ 0</div>
+                            <div class="demo-total-pnl" id="demo-total-pnl">—</div>
+                        </div>
+                        <div class="demo-card demo-card-pnl pos">
+                            <div class="demo-label" data-en="Today · CNY assets" data-zh="今日 · CNY 资产">Today · CNY assets</div>
+                            <div class="demo-pnl-value pos" id="demo-pnl-cny">+¥ 0</div>
+                            <div class="demo-pnl-pct pos" id="demo-pnl-cny-pct">+0.00%</div>
+                        </div>
+                        <div class="demo-card demo-card-pnl neg">
+                            <div class="demo-label" data-en="Today · AUD assets" data-zh="今日 · AUD 资产">Today · AUD assets</div>
+                            <div class="demo-pnl-value neg" id="demo-pnl-aud">A$ 0</div>
+                            <div class="demo-pnl-pct neg" id="demo-pnl-aud-pct">0.00%</div>
+                        </div>
+                    </section>
+
+                    <!-- Equity curve -->
+                    <section class="demo-panel">
+                        <div class="demo-panel-head">
+                            <div class="demo-label" data-en="Equity curve · 30 days" data-zh="资金曲线 · 30 天">Equity curve · 30 days</div>
+                            <span class="demo-hint" data-en="CNY + AUD assets, in display currency" data-zh="CNY + AUD 资产，按显示币种">CNY + AUD assets, in display currency</span>
+                        </div>
+                        <div class="demo-curve-wrap">
+                            <svg viewBox="0 0 800 160" class="demo-curve-svg" id="demo-curve"></svg>
+                            <div class="demo-curve-legend">
+                                <span><span class="legend-dot" style="background:#6c8aff"></span><span data-en="CNY assets" data-zh="CNY 资产">CNY assets</span></span>
+                                <span><span class="legend-dot" style="background:#ffb84d"></span><span data-en="AUD assets" data-zh="AUD 资产">AUD assets</span></span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Holdings -->
+                    <section class="demo-panel">
+                        <div class="demo-panel-head">
+                            <div class="demo-label" data-en="Holdings" data-zh="持仓">Holdings</div>
+                            <span class="demo-hint" data-en="Prices auto-refresh every 4s" data-zh="价格每 4 秒自动刷新">Prices auto-refresh every 4s</span>
+                        </div>
+                        <table class="demo-table">
+                            <thead>
+                                <tr>
+                                    <th data-en="Name" data-zh="标的">Name</th>
+                                    <th data-en="Qty" data-zh="数量">Qty</th>
+                                    <th data-en="Price" data-zh="现价">Price</th>
+                                    <th data-en="Day" data-zh="日内">Day</th>
+                                    <th data-en="Value" data-zh="市值">Value</th>
+                                </tr>
+                            </thead>
+                            <tbody id="demo-rows"></tbody>
+                        </table>
+                    </section>
+
+                    <!-- AI advice + alignment side-by-side -->
+                    <div class="demo-two-col">
+                        <section class="demo-panel">
+                            <div class="demo-panel-head">
+                                <div class="demo-label" data-en="AI advice" data-zh="AI 投资建议">AI advice</div>
+                                <span class="demo-hint" data-en='Click "Generate today's advice"' data-zh="点击 "生成今日建议"">Click "Generate today's advice"</span>
+                            </div>
+                            <div class="demo-advice-body" id="demo-advice-body">
+                                <p class="demo-advice-placeholder" data-en="No advice generated yet for today." data-zh="今天还没有生成建议。">No advice generated yet for today.</p>
+                            </div>
+                        </section>
+
+                        <section class="demo-panel">
+                            <div class="demo-panel-head">
+                                <div class="demo-label" data-en="AI alignment · this month" data-zh="AI 一致性 · 本月">AI alignment · this month</div>
+                                <span class="demo-hint" data-en="auto-classified" data-zh="自动判定">auto-classified</span>
+                            </div>
+                            <div class="demo-align">
+                                <div class="demo-align-cell">
+                                    <div class="demo-align-num pos" id="align-aligned">45%</div>
+                                    <div class="demo-align-label" data-en="Aligned" data-zh="一致">Aligned</div>
+                                </div>
+                                <div class="demo-align-cell">
+                                    <div class="demo-align-num neg" id="align-opposed">22%</div>
+                                    <div class="demo-align-label" data-en="Opposed" data-zh="反向">Opposed</div>
+                                </div>
+                                <div class="demo-align-cell">
+                                    <div class="demo-align-num neutral" id="align-skipped">33%</div>
+                                    <div class="demo-align-label" data-en="Skipped" data-zh="未动">Skipped</div>
+                                </div>
+                            </div>
+                            <p class="demo-align-foot" data-en="Of 18 trades this month, how many followed the AI's same-day recommendation. Did I beat the model? Track over time." data-zh="本月 18 笔交易里，有多少跟当日 AI 建议一致。我赢过模型吗？长期追踪能看出来。">
+                                Of 18 trades this month, how many followed the AI's same-day recommendation. Did I beat the model? Track over time.
+                            </p>
+                        </section>
+                    </div>
+
+                    <!-- Action log + News feed side-by-side -->
+                    <div class="demo-two-col-equal">
+                        <section class="demo-panel">
+                            <div class="demo-panel-head">
+                                <div class="demo-label" data-en="Action log" data-zh="操作日志">Action log</div>
+                                <span class="demo-hint" data-en="Add a trade below" data-zh="在下方添加一笔">Add a trade below</span>
+                            </div>
+                            <ul class="demo-log-list" id="demo-log"></ul>
+
+                            <form class="demo-log-form" id="demo-log-form">
+                                <label><span data-en="Symbol" data-zh="标的">Symbol</span>
+                                    <select id="log-symbol"></select>
+                                </label>
+                                <label><span data-en="Side" data-zh="方向">Side</span>
+                                    <select id="log-side">
+                                        <option value="buy" data-en="BUY" data-zh="买入">BUY</option>
+                                        <option value="sell" data-en="SELL" data-zh="卖出">SELL</option>
+                                    </select>
+                                </label>
+                                <label><span data-en="Qty" data-zh="数量">Qty</span>
+                                    <input type="number" id="log-qty" min="1" step="1" value="100">
+                                </label>
+                                <button type="submit" data-en="Log it" data-zh="记录">Log it</button>
+                            </form>
+
+                            <div class="demo-month-stats">
+                                <div class="demo-month-cell">
+                                    <div class="demo-label" data-en="Bought this month" data-zh="本月买入">Bought this month</div>
+                                    <div class="demo-month-num buy" id="month-buy">¥ 0</div>
+                                </div>
+                                <div class="demo-month-cell">
+                                    <div class="demo-label" data-en="Sold this month" data-zh="本月卖出">Sold this month</div>
+                                    <div class="demo-month-num sell" id="month-sell">¥ 0</div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="demo-panel">
+                            <div class="demo-panel-head">
+                                <div class="demo-label" data-en="Today's news" data-zh="今日新闻">Today's news</div>
+                                <span class="demo-hint" data-en="filtered by my holdings" data-zh="按我的持仓过滤">filtered by my holdings</span>
+                            </div>
+                            <ul class="demo-news-list" id="demo-news"></ul>
+                        </section>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── Architecture (interactive) ─── -->
+    <section class="project-section bg-dark">
+        <div class="project-container">
+            <div class="section-eyebrow" data-en="THE ARCHITECTURE" data-zh="系统架构">THE ARCHITECTURE</div>
+            <h2 class="project-h2" data-en="Designed around a boundary." data-zh="围绕一道边界设计。">
+                Designed around a boundary.
+            </h2>
+            <p class="project-lead this-site-arch-intro" data-en="My holdings live inside the dashed box — on my laptop, never anywhere else. Cloudflare guards the entrance; the outside world only ever sends prices in, never reads anything out." data-zh="我的持仓数据住在虚线框内——只在我的电脑上，不在别处。Cloudflare 守住门口；外面的世界只往里送价格，从不读走任何东西。">
+                My holdings live inside the dashed box — on my laptop, never anywhere else. Cloudflare guards the entrance; the outside world only ever sends prices in, never reads anything out.
+            </p>
+
+            <div class="arch-interactive" id="arch-diagram">
+                <div class="arch-stage">
+                    <svg viewBox="0 0 800 560" class="arch-svg" id="arch-svg">
+                        <defs>
+                            <filter id="archGlow" x="-15%" y="-15%" width="130%" height="130%">
+                                <feGaussianBlur stdDeviation="1.2" result="b"/>
+                                <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                            </filter>
+                        </defs>
+
+                        <g stroke="#1f1f2c" stroke-width="1" opacity="0.3">
+                            <path d="M0 200 H800 M0 400 H800"/>
+                            <path d="M200 0 V560 M400 0 V560 M600 0 V560"/>
+                        </g>
+
+                        <!-- ─── BOUNDARY: "my laptop" ─── -->
+                        <rect x="390" y="180" width="380" height="340" rx="14"
+                              fill="#4ade80" fill-opacity="0.04"
+                              stroke="#4ade80" stroke-width="1.3" stroke-dasharray="6 6" stroke-opacity="0.55"/>
+                        <rect x="402" y="170" width="240" height="22" rx="4" fill="#16161e" stroke="#4ade80" stroke-opacity="0.55" stroke-width="1"/>
+                        <text x="412" y="185" fill="#4ade80" font-family="ui-monospace, monospace" font-size="10" letter-spacing="0.18em">MY LAPTOP · DATA NEVER LEAVES</text>
+
+                        <!-- ─── Lines ─── -->
+                        <line class="arch-line arch-line-request" x1="134" y1="300" x2="200" y2="300" stroke="#aaa" stroke-width="1.6" stroke-opacity="0.7"/>
+                        <line class="arch-line arch-line-request" x1="330" y1="300" x2="440" y2="300" stroke="#4ade80" stroke-width="2" stroke-opacity="0.9"/>
+                        <line class="arch-line arch-line-data" x1="600" y1="290" x2="640" y2="290" stroke="#4ade80" stroke-width="2" stroke-opacity="0.9"/>
+                        <line class="arch-line arch-line-external" x1="520" y1="150" x2="520" y2="260" stroke="#ffb84d" stroke-width="2" stroke-opacity="0.85"/>
+                        <line class="arch-line arch-line-cron" x1="520" y1="420" x2="520" y2="340" stroke="#4ade80" stroke-width="1.6" stroke-dasharray="5 5" stroke-opacity="0.55"/>
+
+                        <!-- arrowheads -->
+                        <g fill="#4ade80">
+                            <polygon points="440,300 432,295 432,305" opacity="0.9"/>
+                            <polygon points="640,290 632,285 632,295" opacity="0.9"/>
+                            <polygon points="520,340 515,332 525,332" opacity="0.55"/>
+                        </g>
+                        <polygon points="520,260 515,250 525,250" fill="#ffb84d" opacity="0.85"/>
+                        <polygon points="200,300 192,295 192,305" fill="#aaa" opacity="0.7"/>
+
+                        <!-- gate marker at boundary -->
+                        <g>
+                            <line x1="390" y1="285" x2="390" y2="315" stroke="#4ade80" stroke-width="2" stroke-opacity="0.6"/>
+                            <text x="383" y="278" fill="#4ade80" font-family="ui-monospace, monospace" font-size="8" letter-spacing="0.1em" text-anchor="end">gate</text>
+                        </g>
+
+                        <!-- ─── Nodes ─── -->
+                        <g class="arch-node" data-node="me" filter="url(#archGlow)">
+                            <circle cx="90" cy="300" r="44" fill="#16161e" stroke="#aaa" stroke-width="1.3"/>
+                            <text x="90" y="296" text-anchor="middle" fill="#e6e6ec" font-family="ui-monospace, monospace" font-size="12" letter-spacing="0.12em">ME</text>
+                            <text x="90" y="312" text-anchor="middle" fill="#888" font-family="ui-monospace, monospace" font-size="8" letter-spacing="0.12em">PHONE</text>
+                        </g>
+
+                        <g class="arch-node" data-node="tunnel" filter="url(#archGlow)">
+                            <rect x="200" y="272" width="130" height="56" rx="8" fill="#16161e" stroke="#4ade80" stroke-width="1.5"/>
+                            <text x="265" y="295" text-anchor="middle" fill="#e6e6ec" font-family="ui-monospace, monospace" font-size="12">CF Tunnel</text>
+                            <text x="265" y="312" text-anchor="middle" fill="#888" font-family="ui-monospace, monospace" font-size="8" letter-spacing="0.1em">ACCESS · SSO LOGIN</text>
+                        </g>
+
+                        <g class="arch-node" data-node="upstreams" filter="url(#archGlow)">
+                            <rect x="440" y="90" width="280" height="60" rx="8" fill="#16161e" stroke="#ffb84d" stroke-width="1"/>
+                            <text x="580" y="116" text-anchor="middle" fill="#aaa" font-family="ui-monospace, monospace" font-size="11">akshare · yfinance · Anthropic</text>
+                            <text x="580" y="134" text-anchor="middle" fill="#888" font-family="ui-monospace, monospace" font-size="8" letter-spacing="0.1em">EXTERNAL · READ-ONLY PULL</text>
+                        </g>
+
+                        <g class="arch-node" data-node="flask" filter="url(#archGlow)">
+                            <rect x="440" y="260" width="160" height="80" rx="10" fill="#16161e" stroke="#6c8aff" stroke-width="1.5"/>
+                            <text x="520" y="290" text-anchor="middle" fill="#e6e6ec" font-family="ui-monospace, monospace" font-size="12">Flask</text>
+                            <text x="520" y="306" text-anchor="middle" fill="#888" font-family="ui-monospace, monospace" font-size="9" letter-spacing="0.1em">127.0.0.1:5180</text>
+                            <text x="520" y="324" text-anchor="middle" fill="#aaa" font-family="ui-monospace, monospace" font-size="9">api · services · views</text>
+                        </g>
+
+                        <g class="arch-node" data-node="db" filter="url(#archGlow)">
+                            <rect x="640" y="260" width="100" height="60" rx="8" fill="#16161e" stroke="#6c8aff" stroke-width="1"/>
+                            <text x="690" y="284" text-anchor="middle" fill="#aaa" font-family="ui-monospace, monospace" font-size="11">portfolio.db</text>
+                            <text x="690" y="302" text-anchor="middle" fill="#888" font-family="ui-monospace, monospace" font-size="8" letter-spacing="0.1em">SQLITE · WAL</text>
+                        </g>
+
+                        <g class="arch-node" data-node="launchd" filter="url(#archGlow)">
+                            <rect x="440" y="420" width="160" height="50" rx="8" fill="#16161e" stroke="#6c8aff" stroke-opacity="0.6" stroke-width="1.2" stroke-dasharray="4 4"/>
+                            <text x="520" y="442" text-anchor="middle" fill="#e6e6ec" font-family="ui-monospace, monospace" font-size="11">launchd × 6</text>
+                            <text x="520" y="458" text-anchor="middle" fill="#888" font-family="ui-monospace, monospace" font-size="8" letter-spacing="0.1em">SCHEDULED · LOCAL</text>
+                        </g>
+
+                        <!-- Legend -->
+                        <g font-family="ui-monospace, monospace" font-size="10" letter-spacing="0.1em">
+                            <rect x="50" y="535" width="14" height="10" rx="2" fill="none" stroke="#4ade80" stroke-width="1" stroke-dasharray="2 2"/>
+                            <text x="72" y="544" fill="#888" data-en="MY DEVICE BOUNDARY" data-zh="设备边界">MY DEVICE BOUNDARY</text>
+                            <circle cx="240" cy="540" r="4" fill="#ffb84d"/>
+                            <text x="252" y="544" fill="#888" data-en="EXTERNAL PULL" data-zh="外部拉取">EXTERNAL PULL</text>
+                        </g>
+                    </svg>
+                </div>
+
+                <div class="arch-panel" id="arch-panel">
+                    <div class="arch-panel-content" data-node-detail="default">
+                        <div class="arch-panel-eyebrow" data-en="TIP" data-zh="提示">TIP</div>
+                        <h3 class="arch-panel-title" data-en="Tap a node" data-zh="点击任意节点">Tap a node</h3>
+                        <p data-en="Click on any block in the diagram to see what it does and why I picked it." data-zh="点击图里的任意方块，看它的职责，以及我为什么选它。">Click on any block in the diagram to see what it does and why I picked it.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="project-end">
+        <a href="../index.html#showcase" class="project-end-link">
+            <span class="arrow">←</span>
+            <span data-en="Back to all works" data-zh="返回全部作品">Back to all works</span>
+        </a>
+    </section>
+
+    <script src="../script.js"></script>
+    <script src="investment.js"></script>
+    <script src="investment-demo.js"></script>
+    <script>
+        document.body.classList.add('loaded');
+        const loaderEl = document.querySelector('.loader');
+        if (loaderEl) loaderEl.remove();
+    </script>
+</body>
+</html>

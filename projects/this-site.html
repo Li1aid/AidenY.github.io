@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary SEO -->
+    <title>This Portfolio — A Vibecoded AI Site | Xuejian (Aiden) Yang, Sydney</title>
+    <meta name="description" content="A self-built portfolio with embedded AI chat. Static front-end on GitHub Pages, Cloudflare Worker backend, D1 database, real-time signal detection. Case study by Xuejian (Aiden) Yang.">
+    <meta name="keywords" content="vibecoding, AI portfolio, Cloudflare Worker, D1, Claude API, edge compute, self-built portfolio, Aiden Yang, Xuejian Yang, Sydney designer">
+    <meta name="author" content="Xuejian (Aiden) Yang · 杨雪健">
+    <link rel="canonical" href="https://aidenyang.me/projects/this-site.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://aidenyang.me/projects/this-site.html">
+    <meta property="og:title" content="This Portfolio — A Vibecoded AI Site | Aiden Yang">
+    <meta property="og:description" content="How I built a portfolio that talks back. Static front-end + Cloudflare Worker + D1 + Access. Running for about $3/month.">
+    <meta property="og:image" content="https://aidenyang.me/Assets/this-site.svg">
+    <meta property="og:site_name" content="Aiden Yang Portfolio">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Press+Start+2P&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="project.css">
+    <link rel="stylesheet" href="this-site.css">
+</head>
+
+<body class="project-page">
+    <!-- Animated Background -->
+    <canvas id="particles-canvas"></canvas>
+    <div class="grid-background"></div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor">
+        <div class="cursor-glow"></div>
+    </div>
+    <div class="cursor-dot"></div>
+
+    <!-- Subpage Top Bar -->
+    <nav class="project-nav">
+        <a href="../index.html#showcase" class="project-nav-btn project-nav-back">
+            <span class="arrow">←</span>
+            <span data-en="Back to Works" data-zh="返回作品">Back to Works</span>
+        </a>
+        <button class="lang-toggle" id="langToggle">
+            <span class="lang-option active" data-lang="en">EN</span>
+            <span class="lang-divider">/</span>
+            <span class="lang-option" data-lang="zh">中</span>
+        </button>
+        <a href="../index.html" class="project-nav-btn project-nav-home">
+            <span data-en="Visit Main Site" data-zh="进入主页">Visit Main Site</span>
+            <span class="arrow">→</span>
+        </a>
+    </nav>
+
+    <!-- ─── Hero ─── -->
+    <section class="project-hero">
+        <div class="project-hero-inner">
+            <div class="project-tagline" data-en="SELF-BUILT · VIBECODING · 2026" data-zh="自建项目 · VIBECODING · 2026">SELF-BUILT · VIBECODING · 2026</div>
+            <h1 class="project-title-xl">This Portfolio</h1>
+            <p class="project-subtitle" data-en="A portfolio that talks back." data-zh="一个会回话的作品集。">
+                A portfolio that talks back.
+            </p>
+
+            <div class="project-meta-grid">
+                <div class="meta-cell">
+                    <div class="meta-label" data-en="ROLE" data-zh="角色">ROLE</div>
+                    <div class="meta-value" data-en="Design · Engineering · Ops" data-zh="设计 · 工程 · 运维">Design · Engineering · Ops</div>
+                </div>
+                <div class="meta-cell">
+                    <div class="meta-label" data-en="YEAR" data-zh="年份">YEAR</div>
+                    <div class="meta-value">2026</div>
+                </div>
+                <div class="meta-cell">
+                    <div class="meta-label" data-en="STACK" data-zh="技术栈">STACK</div>
+                    <div class="meta-value">GitHub Pages · CF Worker · D1</div>
+                </div>
+                <div class="meta-cell">
+                    <div class="meta-label" data-en="COST" data-zh="月成本">COST</div>
+                    <div class="meta-value">~$3 / month</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-cover this-site-cover">
+            <img src="../Assets/this-site.svg" alt="Architecture diagram — one chat request, end-to-end">
+            <div class="project-cover-overlay"></div>
+        </div>
+    </section>
+
+    <!-- ─── Architecture (interactive) ─── -->
+    <section class="project-section bg-medium">
+        <div class="project-container">
+            <div class="section-eyebrow" data-en="THE ARCHITECTURE" data-zh="系统架构">THE ARCHITECTURE</div>
+            <h2 class="project-h2" data-en="Click any block to see why I chose it." data-zh="点击任意方块，看我为什么这样选。">
+                Click any block to see why I chose it.
+            </h2>
+            <p class="project-lead this-site-arch-intro" data-en="Three independent request flows share the same backbone. Tap a node — the diagram explains its job and the trade-offs behind the choice." data-zh="三条独立的请求流共用同一套骨架。点击节点——图会告诉你这块的职责和我为什么这么选。">
+                Three independent request flows share the same backbone. Tap a node — the diagram explains its job and the trade-offs behind the choice.
+            </p>
+
+            <div class="arch-interactive" id="arch-diagram">
+                <!-- Diagram -->
+                <div class="arch-stage">
+                    <svg viewBox="0 0 800 540" class="arch-svg" id="arch-svg">
+                        <defs>
+                            <linearGradient id="archLine" x1="0" y1="0" x2="1" y2="0">
+                                <stop offset="0" stop-color="#6c8aff" stop-opacity="0"/>
+                                <stop offset="0.5" stop-color="#6c8aff" stop-opacity="0.85"/>
+                                <stop offset="1" stop-color="#6c8aff" stop-opacity="0"/>
+                            </linearGradient>
+                            <filter id="archGlow">
+                                <feGaussianBlur stdDeviation="3" result="b"/>
+                                <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                            </filter>
+                        </defs>
+
+                        <!-- Grid -->
+                        <g stroke="#1f1f2c" stroke-width="1" opacity="0.4">
+                            <path d="M0 180 H800 M0 360 H800"/>
+                            <path d="M200 0 V540 M400 0 V540 M600 0 V540"/>
+                        </g>
+
+                        <!-- Lines (3 request types, color-coded) -->
+                        <!-- Visit: USER → GitHub Pages -->
+                        <line class="arch-line arch-line-visit" x1="156" y1="262" x2="320" y2="120" stroke="url(#archLine)" stroke-width="1.5"/>
+                        <line class="arch-line arch-line-visit" x1="320" y1="160" x2="156" y2="278" stroke="url(#archLine)" stroke-width="1.5"/>
+
+                        <!-- Chat: USER → Worker → AI → Worker → D1 / back to USER -->
+                        <line class="arch-line arch-line-chat" x1="156" y1="282" x2="320" y2="260" stroke="url(#archLine)" stroke-width="1.5"/>
+                        <line class="arch-line arch-line-chat" x1="320" y1="290" x2="156" y2="298" stroke="url(#archLine)" stroke-width="1.5"/>
+                        <line class="arch-line arch-line-chat" x1="480" y1="260" x2="620" y2="120" stroke="url(#archLine)" stroke-width="1.5"/>
+                        <line class="arch-line arch-line-chat" x1="620" y1="160" x2="480" y2="280" stroke="url(#archLine)" stroke-width="1.5"/>
+                        <line class="arch-line arch-line-chat" x1="440" y1="320" x2="620" y2="420" stroke="url(#archLine)" stroke-width="1.5"/>
+
+                        <!-- Admin: USER → Access → Worker → D1 -->
+                        <line class="arch-line arch-line-admin" x1="156" y1="312" x2="240" y2="420" stroke="url(#archLine)" stroke-width="1.5"/>
+                        <line class="arch-line arch-line-admin" x1="280" y1="420" x2="400" y2="320" stroke="url(#archLine)" stroke-width="1.5"/>
+
+                        <!-- Nodes -->
+                        <g class="arch-node" data-node="user" filter="url(#archGlow)">
+                            <circle cx="110" cy="290" r="46" fill="#16161e" stroke="#6c8aff" stroke-width="1.5"/>
+                            <text x="110" y="285" text-anchor="middle" fill="#e6e6ec" font-family="ui-monospace, monospace" font-size="12" letter-spacing="0.12em">USER</text>
+                            <text x="110" y="302" text-anchor="middle" fill="#888" font-family="ui-monospace, monospace" font-size="9" letter-spacing="0.12em">BROWSER</text>
+                        </g>
+
+                        <g class="arch-node" data-node="ghpages" filter="url(#archGlow)">
+                            <rect x="320" y="80" width="160" height="80" rx="8" fill="#16161e" stroke="#6c8aff" stroke-width="1.5"/>
+                            <text x="400" y="113" text-anchor="middle" fill="#e6e6ec" font-family="ui-monospace, monospace" font-size="13">GitHub Pages</text>
+                            <text x="400" y="135" text-anchor="middle" fill="#888" font-family="ui-monospace, monospace" font-size="10" letter-spacing="0.1em">STATIC FRONT-END</text>
+                        </g>
+
+                        <g class="arch-node" data-node="worker" filter="url(#archGlow)">
+                            <rect x="320" y="240" width="160" height="80" rx="8" fill="#16161e" stroke="#ffb84d" stroke-width="1.5"/>
+                            <text x="400" y="273" text-anchor="middle" fill="#e6e6ec" font-family="ui-monospace, monospace" font-size="13">CF Worker</text>
+                            <text x="400" y="295" text-anchor="middle" fill="#888" font-family="ui-monospace, monospace" font-size="10" letter-spacing="0.1em">EDGE COMPUTE</text>
+                        </g>
+
+                        <g class="arch-node" data-node="access" filter="url(#archGlow)">
+                            <rect x="200" y="400" width="160" height="60" rx="8" fill="#16161e" stroke="#4ade80" stroke-width="1.5"/>
+                            <text x="280" y="425" text-anchor="middle" fill="#e6e6ec" font-family="ui-monospace, monospace" font-size="12">CF Access</text>
+                            <text x="280" y="445" text-anchor="middle" fill="#888" font-family="ui-monospace, monospace" font-size="9" letter-spacing="0.1em">SSO GUARD</text>
+                        </g>
+
+                        <g class="arch-node" data-node="ai" filter="url(#archGlow)">
+                            <rect x="620" y="80" width="160" height="80" rx="8" fill="#16161e" stroke="#888" stroke-width="1"/>
+                            <text x="700" y="113" text-anchor="middle" fill="#aaa" font-family="ui-monospace, monospace" font-size="12">Claude · DeepSeek</text>
+                            <text x="700" y="135" text-anchor="middle" fill="#888" font-family="ui-monospace, monospace" font-size="10" letter-spacing="0.1em">LLM UPSTREAMS</text>
+                        </g>
+
+                        <g class="arch-node" data-node="d1" filter="url(#archGlow)">
+                            <rect x="620" y="400" width="160" height="60" rx="8" fill="#16161e" stroke="#888" stroke-width="1"/>
+                            <text x="700" y="425" text-anchor="middle" fill="#aaa" font-family="ui-monospace, monospace" font-size="12">D1 Database</text>
+                            <text x="700" y="445" text-anchor="middle" fill="#888" font-family="ui-monospace, monospace" font-size="9" letter-spacing="0.1em">CONVERSATION LOG</text>
+                        </g>
+
+                        <!-- Legend -->
+                        <g font-family="ui-monospace, monospace" font-size="10" letter-spacing="0.1em">
+                            <circle cx="60" cy="500" r="4" fill="#6c8aff"/>
+                            <text x="72" y="503" fill="#888">VISIT</text>
+                            <circle cx="140" cy="500" r="4" fill="#ffb84d"/>
+                            <text x="152" y="503" fill="#888">CHAT</text>
+                            <circle cx="220" cy="500" r="4" fill="#4ade80"/>
+                            <text x="232" y="503" fill="#888">ADMIN</text>
+                        </g>
+                    </svg>
+                </div>
+
+                <!-- Detail panel -->
+                <div class="arch-panel" id="arch-panel">
+                    <div class="arch-panel-content" data-node-detail="default">
+                        <div class="arch-panel-eyebrow" data-en="TIP" data-zh="提示">TIP</div>
+                        <h3 class="arch-panel-title" data-en="Tap a node" data-zh="点击任意节点">Tap a node</h3>
+                        <p data-en="Click on any block in the diagram to see what it does and why I picked it over the alternatives." data-zh="点击图里的任意方块，看它的职责，以及我为什么选它而不是其他方案。">Click on any block in the diagram to see what it does and why I picked it over the alternatives.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Bottom Nav -->
+    <section class="project-end">
+        <a href="../index.html#showcase" class="project-end-link">
+            <span class="arrow">←</span>
+            <span data-en="Back to all works" data-zh="返回全部作品">Back to all works</span>
+        </a>
+    </section>
+
+    <script src="../script.js"></script>
+    <script src="this-site.js"></script>
+    <script>
+        document.body.classList.add('loaded');
+        const loaderEl = document.querySelector('.loader');
+        if (loaderEl) loaderEl.remove();
+    </script>
+</body>
+</html>

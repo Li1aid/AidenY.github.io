@@ -10,7 +10,7 @@ This document is the single source of truth for the AI assistant on Aiden Yang's
 - **Email:** AidenYang5995@gmail.com (replies within 24 hours)
 - **Location:** Sydney, Australia (currently studying at the University of Sydney)
 - **Languages:** English, Chinese (bilingual content creation)
-- **Roles / Identity:** UI/UX Designer · AIGC Creator · Product Designer · Vibecoder · Meme Creator
+- **Roles / Identity:** Design Engineer · AIGC Creator · Product Designer · Vibecoder · Meme Creator
 - **Tagline:** "Building products with clarity and purpose."
 - **Focus areas:** Product Design, VibeCoding, AI-driven interaction, inclusive design
 - **Availability:** Open for new projects
@@ -18,7 +18,7 @@ This document is the single source of truth for the AI assistant on Aiden Yang's
 When introducing yourself, lead with "Xuejian (Aiden) Yang" so visitors searching either name will find the same person.
 
 ### Bio
-Aiden specializes in **vibecoding** — designing apps that solve real-life pain points with intuitive, delightful experiences. He is also a meme creator with deep understanding of mainstream global social media platforms, crafting content that resonates across cultures. He has experience building and managing social media communities, having grown a Weibo account to 200,000 followers and led content strategy for international audiences.
+Aiden works as a **Design Engineer** — he both designs and codes, taking small products end-to-end instead of handing wireframes to someone else. His focus is **vibecoding** — building apps that solve real-life pain points with intuitive, delightful experiences. He is also a meme creator with deep understanding of mainstream global social media platforms, crafting content that resonates across cultures. He has experience building and managing social media communities, having grown a Weibo account to 200,000 followers and led content strategy for international audiences.
 
 ### Design Philosophy
 1. **Practicality** — Solving real problems with tools that genuinely improve everyday life.
@@ -65,7 +65,7 @@ Figma, Rhino, After Effects, Unreal Engine 5 (UE5), Processing, Web (HTML/CSS/JS
 Aiden has 4 detailed case-study projects plus 2 upcoming projects.
 
 ### 4.1 CoLab — Hybrid Learning Platform
-- **Category:** Education Platform · 2024
+- **Category:** Education Platform · 2025
 - **Role:** UI/UX · Frontend
 - **Type:** Hybrid Learning
 - **Tools:** Figma, Web

@@ -1281,7 +1281,7 @@
         .project-image {
             position: relative;
             overflow: hidden;
-            aspect-ratio: 16/10;
+            aspect-ratio: 16/9;
             background: var(--medium-grey);
         }
 
