@@ -3,438 +3,583 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>状态管理 - Admin Panel</title>
+    <title>Admin · Aiden Portfolio</title>
+    <meta name="robots" content="noindex, nofollow">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0f0f14;
+            color: #e6e6ec;
             min-height: 100vh;
+        }
+
+        .topbar {
+            background: #16161e;
+            border-bottom: 1px solid #25252e;
+            padding: 16px 32px;
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .topbar h1 { font-size: 18px; font-weight: 600; letter-spacing: 0.02em; }
+        .topbar .right { display: flex; gap: 8px; align-items: center; }
+        .topbar a { color: #888; text-decoration: none; font-size: 13px; }
+        .topbar a:hover { color: #fff; }
+
+        .tabs {
+            background: #16161e;
+            border-bottom: 1px solid #25252e;
+            padding: 0 32px;
+            display: flex;
+            gap: 4px;
+        }
+        .tab {
+            padding: 12px 18px;
+            cursor: pointer;
+            color: #888;
+            font-size: 14px;
+            border-bottom: 2px solid transparent;
+            transition: all 0.15s;
+        }
+        .tab:hover { color: #fff; }
+        .tab.active { color: #fff; border-bottom-color: #6c8aff; }
+
+        .panel { display: none; padding: 32px; max-width: 1280px; margin: 0 auto; }
+        .panel.active { display: block; }
+
+        /* ── Stat cards ── */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+        .stat-card {
+            background: #16161e;
+            border: 1px solid #25252e;
+            border-radius: 10px;
             padding: 20px;
         }
-
-        .container {
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            padding: 40px;
-            max-width: 500px;
-            width: 100%;
-        }
-
-        h1 {
-            color: #333;
-            margin-bottom: 10px;
-            font-size: 28px;
-        }
-
-        .subtitle {
-            color: #666;
-            margin-bottom: 30px;
-            font-size: 14px;
-        }
-
-        .current-status {
-            background: #f8f9fa;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 30px;
-        }
-
-        .current-status h3 {
-            color: #333;
-            font-size: 14px;
-            margin-bottom: 15px;
+        .stat-label {
+            font-size: 11px;
+            color: #888;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.1em;
+            margin-bottom: 8px;
         }
+        .stat-value { font-size: 28px; font-weight: 600; }
+        .stat-value.accent { color: #ffb84d; }
 
-        .status-display {
+        /* ── Filters ── */
+        .filters {
             display: flex;
-            align-items: center;
             gap: 12px;
-            font-size: 16px;
-            color: #333;
-            font-weight: 500;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            background: #16161e;
+            border: 1px solid #25252e;
+            border-radius: 10px;
+            padding: 14px 16px;
         }
-
-        .status-dot {
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        .status-dot.available {
-            background: #00ff00;
-            box-shadow: 0 0 15px rgba(0,255,0,0.6);
-        }
-
-        .status-dot.busy {
-            background: #ff0000;
-            box-shadow: 0 0 15px rgba(255,0,0,0.6);
-        }
-
-        .status-dot.vacation {
-            background: #ffcc00;
-            box-shadow: 0 0 15px rgba(255,204,0,0.6);
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.7; transform: scale(0.9); }
-        }
-
-        .status-options {
+        .filters label {
             display: flex;
             flex-direction: column;
-            gap: 15px;
-        }
-
-        .status-option {
-            background: white;
-            border: 2px solid #e0e0e0;
-            border-radius: 12px;
-            padding: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .status-option:hover {
-            border-color: #667eea;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102,126,234,0.2);
-        }
-
-        .status-option.active {
-            border-color: #667eea;
-            background: #f0f3ff;
-        }
-
-        .status-option-dot {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            flex-shrink: 0;
-        }
-
-        .status-option-dot.available {
-            background: #00ff00;
-            box-shadow: 0 0 10px rgba(0,255,0,0.5);
-        }
-
-        .status-option-dot.busy {
-            background: #ff0000;
-            box-shadow: 0 0 10px rgba(255,0,0,0.5);
-        }
-
-        .status-option-dot.vacation {
-            background: #ffcc00;
-            box-shadow: 0 0 10px rgba(255,204,0,0.5);
-        }
-
-        .status-option-content {
-            flex: 1;
-        }
-
-        .status-option-title {
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 4px;
-            font-size: 16px;
-        }
-
-        .status-option-desc {
-            color: #666;
-            font-size: 13px;
-        }
-
-        .custom-text {
-            margin-top: 30px;
-        }
-
-        .custom-text h3 {
-            color: #333;
-            font-size: 14px;
-            margin-bottom: 15px;
+            font-size: 11px;
+            color: #888;
+            letter-spacing: 0.05em;
             text-transform: uppercase;
-            letter-spacing: 1px;
         }
-
-        .input-group {
-            margin-bottom: 15px;
-        }
-
-        .input-group label {
-            display: block;
-            color: #666;
+        .filters select, .filters input {
+            background: #0f0f14;
+            border: 1px solid #2e2e38;
+            color: #e6e6ec;
+            border-radius: 6px;
+            padding: 6px 10px;
             font-size: 13px;
-            margin-bottom: 8px;
-            font-weight: 500;
+            margin-top: 4px;
+            min-width: 120px;
         }
-
-        .input-group input {
-            width: 100%;
-            padding: 12px 16px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 14px;
-            transition: border-color 0.3s ease;
-        }
-
-        .input-group input:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-
-        .save-button {
-            width: 100%;
-            padding: 16px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+        .btn {
+            background: #6c8aff;
+            color: #0f0f14;
             border: none;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 6px;
             cursor: pointer;
-            margin-top: 30px;
-            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 13px;
+            align-self: flex-end;
         }
+        .btn:hover { background: #8aa3ff; }
+        .btn.ghost { background: transparent; color: #888; border: 1px solid #2e2e38; }
+        .btn.ghost:hover { color: #fff; }
 
-        .save-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(102,126,234,0.4);
+        /* ── Conversations ── */
+        .conv-list { display: flex; flex-direction: column; gap: 12px; }
+        .conv {
+            background: #16161e;
+            border: 1px solid #25252e;
+            border-radius: 10px;
+            padding: 16px 20px;
+            transition: border-color 0.15s;
         }
-
-        .save-button:active {
-            transform: translateY(0);
-        }
-
-        .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: white;
-            padding: 16px 24px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            display: none;
-            align-items: center;
-            gap: 12px;
-            animation: slideIn 0.3s ease;
-        }
-
-        .notification.show {
+        .conv.high-value { border-color: #ffb84d; box-shadow: 0 0 0 1px #ffb84d33; }
+        .conv-meta {
             display: flex;
+            gap: 16px;
+            font-size: 11px;
+            color: #888;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
         }
-
-        @keyframes slideIn {
-            from {
-                transform: translateX(400px);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
+        .conv-meta .pill {
+            background: #25252e;
+            padding: 2px 8px;
+            border-radius: 10px;
         }
-
-        .notification-icon {
-            width: 24px;
-            height: 24px;
-            background: #00ff00;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-        }
-
-        .back-link {
-            display: inline-block;
-            margin-top: 20px;
-            color: #667eea;
-            text-decoration: none;
+        .conv-meta .pill.signal { background: #ffb84d; color: #0f0f14; font-weight: 600; }
+        .conv-user, .conv-bot {
+            padding: 10px 14px;
+            border-radius: 8px;
+            margin-bottom: 8px;
             font-size: 14px;
-            transition: opacity 0.3s ease;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        .conv-user { background: #1f2233; border-left: 3px solid #6c8aff; }
+        .conv-bot { background: #1a1d24; border-left: 3px solid #555; color: #c0c0c8; }
+        .conv-role { font-size: 10px; color: #888; margin-bottom: 4px; letter-spacing: 0.1em; text-transform: uppercase; }
+
+        /* ── Top questions ── */
+        .top-q { display: flex; flex-direction: column; gap: 8px; }
+        .top-q-row {
+            background: #16161e;
+            border: 1px solid #25252e;
+            border-radius: 8px;
+            padding: 12px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+        .top-q-text { flex: 1; font-size: 14px; }
+        .top-q-count {
+            background: #6c8aff;
+            color: #0f0f14;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
         }
 
-        .back-link:hover {
-            opacity: 0.7;
+        /* ── Trends chart ── */
+        .chart-wrap {
+            background: #16161e;
+            border: 1px solid #25252e;
+            border-radius: 10px;
+            padding: 20px;
         }
+        canvas { display: block; width: 100%; height: 240px; }
+
+        /* ── Status manager (legacy) ── */
+        .status-card { background: #16161e; border: 1px solid #25252e; border-radius: 10px; padding: 24px; max-width: 520px; }
+        .status-card h2 { margin-bottom: 6px; font-size: 18px; }
+        .status-card .subtitle { color: #888; font-size: 13px; margin-bottom: 20px; }
+        .status-row {
+            display: flex; align-items: center; gap: 12px;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            background: #0f0f14;
+            border: 1px solid transparent;
+            margin-bottom: 8px;
+        }
+        .status-row.active { border-color: #6c8aff; }
+        .status-dot {
+            width: 12px; height: 12px; border-radius: 50%;
+            box-shadow: 0 0 8px currentColor;
+        }
+        .status-dot.available { background: #4ade80; color: #4ade80; }
+        .status-dot.busy { background: #f87171; color: #f87171; }
+        .status-dot.vacation { background: #fbbf24; color: #fbbf24; }
+        .input-group { margin: 16px 0 8px; }
+        .input-group label { display: block; font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px; }
+        .input-group input {
+            width: 100%; padding: 10px;
+            background: #0f0f14; border: 1px solid #2e2e38; color: #e6e6ec;
+            border-radius: 6px; font-size: 13px;
+        }
+
+        .empty { color: #666; text-align: center; padding: 48px 0; font-size: 14px; }
+        .loading { color: #888; text-align: center; padding: 24px; font-size: 13px; }
+        .error { color: #f87171; background: #2a1b1b; padding: 12px 16px; border-radius: 8px; font-size: 13px; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>状态管理</h1>
-        <p class="subtitle">选择你当前的工作状态</p>
-
-        <div class="current-status">
-            <h3>当前状态</h3>
-            <div class="status-display">
-                <span class="status-dot available" id="currentStatusDot"></span>
-                <span id="currentStatusText">Open for new projects</span>
-            </div>
+    <div class="topbar">
+        <h1>Aiden · Admin</h1>
+        <div class="right">
+            <span id="admin-email" style="color:#888;font-size:12px;"></span>
+            <a href="index.html">← Back to site</a>
         </div>
+    </div>
 
-        <div class="status-options">
-            <div class="status-option active" data-status="available">
-                <div class="status-option-dot available"></div>
-                <div class="status-option-content">
-                    <div class="status-option-title">🟢 可接单</div>
-                    <div class="status-option-desc">我正在寻找新的项目机会</div>
-                </div>
-            </div>
+    <div class="tabs">
+        <div class="tab active" data-tab="overview">Overview</div>
+        <div class="tab" data-tab="conversations">Conversations</div>
+        <div class="tab" data-tab="top">Top Questions</div>
+        <div class="tab" data-tab="trends">Trends</div>
+        <div class="tab" data-tab="status">Status</div>
+    </div>
 
-            <div class="status-option" data-status="busy">
-                <div class="status-option-dot busy"></div>
-                <div class="status-option-content">
-                    <div class="status-option-title">🔴 占用中</div>
-                    <div class="status-option-desc">我目前正在忙碌，暂时无法接单</div>
-                </div>
-            </div>
-
-            <div class="status-option" data-status="vacation">
-                <div class="status-option-dot vacation"></div>
-                <div class="status-option-content">
-                    <div class="status-option-title">🟡 休假中</div>
-                    <div class="status-option-desc">我正在休假，稍后会回复</div>
-                </div>
-            </div>
+    <!-- ─── Overview ─── -->
+    <div class="panel active" id="panel-overview">
+        <div class="stats-grid" id="stats-grid">
+            <div class="stat-card"><div class="stat-label">Total messages</div><div class="stat-value" id="stat-total">—</div></div>
+            <div class="stat-card"><div class="stat-label">Last 7 days</div><div class="stat-value" id="stat-7d">—</div></div>
+            <div class="stat-card"><div class="stat-label">Unique sessions</div><div class="stat-value" id="stat-sessions">—</div></div>
+            <div class="stat-card"><div class="stat-label">High-value signals</div><div class="stat-value accent" id="stat-signals">—</div></div>
         </div>
+        <div class="chart-wrap">
+            <div style="font-size:12px;color:#888;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px;">Last 30 days · daily messages</div>
+            <canvas id="trend-chart-mini"></canvas>
+        </div>
+    </div>
 
-        <div class="custom-text">
-            <h3>自定义状态文字</h3>
+    <!-- ─── Conversations ─── -->
+    <div class="panel" id="panel-conversations">
+        <div class="filters">
+            <label>Country
+                <select id="filter-country"><option value="">All</option></select>
+            </label>
+            <label>Language
+                <select id="filter-lang">
+                    <option value="">All</option>
+                    <option value="en">English</option>
+                    <option value="zh">中文</option>
+                </select>
+            </label>
+            <label>Since
+                <input type="date" id="filter-since">
+            </label>
+            <label>High-value only
+                <select id="filter-signal">
+                    <option value="">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </label>
+            <button class="btn" id="filter-apply">Apply</button>
+            <button class="btn ghost" id="filter-reset">Reset</button>
+        </div>
+        <div id="conv-container" class="conv-list">
+            <div class="loading">Loading…</div>
+        </div>
+    </div>
+
+    <!-- ─── Top Questions ─── -->
+    <div class="panel" id="panel-top">
+        <div id="top-container" class="top-q">
+            <div class="loading">Loading…</div>
+        </div>
+    </div>
+
+    <!-- ─── Trends ─── -->
+    <div class="panel" id="panel-trends">
+        <div class="chart-wrap">
+            <div style="font-size:12px;color:#888;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px;">Last 30 days</div>
+            <canvas id="trend-chart"></canvas>
+        </div>
+    </div>
+
+    <!-- ─── Status (legacy localStorage manager) ─── -->
+    <div class="panel" id="panel-status">
+        <div class="status-card">
+            <h2>Availability status</h2>
+            <p class="subtitle">Note: this stores locally in browser only. To make it live, edit status.json directly.</p>
+            <div class="status-row active" data-status="available">
+                <div class="status-dot available"></div>
+                <div><strong>Open for new projects</strong><div style="font-size:12px;color:#888;">Looking for opportunities</div></div>
+            </div>
+            <div class="status-row" data-status="busy">
+                <div class="status-dot busy"></div>
+                <div><strong>Currently busy</strong><div style="font-size:12px;color:#888;">Not taking new work right now</div></div>
+            </div>
+            <div class="status-row" data-status="vacation">
+                <div class="status-dot vacation"></div>
+                <div><strong>On vacation</strong><div style="font-size:12px;color:#888;">Will respond when back</div></div>
+            </div>
             <div class="input-group">
-                <label>英文文本</label>
+                <label>EN text</label>
                 <input type="text" id="statusTextEn" placeholder="Open for new projects">
             </div>
             <div class="input-group">
-                <label>中文文本</label>
+                <label>ZH text</label>
                 <input type="text" id="statusTextZh" placeholder="接受新项目">
             </div>
+            <button class="btn" onclick="saveStatus()" style="margin-top:16px;">Save (local only)</button>
+            <p id="status-saved-msg" style="display:none;margin-top:12px;color:#4ade80;font-size:13px;">Saved locally.</p>
         </div>
-
-        <button class="save-button" onclick="saveStatus()">保存设置</button>
-
-        <a href="index.html" class="back-link">← 返回主页</a>
-    </div>
-
-    <div class="notification" id="notification">
-        <div class="notification-icon">✓</div>
-        <span>状态已更新！</span>
     </div>
 
     <script>
-        let currentStatus = 'available';
+        // ─────────────────────────────────────────────────────────
+        // Config — Worker base URL (same origin used by chatbot)
+        // ─────────────────────────────────────────────────────────
+        const WORKER = 'https://ai.aidenyang.me';
 
-        // 加载当前状态
-        async function loadStatus() {
-            try {
-                const response = await fetch('status.json');
-                const data = await response.json();
-                currentStatus = data.status;
-
-                // 更新UI
-                document.getElementById('currentStatusDot').className = `status-dot ${currentStatus}`;
-                document.getElementById('currentStatusText').textContent = data.statusText.en;
-                document.getElementById('statusTextEn').value = data.statusText.en;
-                document.getElementById('statusTextZh').value = data.statusText.zh;
-
-                // 更新选中状态
-                document.querySelectorAll('.status-option').forEach(option => {
-                    option.classList.toggle('active', option.dataset.status === currentStatus);
-                });
-            } catch (error) {
-                console.error('Failed to load status:', error);
-            }
-        }
-
-        // 点击状态选项
-        document.querySelectorAll('.status-option').forEach(option => {
-            option.addEventListener('click', function() {
-                currentStatus = this.dataset.status;
-
-                // 更新选中状态
-                document.querySelectorAll('.status-option').forEach(opt => {
-                    opt.classList.remove('active');
-                });
-                this.classList.add('active');
-
-                // 更新当前状态显示
-                document.getElementById('currentStatusDot').className = `status-dot ${currentStatus}`;
-
-                // 更新默认文本
-                const defaultTexts = {
-                    available: {
-                        en: 'Open for new projects',
-                        zh: '接受新项目'
-                    },
-                    busy: {
-                        en: 'Currently busy',
-                        zh: '目前忙碌中'
-                    },
-                    vacation: {
-                        en: 'On vacation',
-                        zh: '休假中'
-                    }
-                };
-
-                if (!document.getElementById('statusTextEn').value) {
-                    document.getElementById('statusTextEn').value = defaultTexts[currentStatus].en;
-                }
-                if (!document.getElementById('statusTextZh').value) {
-                    document.getElementById('statusTextZh').value = defaultTexts[currentStatus].zh;
-                }
+        // Tab switching
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+                tab.classList.add('active');
+                document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+                if (tab.dataset.tab === 'conversations' && !window.convLoaded) loadConversations();
+                if (tab.dataset.tab === 'top' && !window.topLoaded) loadTop();
+                if (tab.dataset.tab === 'trends' && !window.trendsLoaded) loadTrends();
             });
         });
 
-        // 保存状态
-        async function saveStatus() {
-            const statusData = {
-                status: currentStatus,
-                statusText: {
-                    en: document.getElementById('statusTextEn').value || 'Open for new projects',
-                    zh: document.getElementById('statusTextZh').value || '接受新项目'
-                }
-            };
+        // ─── API helper ────────────────────────────────────────────
+        async function api(path) {
+            // Cloudflare Access cookies are sent automatically with credentials: 'include'
+            const res = await fetch(WORKER + path, { credentials: 'include' });
+            if (!res.ok) {
+                const t = await res.text();
+                throw new Error(`${res.status} ${t.slice(0, 200)}`);
+            }
+            return res.json();
+        }
 
+        // ─── Overview ──────────────────────────────────────────────
+        async function loadOverview() {
             try {
-                // 注意：由于浏览器安全限制，直接写入文件需要后端支持
-                // 这里我们使用 localStorage 作为临时方案
-                localStorage.setItem('portfolioStatus', JSON.stringify(statusData));
-
-                // 显示通知
-                const notification = document.getElementById('notification');
-                notification.classList.add('show');
-                setTimeout(() => {
-                    notification.classList.remove('show');
-                }, 3000);
-
-                console.log('Status saved:', statusData);
-                console.log('请将以下内容保存到 status.json 文件：');
-                console.log(JSON.stringify(statusData, null, 2));
-
-            } catch (error) {
-                console.error('Failed to save status:', error);
-                alert('保存失败，请检查控制台');
+                const stats = await api('/admin/stats');
+                document.getElementById('stat-total').textContent    = stats.total_messages;
+                document.getElementById('stat-7d').textContent       = stats.last_7_days;
+                document.getElementById('stat-sessions').textContent = stats.unique_sessions;
+                document.getElementById('stat-signals').textContent  = stats.high_value;
+                const t = await api('/admin/trends?days=30');
+                drawChart('trend-chart-mini', t.trends);
+            } catch (e) {
+                document.getElementById('stats-grid').insertAdjacentHTML('beforebegin',
+                    `<div class="error">Failed to load: ${e.message}. Check Cloudflare Access login and worker deployment.</div>`);
             }
         }
 
-        // 页面加载时读取状态
+        // ─── Conversations ─────────────────────────────────────────
+        async function loadConversations() {
+            window.convLoaded = true;
+            const c = document.getElementById('conv-container');
+            c.innerHTML = '<div class="loading">Loading…</div>';
+            const params = new URLSearchParams();
+            const country = document.getElementById('filter-country').value;
+            const lang = document.getElementById('filter-lang').value;
+            const since = document.getElementById('filter-since').value;
+            if (country) params.set('country', country);
+            if (lang) params.set('lang', lang);
+            if (since) params.set('since', since);
+            params.set('limit', '200');
+            try {
+                const { conversations } = await api('/admin/conversations?' + params);
+                const signalOnly = document.getElementById('filter-signal').value === '1';
+                const filtered = signalOnly ? conversations.filter(x => x.signal_tags) : conversations;
+                renderConversations(filtered);
+                populateCountryFilter(conversations);
+            } catch (e) {
+                c.innerHTML = `<div class="error">${e.message}</div>`;
+            }
+        }
+
+        function populateCountryFilter(rows) {
+            const sel = document.getElementById('filter-country');
+            if (sel.options.length > 1) return; // already populated
+            const seen = new Set();
+            rows.forEach(r => { if (r.country) seen.add(r.country); });
+            [...seen].sort().forEach(c => {
+                const o = document.createElement('option');
+                o.value = c; o.textContent = c;
+                sel.appendChild(o);
+            });
+        }
+
+        function renderConversations(rows) {
+            const c = document.getElementById('conv-container');
+            if (!rows.length) { c.innerHTML = '<div class="empty">No conversations yet.</div>'; return; }
+            c.innerHTML = rows.map(r => {
+                const isHigh = !!r.signal_tags;
+                const signals = (r.signal_tags || '').split(',').filter(Boolean);
+                const time = new Date(r.created_at + 'Z').toLocaleString();
+                return `
+                    <div class="conv ${isHigh ? 'high-value' : ''}">
+                        <div class="conv-meta">
+                            <span>${escapeHtml(time)}</span>
+                            <span class="pill">${escapeHtml(r.country || '??')}${r.city ? ' · ' + escapeHtml(r.city) : ''}</span>
+                            <span class="pill">${escapeHtml(r.language || '?')}</span>
+                            <span class="pill">${escapeHtml(r.provider || '')}</span>
+                            <span class="pill" style="opacity:0.6;">session ${escapeHtml(String(r.session_id).slice(0,8))}</span>
+                            ${signals.map(s => `<span class="pill signal">${escapeHtml(s)}</span>`).join('')}
+                        </div>
+                        <div class="conv-role">User</div>
+                        <div class="conv-user">${escapeHtml(r.user_msg)}</div>
+                        <div class="conv-role">AI Aiden</div>
+                        <div class="conv-bot">${escapeHtml(r.bot_reply)}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        document.getElementById('filter-apply').addEventListener('click', loadConversations);
+        document.getElementById('filter-reset').addEventListener('click', () => {
+            document.getElementById('filter-country').value = '';
+            document.getElementById('filter-lang').value = '';
+            document.getElementById('filter-since').value = '';
+            document.getElementById('filter-signal').value = '';
+            loadConversations();
+        });
+
+        // ─── Top Questions ─────────────────────────────────────────
+        async function loadTop() {
+            window.topLoaded = true;
+            const c = document.getElementById('top-container');
+            try {
+                const { top_questions } = await api('/admin/top-questions?limit=40');
+                if (!top_questions.length) { c.innerHTML = '<div class="empty">Not enough data yet.</div>'; return; }
+                c.innerHTML = top_questions.map(q => `
+                    <div class="top-q-row">
+                        <div class="top-q-text">${escapeHtml(q.sample)}</div>
+                        <div class="top-q-count">${q.n}×</div>
+                    </div>
+                `).join('');
+            } catch (e) {
+                c.innerHTML = `<div class="error">${e.message}</div>`;
+            }
+        }
+
+        // ─── Trends ────────────────────────────────────────────────
+        async function loadTrends() {
+            window.trendsLoaded = true;
+            try {
+                const { trends } = await api('/admin/trends?days=30');
+                drawChart('trend-chart', trends);
+            } catch (e) {
+                document.getElementById('panel-trends').insertAdjacentHTML('afterbegin',
+                    `<div class="error">${e.message}</div>`);
+            }
+        }
+
+        function drawChart(canvasId, data) {
+            const canvas = document.getElementById(canvasId);
+            const dpr = window.devicePixelRatio || 1;
+            const W = canvas.clientWidth, H = canvas.clientHeight;
+            canvas.width = W * dpr; canvas.height = H * dpr;
+            const ctx = canvas.getContext('2d');
+            ctx.scale(dpr, dpr);
+            ctx.clearRect(0, 0, W, H);
+
+            if (!data || !data.length) {
+                ctx.fillStyle = '#666'; ctx.font = '13px sans-serif'; ctx.textAlign = 'center';
+                ctx.fillText('No data yet', W/2, H/2);
+                return;
+            }
+
+            const padding = { top: 20, right: 16, bottom: 28, left: 32 };
+            const plotW = W - padding.left - padding.right;
+            const plotH = H - padding.top - padding.bottom;
+            const max = Math.max(...data.map(d => d.n), 1);
+
+            // Y axis
+            ctx.strokeStyle = '#25252e';
+            ctx.fillStyle = '#666';
+            ctx.font = '10px sans-serif';
+            for (let i = 0; i <= 4; i++) {
+                const y = padding.top + (plotH / 4) * i;
+                ctx.beginPath(); ctx.moveTo(padding.left, y); ctx.lineTo(W - padding.right, y); ctx.stroke();
+                ctx.textAlign = 'right';
+                ctx.fillText(Math.round(max - (max / 4) * i), padding.left - 4, y + 3);
+            }
+
+            // Line
+            ctx.strokeStyle = '#6c8aff';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            const stepX = data.length > 1 ? plotW / (data.length - 1) : plotW;
+            data.forEach((d, i) => {
+                const x = padding.left + stepX * i;
+                const y = padding.top + plotH - (d.n / max) * plotH;
+                if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+            });
+            ctx.stroke();
+
+            // Dots + labels
+            ctx.fillStyle = '#6c8aff';
+            data.forEach((d, i) => {
+                const x = padding.left + stepX * i;
+                const y = padding.top + plotH - (d.n / max) * plotH;
+                ctx.beginPath(); ctx.arc(x, y, 3, 0, Math.PI*2); ctx.fill();
+            });
+
+            // X labels (first, middle, last)
+            ctx.fillStyle = '#666';
+            ctx.textAlign = 'center';
+            [0, Math.floor(data.length/2), data.length-1].forEach(i => {
+                if (!data[i]) return;
+                const x = padding.left + stepX * i;
+                ctx.fillText(data[i].day.slice(5), x, H - 8);
+            });
+        }
+
+        // ─── Status manager (legacy local-only) ────────────────────
+        let currentStatus = 'available';
+        document.querySelectorAll('.status-row').forEach(row => {
+            row.addEventListener('click', () => {
+                document.querySelectorAll('.status-row').forEach(r => r.classList.remove('active'));
+                row.classList.add('active');
+                currentStatus = row.dataset.status;
+            });
+        });
+
+        async function loadStatus() {
+            try {
+                const r = await fetch('status.json'); const data = await r.json();
+                currentStatus = data.status;
+                document.getElementById('statusTextEn').value = data.statusText?.en || '';
+                document.getElementById('statusTextZh').value = data.statusText?.zh || '';
+                document.querySelectorAll('.status-row').forEach(row => {
+                    row.classList.toggle('active', row.dataset.status === currentStatus);
+                });
+            } catch (e) {}
+        }
+        function saveStatus() {
+            const payload = {
+                status: currentStatus,
+                statusText: {
+                    en: document.getElementById('statusTextEn').value || 'Open for new projects',
+                    zh: document.getElementById('statusTextZh').value || '接受新项目',
+                }
+            };
+            localStorage.setItem('portfolioStatus', JSON.stringify(payload));
+            const msg = document.getElementById('status-saved-msg');
+            msg.style.display = 'block';
+            setTimeout(() => msg.style.display = 'none', 2500);
+            console.log('Paste this into status.json:', JSON.stringify(payload, null, 2));
+        }
+
+        function escapeHtml(s) {
+            return String(s ?? '').replace(/[&<>"']/g, c => ({
+                '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+            }[c]));
+        }
+
+        // Try to surface Access-authenticated email if Cloudflare exposes it
+        // (Access also sets a CF_Authorization cookie we don't read directly here)
         loadStatus();
+        loadOverview();
     </script>
 </body>
 </html>

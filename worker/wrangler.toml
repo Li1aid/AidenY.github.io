@@ -1,3 +1,20 @@
 name = "aiden-portfolio-ai"
 main = "src/index.js"
 compatibility_date = "2024-12-01"
+
+# D1 database — stores AI chatbot conversations for 30 days
+[[d1_databases]]
+binding = "DB"
+database_name = "aiden-portfolio-chats"
+database_id = "59d3d605-4fb7-4416-847e-922acdba5c5a"
+
+# Daily cleanup at 03:00 UTC — hard-delete rows older than 30 days
+[triggers]
+crons = ["0 3 * * *"]
+
+# Admin access — set this to your own email so the worker can verify
+# the Cloudflare Access JWT identity on /admin/* routes.
+# Set via: wrangler secret put ADMIN_EMAIL
+# Or in dashboard: Workers & Pages → aiden-portfolio-ai → Settings → Variables
+[vars]
+ADMIN_EMAIL = "aidenyang5995@gmail.com"

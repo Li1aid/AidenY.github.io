@@ -88,8 +88,35 @@ ${knowledgeBase}
 
 const CORS_HEADERS = {
   "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Methods": "POST, OPTIONS",
-  "Access-Control-Allow-Headers": "Content-Type",
+  "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+  "Access-Control-Allow-Headers": "Content-Type, Cf-Access-Jwt-Assertion",
+};
+
+// Keywords that flag a conversation as "high-value lead signal".
+// Matched case-insensitive against the user's message.
+const SIGNAL_GROUPS = {
+  hire: [
+    "hire", "hiring", "recruit", "recruiting", "intern", "internship",
+    "job", "opportunity", "opportunit", "collaborate", "collaboration",
+    "freelance", "contract", "work with", "work together", "join",
+    "招聘", "合作", "项目合作", "实习", "全职", "兼职", "找工作",
+  ],
+  contact: [
+    "contact", "email", "reach you", "reach out", "dm", "linkedin",
+    "whatsapp", "wechat", "phone", "get in touch",
+    "联系", "联系方式", "邮箱", "微信", "添加",
+  ],
+  pricing: [
+    "price", "pricing", "rate", "rates", "quote", "budget", "cost",
+    "how much", "fee", "charge",
+    "报价", "费用", "价格", "预算", "多少钱", "怎么收费",
+  ],
+  portfolio_deep: [
+    "process", "methodology", "case study", "design system",
+    "deliverable", "deliverables", "research method", "user testing",
+    "wireframe", "prototype",
+    "设计过程", "设计流程", "方法论", "交付", "案例", "用户研究",
+  ],
 };
 
 export default {
@@ -98,6 +125,14 @@ export default {
       return new Response(null, { headers: CORS_HEADERS });
     }
 
+    const url = new URL(request.url);
+
+    // ── Admin routes (protected by Cloudflare Access) ─────────────────────
+    if (url.pathname.startsWith("/admin/")) {
+      return handleAdmin(request, env, url);
+    }
+
+    // ── Chat route ───────────────────────────────────────────────────────
     if (request.method !== "POST") {
       return json({ error: "Method not allowed" }, 405);
     }
@@ -121,21 +156,171 @@ export default {
 
     // Detect mainland China. cf.country comes from Cloudflare's geo-IP.
     // ?force=cn or ?force=us in the URL overrides for testing.
-    const url = new URL(request.url);
     const force = url.searchParams.get("force");
     const country = force ? force.toUpperCase() : (request.cf?.country ?? "");
+    const city = request.cf?.city ?? "";
     const useDeepSeek = country === "CN";
 
     try {
       const reply = useDeepSeek
         ? await callDeepSeek(env, trimmed)
         : await callAnthropic(env, trimmed);
+
+      // Log to D1 — never let logging failure break the chat experience
+      try {
+        const lastUserMsg = [...trimmed].reverse().find((m) => m.role === "user");
+        if (lastUserMsg && env.DB) {
+          const userMsg = lastUserMsg.content;
+          const sessionId = String(body.session_id ?? "").slice(0, 64) || "anon";
+          const language = detectLanguage(userMsg);
+          const signalTags = detectSignals(userMsg).join(",");
+          const referer = request.headers.get("Referer") ?? "";
+          const ua = request.headers.get("User-Agent") ?? "";
+
+          await env.DB.prepare(
+            `INSERT INTO conversations
+             (session_id, user_msg, bot_reply, language, country, city, provider, signal_tags, referer, user_agent)
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+          )
+            .bind(
+              sessionId,
+              userMsg.slice(0, 4000),
+              String(reply).slice(0, 8000),
+              language,
+              country,
+              city,
+              useDeepSeek ? "deepseek" : "anthropic",
+              signalTags,
+              referer.slice(0, 500),
+              ua.slice(0, 500)
+            )
+            .run();
+        }
+      } catch (logErr) {
+        // Swallow — we never want logging issues to surface to users.
+        console.error("D1 log failed:", logErr);
+      }
+
       return json({ reply, provider: useDeepSeek ? "deepseek" : "anthropic" });
     } catch (e) {
       return json({ error: "Upstream error", detail: String(e) }, 502);
     }
   },
+
+  // ── Scheduled handler: nightly hard-delete of rows >30 days old ────────
+  async scheduled(event, env, ctx) {
+    if (!env.DB) return;
+    const result = await env.DB.prepare(
+      `DELETE FROM conversations WHERE created_at < datetime('now', '-30 days')`
+    ).run();
+    console.log("Nightly cleanup:", result.meta);
+  },
 };
+
+// ─────────────────────────────────────────────────────────────────────────
+// Admin handlers (require Cloudflare Access JWT identity header)
+// ─────────────────────────────────────────────────────────────────────────
+
+function verifyAccess(request, env) {
+  // Cloudflare Access injects this header after a verified login.
+  // We trust it because the worker route is locked behind an Access policy.
+  const email = request.headers.get("Cf-Access-Authenticated-User-Email");
+  if (!email) return { ok: false, status: 401, reason: "No Access identity" };
+  if (env.ADMIN_EMAIL && email.toLowerCase() !== env.ADMIN_EMAIL.toLowerCase()) {
+    return { ok: false, status: 403, reason: "Forbidden" };
+  }
+  return { ok: true, email };
+}
+
+async function handleAdmin(request, env, url) {
+  const auth = verifyAccess(request, env);
+  if (!auth.ok) return json({ error: auth.reason }, auth.status);
+  if (!env.DB) return json({ error: "DB not bound" }, 500);
+
+  // GET /admin/conversations?limit=200&country=AU&lang=en&since=2026-01-01
+  if (url.pathname === "/admin/conversations" && request.method === "GET") {
+    const limit = Math.min(parseInt(url.searchParams.get("limit") ?? "200", 10) || 200, 1000);
+    const country = url.searchParams.get("country");
+    const lang = url.searchParams.get("lang");
+    const since = url.searchParams.get("since");
+
+    const where = [];
+    const params = [];
+    if (country) { where.push("country = ?"); params.push(country); }
+    if (lang)    { where.push("language = ?"); params.push(lang); }
+    if (since)   { where.push("created_at >= ?"); params.push(since); }
+    const whereClause = where.length ? `WHERE ${where.join(" AND ")}` : "";
+
+    const { results } = await env.DB.prepare(
+      `SELECT id, session_id, created_at, user_msg, bot_reply, language, country, city, provider, signal_tags
+       FROM conversations
+       ${whereClause}
+       ORDER BY created_at DESC
+       LIMIT ?`
+    ).bind(...params, limit).all();
+
+    return json({ conversations: results });
+  }
+
+  // GET /admin/stats — summary numbers for the dashboard header
+  if (url.pathname === "/admin/stats" && request.method === "GET") {
+    const totalRow = await env.DB.prepare(
+      `SELECT COUNT(*) AS total FROM conversations`
+    ).first();
+    const last7 = await env.DB.prepare(
+      `SELECT COUNT(*) AS n FROM conversations WHERE created_at >= datetime('now','-7 days')`
+    ).first();
+    const sessions = await env.DB.prepare(
+      `SELECT COUNT(DISTINCT session_id) AS n FROM conversations`
+    ).first();
+    const signals = await env.DB.prepare(
+      `SELECT COUNT(*) AS n FROM conversations WHERE signal_tags != ''`
+    ).first();
+    return json({
+      total_messages: totalRow?.total ?? 0,
+      last_7_days: last7?.n ?? 0,
+      unique_sessions: sessions?.n ?? 0,
+      high_value: signals?.n ?? 0,
+    });
+  }
+
+  // GET /admin/trends?days=30 — daily message counts
+  if (url.pathname === "/admin/trends" && request.method === "GET") {
+    const days = Math.min(parseInt(url.searchParams.get("days") ?? "30", 10) || 30, 90);
+    const { results } = await env.DB.prepare(
+      `SELECT DATE(created_at) AS day, COUNT(*) AS n
+       FROM conversations
+       WHERE created_at >= datetime('now', ?)
+       GROUP BY DATE(created_at)
+       ORDER BY day ASC`
+    ).bind(`-${days} days`).all();
+    return json({ trends: results });
+  }
+
+  // GET /admin/top-questions?limit=30 — aggregated by simple normalization
+  if (url.pathname === "/admin/top-questions" && request.method === "GET") {
+    const limit = Math.min(parseInt(url.searchParams.get("limit") ?? "30", 10) || 30, 100);
+    // Normalize: lowercase + first 60 chars. Crude but effective at this scale.
+    const { results } = await env.DB.prepare(
+      `SELECT
+         LOWER(SUBSTR(TRIM(user_msg), 1, 60)) AS bucket,
+         COUNT(*) AS n,
+         MAX(language) AS language,
+         MAX(user_msg) AS sample
+       FROM conversations
+       GROUP BY bucket
+       ORDER BY n DESC, bucket
+       LIMIT ?`
+    ).bind(limit).all();
+    return json({ top_questions: results });
+  }
+
+  return json({ error: "Not found" }, 404);
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// LLM upstreams
+// ─────────────────────────────────────────────────────────────────────────
 
 async function callAnthropic(env, messages) {
   const res = await fetch("https://api.anthropic.com/v1/messages", {
@@ -180,6 +365,24 @@ async function callDeepSeek(env, messages) {
   if (!res.ok) throw new Error(`DeepSeek ${res.status}: ${await res.text()}`);
   const data = await res.json();
   return data.choices?.[0]?.message?.content ?? "";
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// Helpers
+// ─────────────────────────────────────────────────────────────────────────
+
+function detectLanguage(text) {
+  // Anything with a CJK character → zh; else en. Good enough for tagging.
+  return /[一-鿿]/.test(text) ? "zh" : "en";
+}
+
+function detectSignals(text) {
+  const lower = text.toLowerCase();
+  const hit = [];
+  for (const [group, words] of Object.entries(SIGNAL_GROUPS)) {
+    if (words.some((w) => lower.includes(w))) hit.push(group);
+  }
+  return hit;
 }
 
 function json(obj, status = 200) {

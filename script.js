@@ -991,7 +991,22 @@ class AIChatbot {
     constructor() {
         this.history = [];
         this.busy = false;
+        this.sessionId = this.getOrCreateSessionId();
         this.initUI();
+    }
+
+    getOrCreateSessionId() {
+        try {
+            let id = sessionStorage.getItem('aiden-chat-session');
+            if (!id) {
+                id = (crypto.randomUUID && crypto.randomUUID()) ||
+                     `s_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 10)}`;
+                sessionStorage.setItem('aiden-chat-session', id);
+            }
+            return id;
+        } catch (e) {
+            return `s_${Date.now().toString(36)}`;
+        }
     }
 
     getLang() {
@@ -1111,7 +1126,7 @@ class AIChatbot {
             const res = await fetch(CHATBOT_WORKER_URL, {
                 method: 'POST',
                 headers: { 'content-type': 'application/json' },
-                body: JSON.stringify({ messages: this.history }),
+                body: JSON.stringify({ messages: this.history, session_id: this.sessionId }),
             });
             thinking.remove();
             if (!res.ok) {
