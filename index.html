@@ -126,28 +126,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Press+Start+2P&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js" defer></script>
     <link rel="stylesheet" href="style.css">
-    <script>
-        // Hide loader before paint if user has already seen it this session
-        (function () {
-            try {
-                if (sessionStorage.getItem('aiden-visited') === '1') {
-                    document.documentElement.classList.add('skip-intro');
-                }
-            } catch (e) {}
-        })();
-    </script>
-    <style>
-        html.skip-intro .loader { display: none !important; }
-        html.skip-intro .main-nav { opacity: 1 !important; transform: none !important; }
-        html.skip-intro .title-line-1,
-        html.skip-intro .title-line-2 { opacity: 1 !important; }
-        html.skip-intro .hero-info-grid,
-        html.skip-intro .info-column { opacity: 1 !important; transform: none !important; }
-    </style>
 </head>
 
 <body>
@@ -174,23 +157,6 @@
         <a href="#skills" class="page-nav-dot" data-label="Skills"></a>
         <a href="#contact" class="page-nav-dot" data-label="Contact"></a>
     </nav>
-
-    <!-- Loading Screen -->
-    <div class="loader">
-        <div class="loader-content">
-            <div class="loader-text">
-                <span class="loader-letter">A</span>
-                <span class="loader-letter">I</span>
-                <span class="loader-letter">D</span>
-                <span class="loader-letter">E</span>
-                <span class="loader-letter">N</span>
-            </div>
-            <div class="loader-bar">
-                <div class="loader-progress"></div>
-            </div>
-            <div class="loader-percent">0%</div>
-        </div>
-    </div>
 
     <!-- Navigation -->
     <nav class="main-nav">

@@ -327,45 +327,8 @@ function updateActiveNav() {
 // ========================================
 
 function initLoader() {
-    const loaderProgress = document.querySelector('.loader-progress');
-    const loaderPercent = document.querySelector('.loader-percent');
-    const loader = document.querySelector('.loader');
-
-    if (!loaderProgress || !loaderPercent || !loader) return;
-
-    // Skip loader + intro animations after the first visit in this session.
-    // sessionStorage clears when the browser/tab session ends, so the loader
-    // plays again on a genuinely new visit but not on back-navigation or refresh.
-    const alreadyVisited = sessionStorage.getItem('aiden-visited') === '1';
-    if (alreadyVisited) {
-        loader.style.display = 'none';
-        initAnimations({ skipIntro: true });
-        return;
-    }
-
-    let progress = 0;
-    const interval = setInterval(() => {
-        progress += Math.random() * 10;
-        if (progress > 100) progress = 100;
-
-        loaderProgress.style.width = progress + '%';
-        loaderPercent.textContent = Math.floor(progress) + '%';
-
-        if (progress >= 100) {
-            clearInterval(interval);
-            setTimeout(() => {
-                gsap.to(loader, {
-                    opacity: 0,
-                    duration: 0.5,
-                    onComplete: () => {
-                        loader.style.display = 'none';
-                        sessionStorage.setItem('aiden-visited', '1');
-                        initAnimations({ skipIntro: false });
-                    }
-                });
-            }, 500);
-        }
-    }, 100);
+    // Loader markup was removed. Kick off animations directly.
+    initAnimations({ skipIntro: false });
 }
 
 // ========================================
