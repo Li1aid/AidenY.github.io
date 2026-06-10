@@ -101,7 +101,7 @@
     font-family: 'Rajdhani', sans-serif;
     font-size: 11px;
     letter-spacing: 0.2em;
-    color: #6c8aff;
+    color: #ffffff;
     text-transform: uppercase;
     margin-bottom: 14px;
 }
@@ -170,7 +170,7 @@
 .feature-num {
     font-family: 'Orbitron', sans-serif;
     font-size: 12px;
-    color: #4ade80;
+    color: #888888;
     letter-spacing: 0.22em;
     margin-bottom: 14px;
     opacity: 0.75;
@@ -264,7 +264,7 @@
     transition: all 0.15s; font-family: inherit; font-weight: 500;
     font-size: 12px;
 }
-.demo-ccy.active { background: #6c8aff; color: #0a0a12; }
+.demo-ccy.active { background: #ffffff; color: #0a0a12; }
 .demo-ccy:not(.active):hover { background: #1f1f2c; color: #e6e6ec; }
 
 .demo-btn-primary, .demo-btn-ghost {
@@ -273,9 +273,9 @@
     transition: all 0.15s;
 }
 .demo-btn-primary {
-    background: #6c8aff; color: #0a0a12; border: 1px solid #6c8aff;
+    background: #ffffff; color: #0a0a12; border: 1px solid #ffffff;
 }
-.demo-btn-primary:hover { background: #8aa3ff; border-color: #8aa3ff; }
+.demo-btn-primary:hover { background: #cccccc; border-color: #cccccc; }
 .demo-btn-primary:disabled { opacity: 0.55; cursor: progress; }
 .demo-btn-ghost {
     background: transparent; color: #aaa; border: 1px solid #25252e;
@@ -408,7 +408,7 @@
     font-family: ui-monospace, monospace;
 }
 .demo-cursor::after {
-    content: '▍'; color: #6c8aff; animation: blink 0.9s infinite;
+    content: '▍'; color: #ffffff; animation: blink 0.9s infinite;
 }
 @keyframes blink { 50% { opacity: 0; } }
 
@@ -479,11 +479,11 @@
     font-family: inherit; font-variant-numeric: tabular-nums;
 }
 .demo-log-form button {
-    background: #6c8aff; color: #0a0a12; border: none;
+    background: #ffffff; color: #0a0a12; border: none;
     border-radius: 6px; padding: 7px 14px; font-size: 12.5px;
     font-weight: 500; cursor: pointer;
 }
-.demo-log-form button:hover { background: #8aa3ff; }
+.demo-log-form button:hover { background: #cccccc; }
 
 /* ── Monthly buy/sell stats ──────────────── */
 .demo-month-stats {
@@ -512,7 +512,7 @@
 }
 .demo-news-tag {
     font-family: ui-monospace, monospace; font-size: 9.5px;
-    color: #6c8aff; letter-spacing: 0.1em; text-transform: uppercase;
+    color: #ffffff; letter-spacing: 0.1em; text-transform: uppercase;
 }
 .demo-news-title {
     color: #e6e6ec; font-size: 13px; margin-top: 4px; line-height: 1.4;

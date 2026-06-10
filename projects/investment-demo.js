@@ -247,10 +247,10 @@
 
         svg.innerHTML = `
             ${grid}
-            <path d="${areaFor(cnyData)}" fill="#6c8aff" fill-opacity="0.08"/>
-            <path d="${areaFor(audData)}" fill="#ffb84d" fill-opacity="0.06"/>
-            <path d="${pathFor(cnyData)}" stroke="#6c8aff" stroke-width="1.7" fill="none"/>
-            <path d="${pathFor(audData)}" stroke="#ffb84d" stroke-width="1.5" fill="none" stroke-dasharray="3 3" stroke-opacity="0.85"/>
+            <path d="${areaFor(cnyData)}" fill="#ffffff" fill-opacity="0.08"/>
+            <path d="${areaFor(audData)}" fill="#888888" fill-opacity="0.06"/>
+            <path d="${pathFor(cnyData)}" stroke="#ffffff" stroke-width="1.7" fill="none"/>
+            <path d="${pathFor(audData)}" stroke="#888888" stroke-width="1.5" fill="none" stroke-dasharray="3 3" stroke-opacity="0.85"/>
             ${xLabels}
         `;
     }

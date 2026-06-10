@@ -103,7 +103,9 @@ class ParticleSystem {
     }
 
     init() {
-        const particleCount = Math.floor((this.canvas.width * this.canvas.height) / 8000);
+        // Lower density on small screens — the O(n²) connection pass is heavy on mobile
+        const density = window.innerWidth < 768 ? 18000 : 8000;
+        const particleCount = Math.floor((this.canvas.width * this.canvas.height) / density);
 
         for (let i = 0; i < particleCount; i++) {
             this.particles.push({
@@ -687,14 +689,18 @@ function initSmoothScroll() {
 
             const target = document.querySelector(targetId);
             if (target) {
-                gsap.to(window, {
-                    duration: 1.5,
-                    scrollTo: {
-                        y: target,
-                        offsetY: 0
-                    },
-                    ease: 'power3.inOut'
-                });
+                if (typeof gsap !== 'undefined' && gsap.core.globals().ScrollToPlugin) {
+                    gsap.to(window, {
+                        duration: 1.5,
+                        scrollTo: {
+                            y: target,
+                            offsetY: 0
+                        },
+                        ease: 'power3.inOut'
+                    });
+                } else {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
             }
         });
     });
@@ -757,11 +763,47 @@ function initMagneticButtons() {
     });
 }
 
+// Touch / no-hover devices: skip mouse-only effects entirely
+const isTouchDevice = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+
+function initMobileMenu() {
+    const burger = document.getElementById('navBurger');
+    const navLinks = document.querySelector('.nav-links');
+    if (!burger || !navLinks) return;
+
+    const close = () => {
+        navLinks.classList.remove('open');
+        burger.classList.remove('active');
+        burger.setAttribute('aria-expanded', 'false');
+    };
+
+    burger.addEventListener('click', () => {
+        const open = navLinks.classList.toggle('open');
+        burger.classList.toggle('active', open);
+        burger.setAttribute('aria-expanded', String(open));
+    });
+
+    // Close after choosing a destination
+    navLinks.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', close);
+    });
+
+    // Close when tapping outside the nav
+    document.addEventListener('click', (e) => {
+        if (navLinks.classList.contains('open') && !e.target.closest('.main-nav')) {
+            close();
+        }
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     initLoader();
     new MatrixRain();
     new ParticleSystem();
-    new CustomCursor();
+    if (!isTouchDevice) {
+        new CustomCursor();
+    }
+    initMobileMenu();
 
     window.addEventListener('scroll', () => {
         updateScrollProgress();
@@ -770,7 +812,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     initSmoothScroll();
     initParallax();
-    initMagneticButtons();
+    if (!isTouchDevice) {
+        initMagneticButtons();
+    }
 
     window.addEventListener('scroll', () => {
         if (window.scrollY > 100) {

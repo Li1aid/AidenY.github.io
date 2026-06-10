@@ -1,72 +1,67 @@
-# Aiden Yang - Portfolio Website
+# aidenyang.me
 
-A bilingual (EN/中文) portfolio website showcasing design and technology projects.
+Personal portfolio of **Xuejian (Aiden) Yang** — Sydney-based design engineer & AIGC creator.
 
-## Features
+Live at **[aidenyang.me](https://aidenyang.me)** · Bilingual (EN / 中文)
 
--  **Modern Design** - Clean, minimalist interface with smooth animations
--  **Bilingual** - Seamless switching between English and Chinese
--  **AI Chatbot** - Interactive chatbot powered by Google Gemini API (integration pending)
--  **Responsive** - Fully responsive across all devices
--  **Performance** - Optimized with GSAP animations and particle effects
+## Architecture
 
-## Projects
+- **Static site** — plain HTML/CSS/JS, hosted on GitHub Pages (this repo), custom domain via `CNAME`
+- **AI chatbot** — Cloudflare Worker (`worker/`) at `ai.aidenyang.me`, proxying the Anthropic API
+  - Knowledge base: `knowledge.md` (single source of truth for what the bot can say)
+  - Conversation log: Cloudflare D1, auto-purged after 30 days (cron)
+  - Admin dashboard on `/admin/*`, protected by Cloudflare Access
+- **Animations** — GSAP + ScrollTrigger, canvas particle effects
+- **Availability badge** — driven by `status.json`, editable from the worker admin panel
 
-1. **CoLab** - Learning platform for international design students
-2. **Vivid Sydney Hyper Experience** - Vision Pro spatial design project
-3. **ANNO** - Smart health companion system for older adults
-4. **Whisperfield** - ADHD-focused immersive meditation experience
+## Structure
 
-## Tech Stack
-
-- HTML5 / CSS3 / JavaScript (ES6+)
-- GSAP 3.12.2 (Animation)
-- Canvas API (Particle Effects)
-- Google Gemini API (AI Chatbot - pending integration)
-
-## Local Development
-
-1. Clone this repository
-2. Open `index.html` in your browser
-3. No build process required!
-
-## Deployment
-
-This site is designed for GitHub Pages deployment:
-
-1. Push to GitHub repository
-2. Enable GitHub Pages in repository settings
-3. Select `main` branch as source
-4. Your site will be live at `https://[username].github.io/[repository]`
-
-## Customization
-
-### Adding Gemini API Key
-
-To enable the AI chatbot:
-
-1. Get your API key from [Google AI Studio](https://makersuite.google.com/)
-2. In `script.js`, find the `AIChatbot` class
-3. Set `this.apiKey = 'YOUR_API_KEY'`
-
-### Changing Languages
-
-All bilingual content uses `data-en` and `data-zh` attributes. To add new content:
-
-```html
-<element data-en="English Text" data-zh="中文文本">English Text</element>
+```
+index.html, style.css, script.js   # homepage
+projects/                          # case-study pages (one html/css/js set per project)
+Assets/                            # images used by the site
+worker/                            # Cloudflare Worker source (deployed separately)
+knowledge.md                       # chatbot knowledge base
+sitemap.xml, robots.txt            # SEO
 ```
 
-## License
+## Projects on the site
 
-© 2024 Aiden Yang. All rights reserved.
+1. **This Portfolio** — the site itself as a vibecoding case study
+2. **Investment Assistant** — private portfolio tracker (Flask + SQLite + Cloudflare Tunnel)
+3. **CoLab** — hybrid learning platform for international design students
+4. **vividXperience** — Vision Pro spatial experience for Vivid Sydney
+5. **ANNO** — companion health robot for older adults
+6. **Whisperfield** — ADHD-focused immersive meditation installation
+
+## Development
+
+Static site: open `index.html` in a browser — no build step.
+
+Worker:
+
+```bash
+cd worker
+npm install
+npx wrangler dev      # local
+npx wrangler deploy   # production
+```
+
+The Anthropic API key is set via `wrangler secret put`, never committed.
+
+## Bilingual content
+
+All translatable elements carry `data-en` / `data-zh` attributes:
+
+```html
+<element data-en="English text" data-zh="中文文本">English text</element>
+```
 
 ## Contact
 
-- Email: [your-email]
-- LinkedIn: [your-linkedin]
-- GitHub: [your-github]
+- Email: aidenyang5995@gmail.com
+- LinkedIn: [aiden-yang-ty](https://www.linkedin.com/in/aiden-yang-ty)
 
 ---
 
-Built with ❤️ by Aiden Yang
+© 2026 Xuejian (Aiden) Yang. All rights reserved.
