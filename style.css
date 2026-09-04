@@ -7,8 +7,7 @@
            Font Imports
            ======================================== */
 
-        /* Chinese Pixel Font - Zpix */
-        @import url('https://cdn.jsdelivr.net/npm/zpix-pixel-font@latest/dist/zpix.css');
+        /* Chinese Pixel Font - Zpix: loaded lazily by script.js when the language is switched to Chinese */
 
         /* ========================================
            CSS Variables & Reset

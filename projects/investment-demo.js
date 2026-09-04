@@ -32,10 +32,10 @@
 
     // ── Bilingual strings ────────────────────────────────────────
     const STRINGS = {
-        priceUpdated:    { en: 'Prices updated just now · 1 AUD = 4.72 CNY', zh: '行情更新于刚刚 · 1 AUD = 4.72 CNY' },
+        priceUpdated:    { en: 'Prices updated just now · 1 AUD = 4.72 CNY', zh: '行情刚刚更新 · 1 AUD = 4.72 CNY' },
         cost:            { en: 'Cost',  zh: '成本' },
         pnl:             { en: 'P&L',   zh: '盈亏' },
-        emptyLog:        { en: 'No actions yet.', zh: '暂无操作。' },
+        emptyLog:        { en: 'No actions yet.', zh: '还没有记录。' },
         sideBuy:         { en: 'BUY', zh: '买入' },
         sideSell:        { en: 'SELL', zh: '卖出' },
         days: {
@@ -44,13 +44,13 @@
         },
         calFoot: {
             en: (win, loss, total) => `${win} green days · ${loss} red days · month ${total}`,
-            zh: (win, loss, total) => `${win} 个盈利日 · ${loss} 个亏损日 · 本月 ${total}`,
+            zh: (win, loss, total) => `盈利 ${win} 天 · 亏损 ${loss} 天 · 本月 ${total}`,
         },
         dateLabels: {
             d5:    { en: '5d ago', zh: '5 天前' },
             d4:    { en: '4d ago', zh: '4 天前' },
             d2:    { en: '2d ago', zh: '2 天前' },
-            today: { en: 'today', zh: '今日' },
+            today: { en: 'today', zh: '今天' },
             now:   { en: 'just now', zh: '刚刚' },
         },
     };

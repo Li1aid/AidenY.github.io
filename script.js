@@ -104,7 +104,7 @@ class ParticleSystem {
 
     init() {
         // Lower density on small screens — the O(n²) connection pass is heavy on mobile
-        const density = window.innerWidth < 768 ? 18000 : 8000;
+        const density = window.innerWidth < 768 ? 22000 : 13000;
         const particleCount = Math.floor((this.canvas.width * this.canvas.height) / density);
 
         for (let i = 0; i < particleCount; i++) {
@@ -118,6 +118,26 @@ class ParticleSystem {
                 hue: Math.random() * 60 + 180,
                 wobble: Math.random() * Math.PI * 2
             });
+        }
+        this.buildSprites();
+    }
+
+    // One cached glow sprite per hue bucket — replaces createRadialGradient() on every particle every frame
+    buildSprites() {
+        this.sprites = [];
+        const R = 16;
+        for (let b = 0; b < 6; b++) {
+            const hue = 180 + b * 10 + 5;
+            const c = document.createElement('canvas');
+            c.width = c.height = R * 2;
+            const g = c.getContext('2d');
+            const grad = g.createRadialGradient(R, R, 0, R, R, R);
+            grad.addColorStop(0, `hsla(${hue}, 70%, 70%, 1)`);
+            grad.addColorStop(0.5, `hsla(${hue}, 60%, 60%, 0.5)`);
+            grad.addColorStop(1, 'rgba(255, 255, 255, 0)');
+            g.fillStyle = grad;
+            g.beginPath(); g.arc(R, R, R, 0, Math.PI * 2); g.fill();
+            this.sprites.push(c);
         }
     }
 
@@ -192,44 +212,48 @@ class ParticleSystem {
             if (particle.y > this.canvas.height + 10) particle.y = -10;
 
             const pulse = Math.sin(this.time + i * 0.1) * 0.3 + 0.7;
-
-            const gradient = this.ctx.createRadialGradient(
-                particle.x, particle.y, 0,
-                particle.x, particle.y, particle.size * 2
-            );
-            gradient.addColorStop(0, `hsla(${particle.hue}, 70%, 70%, ${particle.opacity * pulse})`);
-            gradient.addColorStop(0.5, `hsla(${particle.hue}, 60%, 60%, ${particle.opacity * pulse * 0.5})`);
-            gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
-
-            this.ctx.beginPath();
-            this.ctx.arc(particle.x, particle.y, particle.size * pulse, 0, Math.PI * 2);
-            this.ctx.fillStyle = gradient;
-            this.ctx.fill();
-
-            this.particles.forEach((otherParticle, j) => {
-                if (i >= j) return;
-
-                const dx2 = particle.x - otherParticle.x;
-                const dy2 = particle.y - otherParticle.y;
-                const distance2 = Math.sqrt(dx2 * dx2 + dy2 * dy2);
-
-                if (distance2 < 150) {
-                    const opacity = 0.3 * (1 - distance2 / 150);
-                    const avgHue = (particle.hue + otherParticle.hue) / 2;
-
-                    this.ctx.beginPath();
-                    this.ctx.strokeStyle = `hsla(${avgHue}, 60%, 60%, ${opacity})`;
-                    this.ctx.lineWidth = 1;
-                    this.ctx.moveTo(particle.x, particle.y);
-                    this.ctx.lineTo(otherParticle.x, otherParticle.y);
-                    this.ctx.stroke();
-                }
-            });
+            const r = particle.size * 2 * pulse;
+            const sprite = this.sprites[Math.min(5, Math.floor((particle.hue - 180) / 10))];
+            this.ctx.globalAlpha = particle.opacity * pulse;
+            this.ctx.drawImage(sprite, particle.x - r, particle.y - r, r * 2, r * 2);
         });
+        this.ctx.globalAlpha = 1;
 
-        requestAnimationFrame(() => this.animate());
+        // Connections: cheap bounding-box reject, squared distance, and one stroke per alpha bucket
+        const LINK = 150, LINK2 = LINK * LINK, BUCKETS = 4;
+        const paths = [];
+        for (let b = 0; b < BUCKETS; b++) paths.push(new Path2D());
+        const ps = this.particles, n = ps.length;
+        for (let i = 0; i < n; i++) {
+            const a = ps[i];
+            for (let j = i + 1; j < n; j++) {
+                const c = ps[j];
+                const dx = a.x - c.x; if (dx > LINK || dx < -LINK) continue;
+                const dy = a.y - c.y; if (dy > LINK || dy < -LINK) continue;
+                const d2 = dx * dx + dy * dy;
+                if (d2 >= LINK2) continue;
+                const t = 1 - Math.sqrt(d2) / LINK;           // 0..1, stronger when closer
+                const bucket = Math.min(BUCKETS - 1, Math.floor(t * BUCKETS));
+                paths[bucket].moveTo(a.x, a.y);
+                paths[bucket].lineTo(c.x, c.y);
+            }
+        }
+        this.ctx.lineWidth = 1;
+        for (let b = 0; b < BUCKETS; b++) {
+            const alpha = 0.3 * ((b + 0.5) / BUCKETS);
+            this.ctx.strokeStyle = `hsla(210, 60%, 60%, ${alpha})`;
+            this.ctx.stroke(paths[b]);
+        }
+
+        if (!document.hidden) requestAnimationFrame(() => this.animate());
+        else this.paused = true;
     }
 }
+
+document.addEventListener('visibilitychange', () => {
+    const ps = window.__particleSystem;
+    if (ps && ps.paused && !document.hidden) { ps.paused = false; ps.animate(); }
+});
 
 // ========================================
 // Custom Cursor
@@ -799,7 +823,7 @@ function initMobileMenu() {
 document.addEventListener('DOMContentLoaded', () => {
     initLoader();
     new MatrixRain();
-    new ParticleSystem();
+    window.__particleSystem = new ParticleSystem();
     if (!isTouchDevice) {
         new CustomCursor();
     }
@@ -858,7 +882,16 @@ if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
 
 let currentLang = 'en';
 
+function ensureZpixFont() {
+    if (document.getElementById('zpix-font')) return;
+    const l = document.createElement('link');
+    l.id = 'zpix-font'; l.rel = 'stylesheet';
+    l.href = 'https://cdn.jsdelivr.net/npm/zpix-pixel-font@3.1.9/dist/zpix.css';
+    document.head.appendChild(l);
+}
+
 function switchLanguage(lang) {
+    if (lang === 'zh') ensureZpixFont();
     currentLang = lang;
 
     // Toggle body class for language-specific styling (e.g., Chinese pixel font)
@@ -1211,7 +1244,7 @@ async function loadAvailabilityStatus() {
             statusData = JSON.parse(localStatus);
         } else {
             // 如果没有 localStorage，则从 status.json 读取
-            const response = await fetch('status.json');
+            const response = await fetch('/status.json');
             statusData = await response.json();
         }
 

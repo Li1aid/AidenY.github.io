@@ -65,9 +65,9 @@
        acknowledges. Voice prompts pre-canned for elderly speech.
        ========================================================= */
     const meds = [
-        { id: 'morning', icon: '☀', name: 'Morning meds', name_zh: '早晨用药', time: '8:00 AM', taken: false },
-        { id: 'noon',    icon: '◐', name: 'Lunch meds',   name_zh: '午餐用药', time: '12:30 PM', taken: false },
-        { id: 'evening', icon: '☾', name: 'Evening meds', name_zh: '晚间用药', time: '7:00 PM', taken: false },
+        { id: 'morning', icon: '☀', name: 'Morning meds', name_zh: '早上的药', time: '8:00 AM', taken: false },
+        { id: 'noon',    icon: '◐', name: 'Lunch meds',   name_zh: '中午的药', time: '12:30 PM', taken: false },
+        { id: 'evening', icon: '☾', name: 'Evening meds', name_zh: '晚上的药', time: '7:00 PM', taken: false },
     ];
 
     function renderMeds() {
@@ -119,7 +119,7 @@
         clearInterval(sosTimer);
         sosCount = 10;
         panelEyebrow.dataset.en = 'ANOMALY DETECTED';
-        panelEyebrow.dataset.zh = '检测到异常';
+        panelEyebrow.dataset.zh = '发现异常';
         panelEyebrow.textContent = 'ANOMALY DETECTED';
         panelTitle.textContent = 'Heart rate spike — checking in';
         setBpm(132);
@@ -190,7 +190,7 @@
        ========================================================= */
     function renderDispenser() {
         panelEyebrow.dataset.en = 'DISPENSER';
-        panelEyebrow.dataset.zh = '智能药盒';
+        panelEyebrow.dataset.zh = '药盒';
         panelEyebrow.textContent = 'DISPENSER';
         panelTitle.textContent = 'Preparing your morning dose';
         setMode('idle');
@@ -246,7 +246,7 @@
 
     function renderEmotion() {
         panelEyebrow.dataset.en = 'EMOTIONAL FEEDBACK';
-        panelEyebrow.dataset.zh = '情感反馈';
+        panelEyebrow.dataset.zh = '情绪反馈';
         panelEyebrow.textContent = 'EMOTIONAL FEEDBACK';
         panelTitle.textContent = 'How is Anno feeling today?';
         setBpm(72);
@@ -316,7 +316,7 @@
 
     function renderPrivacy(view = 'user') {
         panelEyebrow.dataset.en = 'PRIVACY VIEWS';
-        panelEyebrow.dataset.zh = '隐私视图';
+        panelEyebrow.dataset.zh = '隐私视角';
         panelEyebrow.textContent = 'PRIVACY VIEWS';
         panelTitle.textContent = 'Same data, different lenses';
         setMode('idle');
