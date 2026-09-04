@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary SEO -->
+    <title>Gynaecology Research Dashboard — An AI Literature Radar | Xuejian (Aiden) Yang, Sydney</title>
+    <meta name="description" content="A daily literature radar built for a medical researcher: dual-route PubMed retrieval, 26 society and news sources, Claude grading every paper into a structured reading card. Case study by Xuejian (Aiden) Yang.">
+    <meta name="keywords" content="research dashboard, PubMed, literature monitoring, Claude API, medical research tool, Python, AI pipeline, Aiden Yang, Xuejian Yang, vibecoding">
+    <meta name="author" content="Xuejian (Aiden) Yang · 杨雪健">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://aidenyang.me/projects/gyn-dashboard.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://aidenyang.me/projects/gyn-dashboard.html">
+    <meta property="og:title" content="Gynaecology Research Dashboard — An AI Literature Radar | Aiden Yang">
+    <meta property="og:description" content="Dual-route PubMed retrieval + 26 sources, Claude grades every paper A/B/C and writes a structured reading card. Built for one researcher, in daily use.">
+    <meta property="og:image" content="https://aidenyang.me/Assets/gyn-dashboard.svg">
+    <meta property="og:site_name" content="Aiden Yang Portfolio">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Press+Start+2P&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="project.css">
+    <link rel="stylesheet" href="this-site.css">
+</head>
+
+<body class="project-page">
+    <canvas id="particles-canvas"></canvas>
+    <div class="grid-background"></div>
+
+    <div class="cursor"><div class="cursor-glow"></div></div>
+    <div class="cursor-dot"></div>
+
+    <nav class="project-nav">
+        <a href="../index.html#showcase" class="project-nav-btn project-nav-back">
+            <span class="arrow">←</span>
+            <span data-en="Back to Works" data-zh="返回作品">Back to Works</span>
+        </a>
+        <button class="lang-toggle" id="langToggle">
+            <span class="lang-option active" data-lang="en">EN</span>
+            <span class="lang-divider">/</span>
+            <span class="lang-option" data-lang="zh">中</span>
+        </button>
+        <a href="../index.html" class="project-nav-btn project-nav-home">
+            <span data-en="Visit Main Site" data-zh="进入主页">Visit Main Site</span>
+            <span class="arrow">→</span>
+        </a>
+    </nav>
+
+    <!-- ─── Hero ─── -->
+    <section class="project-hero">
+        <div class="project-hero-inner">
+            <div class="project-tagline" data-en="RESEARCH TOOL · AI PIPELINE · 2026" data-zh="科研工具 · AI 流水线 · 2026">RESEARCH TOOL · AI PIPELINE · 2026</div>
+            <h1 class="project-title-xl" data-en="Gyn Research Dashboard" data-zh="Gyn Research Dashboard">Gyn Research Dashboard</h1>
+            <p class="project-subtitle" data-en="A daily literature radar, built for one medical researcher." data-zh="一台每日文献雷达，为一位医学研究者定制。">
+                A daily literature radar, built for one medical researcher.
+            </p>
+
+            <div class="project-meta-grid">
+                <div class="meta-cell">
+                    <div class="meta-label" data-en="TYPE" data-zh="类型">TYPE</div>
+                    <div class="meta-value" data-en="AI research pipeline" data-zh="AI 科研流水线">AI research pipeline</div>
+                </div>
+                <div class="meta-cell">
+                    <div class="meta-label" data-en="YEAR" data-zh="年份">YEAR</div>
+                    <div class="meta-value">2026</div>
+                </div>
+                <div class="meta-cell">
+                    <div class="meta-label" data-en="STACK" data-zh="技术栈">STACK</div>
+                    <div class="meta-value" data-en="Python (stdlib only) · Claude" data-zh="Python（纯标准库）· Claude">Python (stdlib only) · Claude</div>
+                </div>
+                <div class="meta-cell">
+                    <div class="meta-label" data-en="STATUS" data-zh="状态">STATUS</div>
+                    <div class="meta-value" data-en="In daily use · single user" data-zh="日常使用 · 单用户">In daily use · single user</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-cover">
+            <img src="../Assets/gyn-dashboard.svg" alt="Gynaecology Research Dashboard — retrieval and grading pipeline">
+            <div class="project-cover-overlay"></div>
+        </div>
+    </section>
+
+    <!-- ─── What it does ─── -->
+    <section class="project-section bg-dark">
+        <div class="project-container">
+            <div class="section-eyebrow" data-en="WHAT IT DOES" data-zh="它做什么">WHAT IT DOES</div>
+            <h2 class="project-h2" data-en="It reads the field every morning." data-zh="它每天早上读完整个领域。">
+                It reads the field every morning.
+            </h2>
+            <p class="project-lead" data-en="Keeping up with gynaecology research means scanning dozens of journals and society feeds daily. This pipeline does the scanning, grading and summarising — the researcher opens one dashboard and reads only what earned that attention." data-zh="跟进妇科研究意味着每天扫几十本期刊和学会动态。这条流水线负责扫描、评级和总结——研究者只需打开一个面板，读那些真正值得注意的内容。">
+                Keeping up with gynaecology research means scanning dozens of journals and society feeds daily. This pipeline does the scanning, grading and summarising — the researcher opens one dashboard and reads only what earned that attention.
+            </p>
+
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-num">01</div>
+                    <h3 class="feature-title" data-en="Dual-route PubMed retrieval" data-zh="双路 PubMed 检索">Dual-route PubMed retrieval</h3>
+                    <p class="feature-body" data-en="A 51-journal whitelist route keeps the signal high — and a second route keyed on publication type catches guidelines and consensus statements wherever they're published, with a four-times-wider date window." data-zh="51 本期刊白名单路线保证信噪比——第二条按文献类型检索的路线负责抓指南和共识，无论发表在哪本期刊，且检索窗口放宽四倍。">A 51-journal whitelist route keeps the signal high — and a second route keyed on publication type catches guidelines and consensus statements wherever they're published, with a four-times-wider date window.</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-num">02</div>
+                    <h3 class="feature-title" data-en="26 sources beyond PubMed" data-zh="PubMed 之外的 26 个来源">26 sources beyond PubMed</h3>
+                    <p class="feature-body" data-en="18 RSS feeds, 6 society sitemaps (FIGO, ACOG, ASRM, NICE, ESGO, ESMO) and 2 scraped guideline pages. The same story from eight outlets is clustered semantically — by text similarity, not URL — keeping only the best-ranked version." data-zh="18 个 RSS 源、6 个学会站点地图（FIGO、ACOG、ASRM、NICE、ESGO、ESMO）、2 个抓取的指南页。同一事件被八家媒体报道时按语义聚类——比文本相似度而不是 URL——只保留质量最高的那条。">18 RSS feeds, 6 society sitemaps (FIGO, ACOG, ASRM, NICE, ESGO, ESMO) and 2 scraped guideline pages. The same story from eight outlets is clustered semantically — by text similarity, not URL — keeping only the best-ranked version.</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-num">03</div>
+                    <h3 class="feature-title" data-en="Claude reads every paper" data-zh="Claude 读每一篇论文">Claude reads every paper</h3>
+                    <p class="feature-body" data-en="Each paper gets an A/B/C grade (or is filtered out) and a structured Chinese reading card — core question, design, results, limitations, next steps and more. When the item is a guideline, the card switches to version-diff analysis: what actually changed." data-zh="每篇论文得到 A/B/C 评级（或被过滤掉）和一张结构化中文阅读卡——核心问题、研究设计、主要结果、局限性、后续方向等。遇到指南类文献，卡片自动切换成版本对比分析：到底改了什么。">Each paper gets an A/B/C grade (or is filtered out) and a structured Chinese reading card — core question, design, results, limitations, next steps and more. When the item is a guideline, the card switches to version-diff analysis: what actually changed.</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-num">04</div>
+                    <h3 class="feature-title" data-en="One dashboard, every morning" data-zh="每天早上，一个面板">One dashboard, every morning</h3>
+                    <p class="feature-body" data-en="Four tabs — latest papers, academic news, weekly picks, favourites — with folder-and-tag organisation synced server-side, and a rotating top banner when something major lands. A scheduled job refreshes everything each morning at 8." data-zh="四个标签页——最新论文、学术动态、本周精选、收藏——收藏支持文件夹和标签、服务端同步；有重大更新时顶部横幅轮播提示。定时任务每天早上 8 点刷新全部内容。">Four tabs — latest papers, academic news, weekly picks, favourites — with folder-and-tag organisation synced server-side, and a rotating top banner when something major lands. A scheduled job refreshes everything each morning at 8.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── Architecture (interactive) ─── -->
+    <section class="project-section bg-medium">
+        <div class="project-container">
+            <div class="section-eyebrow" data-en="THE ARCHITECTURE" data-zh="系统架构">THE ARCHITECTURE</div>
+            <h2 class="project-h2" data-en="A pipeline with zero dependencies." data-zh="一条零依赖的流水线。">
+                A pipeline with zero dependencies.
+            </h2>
+            <p class="project-lead this-site-arch-intro" data-en="Two Python scripts, standard library only — no frameworks, no packages to rot. They fetch, Claude grades, flat JSON stores, a tiny server serves one HTML file. Tap a node to see why each piece is the way it is." data-zh="两个只用标准库的 Python 脚本——没有框架、没有会腐烂的依赖包。它们负责抓取，Claude 负责评级，扁平 JSON 负责存储，一个小服务器托管一个 HTML 文件。点击节点看每一块为什么长这样。">
+                Two Python scripts, standard library only — no frameworks, no packages to rot. They fetch, Claude grades, flat JSON stores, a tiny server serves one HTML file. Tap a node to see why each piece is the way it is.
+            </p>
+
+            <div class="arch-interactive" id="arch-diagram">
+                <div class="arch-stage">
+                    <svg viewBox="0 0 800 450" class="arch-svg" id="arch-svg">
+                        <defs>
+                            <linearGradient id="archLine" x1="0" y1="0" x2="1" y2="0">
+                                <stop offset="0" stop-color="#ffffff" stop-opacity="0"/>
+                                <stop offset="0.5" stop-color="#ffffff" stop-opacity="0.85"/>
+                                <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+                            </linearGradient>
+                            <filter id="archGlow" x="-15%" y="-15%" width="130%" height="130%">
+                                <feGaussianBlur stdDeviation="1.2" result="b"/>
+                                <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                            </filter>
+                        </defs>
+
+                        <g stroke="#1f1f2c" stroke-width="1" opacity="0.3">
+                            <path d="M0 150 H800 M0 300 H800"/>
+                            <path d="M200 0 V450 M400 0 V450 M600 0 V450"/>
+                        </g>
+
+                        <!-- Lines -->
+                        <line class="arch-line arch-line-fetch" x1="190" y1="115" x2="270" y2="180" stroke="url(#archLine)" stroke-width="1.5"/>
+                        <line class="arch-line arch-line-fetch" x1="190" y1="330" x2="270" y2="260" stroke="url(#archLine)" stroke-width="1.5"/>
+                        <line class="arch-line arch-line-grade" x1="430" y1="190" x2="500" y2="120" stroke="url(#archLine)" stroke-width="1.5"/>
+                        <line class="arch-line arch-line-store" x1="430" y1="245" x2="510" y2="300" stroke="url(#archLine)" stroke-width="1.5"/>
+                        <line class="arch-line arch-line-serve" x1="640" y1="320" x2="690" y2="250" stroke="url(#archLine)" stroke-width="1.5"/>
+
+                        <!-- Nodes -->
+                        <g class="arch-node" data-node="pubmed" filter="url(#archGlow)">
+                            <rect x="30" y="70" width="160" height="66" rx="8" fill="#16161e" stroke="#888" stroke-width="1"/>
+                            <text x="110" y="98" text-anchor="middle" fill="#aaa" font-family="ui-monospace, monospace" font-size="11">PubMed × 2</text>
+                            <text x="110" y="118" text-anchor="middle" fill="#888" font-family="ui-monospace, monospace" font-size="8" letter-spacing="0.08em">WHITELIST + GUIDELINE</text>
+                        </g>
+
+                        <g class="arch-node" data-node="sources" filter="url(#archGlow)">
+                            <rect x="30" y="290" width="160" height="66" rx="8" fill="#16161e" stroke="#888" stroke-width="1"/>
+                            <text x="110" y="318" text-anchor="middle" fill="#aaa" font-family="ui-monospace, monospace" font-size="11">26 sources</text>
+                            <text x="110" y="338" text-anchor="middle" fill="#888" font-family="ui-monospace, monospace" font-size="8" letter-spacing="0.08em">RSS · SITEMAP · HTML</text>
+                        </g>
+
+                        <g class="arch-node" data-node="fetchers" filter="url(#archGlow)">
+                            <rect x="270" y="180" width="160" height="76" rx="10" fill="#16161e" stroke="#ffffff" stroke-width="1.5"/>
+                            <text x="350" y="208" text-anchor="middle" fill="#e6e6ec" font-family="ui-monospace, monospace" font-size="12">2 scripts</text>
+                            <text x="350" y="226" text-anchor="middle" fill="#888" font-family="ui-monospace, monospace" font-size="8" letter-spacing="0.08em">PYTHON · STDLIB ONLY</text>
+                            <text x="350" y="244" text-anchor="middle" fill="#aaa" font-family="ui-monospace, monospace" font-size="8.5">papers · news</text>
+                        </g>
+
+                        <g class="arch-node" data-node="claude" filter="url(#archGlow)">
+                            <rect x="500" y="60" width="180" height="66" rx="8" fill="#16161e" stroke="#ffffff" stroke-width="1.5"/>
+                            <text x="590" y="88" text-anchor="middle" fill="#e6e6ec" font-family="ui-monospace, monospace" font-size="12">Claude</text>
+                            <text x="590" y="108" text-anchor="middle" fill="#888" font-family="ui-monospace, monospace" font-size="8" letter-spacing="0.08em">GRADE · CARD · CLASSIFY</text>
+                        </g>
+
+                        <g class="arch-node" data-node="store" filter="url(#archGlow)">
+                            <rect x="510" y="290" width="130" height="66" rx="8" fill="#16161e" stroke="#888" stroke-width="1"/>
+                            <text x="575" y="318" text-anchor="middle" fill="#aaa" font-family="ui-monospace, monospace" font-size="11">flat JSON</text>
+                            <text x="575" y="338" text-anchor="middle" fill="#888" font-family="ui-monospace, monospace" font-size="8" letter-spacing="0.08em">DATA · NEWS · CACHES</text>
+                        </g>
+
+                        <g class="arch-node" data-node="dashboard" filter="url(#archGlow)">
+                            <rect x="640" y="180" width="140" height="70" rx="8" fill="#16161e" stroke="#ffffff" stroke-width="1.3"/>
+                            <text x="710" y="208" text-anchor="middle" fill="#e6e6ec" font-family="ui-monospace, monospace" font-size="11">dashboard</text>
+                            <text x="710" y="228" text-anchor="middle" fill="#888" font-family="ui-monospace, monospace" font-size="8" letter-spacing="0.08em">1 HTML · 4 TABS · :8765</text>
+                        </g>
+                    </svg>
+                </div>
+
+                <div class="arch-panel" id="arch-panel">
+                    <div class="arch-panel-content" data-node-detail="default">
+                        <div class="arch-panel-eyebrow" data-en="TIP" data-zh="提示">TIP</div>
+                        <h3 class="arch-panel-title" data-en="Tap a node" data-zh="点击任意节点">Tap a node</h3>
+                        <p data-en="Click on any block in the diagram to see what it does and why I picked it." data-zh="点击图里的任意方块，看它的职责，以及我为什么选它。">Click on any block in the diagram to see what it does and why I picked it.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── Decisions ─── -->
+    <section class="project-section bg-dark">
+        <div class="project-container">
+            <div class="section-eyebrow" data-en="DECISIONS" data-zh="设计取舍">DECISIONS</div>
+            <h2 class="project-h2" data-en="Three calls that shaped it." data-zh="三个决定了它形态的取舍。">
+                Three calls that shaped it.
+            </h2>
+
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-num">01</div>
+                    <h3 class="feature-title" data-en="A whitelist, plus a deliberate hole in it" data-zh="白名单，加一个故意留的洞">A whitelist, plus a deliberate hole in it</h3>
+                    <p class="feature-body" data-en="A journal whitelist maximises precision but structurally misses the one category that matters most: guidelines get published anywhere. The fix is a second query keyed on publication type that bypasses the whitelist, gets a wider window, and a synthetic tier so impact-factor sorting can't bury it." data-zh="期刊白名单最大化信噪比，但结构性地漏掉最重要的一类：指南什么期刊都可能发。解法是第二条按文献类型检索的查询，绕过白名单、放宽窗口，并给一个合成层级，让影响因子排序埋不掉它们。">A journal whitelist maximises precision but structurally misses the one category that matters most: guidelines get published anywhere. The fix is a second query keyed on publication type that bypasses the whitelist, gets a wider window, and a synthetic tier so impact-factor sorting can't bury it.</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-num">02</div>
+                    <h3 class="feature-title" data-en="Favourites moved off a third party" data-zh="收藏从第三方搬回自己手里">Favourites moved off a third party</h3>
+                    <p class="feature-body" data-en="Cross-device favourites first synced through GitHub Gist — which meant pasting a token on every device and parking a research library with a third party. I replaced it with a server-side store: one endpoint, atomic writes, 30 days of dated snapshots. Cost: offline now degrades to local-only." data-zh="跨设备收藏最初走 GitHub Gist 同步——每台设备都要贴 token，研究文库还寄存在第三方。后来换成服务端存储：一个端点、原子写入、保留 30 天快照。代价是：断网时降级为仅本地保存。">Cross-device favourites first synced through GitHub Gist — which meant pasting a token on every device and parking a research library with a third party. I replaced it with a server-side store: one endpoint, atomic writes, 30 days of dated snapshots. Cost: offline now degrades to local-only.</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-num">03</div>
+                    <h3 class="feature-title" data-en="Every AI dollar is cached and capped" data-zh="每一分 AI 开销都有缓存和上限">Every AI dollar is cached and capped</h3>
+                    <p class="feature-body" data-en="Each paper and news item is cached by its ID, written incrementally under a lock — a crash mid-run never loses paid analysis. A hard cap trims the list after tier-and-impact sorting, so the most valuable items are analysed first. The trade: changing a prompt means manually clearing caches." data-zh="每篇论文和新闻按 ID 缓存，加锁增量写入——运行中途崩溃也不会丢掉已付费的分析。硬性上限在按层级和影响因子排序后截断列表，最有价值的条目最先分析。代价是：改 prompt 需要手动清缓存。">Each paper and news item is cached by its ID, written incrementally under a lock — a crash mid-run never loses paid analysis. A hard cap trims the list after tier-and-impact sorting, so the most valuable items are analysed first. The trade: changing a prompt means manually clearing caches.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="project-end">
+        <a href="../index.html#showcase" class="project-end-link">
+            <span class="arrow">←</span>
+            <span data-en="Back to all works" data-zh="返回全部作品">Back to all works</span>
+        </a>
+    </section>
+
+    <script src="../script.js"></script>
+    <script src="gyn-dashboard.js"></script>
+    <script>
+        document.body.classList.add('loaded');
+        const loaderEl = document.querySelector('.loader');
+        if (loaderEl) loaderEl.remove();
+    </script>
+</body>
+</html>

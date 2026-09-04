@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary SEO -->
+    <title>Chunks 语块 — Learn English in Chunks | Xuejian (Aiden) Yang, Sydney</title>
+    <meta name="description" content="A language-learning app: type a Chinese sentence, Claude answers with natural English and extracts reusable phrases into spaced-repetition flashcards. PWA in daily use, native iOS in progress. Case study by Xuejian (Aiden) Yang.">
+    <meta name="keywords" content="Chunks, 语块, language learning app, spaced repetition, FSRS, SM-2, Claude API, Cloudflare Worker, D1, SwiftUI, PWA, Aiden Yang, Xuejian Yang">
+    <meta name="author" content="Xuejian (Aiden) Yang · 杨雪健">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://aidenyang.me/projects/chunks.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://aidenyang.me/projects/chunks.html">
+    <meta property="og:title" content="Chunks 语块 — Learn English in Chunks | Aiden Yang">
+    <meta property="og:description" content="Type a Chinese sentence, get natural English plus the reusable phrases as flashcards. Offline-first sync, SM-2 on PWA, FSRS on iOS.">
+    <meta property="og:image" content="https://aidenyang.me/Assets/chunks.svg">
+    <meta property="og:site_name" content="Aiden Yang Portfolio">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Press+Start+2P&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="project.css">
+    <link rel="stylesheet" href="this-site.css">
+</head>
+
+<body class="project-page">
+    <canvas id="particles-canvas"></canvas>
+    <div class="grid-background"></div>
+
+    <div class="cursor"><div class="cursor-glow"></div></div>
+    <div class="cursor-dot"></div>
+
+    <nav class="project-nav">
+        <a href="../index.html#showcase" class="project-nav-btn project-nav-back">
+            <span class="arrow">←</span>
+            <span data-en="Back to Works" data-zh="返回作品">Back to Works</span>
+        </a>
+        <button class="lang-toggle" id="langToggle">
+            <span class="lang-option active" data-lang="en">EN</span>
+            <span class="lang-divider">/</span>
+            <span class="lang-option" data-lang="zh">中</span>
+        </button>
+        <a href="../index.html" class="project-nav-btn project-nav-home">
+            <span data-en="Visit Main Site" data-zh="进入主页">Visit Main Site</span>
+            <span class="arrow">→</span>
+        </a>
+    </nav>
+
+    <!-- ─── Hero ─── -->
+    <section class="project-hero">
+        <div class="project-hero-inner">
+            <div class="project-tagline" data-en="LANGUAGE LEARNING · PWA + iOS · 2026" data-zh="语言学习 · PWA + iOS · 2026">LANGUAGE LEARNING · PWA + iOS · 2026</div>
+            <h1 class="project-title-xl">Chunks 语块</h1>
+            <p class="project-subtitle" data-en="Learn English in chunks — from sentences you actually wanted to say." data-zh="用语块学英语——从你真正想说出口的句子开始。">
+                Learn English in chunks — from sentences you actually wanted to say.
+            </p>
+
+            <div class="project-meta-grid">
+                <div class="meta-cell">
+                    <div class="meta-label" data-en="TYPE" data-zh="类型">TYPE</div>
+                    <div class="meta-value" data-en="PWA + native iOS" data-zh="PWA + 原生 iOS">PWA + native iOS</div>
+                </div>
+                <div class="meta-cell">
+                    <div class="meta-label" data-en="YEAR" data-zh="年份">YEAR</div>
+                    <div class="meta-value">2026</div>
+                </div>
+                <div class="meta-cell">
+                    <div class="meta-label" data-en="STACK" data-zh="技术栈">STACK</div>
+                    <div class="meta-value">JS · SwiftUI · Worker · D1</div>
+                </div>
+                <div class="meta-cell">
+                    <div class="meta-label" data-en="STATUS" data-zh="状态">STATUS</div>
+                    <div class="meta-value" data-en="PWA in daily use · iOS in progress" data-zh="PWA 日常使用中 · iOS 开发中">PWA in daily use · iOS in progress</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-cover">
+            <img src="../Assets/chunks.svg" alt="Chunks — sentence to flashcard pipeline">
+            <div class="project-cover-overlay"></div>
+        </div>
+    </section>
+
+    <!-- ─── What it does ─── -->
+    <section class="project-section bg-dark">
+        <div class="project-container">
+            <div class="section-eyebrow" data-en="WHAT IT DOES" data-zh="它做什么">WHAT IT DOES</div>
+            <h2 class="project-h2" data-en="Your own sentences become your deck." data-zh="你自己的句子，变成你自己的卡组。">
+                Your own sentences become your deck.
+            </h2>
+            <p class="project-lead" data-en="Vocabulary apps teach words you'll never use. Chunks starts from the sentence you just failed to say: type it in Chinese, get the natural English back, and the reusable phrases inside it become your flashcards — automatically." data-zh="背单词 app 教的词你可能永远用不上。Chunks 从你刚才没说出口的那句话开始：输入中文，拿到地道英文，句子里值得记的短语自动变成你的闪卡。">
+                Vocabulary apps teach words you'll never use. Chunks starts from the sentence you just failed to say: type it in Chinese, get the natural English back, and the reusable phrases inside it become your flashcards — automatically.
+            </p>
+
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-num">01</div>
+                    <h3 class="feature-title" data-en="Sentence in, chunks out" data-zh="句子进，语块出">Sentence in, chunks out</h3>
+                    <p class="feature-body" data-en="One Claude call per sentence returns a natural translation plus 1–4 reusable phrases, each saved as a card with its Chinese meaning and an example. If nothing is worth extracting, the whole sentence becomes the card." data-zh="每句话一次 Claude 调用，返回地道翻译加 1–4 个值得记忆的短语，每个都自动存成带中文释义和例句的卡片。没有值得提取的短语时，整句成卡。">One Claude call per sentence returns a natural translation plus 1–4 reusable phrases, each saved as a card with its Chinese meaning and an example. If nothing is worth extracting, the whole sentence becomes the card.</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-num">02</div>
+                    <h3 class="feature-title" data-en="Spaced repetition, twice" data-zh="两套间隔重复">Spaced repetition, twice</h3>
+                    <p class="feature-body" data-en="The PWA runs a deliberately simplified SM-2 with three grades. The iOS app runs full FSRS with a retrievability-sorted queue — and old SM-2 cards migrate into FSRS state instead of being reset. Swipes map to grades, so two gestures drive a four-grade algorithm." data-zh="PWA 跑一套刻意简化的三档 SM-2。iOS 跑完整的 FSRS，队列按预测记忆保持率排序——老的 SM-2 卡片会迁移进 FSRS 状态，而不是清零重来。滑动手势映射到评分，两个手势驱动四档算法。">The PWA runs a deliberately simplified SM-2 with three grades. The iOS app runs full FSRS with a retrievability-sorted queue — and old SM-2 cards migrate into FSRS state instead of being reset. Swipes map to grades, so two gestures drive a four-grade algorithm.</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-num">03</div>
+                    <h3 class="feature-title" data-en="Offline-first sync" data-zh="离线优先同步">Offline-first sync</h3>
+                    <p class="feature-body" data-en="Cards live on the device and sync through a Cloudflare Worker to D1: last-write-wins by timestamp, tombstones for deletes, 500 cards per batch — and the server enforces LWW again in its upsert, so a stale device can never clobber newer state." data-zh="卡片存在设备本地，经 Cloudflare Worker 同步到 D1：按时间戳"最后写入者胜"、删除用墓碑标记、每批 500 张——服务端在 upsert 里再校验一次 LWW，过期设备永远覆盖不掉新数据。">Cards live on the device and sync through a Cloudflare Worker to D1: last-write-wins by timestamp, tombstones for deletes, 500 cards per batch — and the server enforces LWW again in its upsert, so a stale device can never clobber newer state.</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-num">04</div>
+                    <h3 class="feature-title" data-en="One Worker, two AI providers" data-zh="一个 Worker，两个模型商">One Worker, two AI providers</h3>
+                    <p class="feature-body" data-en="The Worker holds the API keys server-side and proxies both Claude and DeepSeek. The iOS app picks the provider by device region — mainland devices get DeepSeek — because the target is the China App Store." data-zh="Worker 在服务端保管 API key，同时代理 Claude 和 DeepSeek。iOS 按设备地区选择模型商——大陆设备走 DeepSeek——因为目标是中国区 App Store。">The Worker holds the API keys server-side and proxies both Claude and DeepSeek. The iOS app picks the provider by device region — mainland devices get DeepSeek — because the target is the China App Store.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── Architecture (interactive) ─── -->
+    <section class="project-section bg-medium">
+        <div class="project-container">
+            <div class="section-eyebrow" data-en="THE ARCHITECTURE" data-zh="系统架构">THE ARCHITECTURE</div>
+            <h2 class="project-h2" data-en="Two clients, one thin backend." data-zh="两个客户端，一个极薄的后端。">
+                Two clients, one thin backend.
+            </h2>
+            <p class="project-lead this-site-arch-intro" data-en="A zero-build PWA and a SwiftUI iOS app share one Cloudflare Worker that does exactly three jobs: proxy the AI providers, guard the keys, and sync cards to D1. Tap a node to see why." data-zh="一个零构建的 PWA 和一个 SwiftUI iOS app，共享一个只做三件事的 Cloudflare Worker：代理模型、保管密钥、把卡片同步进 D1。点击节点看原因。">
+                A zero-build PWA and a SwiftUI iOS app share one Cloudflare Worker that does exactly three jobs: proxy the AI providers, guard the keys, and sync cards to D1. Tap a node to see why.
+            </p>
+
+            <div class="arch-interactive" id="arch-diagram">
+                <div class="arch-stage">
+                    <svg viewBox="0 0 800 450" class="arch-svg" id="arch-svg">
+                        <defs>
+                            <linearGradient id="archLine" x1="0" y1="0" x2="1" y2="0">
+                                <stop offset="0" stop-color="#ffffff" stop-opacity="0"/>
+                                <stop offset="0.5" stop-color="#ffffff" stop-opacity="0.85"/>
+                                <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+                            </linearGradient>
+                            <filter id="archGlow" x="-15%" y="-15%" width="130%" height="130%">
+                                <feGaussianBlur stdDeviation="1.2" result="b"/>
+                                <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                            </filter>
+                        </defs>
+
+                        <g stroke="#1f1f2c" stroke-width="1" opacity="0.3">
+                            <path d="M0 150 H800 M0 300 H800"/>
+                            <path d="M200 0 V450 M400 0 V450 M600 0 V450"/>
+                        </g>
+
+                        <!-- Lines -->
+                        <line class="arch-line arch-line-pwa" x1="220" y1="120" x2="330" y2="200" stroke="url(#archLine)" stroke-width="1.5"/>
+                        <line class="arch-line arch-line-ios" x1="220" y1="330" x2="330" y2="250" stroke="url(#archLine)" stroke-width="1.5"/>
+                        <line class="arch-line arch-line-llm" x1="520" y1="195" x2="600" y2="120" stroke="url(#archLine)" stroke-width="1.5"/>
+                        <line class="arch-line arch-line-sync" x1="520" y1="255" x2="600" y2="330" stroke="url(#archLine)" stroke-width="1.5"/>
+
+                        <!-- Nodes -->
+                        <g class="arch-node" data-node="pwa" filter="url(#archGlow)">
+                            <rect x="40" y="70" width="180" height="70" rx="8" fill="#16161e" stroke="#ffffff" stroke-width="1.5"/>
+                            <text x="130" y="99" text-anchor="middle" fill="#e6e6ec" font-family="ui-monospace, monospace" font-size="12">PWA</text>
+                            <text x="130" y="119" text-anchor="middle" fill="#888" font-family="ui-monospace, monospace" font-size="8.5" letter-spacing="0.1em">VANILLA JS · NO BUILD</text>
+                        </g>
+
+                        <g class="arch-node" data-node="ios" filter="url(#archGlow)">
+                            <rect x="40" y="290" width="180" height="70" rx="8" fill="#16161e" stroke="#ffffff" stroke-width="1.5" stroke-dasharray="5 4"/>
+                            <text x="130" y="319" text-anchor="middle" fill="#e6e6ec" font-family="ui-monospace, monospace" font-size="12">iOS app</text>
+                            <text x="130" y="339" text-anchor="middle" fill="#888" font-family="ui-monospace, monospace" font-size="8.5" letter-spacing="0.1em">SWIFTUI · IN PROGRESS</text>
+                        </g>
+
+                        <g class="arch-node" data-node="worker" filter="url(#archGlow)">
+                            <rect x="330" y="185" width="190" height="80" rx="10" fill="#16161e" stroke="#ffffff" stroke-width="1.5"/>
+                            <text x="425" y="215" text-anchor="middle" fill="#e6e6ec" font-family="ui-monospace, monospace" font-size="12">CF Worker</text>
+                            <text x="425" y="233" text-anchor="middle" fill="#888" font-family="ui-monospace, monospace" font-size="8.5" letter-spacing="0.1em">PROXY · KEYS · SYNC</text>
+                            <text x="425" y="251" text-anchor="middle" fill="#aaa" font-family="ui-monospace, monospace" font-size="8.5">token-gated routes</text>
+                        </g>
+
+                        <g class="arch-node" data-node="llm" filter="url(#archGlow)">
+                            <rect x="600" y="70" width="170" height="66" rx="8" fill="#16161e" stroke="#888" stroke-width="1"/>
+                            <text x="685" y="98" text-anchor="middle" fill="#aaa" font-family="ui-monospace, monospace" font-size="11">Claude · DeepSeek</text>
+                            <text x="685" y="118" text-anchor="middle" fill="#888" font-family="ui-monospace, monospace" font-size="8.5" letter-spacing="0.1em">BY DEVICE REGION</text>
+                        </g>
+
+                        <g class="arch-node" data-node="d1" filter="url(#archGlow)">
+                            <rect x="600" y="300" width="170" height="66" rx="8" fill="#16161e" stroke="#888" stroke-width="1"/>
+                            <text x="685" y="328" text-anchor="middle" fill="#aaa" font-family="ui-monospace, monospace" font-size="11">D1 Database</text>
+                            <text x="685" y="348" text-anchor="middle" fill="#888" font-family="ui-monospace, monospace" font-size="8.5" letter-spacing="0.1em">CARDS · LWW UPSERT</text>
+                        </g>
+                    </svg>
+                </div>
+
+                <div class="arch-panel" id="arch-panel">
+                    <div class="arch-panel-content" data-node-detail="default">
+                        <div class="arch-panel-eyebrow" data-en="TIP" data-zh="提示">TIP</div>
+                        <h3 class="arch-panel-title" data-en="Tap a node" data-zh="点击任意节点">Tap a node</h3>
+                        <p data-en="Click on any block in the diagram to see what it does and why I picked it." data-zh="点击图里的任意方块，看它的职责，以及我为什么选它。">Click on any block in the diagram to see what it does and why I picked it.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── Decisions ─── -->
+    <section class="project-section bg-dark">
+        <div class="project-container">
+            <div class="section-eyebrow" data-en="DECISIONS" data-zh="设计取舍">DECISIONS</div>
+            <h2 class="project-h2" data-en="Three calls that shaped it." data-zh="三个决定了它形态的取舍。">
+                Three calls that shaped it.
+            </h2>
+
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-num">01</div>
+                    <h3 class="feature-title" data-en="Last-write-wins over CRDT" data-zh="LWW 而不是 CRDT">Last-write-wins over CRDT</h3>
+                    <p class="feature-body" data-en="One user, multiple devices — the odds of editing the same card on two devices at once are tiny. LWW is three lines of merge code on each client plus one WHERE clause on the server. I accepted losing one side in that rare race, and skipped vector clocks entirely." data-zh="单用户、多设备——两台设备同时编辑同一张卡的概率极低。LWW 在每个客户端只是三行合并代码，服务端只是一个 WHERE 子句。我接受了极端竞态下丢一边更新的代价，彻底绕开了向量时钟。">One user, multiple devices — the odds of editing the same card on two devices at once are tiny. LWW is three lines of merge code on each client plus one WHERE clause on the server. I accepted losing one side in that rare race, and skipped vector clocks entirely.</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-num">02</div>
+                    <h3 class="feature-title" data-en="Soft deletes, because the cursor demands it" data-zh="软删除，是同步游标逼的">Soft deletes, because the cursor demands it</h3>
+                    <p class="feature-body" data-en="Sync pulls rows where updated_at is newer than the cursor. A hard delete produces no row — the other device would never find out. So deletion is a tombstone flag plus a timestamp bump, and the UI filters instead of the store. The cost: every query must exclude tombstones, forever." data-zh="同步是按 updated_at 比游标新来拉取的。硬删除不产生任何行——另一台设备永远不会知道。所以删除是墓碑标记加时间戳更新，由 UI 过滤而不是存储层。代价是：每个查询都要排除墓碑，永远如此。">Sync pulls rows where updated_at is newer than the cursor. A hard delete produces no row — the other device would never find out. So deletion is a tombstone flag plus a timestamp bump, and the UI filters instead of the store. The cost: every query must exclude tombstones, forever.</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-num">03</div>
+                    <h3 class="feature-title" data-en="I shipped auto-tagging, then killed it" data-zh="我上线了自动标签，然后删了它">I shipped auto-tagging, then killed it</h3>
+                    <p class="feature-body" data-en="Cards used to get an automatic scene tag. In real use the labels bent to sentence emotion — a neutral phrase tagged as 'worry' because the sentence felt anxious — and I found myself searching, never browsing by scene. Cut it from the iOS rewrite, and wrote a do-not-rebuild rule into the project doc." data-zh="卡片曾经会自动打场景标签。真实使用中标签总被整句情绪带偏——一个中性短语因为句子听着焦虑就被标成"担忧"——而且我发现自己只用搜索，从不按场景翻。iOS 重写时删掉了它，并在项目文档里写下"不要重做"的规则。">Cards used to get an automatic scene tag. In real use the labels bent to sentence emotion — a neutral phrase tagged as 'worry' because the sentence felt anxious — and I found myself searching, never browsing by scene. Cut it from the iOS rewrite, and wrote a do-not-rebuild rule into the project doc.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="project-end">
+        <a href="../index.html#showcase" class="project-end-link">
+            <span class="arrow">←</span>
+            <span data-en="Back to all works" data-zh="返回全部作品">Back to all works</span>
+        </a>
+    </section>
+
+    <script src="../script.js"></script>
+    <script src="chunks.js"></script>
+    <script>
+        document.body.classList.add('loaded');
+        const loaderEl = document.querySelector('.loader');
+        if (loaderEl) loaderEl.remove();
+    </script>
+</body>
+</html>

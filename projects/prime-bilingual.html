@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary SEO -->
+    <title>Prime Bilingual — Claude-Translated Subtitles for Prime Video | Xuejian (Aiden) Yang</title>
+    <meta name="description" content="A Chrome extension that intercepts Prime Video's subtitle stream and overlays Claude-translated bilingual subtitles in real time. Manifest V3, zero dependencies. Case study by Xuejian (Aiden) Yang.">
+    <meta name="keywords" content="Prime Bilingual, Chrome extension, Manifest V3, bilingual subtitles, Claude API, TTML, Prime Video, Aiden Yang, Xuejian Yang, vibecoding">
+    <meta name="author" content="Xuejian (Aiden) Yang · 杨雪健">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://aidenyang.me/projects/prime-bilingual.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://aidenyang.me/projects/prime-bilingual.html">
+    <meta property="og:title" content="Prime Bilingual — Claude-Translated Subtitles for Prime Video | Aiden Yang">
+    <meta property="og:description" content="Hooks the player's own subtitle stream, batch-translates a whole episode with Claude, and overlays English + Chinese in the player. Personal build, zero dependencies.">
+    <meta property="og:image" content="https://aidenyang.me/Assets/prime-bilingual.svg">
+    <meta property="og:site_name" content="Aiden Yang Portfolio">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Press+Start+2P&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="project.css">
+    <link rel="stylesheet" href="this-site.css">
+</head>
+
+<body class="project-page">
+    <canvas id="particles-canvas"></canvas>
+    <div class="grid-background"></div>
+
+    <div class="cursor"><div class="cursor-glow"></div></div>
+    <div class="cursor-dot"></div>
+
+    <nav class="project-nav">
+        <a href="../index.html#showcase" class="project-nav-btn project-nav-back">
+            <span class="arrow">←</span>
+            <span data-en="Back to Works" data-zh="返回作品">Back to Works</span>
+        </a>
+        <button class="lang-toggle" id="langToggle">
+            <span class="lang-option active" data-lang="en">EN</span>
+            <span class="lang-divider">/</span>
+            <span class="lang-option" data-lang="zh">中</span>
+        </button>
+        <a href="../index.html" class="project-nav-btn project-nav-home">
+            <span data-en="Visit Main Site" data-zh="进入主页">Visit Main Site</span>
+            <span class="arrow">→</span>
+        </a>
+    </nav>
+
+    <!-- ─── Hero ─── -->
+    <section class="project-hero">
+        <div class="project-hero-inner">
+            <div class="project-tagline" data-en="CHROME EXTENSION · PERSONAL TOOL · 2026" data-zh="CHROME 扩展 · 个人工具 · 2026">CHROME EXTENSION · PERSONAL TOOL · 2026</div>
+            <h1 class="project-title-xl">Prime Bilingual</h1>
+            <p class="project-subtitle" data-en="Bilingual subtitles for Prime Video, translated by Claude." data-zh="给 Prime Video 加上 Claude 实时翻译的双语字幕。">
+                Bilingual subtitles for Prime Video, translated by Claude.
+            </p>
+
+            <div class="project-meta-grid">
+                <div class="meta-cell">
+                    <div class="meta-label" data-en="TYPE" data-zh="类型">TYPE</div>
+                    <div class="meta-value">Chrome Extension · MV3</div>
+                </div>
+                <div class="meta-cell">
+                    <div class="meta-label" data-en="YEAR" data-zh="年份">YEAR</div>
+                    <div class="meta-value">2026</div>
+                </div>
+                <div class="meta-cell">
+                    <div class="meta-label" data-en="STACK" data-zh="技术栈">STACK</div>
+                    <div class="meta-value">Vanilla JS · Claude API</div>
+                </div>
+                <div class="meta-cell">
+                    <div class="meta-label" data-en="STATUS" data-zh="状态">STATUS</div>
+                    <div class="meta-value" data-en="Personal use · not on the store" data-zh="个人使用 · 未上架商店">Personal use · not on the store</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-cover">
+            <img src="../Assets/prime-bilingual.svg" alt="Prime Bilingual — subtitle interception pipeline">
+            <div class="project-cover-overlay"></div>
+        </div>
+    </section>
+
+    <!-- ─── What it does ─── -->
+    <section class="project-section bg-dark">
+        <div class="project-container">
+            <div class="section-eyebrow" data-en="WHAT IT DOES" data-zh="它做什么">WHAT IT DOES</div>
+            <h2 class="project-h2" data-en="Watch in two languages at once." data-zh="同时用两种语言看剧。">
+                Watch in two languages at once.
+            </h2>
+            <p class="project-lead" data-en="I learn English from shows, but Prime Video only shows one subtitle track. This extension catches the player's own subtitle file, translates the whole episode with Claude, and overlays English on top, Chinese below — before the opening credits end." data-zh="我靠看剧学英语，但 Prime Video 只显示一条字幕。这个扩展截获播放器自己的字幕文件，用 Claude 翻译整集，然后把英文在上、中文在下叠加到画面里——通常片头曲还没放完就翻译好了。">
+                I learn English from shows, but Prime Video only shows one subtitle track. This extension catches the player's own subtitle file, translates the whole episode with Claude, and overlays English on top, Chinese below — before the opening credits end.
+            </p>
+
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-num">01</div>
+                    <h3 class="feature-title" data-en="Intercepts the real subtitle stream" data-zh="截获真实字幕流">Intercepts the real subtitle stream</h3>
+                    <p class="feature-body" data-en="Hooks fetch and XHR inside the page itself, sniffs out Prime's TTML subtitle file, and reads a clone of it — the player's own copy is never touched." data-zh="在页面主环境里同时挂钩 fetch 和 XHR，嗅探出 Prime 的 TTML 字幕文件，读取它的副本——播放器自己那份从未被动过。">Hooks fetch and XHR inside the page itself, sniffs out Prime's TTML subtitle file, and reads a clone of it — the player's own copy is never touched.</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-num">02</div>
+                    <h3 class="feature-title" data-en="Whole-episode translation" data-zh="整集翻译">Whole-episode translation</h3>
+                    <p class="feature-body" data-en="25 lines per Claude call, each batch translated in the context of its neighbours, with live progress in the player. Haiku by default; model switchable." data-zh="每次调用 Claude 翻 25 行，每批都带上下文语境，播放器里实时显示进度。默认 Haiku，模型可切换。">25 lines per Claude call, each batch translated in the context of its neighbours, with live progress in the player. Haiku by default; model switchable.</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-num">03</div>
+                    <h3 class="feature-title" data-en="Native-feel overlay" data-zh="原生感叠加层">Native-feel overlay</h3>
+                    <p class="feature-body" data-en="English above, Chinese below, synced to the video by binary search over the cue list every frame. Clicks pass straight through to the player controls." data-zh="英文在上、中文在下，每帧对字幕列表二分查找与视频对齐。点击会直接穿透到播放器控件。">English above, Chinese below, synced to the video by binary search over the cue list every frame. Clicks pass straight through to the player controls.</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-num">04</div>
+                    <h3 class="feature-title" data-en="Never translates twice" data-zh="绝不重复翻译">Never translates twice</h3>
+                    <p class="feature-body" data-en="Each episode gets a fingerprint hashed from its cue content. Re-watching loads the cached translation instantly — no matter what URL Prime serves it from." data-zh="每一集都会根据字幕内容算出一个指纹。重看时直接命中本地缓存秒载——不管 Prime 这次用哪个 URL 下发字幕。">Each episode gets a fingerprint hashed from its cue content. Re-watching loads the cached translation instantly — no matter what URL Prime serves it from.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── Architecture (interactive) ─── -->
+    <section class="project-section bg-medium">
+        <div class="project-container">
+            <div class="section-eyebrow" data-en="THE ARCHITECTURE" data-zh="系统架构">THE ARCHITECTURE</div>
+            <h2 class="project-h2" data-en="Five files, three worlds." data-zh="五个文件，三个世界。">
+                Five files, three worlds.
+            </h2>
+            <p class="project-lead this-site-arch-intro" data-en="A Chrome extension lives in three isolated worlds — the page, the content script, and the service worker — and the subtitle has to cross all of them. Tap a node to see its job and why it lives where it does." data-zh="一个 Chrome 扩展活在三个相互隔离的世界里——页面、内容脚本、服务工作线程——而字幕必须穿过所有这三层。点击节点，看它的职责，以及它为什么住在那一层。">
+                A Chrome extension lives in three isolated worlds — the page, the content script, and the service worker — and the subtitle has to cross all of them. Tap a node to see its job and why it lives where it does.
+            </p>
+
+            <div class="arch-interactive" id="arch-diagram">
+                <div class="arch-stage">
+                    <svg viewBox="0 0 800 450" class="arch-svg" id="arch-svg">
+                        <defs>
+                            <linearGradient id="archLine" x1="0" y1="0" x2="1" y2="0">
+                                <stop offset="0" stop-color="#ffffff" stop-opacity="0"/>
+                                <stop offset="0.5" stop-color="#ffffff" stop-opacity="0.85"/>
+                                <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+                            </linearGradient>
+                            <filter id="archGlow" x="-15%" y="-15%" width="130%" height="130%">
+                                <feGaussianBlur stdDeviation="1.2" result="b"/>
+                                <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                            </filter>
+                        </defs>
+
+                        <g stroke="#1f1f2c" stroke-width="1" opacity="0.3">
+                            <path d="M0 150 H800 M0 300 H800"/>
+                            <path d="M200 0 V450 M400 0 V450 M600 0 V450"/>
+                        </g>
+
+                        <!-- world labels -->
+                        <g font-family="ui-monospace, monospace" font-size="9" letter-spacing="0.15em" fill="#555">
+                            <text x="40" y="30">PAGE WORLD</text>
+                            <text x="330" y="30">ISOLATED WORLD</text>
+                            <text x="620" y="30">EXTENSION WORLD</text>
+                        </g>
+
+                        <!-- Lines -->
+                        <line class="arch-line arch-line-ttml" x1="130" y1="150" x2="130" y2="210" stroke="url(#archLine)" stroke-width="1.5"/>
+                        <line class="arch-line arch-line-msg" x1="230" y1="245" x2="320" y2="245" stroke="url(#archLine)" stroke-width="1.5"/>
+                        <line class="arch-line arch-line-tr" x1="480" y1="245" x2="580" y2="245" stroke="url(#archLine)" stroke-width="1.5"/>
+                        <line class="arch-line arch-line-api" x1="670" y1="210" x2="670" y2="140" stroke="url(#archLine)" stroke-width="1.5"/>
+                        <line class="arch-line arch-line-render" x1="330" y1="280" x2="180" y2="330" stroke="url(#archLine)" stroke-width="1.5"/>
+
+                        <!-- Nodes -->
+                        <g class="arch-node" data-node="player" filter="url(#archGlow)">
+                            <rect x="40" y="90" width="180" height="60" rx="8" fill="#16161e" stroke="#888" stroke-width="1"/>
+                            <text x="130" y="115" text-anchor="middle" fill="#aaa" font-family="ui-monospace, monospace" font-size="12">Prime Video</text>
+                            <text x="130" y="135" text-anchor="middle" fill="#888" font-family="ui-monospace, monospace" font-size="8.5" letter-spacing="0.1em">OFFICIAL PLAYER</text>
+                        </g>
+
+                        <g class="arch-node" data-node="hook" filter="url(#archGlow)">
+                            <rect x="40" y="210" width="190" height="66" rx="8" fill="#16161e" stroke="#ffffff" stroke-width="1.5"/>
+                            <text x="135" y="238" text-anchor="middle" fill="#e6e6ec" font-family="ui-monospace, monospace" font-size="12">injected.js</text>
+                            <text x="135" y="258" text-anchor="middle" fill="#888" font-family="ui-monospace, monospace" font-size="8.5" letter-spacing="0.1em">FETCH · XHR HOOK</text>
+                        </g>
+
+                        <g class="arch-node" data-node="content" filter="url(#archGlow)">
+                            <rect x="320" y="210" width="160" height="66" rx="8" fill="#16161e" stroke="#ffffff" stroke-width="1.5"/>
+                            <text x="400" y="238" text-anchor="middle" fill="#e6e6ec" font-family="ui-monospace, monospace" font-size="12">content.js</text>
+                            <text x="400" y="258" text-anchor="middle" fill="#888" font-family="ui-monospace, monospace" font-size="8.5" letter-spacing="0.1em">PARSE · SYNC · RENDER</text>
+                        </g>
+
+                        <g class="arch-node" data-node="sw" filter="url(#archGlow)">
+                            <rect x="580" y="210" width="180" height="66" rx="8" fill="#16161e" stroke="#ffffff" stroke-width="1.5"/>
+                            <text x="670" y="238" text-anchor="middle" fill="#e6e6ec" font-family="ui-monospace, monospace" font-size="12">service worker</text>
+                            <text x="670" y="258" text-anchor="middle" fill="#888" font-family="ui-monospace, monospace" font-size="8.5" letter-spacing="0.1em">BATCH · CACHE</text>
+                        </g>
+
+                        <g class="arch-node" data-node="claude" filter="url(#archGlow)">
+                            <rect x="580" y="80" width="180" height="60" rx="8" fill="#16161e" stroke="#888" stroke-width="1"/>
+                            <text x="670" y="105" text-anchor="middle" fill="#aaa" font-family="ui-monospace, monospace" font-size="12">Claude API</text>
+                            <text x="670" y="125" text-anchor="middle" fill="#888" font-family="ui-monospace, monospace" font-size="8.5" letter-spacing="0.1em">HAIKU · TOOL USE</text>
+                        </g>
+
+                        <g class="arch-node" data-node="overlay" filter="url(#archGlow)">
+                            <rect x="40" y="330" width="240" height="66" rx="8" fill="#16161e" stroke="#888" stroke-width="1"/>
+                            <text x="160" y="356" text-anchor="middle" fill="#e6e6ec" font-family="ui-monospace, monospace" font-size="11">EN / 中 overlay</text>
+                            <text x="160" y="376" text-anchor="middle" fill="#888" font-family="ui-monospace, monospace" font-size="8.5" letter-spacing="0.1em">CLICK-THROUGH · rAF SYNC</text>
+                        </g>
+
+                        <!-- step labels -->
+                        <g font-family="ui-monospace, monospace" font-size="9" letter-spacing="0.1em" fill="#ffffff">
+                            <text x="140" y="185">① ttml</text>
+                            <text x="243" y="238">② post</text>
+                            <text x="500" y="238">③ ask</text>
+                            <text x="680" y="180">④ api</text>
+                            <text x="215" y="315">⑤ paint</text>
+                        </g>
+                    </svg>
+                </div>
+
+                <div class="arch-panel" id="arch-panel">
+                    <div class="arch-panel-content" data-node-detail="default">
+                        <div class="arch-panel-eyebrow" data-en="TIP" data-zh="提示">TIP</div>
+                        <h3 class="arch-panel-title" data-en="Tap a node" data-zh="点击任意节点">Tap a node</h3>
+                        <p data-en="Click on any block in the diagram to see what it does and why it lives in that world." data-zh="点击图里的任意方块，看它的职责，以及它为什么住在那一层。">Click on any block in the diagram to see what it does and why it lives in that world.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── Decisions ─── -->
+    <section class="project-section bg-dark">
+        <div class="project-container">
+            <div class="section-eyebrow" data-en="DECISIONS" data-zh="设计取舍">DECISIONS</div>
+            <h2 class="project-h2" data-en="Three calls that shaped it." data-zh="三个决定了它形态的取舍。">
+                Three calls that shaped it.
+            </h2>
+
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-num">01</div>
+                    <h3 class="feature-title" data-en="Intercept the stream, not the screen" data-zh="截流，而不是截屏">Intercept the stream, not the screen</h3>
+                    <p class="feature-body" data-en="OCR or scraping the rendered captions would surface one line at a time. Catching the TTML file gives me the whole episode upfront — which is what makes context-aware batching, pre-translation and a single cache key per episode possible." data-zh="OCR 或抓取渲染后的字幕，一次只能拿到一行。截获 TTML 文件让我一开始就拿到整集——上下文批量翻译、提前翻完、每集一个缓存键，全都因此成为可能。">OCR or scraping the rendered captions would surface one line at a time. Catching the TTML file gives me the whole episode upfront — which is what makes context-aware batching, pre-translation and a single cache key per episode possible.</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-num">02</div>
+                    <h3 class="feature-title" data-en="Forced tool use over free-form JSON" data-zh="强制 tool use，弃用自由 JSON">Forced tool use over free-form JSON</h3>
+                    <p class="feature-body" data-en="Subtitle text is full of quotes and apostrophes — free-form JSON parsing kept breaking on it. Forcing Claude to answer through a tool schema makes the output format a contract; when a batch still truncates, it bisects and retries instead of failing the episode." data-zh="字幕文本里全是引号和撇号——自由格式的 JSON 解析总是被弄崩。强制 Claude 通过 tool schema 回答，让输出格式变成一份契约；哪怕批次被截断，也会二分重试，绝不让整集失败。">Subtitle text is full of quotes and apostrophes — free-form JSON parsing kept breaking on it. Forcing Claude to answer through a tool schema makes the output format a contract; when a batch still truncates, it bisects and retries instead of failing the episode.</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-num">03</div>
+                    <h3 class="feature-title" data-en="Cache by content, not by URL" data-zh="按内容缓存，不按 URL">Cache by content, not by URL</h3>
+                    <p class="feature-body" data-en="Prime's subtitle URLs change between sessions. Hashing the cue text and timing into a fingerprint means the same episode always hits the cache — and a corrupted hit is caught by validating length before trusting it." data-zh="Prime 的字幕 URL 每次会话都可能变。把字幕内容和时间轴哈希成指纹，同一集就永远能命中缓存——命中后还会先校验长度，不盲目信任。">Prime's subtitle URLs change between sessions. Hashing the cue text and timing into a fingerprint means the same episode always hits the cache — and a corrupted hit is caught by validating length before trusting it.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="project-end">
+        <a href="../index.html#showcase" class="project-end-link">
+            <span class="arrow">←</span>
+            <span data-en="Back to all works" data-zh="返回全部作品">Back to all works</span>
+        </a>
+    </section>
+
+    <script src="../script.js"></script>
+    <script src="prime-bilingual.js"></script>
+    <script>
+        document.body.classList.add('loaded');
+        const loaderEl = document.querySelector('.loader');
+        if (loaderEl) loaderEl.remove();
+    </script>
+</body>
+</html>
