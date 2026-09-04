@@ -27,10 +27,9 @@ sitemap.xml, robots.txt            # SEO
 
 ## Projects on the site
 
-1. **Chunks 语块** — language-learning app; Claude extracts phrases into SRS flashcards (PWA + iOS)
+1. **Chunks** — language-learning app; Claude extracts phrases into SRS flashcards (PWA + iOS)
 2. **Investment Assistant** — production portfolio dashboard (Flask + SQLite on Railway)
 3. **Gyn Research Dashboard** — AI literature radar built for a medical researcher (Python + Claude)
-4. **Prime Bilingual** — Chrome MV3 extension: Claude-translated bilingual subtitles for Prime Video
 5. **This Portfolio** — the site itself as a vibecoding case study
 6. **CoLab** — hybrid learning platform for international design students
 7. **ANNO** — companion health robot for older adults

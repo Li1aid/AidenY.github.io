@@ -1,98 +1,46 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" preserveAspectRatio="xMidYMid slice">
-  <!-- 16:9 canvas. Node coords:
-       USER:    cx=110 cy=225, r=42  → right edge x=152
-       WORKER:  rect 320,195 240x60  → l=320 r=560 t=195 b=255  centre 440,225
-       AI:      rect 600,60  160x60  → l=600 r=760 t=60  b=120  centre 680,90
-       D1:      rect 600,330 160x60  → l=600 r=760 t=330 b=390  centre 680,360 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" preserveAspectRatio="xMidYMid slice">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#0a0a12"/>
-      <stop offset="1" stop-color="#16161e"/>
-    </linearGradient>
-    <linearGradient id="lineH" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#ffffff" stop-opacity="0"/>
-      <stop offset="0.5" stop-color="#ffffff" stop-opacity="0.85"/>
-      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
-    </linearGradient>
-    <filter id="glow"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="sh" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="30" stdDeviation="30" flood-color="#000" flood-opacity="0.55"/></filter>
+    <filter id="sh2" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="14" stdDeviation="16" flood-color="#000" flood-opacity="0.45"/></filter>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a0a12"/><stop offset="1" stop-color="#15151f"/></linearGradient>
+    <radialGradient id="g1" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#ffffff" stop-opacity="0.14"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/></radialGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M48 0H0V48" fill="none" stroke="#ffffff" stroke-opacity="0.05"/></pattern>
+    <clipPath id="wc"><rect x="0" y="0" width="1100" height="660" rx="20"/></clipPath>
   </defs>
-
-  <rect width="800" height="450" fill="url(#bg)"/>
-
-  <!-- subtle grid -->
-  <g stroke="#1f1f2c" stroke-width="1" opacity="0.5">
-    <path d="M0 150 H800 M0 300 H800"/>
-    <path d="M200 0 V450 M400 0 V450 M600 0 V450"/>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#grid)"/>
+  <circle cx="800" cy="500" r="640" fill="url(#g1)"/>
+  <g transform="translate(250 150)" filter="url(#sh)" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'PingFang SC', 'Helvetica Neue', sans-serif">
+    <rect x="0" y="0" width="1100" height="660" rx="20" fill="#0d0d15" stroke="#2a2a36" stroke-width="1.5"/>
+    <g clip-path="url(#wc)">
+      <rect x="0" y="0" width="1100" height="48" fill="#16161e"/>
+      <circle cx="24" cy="24" r="6" fill="#ff5f57"/><circle cx="44" cy="24" r="6" fill="#febc2e"/><circle cx="64" cy="24" r="6" fill="#28c840"/>
+      <rect x="400" y="13" width="300" height="22" rx="6" fill="#0a0a12"/>
+      <text x="550" y="28" text-anchor="middle" fill="#8e8e93" font-size="12" font-family="ui-monospace, 'SF Mono', Menlo, monospace">aidenyang.me</text>
+      <text x="60" y="170" fill="#f5f5f7" font-size="42" font-weight="700" letter-spacing="-1.5">Building products</text>
+      <text x="60" y="222" fill="#f5f5f7" font-size="42" font-weight="700" letter-spacing="-1.5">with clarity and purpose</text>
+      <text x="60" y="282" fill="#6e6e78" font-size="12" font-family="ui-monospace, 'SF Mono', Menlo, monospace" letter-spacing="3">DESIGN ENGINEER · SYDNEY</text>
+      <rect x="60" y="340" width="300" height="180" rx="14" fill="#16161e" stroke="#25252e"/>
+      <rect x="380" y="340" width="300" height="180" rx="14" fill="#16161e" stroke="#25252e"/>
+      <text x="80" y="500" fill="#8e8e93" font-size="13">Chunks</text>
+      <text x="400" y="500" fill="#8e8e93" font-size="13">Investment Assistant</text>
+      <!-- chat panel -->
+      <rect x="740" y="120" width="320" height="520" rx="18" fill="#141420" stroke="#2a2a38"/>
+      <rect x="740" y="120" width="320" height="50" rx="18" fill="#1b1b27"/><rect x="740" y="150" width="320" height="20" fill="#1b1b27"/>
+      <circle cx="766" cy="145" r="6" fill="#34c759"/>
+      <text x="782" y="150" fill="#f5f5f7" font-size="14" font-weight="600">Chat with AI Aiden</text>
+      <rect x="758" y="196" width="230" height="48" rx="14" fill="#23232f"/>
+      <text x="774" y="216" fill="#e6e6ec" font-size="13">Hi — ask me anything</text>
+      <text x="774" y="234" fill="#e6e6ec" font-size="13">about Aiden's work.</text>
+      <rect x="826" y="262" width="216" height="36" rx="14" fill="#007aff"/>
+      <text x="934" y="285" text-anchor="middle" fill="#fff" font-size="13">What did he build with Claude?</text>
+      <rect x="758" y="316" width="262" height="90" rx="14" fill="#23232f"/>
+      <text x="774" y="338" fill="#e6e6ec" font-size="13">Four products — a language app,</text>
+      <text x="774" y="356" fill="#e6e6ec" font-size="13">an investment tracker, a research</text>
+      <text x="774" y="374" fill="#e6e6ec" font-size="13">dashboard, and this site.</text>
+      <text x="774" y="392" fill="#e6e6ec" font-size="13">Want details on one?</text>
+      <rect x="758" y="582" width="284" height="40" rx="12" fill="#0a0a12" stroke="#2a2a38"/>
+      <text x="774" y="607" fill="#666" font-size="13">Ask anything…</text>
+    </g>
   </g>
-
-  <!-- ─── Connecting lines (request + response) ─── -->
-
-  <!-- ① USER → Worker  (outbound chat)  -->
-  <path d="M152 218 L320 210" stroke="url(#lineH)" stroke-width="1.5" fill="none"/>
-  <!-- ⑤ Worker → USER  (final reply)    -->
-  <path d="M320 240 L152 232" stroke="url(#lineH)" stroke-width="1.5" fill="none"/>
-
-  <!-- ② Worker → AI  (upstream call)    -->
-  <path d="M495 195 L645 120" stroke="url(#lineH)" stroke-width="1.5" fill="none"/>
-  <!-- ③ AI → Worker  (model reply)      -->
-  <path d="M715 120 L520 195" stroke="url(#lineH)" stroke-width="1.5" fill="none"/>
-
-  <!-- ④ Worker → D1  (log write)        -->
-  <path d="M440 255 L680 330" stroke="url(#lineH)" stroke-width="1.5" fill="none"/>
-
-  <!-- ─── Nodes ─── -->
-
-  <!-- USER (left) -->
-  <g filter="url(#glow)">
-    <circle cx="110" cy="225" r="42" fill="#16161e" stroke="#ffffff" stroke-width="1.5"/>
-    <text x="110" y="221" text-anchor="middle" fill="#e6e6ec" font-family="ui-monospace, monospace" font-size="11" letter-spacing="0.12em">USER</text>
-    <text x="110" y="238" text-anchor="middle" fill="#888" font-family="ui-monospace, monospace" font-size="8" letter-spacing="0.12em">BROWSER</text>
-  </g>
-
-  <!-- CF Worker (centre) -->
-  <g filter="url(#glow)">
-    <rect x="320" y="195" width="240" height="60" rx="10" fill="#16161e" stroke="#888888" stroke-width="1.5"/>
-    <text x="440" y="221" text-anchor="middle" fill="#e6e6ec" font-family="ui-monospace, monospace" font-size="12" letter-spacing="0.05em">CF Worker</text>
-    <text x="440" y="240" text-anchor="middle" fill="#888" font-family="ui-monospace, monospace" font-size="9" letter-spacing="0.12em">EDGE COMPUTE · ROUTING</text>
-  </g>
-
-  <!-- AI Models (top-right) -->
-  <g filter="url(#glow)">
-    <rect x="600" y="60" width="160" height="60" rx="8" fill="#16161e" stroke="#888" stroke-width="1"/>
-    <text x="680" y="86" text-anchor="middle" fill="#aaa" font-family="ui-monospace, monospace" font-size="11">Claude · DeepSeek</text>
-    <text x="680" y="105" text-anchor="middle" fill="#888" font-family="ui-monospace, monospace" font-size="9" letter-spacing="0.12em">LLM UPSTREAMS</text>
-  </g>
-
-  <!-- D1 (bottom-right) -->
-  <g filter="url(#glow)">
-    <rect x="600" y="330" width="160" height="60" rx="8" fill="#16161e" stroke="#888" stroke-width="1"/>
-    <text x="680" y="356" text-anchor="middle" fill="#aaa" font-family="ui-monospace, monospace" font-size="11">D1 Database</text>
-    <text x="680" y="375" text-anchor="middle" fill="#888" font-family="ui-monospace, monospace" font-size="9" letter-spacing="0.12em">CONVERSATION LOG</text>
-  </g>
-
-  <!-- ─── Step labels along the lines ─── -->
-  <g font-family="ui-monospace, monospace" font-size="9.5" letter-spacing="0.1em" fill="#ffffff">
-    <text x="200" y="200">① msg</text>
-    <text x="200" y="257">⑤ reply</text>
-    <text x="555" y="150" transform="rotate(-26 555 150)">② ask</text>
-    <text x="555" y="186" transform="rotate(26 555 186)">③ answer</text>
-    <text x="540" y="305" transform="rotate(18 540 305)">④ log</text>
-  </g>
-
-  <!-- ─── Pulse: full 5-step journey ─── -->
-  <circle r="3.5" fill="#ffffff">
-    <animateMotion dur="6s" repeatCount="indefinite"
-      path="M152 218 L320 210
-            M495 195 L645 120
-            M715 120 L520 195
-            M440 255 L680 330
-            M320 240 L152 232"/>
-    <animate attributeName="opacity"
-      keyTimes="0; 0.03; 0.18; 0.20; 0.21; 0.36; 0.38; 0.39; 0.54; 0.56; 0.57; 0.72; 0.74; 0.75; 0.97; 1"
-      values=  "0;   1;    1;    0;    1;    1;    0;    1;    1;    0;    1;    1;    0;    1;    1;    0"
-      dur="6s" repeatCount="indefinite"/>
-  </circle>
-
-  <!-- Footer label -->
-  <text x="40" y="430" fill="#666" font-family="ui-monospace, monospace" font-size="9.5" letter-spacing="0.15em">VIBECODED · ~$3/MO · LIVE</text>
 </svg>

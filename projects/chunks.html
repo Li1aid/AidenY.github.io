@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Primary SEO -->
-    <title>Chunks 语块 — Learn English in Chunks | Xuejian (Aiden) Yang, Sydney</title>
-    <meta name="description" content="A language-learning app: type a Chinese sentence, Claude answers with natural English and extracts reusable phrases into spaced-repetition flashcards. PWA in daily use, native iOS in progress. Case study by Xuejian (Aiden) Yang.">
-    <meta name="keywords" content="Chunks, 语块, language learning app, spaced repetition, FSRS, SM-2, Claude API, Cloudflare Worker, D1, SwiftUI, PWA, Aiden Yang, Xuejian Yang">
+    <title>Chunks — An English app that starts from what you couldn't say | Aiden Yang</title>
+    <meta name="description" content="Product design case study: an English-learning app built around the moment you fail to say something. Type Chinese; Chunks returns natural English and the reusable “chunks” become flashcards automatically. Interactive demo inside. By Xuejian (Aiden) Yang, Design Engineer, Sydney.">
+    <meta name="keywords" content="Chunks, language learning app, spaced repetition, FSRS, SM-2, Claude API, Cloudflare Worker, D1, SwiftUI, PWA, Aiden Yang, Xuejian Yang">
     <meta name="author" content="Xuejian (Aiden) Yang · 杨雪健">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://aidenyang.me/projects/chunks.html">
@@ -16,9 +16,9 @@
     <!-- Open Graph -->
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://aidenyang.me/projects/chunks.html">
-    <meta property="og:title" content="Chunks 语块 — Learn English in Chunks | Aiden Yang">
-    <meta property="og:description" content="Type a Chinese sentence, get natural English plus the reusable phrases as flashcards. Offline-first sync, SM-2 on PWA, FSRS on iOS.">
-    <meta property="og:image" content="https://aidenyang.me/Assets/chunks.svg">
+    <meta property="og:title" content="Chunks — Learn English in Chunks | Aiden Yang">
+    <meta property="og:description" content="Type a Chinese sentence; Chunks returns natural English and the reusable “chunks” as flashcards. Offline-first sync, SM-2 on PWA, FSRS on iOS.">
+    <meta property="og:image" content="https://aidenyang.me/Assets/chunks-poster.svg">
     <meta property="og:site_name" content="Aiden Yang Portfolio">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="project.css">
     <link rel="stylesheet" href="this-site.css">
+    <link rel="stylesheet" href="chunks.css">
 </head>
 
 <body class="project-page">
@@ -58,87 +59,371 @@
     <!-- ─── Hero ─── -->
     <section class="project-hero">
         <div class="project-hero-inner">
-            <div class="project-tagline" data-en="LANGUAGE LEARNING · PWA + iOS · 2026" data-zh="语言学习 · PWA + iOS · 2026">LANGUAGE LEARNING · PWA + iOS · 2026</div>
-            <h1 class="project-title-xl">Chunks 语块</h1>
-            <p class="project-subtitle" data-en="Learn English in chunks — from sentences you actually wanted to say." data-zh="用语块学英语——从你真正想说出口的句子开始。">
-                Learn English in chunks — from sentences you actually wanted to say.
+            <div class="project-tagline" data-en="PRODUCT DESIGN · SOLO BUILD · 2026" data-zh="产品设计 · 独立构建 · 2026">PRODUCT DESIGN · SOLO BUILD · 2026</div>
+            <h1 class="project-title-xl">Chunks</h1>
+            <p class="project-subtitle" data-en="An English-learning app that starts from the sentence you just couldn't say." data-zh="一个从「你刚才没说出口的那句话」开始的英语学习 app。">
+                An English-learning app that starts from the sentence you just couldn't say.
             </p>
 
             <div class="project-meta-grid">
                 <div class="meta-cell">
-                    <div class="meta-label" data-en="TYPE" data-zh="类型">TYPE</div>
-                    <div class="meta-value" data-en="PWA + native iOS" data-zh="PWA + 原生 iOS">PWA + native iOS</div>
+                    <div class="meta-label" data-en="ROLE" data-zh="角色">ROLE</div>
+                    <div class="meta-value" data-en="Design · Build · Daily user" data-zh="设计 · 开发 · 每日用户">Design · Build · Daily user</div>
+                </div>
+                <div class="meta-cell">
+                    <div class="meta-label" data-en="PLATFORM" data-zh="平台">PLATFORM</div>
+                    <div class="meta-value" data-en="iPhone PWA · native iOS in progress" data-zh="iPhone PWA · 原生 iOS 开发中">iPhone PWA · native iOS in progress</div>
                 </div>
                 <div class="meta-cell">
                     <div class="meta-label" data-en="YEAR" data-zh="年份">YEAR</div>
                     <div class="meta-value">2026</div>
                 </div>
                 <div class="meta-cell">
-                    <div class="meta-label" data-en="STACK" data-zh="技术栈">STACK</div>
-                    <div class="meta-value">JS · SwiftUI · Worker · D1</div>
-                </div>
-                <div class="meta-cell">
                     <div class="meta-label" data-en="STATUS" data-zh="状态">STATUS</div>
-                    <div class="meta-value" data-en="PWA in daily use · iOS in progress" data-zh="PWA 日常使用中 · iOS 开发中">PWA in daily use · iOS in progress</div>
+                    <div class="meta-value" data-en="In daily use" data-zh="日常使用中">In daily use</div>
                 </div>
             </div>
         </div>
 
         <div class="project-cover">
-            <img src="../Assets/chunks.svg" alt="Chunks — sentence to flashcard pipeline">
+            <img src="../Assets/chunks-poster.svg" alt="Chunks — app poster">
             <div class="project-cover-overlay"></div>
         </div>
     </section>
 
-    <!-- ─── What it does ─── -->
+    <!-- ─── The problem ─── -->
     <section class="project-section bg-dark">
         <div class="project-container">
-            <div class="section-eyebrow" data-en="WHAT IT DOES" data-zh="它做什么">WHAT IT DOES</div>
-            <h2 class="project-h2" data-en="Your own sentences become your deck." data-zh="你自己的句子，变成你自己的卡组。">
-                Your own sentences become your deck.
+            <div class="section-eyebrow" data-en="THE PROBLEM" data-zh="问题">THE PROBLEM</div>
+            <h2 class="project-h2" data-en="I could read anything. I still froze mid-sentence." data-zh="我什么都读得懂，但开口还是会卡住。">
+                I could read anything. I still froze mid-sentence.
             </h2>
-            <p class="project-lead" data-en="Vocabulary apps teach words you'll never use. Chunks starts from the sentence you just failed to say: type it in Chinese, get the natural English back, and the reusable phrases inside it become your flashcards — automatically." data-zh="背单词 app 教的词你可能永远用不上。Chunks 从你刚才没说出口的那句话开始：输入中文，拿到地道英文，句子里值得记的短语自动变成你的闪卡。">
-                Vocabulary apps teach words you'll never use. Chunks starts from the sentence you just failed to say: type it in Chinese, get the natural English back, and the reusable phrases inside it become your flashcards — automatically.
+            <p class="project-lead" data-en="After two years in Sydney my English was fine on paper. In conversation I kept hitting the same wall: I knew exactly what I wanted to say in Chinese, and the natural English for it just wasn't there. I tried the obvious tools. Each one solved the wrong half of the problem." data-zh="在悉尼两年，我的英语纸面上没问题。但一聊天就撞同一堵墙：我清楚知道中文想说什么，就是找不到那个地道的英文说法。我试了所有显而易见的工具，每一个都只解决了问题的错误那一半。">
+                After two years in Sydney my English was fine on paper. In conversation I kept hitting the same wall: I knew exactly what I wanted to say in Chinese, and the natural English for it just wasn't there. I tried the obvious tools. Each one solved the wrong half of the problem.
             </p>
 
-            <div class="features-grid">
-                <div class="feature">
-                    <div class="feature-num">01</div>
-                    <h3 class="feature-title" data-en="Sentence in, chunks out" data-zh="句子进，语块出">Sentence in, chunks out</h3>
-                    <p class="feature-body" data-en="One Claude call per sentence returns a natural translation plus 1–4 reusable phrases, each saved as a card with its Chinese meaning and an example. If nothing is worth extracting, the whole sentence becomes the card." data-zh="每句话一次 Claude 调用，返回地道翻译加 1–4 个值得记忆的短语，每个都自动存成带中文释义和例句的卡片。没有值得提取的短语时，整句成卡。">One Claude call per sentence returns a natural translation plus 1–4 reusable phrases, each saved as a card with its Chinese meaning and an example. If nothing is worth extracting, the whole sentence becomes the card.</p>
+            <div class="ck-problem-grid">
+                <div class="ck-problem">
+                    <div class="ck-problem-app" data-en="Vocabulary apps" data-zh="背单词 app">Vocabulary apps</div>
+                    <p class="ck-problem-quote" data-en="“Today's word: ubiquitous.”" data-zh="「今日单词：ubiquitous」">“Today's word: ubiquitous.”</p>
+                    <p class="ck-problem-so" data-en="× Someone else's list, in no context I'd ever meet. I learned words I never used and still lacked the ones I needed yesterday." data-zh="× 别人的词表、我永远遇不到的语境。学了一堆用不上的词，昨天需要的那个还是没有。"><strong>×</strong> Someone else's list, in no context I'd ever meet. I learned words I never used and still lacked the ones I needed yesterday.</p>
+                </div>
+                <div class="ck-problem">
+                    <div class="ck-problem-app" data-en="Translator apps" data-zh="翻译 app">Translator apps</div>
+                    <p class="ck-problem-quote" data-en="“Here's your sentence. Copy it.”" data-zh="「这是你的句子，复制吧。」">“Here's your sentence. Copy it.”</p>
+                    <p class="ck-problem-so" data-en="× Perfect answer, zero retention. I'd paste it, send it, and need the same phrase again a week later." data-zh="× 答案完美，记住为零。粘贴、发送，一周后同一个说法又得再查一次。"><strong>×</strong> Perfect answer, zero retention. I'd paste it, send it, and need the same phrase again a week later.</p>
+                </div>
+                <div class="ck-problem">
+                    <div class="ck-problem-app" data-en="Flashcard apps" data-zh="闪卡 app">Flashcard apps</div>
+                    <p class="ck-problem-quote" data-en="“Create a new card: front, back, tags…”" data-zh="「新建卡片：正面、背面、标签……」">“Create a new card: front, back, tags…”</p>
+                    <p class="ck-problem-so" data-en="× The memory science works. The card-making doesn't — it's a chore, so the deck stays empty." data-zh="× 记忆算法有效，做卡片没人坚持——它是个杂务，所以卡组永远是空的。"><strong>×</strong> The memory science works. The card-making doesn't — it's a chore, so the deck stays empty.</p>
+                </div>
+            </div>
+
+            <div class="ck-insight">
+                <div class="ck-insight-eyebrow" data-en="THE INSIGHT" data-zh="洞察">THE INSIGHT</div>
+                <p data-en="The moment you fail to say something is the single best moment to learn it — you have the context, the motivation, and the exact sentence. Every existing tool threw that moment away. Chunks is built to catch it: ask once, and the phrases worth keeping become cards on their own." data-zh="「没说出口」的那一刻，恰恰是学会它的最佳时机——语境、动机、原句都在。所有现成工具都把这一刻扔掉了。Chunks 就是为了接住它：问一次，值得记的短语自己变成卡片。">
+                    The moment you fail to say something is the single best moment to learn it — you have the context, the motivation, and the exact sentence. Every existing tool threw that moment away. Chunks is built to catch it: ask once, and the phrases worth keeping become cards on their own.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── Live demo ─── -->
+    <section class="project-section bg-medium">
+        <div class="project-container">
+            <div class="section-eyebrow" data-en="TRY IT" data-zh="试一试">TRY IT</div>
+            <h2 class="project-h2" data-en="Three screens. That's the whole product." data-zh="三个页面，就是整个产品。">
+                Three screens. That's the whole product.
+            </h2>
+            <p class="project-lead" data-en="This is a working replica of the app — same layout, same copy, same scheduling code as the version on my phone. The AI replies are pre-baked so it runs without an API key; everything else is real." data-zh="这是 app 的可用复刻——布局、文案、排期代码都和我手机上的版本一样。AI 回复是预置的（不用 API key），其他都是真的。">
+                This is a working replica of the app — same layout, same copy, same scheduling code as the version on my phone. The AI replies are pre-baked so it runs without an API key; everything else is real.
+            </p>
+
+            <div class="ck-demo-layout">
+                <!-- Phone -->
+                <div class="ck-phone" id="ck-demo">
+                    <div class="ck-screen">
+                        <div class="ck-notch"></div>
+                        <div class="ck-statusbar"><span id="ck-clock">9:41</span><span>●●●</span></div>
+
+                        <!-- 翻译 -->
+                        <div class="ck-panel active" id="ck-panel-translate">
+                            <div class="ck-navbar"><h1>Chunks</h1></div>
+                            <div class="ck-content">
+                                <div class="ck-card"><textarea class="ck-textarea" id="ck-input" rows="3" placeholder="Type a Chinese sentence"></textarea></div>
+                                <div class="ck-chips">
+                                    <button class="ck-chip">这个方案我觉得有点悬…</button>
+                                    <button class="ck-chip">我今天有点不在状态…</button>
+                                    <button class="ck-chip">房东又涨房租了…</button>
+                                </div>
+                                <button class="ck-btn-primary" id="ck-translate">Translate</button>
+
+                                <div class="ck-result hidden" id="ck-result">
+                                    <div class="ck-card ck-en-card">
+                                        <div class="ck-en-output" id="ck-en"></div>
+                                        <button class="ck-icon-btn" aria-label="朗读"><svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M3 10v4a1 1 0 0 0 1 1h3l4 4a1 1 0 0 0 1.7-.7V5.7a1 1 0 0 0-1.7-.7L7 9H4a1 1 0 0 0-1 1Zm14.5 2a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4Zm-2.5-7v2.06a7 7 0 0 1 0 13.88V23a9 9 0 0 0 0-18Z"/></svg></button>
+                                    </div>
+                                    <div class="ck-saved-bar hidden" id="ck-saved"></div>
+                                    <div class="ck-section-header">Chunks</div>
+                                    <div class="ck-list" id="ck-phrases"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 卡片 -->
+                        <div class="ck-panel" id="ck-panel-library">
+                            <div class="ck-navbar"><h1>Cards</h1></div>
+                            <div class="ck-content">
+                                <div class="ck-search"><svg viewBox="0 0 24 24" width="15" height="15"><path fill="currentColor" d="M10 2a8 8 0 1 0 5.3 14L21 21.7l1.4-1.4-5.7-5.7A8 8 0 0 0 10 2Zm0 2a6 6 0 1 1 0 12 6 6 0 0 1 0-12Z"/></svg><input type="text" id="ck-search" placeholder="Search"></div>
+                                <div class="ck-list" id="ck-library"></div>
+                            </div>
+                        </div>
+
+                        <!-- 复习 -->
+                        <div class="ck-panel" id="ck-panel-review">
+                            <div class="ck-navbar"><h1>Review</h1></div>
+                            <div class="ck-content">
+                                <div class="ck-card ck-stats">
+                                    <div class="ck-stat"><div class="ck-stat-num" id="ck-due">0</div><div class="ck-stat-lbl">Due</div></div>
+                                    <div class="ck-stat-div"></div>
+                                    <div class="ck-stat"><div class="ck-stat-num" id="ck-new">0</div><div class="ck-stat-lbl">New</div></div>
+                                    <div class="ck-stat-div"></div>
+                                    <div class="ck-stat"><div class="ck-stat-num" id="ck-total">0</div><div class="ck-stat-lbl">Total</div></div>
+                                </div>
+
+                                <div id="ck-review-wrap">
+                                    <div class="ck-progress" id="ck-progress"></div>
+                                    <div class="ck-flashcard" id="ck-flash">
+                                        <div class="ck-flash-inner">
+                                            <div class="ck-face front">
+                                                <div class="ck-card-zh" id="ck-card-zh"></div>
+                                                <div class="ck-tap-hint">tap to reveal</div>
+                                            </div>
+                                            <div class="ck-face back">
+                                                <div class="ck-card-en" id="ck-card-en"></div>
+                                                <div class="ck-card-ex" id="ck-card-ex"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="ck-rates" id="ck-rates">
+                                        <button class="ck-rate bad" id="ck-r-bad" data-rate="bad"><span class="ck-rate-label">Forgot</span><span class="ck-rate-detail">1d</span></button>
+                                        <button class="ck-rate mid" id="ck-r-mid" data-rate="mid"><span class="ck-rate-label">Fuzzy</span><span class="ck-rate-detail">2d</span></button>
+                                        <button class="ck-rate good" id="ck-r-good" data-rate="good"><span class="ck-rate-label">Got it</span><span class="ck-rate-detail">4d</span></button>
+                                    </div>
+                                </div>
+                                <div class="ck-done hidden" id="ck-done">
+                                    <div class="ck-done-title">All done for today</div>
+                                    <div class="ck-done-hint">Go translate a new sentence</div>
+                                    <button class="ck-btn-primary" id="ck-restart" style="margin-top:18px">Translate</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ck-toast" id="ck-toast"></div>
+
+                        <nav class="ck-tabbar">
+                            <button class="ck-tab active" data-tab="translate"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12.87 15.07 10.33 12.56l.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04ZM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12Zm-2.62 7 1.62-4.33L19.12 17h-3.24Z"/></svg><span>Translate</span></button>
+                            <button class="ck-tab" data-tab="library"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M4 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4Zm2 0v16h12V4H6Zm2 3h8v1.5H8V7Zm0 4h8v1.5H8V11Zm0 4h5v1.5H8V15Z"/></svg><span>Cards</span></button>
+                            <button class="ck-tab" data-tab="review"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M7 3h10a2 2 0 0 1 2 2v1H5V5a2 2 0 0 1 2-2Zm-2 5h14v11a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V8Zm3.5 4 2.5 2.5L16 9.5l-1-1-3.5 3.5-1.5-1.5L8.5 12Z"/></svg><span>Review</span><span class="ck-badge hidden" id="ck-badge">0</span></button>
+                        </nav>
+                    </div>
                 </div>
 
-                <div class="feature">
-                    <div class="feature-num">02</div>
-                    <h3 class="feature-title" data-en="Spaced repetition, twice" data-zh="两套间隔重复">Spaced repetition, twice</h3>
-                    <p class="feature-body" data-en="The PWA runs a deliberately simplified SM-2 with three grades. The iOS app runs full FSRS with a retrievability-sorted queue — and old SM-2 cards migrate into FSRS state instead of being reset. Swipes map to grades, so two gestures drive a four-grade algorithm." data-zh="PWA 跑一套刻意简化的三档 SM-2。iOS 跑完整的 FSRS，队列按预测记忆保持率排序——老的 SM-2 卡片会迁移进 FSRS 状态，而不是清零重来。滑动手势映射到评分，两个手势驱动四档算法。">The PWA runs a deliberately simplified SM-2 with three grades. The iOS app runs full FSRS with a retrievability-sorted queue — and old SM-2 cards migrate into FSRS state instead of being reset. Swipes map to grades, so two gestures drive a four-grade algorithm.</p>
-                </div>
-
-                <div class="feature">
-                    <div class="feature-num">03</div>
-                    <h3 class="feature-title" data-en="Offline-first sync" data-zh="离线优先同步">Offline-first sync</h3>
-                    <p class="feature-body" data-en="Cards live on the device and sync through a Cloudflare Worker to D1: last-write-wins by timestamp, tombstones for deletes, 500 cards per batch — and the server enforces LWW again in its upsert, so a stale device can never clobber newer state." data-zh="卡片存在设备本地，经 Cloudflare Worker 同步到 D1：按时间戳"最后写入者胜"、删除用墓碑标记、每批 500 张——服务端在 upsert 里再校验一次 LWW，过期设备永远覆盖不掉新数据。">Cards live on the device and sync through a Cloudflare Worker to D1: last-write-wins by timestamp, tombstones for deletes, 500 cards per batch — and the server enforces LWW again in its upsert, so a stale device can never clobber newer state.</p>
-                </div>
-
-                <div class="feature">
-                    <div class="feature-num">04</div>
-                    <h3 class="feature-title" data-en="One Worker, two AI providers" data-zh="一个 Worker，两个模型商">One Worker, two AI providers</h3>
-                    <p class="feature-body" data-en="The Worker holds the API keys server-side and proxies both Claude and DeepSeek. The iOS app picks the provider by device region — mainland devices get DeepSeek — because the target is the China App Store." data-zh="Worker 在服务端保管 API key，同时代理 Claude 和 DeepSeek。iOS 按设备地区选择模型商——大陆设备走 DeepSeek——因为目标是中国区 App Store。">The Worker holds the API keys server-side and proxies both Claude and DeepSeek. The iOS app picks the provider by device region — mainland devices get DeepSeek — because the target is the China App Store.</p>
+                <!-- Guided steps -->
+                <div>
+                    <div class="ck-steps">
+                        <div class="ck-step active" data-step="translate">
+                            <div class="ck-step-num">01</div>
+                            <div>
+                                <h4 data-en="Say it in Chinese" data-zh="用中文说出来">Say it in Chinese</h4>
+                                <p data-en="Tap one of the sample sentences and hit Translate. You get the natural English — not a literal translation — and the reusable phrases inside it are saved as cards before you've done anything. The green bar is the only confirmation." data-zh="点一个例句，按 Translate。你拿到的是地道英文而不是直译，句子里可复用的短语在你还没做任何操作时就已经存成卡片。绿色横条是唯一的确认。">Tap one of the sample sentences and hit Translate. You get the natural English — not a literal translation — and the reusable phrases inside it are saved as cards before you've done anything. The green bar is the only confirmation.</p>
+                            </div>
+                        </div>
+                        <div class="ck-step" data-step="library">
+                            <div class="ck-step-num">02</div>
+                            <div>
+                                <h4 data-en="Your deck, made of your sentences" data-zh="你的卡组，由你的句子组成">Your deck, made of your sentences</h4>
+                                <p data-en="Every card came from something you actually tried to say. New cards are tinted; the grey line under each shows when it's due. Search replaces categories — more on that below." data-zh="每张卡都来自你真正想说过的话。新卡有淡蓝底色；每张下面的灰字告诉你什么时候该复习。搜索取代了分类——下面会讲为什么。">Every card came from something you actually tried to say. New cards are tinted; the grey line under each shows when it's due. Search replaces categories — more on that below.</p>
+                            </div>
+                        </div>
+                        <div class="ck-step" data-step="review">
+                            <div class="ck-step-num">03</div>
+                            <div>
+                                <h4 data-en="Recall, then tell it how it went" data-zh="回忆，然后告诉它结果">Recall, then tell it how it went</h4>
+                                <p data-en="Chinese on the front, because the goal is producing English, not recognising it. Tap to flip. The three buttons show the next review date before you press — the consequence is visible, so the grading is honest. This runs the app's actual scheduling code." data-zh="正面是中文，因为目标是「说出」英文而不是「认出」。轻点翻面。三个按钮在你按之前就显示下次复习日期——后果可见，评分才诚实。这里跑的就是 app 真实的排期代码。">Chinese on the front, because the goal is producing English, not recognising it. Tap to flip. The three buttons show the next review date before you press — the consequence is visible, so the grading is honest. This runs the app's actual scheduling code.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="ck-demo-note" data-en="DEMO · SYNTHETIC DECK · AI REPLIES PRE-BAKED · SCHEDULER IS THE REAL ONE" data-zh="演示 · 合成卡组 · AI 回复预置 · 排期算法为真实代码">DEMO · SYNTHETIC DECK · AI REPLIES PRE-BAKED · SCHEDULER IS THE REAL ONE</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ─── Architecture (interactive) ─── -->
+    <!-- ─── Design details ─── -->
+    <section class="project-section bg-dark">
+        <div class="project-container">
+            <div class="section-eyebrow" data-en="DESIGN DETAILS" data-zh="设计细节">DESIGN DETAILS</div>
+            <h2 class="project-h2" data-en="Everything I took out, and the little I put in." data-zh="我拿掉的一切，和留下的一点点。">
+                Everything I took out, and the little I put in.
+            </h2>
+            <p class="project-lead" data-en="The design brief I gave myself: the app must cost less effort than not using it. Every detail below exists to remove a step, a decision, or a doubt." data-zh="我给自己的设计要求：用这个 app 必须比不用它更省力。下面每个细节的存在，都是为了去掉一步操作、一个决定、或一份犹豫。">
+                The design brief I gave myself: the app must cost less effort than not using it. Every detail below exists to remove a step, a decision, or a doubt.
+            </p>
+
+            <div class="ck-details">
+                <div class="ck-detail">
+                    <div class="ck-detail-ui">
+                        <div class="ck-mini-input">Type a Chinese sentence</div>
+                        <div class="ck-mini-btn">Translate</div>
+                    </div>
+                    <h3 data-en="One box, one button" data-zh="一个框，一个按钮">One box, one button</h3>
+                    <p data-en="No language picker, no mode switch, no settings on the main screen. The app knows you're typing Chinese and wants English back." data-zh="没有语言选择、没有模式切换、主屏没有任何设置。它知道你在输入中文、想要英文。">No language picker, no mode switch, no settings on the main screen. The app knows you're typing Chinese and wants English back.</p>
+                    <p class="because" data-en="Because the moment I'm trying to catch lasts about five seconds. Any choice on the way in and I'd just paste it into a translator instead." data-zh="因为我要接住的那一刻只有五秒钟。进入路径上多一个选择，我就会直接去用翻译软件。">Because the moment I'm trying to catch lasts about five seconds. Any choice on the way in and I'd just paste it into a translator instead.</p>
+                </div>
+
+                <div class="ck-detail">
+                    <div class="ck-detail-ui">
+                        <div class="ck-mini-saved">✓ 2 cards saved</div>
+                    </div>
+                    <h3 data-en="Saving is not a step" data-zh="保存不是一个步骤">Saving is not a step</h3>
+                    <p data-en="There is no save button anywhere. Cards are written the instant the phrases come back; the green bar just tells you how many." data-zh="整个 app 没有保存按钮。短语一返回，卡片就已经写入；绿条只是告诉你存了几张。">There is no save button anywhere. Cards are written the instant the phrases come back; the green bar just tells you how many.</p>
+                    <p class="because" data-en="Because 'decide whether to keep this' is exactly the chore that kills flashcard apps. Keeping everything and pruning later is cheaper than judging up front." data-zh="因为「决定要不要留这个」正是杀死闪卡 app 的那件杂务。先全留、以后删，比一开始就判断便宜得多。">Because 'decide whether to keep this' is exactly the chore that kills flashcard apps. Keeping everything and pruning later is cheaper than judging up front.</p>
+                </div>
+
+                <div class="ck-detail">
+                    <div class="ck-detail-ui">
+                        <div class="ck-mini-card"><div class="en">pick this up another day</div><div class="zh">改天再聊</div><div class="ex">It's late — let's pick this up another day.</div></div>
+                    </div>
+                    <h3 data-en="Chunks, not sentences, not words" data-zh="语块，不是整句，也不是单词">Chunks, not sentences, not words</h3>
+                    <p data-en="A card is a phrase-sized piece of language with its meaning and one fresh example — never the whole sentence you typed, never a single word." data-zh="一张卡是一个短语大小的语言单位，附释义和一个新例句——不是你输入的整句，也不是单个词。">A card is a phrase-sized piece of language with its meaning and one fresh example — never the whole sentence you typed, never a single word.</p>
+                    <p class="because" data-en="Because whole sentences don't transfer to new situations and single words don't carry the grammar. Phrases are the unit fluent speakers actually reuse." data-zh="因为整句无法迁移到新场景，单词又带不上语法。短语才是流利的人真正复用的单位。">Because whole sentences don't transfer to new situations and single words don't carry the grammar. Phrases are the unit fluent speakers actually reuse.</p>
+                </div>
+
+                <div class="ck-detail">
+                    <div class="ck-detail-ui">
+                        <div class="ck-mini-rates">
+                            <div class="ck-mini-rate bad">Forgot<small>1d</small></div>
+                            <div class="ck-mini-rate mid">Fuzzy<small>2d</small></div>
+                            <div class="ck-mini-rate good">Got it<small>4d</small></div>
+                        </div>
+                    </div>
+                    <h3 data-en="Three grades, consequences shown" data-zh="三档评分，后果先看到">Three grades, consequences shown</h3>
+                    <p data-en="Forgot / fuzzy / got it. Under each button, the date this card comes back if you press it — computed live from the card's history." data-zh="忘了 / 模糊 / 记住。每个按钮下面写着：按下去这张卡什么时候回来——根据这张卡的历史实时算出。">Forgot / fuzzy / got it. Under each button, the date this card comes back if you press it — computed live from the card's history.</p>
+                    <p class="because" data-en="Because a four- or five-point scale invites deliberation, and a hidden interval invites gaming. Seeing '21d' under Got it makes you honest." data-zh="因为四档五档会让人纠结，看不见的间隔会让人糊弄。看到 Got it 下面写着 21d，你就会诚实。">Because a four- or five-point scale invites deliberation, and a hidden interval invites gaming. Seeing '21d' under Got it makes you honest.</p>
+                </div>
+
+                <div class="ck-detail">
+                    <div class="ck-detail-ui">
+                        <div class="ck-mini-front">改天再聊<small>tap to reveal</small></div>
+                    </div>
+                    <h3 data-en="Chinese on the front" data-zh="正面是中文">Chinese on the front</h3>
+                    <p data-en="Review always goes Chinese → English. You never see the English first." data-zh="复习永远是中文 → 英文，你永远不会先看到英文。">Review always goes Chinese → English. You never see the English first.</p>
+                    <p class="because" data-en="Because the problem was production, not comprehension. I could already recognise 'pick this up another day' — I needed to be able to reach for it." data-zh="因为问题在「说出来」而不在「看得懂」。我早就认得 pick this up another day——我需要的是能随手拿出来。">Because the problem was production, not comprehension. I could already recognise 'pick this up another day' — I needed to be able to reach for it.</p>
+                </div>
+
+                <div class="ck-detail">
+                    <div class="ck-detail-ui">
+                        <div class="ck-mini-tabs"><div class="ck-mini-tab on">Translate</div><div class="ck-mini-tab">Cards</div><div class="ck-mini-tab">Review<span class="b">3</span></div></div>
+                    </div>
+                    <h3 data-en="One badge, zero notifications" data-zh="一个角标，零推送">One badge, zero notifications</h3>
+                    <p data-en="The only nudge in the product is a red count on the Review tab. No push, no streaks, no daily goal." data-zh="整个产品唯一的提醒，是Review 标签上的红色数字。没有推送、没有打卡、没有每日目标。">The only nudge in the product is a red count on the Review tab. No push, no streaks, no daily goal.</p>
+                    <p class="because" data-en="Because I'm the user and I know what streak mechanics do to me: guilt, then uninstall. The badge is there when I open the app for something else." data-zh="因为我就是用户，我知道打卡机制对我意味着什么：愧疚，然后卸载。角标只在我为别的事打开 app 时出现。">Because I'm the user and I know what streak mechanics do to me: guilt, then uninstall. The badge is there when I open the app for something else.</p>
+                </div>
+
+                <div class="ck-detail">
+                    <div class="ck-detail-ui">
+                        <span class="ck-mini-tag x">职场吐槽</span><span class="ck-mini-tag x">担忧</span><span class="ck-mini-tag">🔍 Search</span>
+                    </div>
+                    <h3 data-en="Search instead of categories" data-zh="搜索取代分类">Search instead of categories</h3>
+                    <p data-en="The library has a search box and nothing else. There are no folders, tags, or scenes to maintain." data-zh="卡片库只有一个搜索框，没有文件夹、标签或场景需要维护。">The library has a search box and nothing else. There are no folders, tags, or scenes to maintain.</p>
+                    <p class="because" data-en="Because I shipped auto-tagging, watched it be wrong, and noticed I only ever searched anyway. The story is in the iterations below." data-zh="因为我上线过自动标签，亲眼看着它出错，并且发现自己反正只用搜索。故事在下面的迭代记录里。">Because I shipped auto-tagging, watched it be wrong, and noticed I only ever searched anyway. The story is in the iterations below.</p>
+                </div>
+
+                <div class="ck-detail">
+                    <div class="ck-detail-ui">
+                        <div class="ck-mini-card"><div class="en">No phrases worth keeping in this one</div><div class="zh">Saved the whole sentence as a card</div></div>
+                    </div>
+                    <h3 data-en="A fallback that never wastes the call" data-zh="永不浪费一次调用的兜底">A fallback that never wastes the call</h3>
+                    <p data-en="If a sentence is too basic to yield phrases, the whole sentence becomes one card, and the app says so." data-zh="如果一句话太基础、提取不出短语，整句就成为一张卡，app 会明确告诉你。">If a sentence is too basic to yield phrases, the whole sentence becomes one card, and the app says so.</p>
+                    <p class="because" data-en="Because 'nothing happened' is the worst possible response to someone who just made the effort to ask." data-zh="因为对一个刚刚努力开口问了的人来说，「什么都没发生」是最糟糕的回应。">Because 'nothing happened' is the worst possible response to someone who just made the effort to ask.</p>
+                </div>
+
+                <div class="ck-detail">
+                    <div class="ck-detail-ui">
+                        <div class="ck-mini-card"><div class="en">iPhone · Mac · iPad</div><div class="zh">同一张卡，同一个复习进度</div></div>
+                    </div>
+                    <h3 data-en="Works offline, syncs quietly" data-zh="离线能用，同步无声">Works offline, syncs quietly</h3>
+                    <p data-en="Cards live on the device. Sync happens a second and a half after you stop doing things, and silently gives up if there's no network." data-zh="卡片存在设备上。你停止操作一秒半后自动同步，没网就默默放弃。">Cards live on the device. Sync happens a second and a half after you stop doing things, and silently gives up if there's no network.</p>
+                    <p class="because" data-en="Because review happens on the train and the tram, and a spinner is a reason to close the app." data-zh="因为复习发生在火车和电车上，一个加载圈就是关掉 app 的理由。">Because review happens on the train and the tram, and a spinner is a reason to close the app.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── Iterations ─── -->
     <section class="project-section bg-medium">
         <div class="project-container">
-            <div class="section-eyebrow" data-en="THE ARCHITECTURE" data-zh="系统架构">THE ARCHITECTURE</div>
-            <h2 class="project-h2" data-en="Two clients, one thin backend." data-zh="两个客户端，一个极薄的后端。">
-                Two clients, one thin backend.
+            <div class="section-eyebrow" data-en="ITERATIONS" data-zh="迭代记录">ITERATIONS</div>
+            <h2 class="project-h2" data-en="What daily use changed." data-zh="每天使用改变了什么。">
+                What daily use changed.
             </h2>
-            <p class="project-lead this-site-arch-intro" data-en="A zero-build PWA and a SwiftUI iOS app share one Cloudflare Worker that does exactly three jobs: proxy the AI providers, guard the keys, and sync cards to D1. Tap a node to see why." data-zh="一个零构建的 PWA 和一个 SwiftUI iOS app，共享一个只做三件事的 Cloudflare Worker：代理模型、保管密钥、把卡片同步进 D1。点击节点看原因。">
-                A zero-build PWA and a SwiftUI iOS app share one Cloudflare Worker that does exactly three jobs: proxy the AI providers, guard the keys, and sync cards to D1. Tap a node to see why.
+            <p class="project-lead" data-en="I'm the only user, which is a weakness and a superpower: every decision got tested against real frustration within a day. These are the ones that flipped." data-zh="我是唯一的用户——这既是弱点也是超能力：每个决定都会在一天之内被真实的烦躁检验。下面是那些被推翻的。">
+                I'm the only user, which is a weakness and a superpower: every decision got tested against real frustration within a day. These are the ones that flipped.
             </p>
+
+            <div class="ck-timeline">
+                <div class="ck-iter">
+                    <div class="ck-iter-when">V1</div>
+                    <div>
+                        <h4 data-en="Saved the sentence and the phrases" data-zh="整句和短语一起存">Saved the sentence and the phrases</h4>
+                        <p data-en="The first version created a card for the full sentence plus one per phrase. Within a week the review queue felt padded — I was seeing the same idea twice in a row." data-zh="第一版会为整句建一张卡，再为每个短语各建一张。不到一周，复习队列就显得注水——同一个意思连续出现两次。">The first version created a card for the full sentence plus one per phrase. Within a week the review queue felt padded — I was seeing the same idea twice in a row.</p>
+                        <p class="verdict cut" data-en="Cut the sentence card. Phrases only; the sentence is kept as the card's example instead." data-zh="砍掉整句卡。只留短语；原句改为卡片的例句。">Cut the sentence card. Phrases only; the sentence is kept as the card's example instead.</p>
+                    </div>
+                </div>
+                <div class="ck-iter">
+                    <div class="ck-iter-when">V2</div>
+                    <div>
+                        <h4 data-en="Auto scene tags and a 'graph' tab" data-zh="自动场景标签和「图谱」页">Auto scene tags and a 'graph' tab</h4>
+                        <p data-en="Each card got an AI-assigned scene — 点餐, 职场吐槽 — and a fifth tab to browse by scene. I tuned the prompt hard: two to four characters, verbs not descriptions, a banned list of vague words." data-zh="每张卡由 AI 打一个场景标签——点餐、职场吐槽——再加第五个标签页按场景浏览。我把 prompt 调得很细：两到四个字、动词不要描述、一份禁用的空泛词清单。">Each card got an AI-assigned scene — 点餐, 职场吐槽 — and a fifth tab to browse by scene. I tuned the prompt hard: two to four characters, verbs not descriptions, a banned list of vague words.</p>
+                        <p data-en="In use, the labels bent toward the sentence's mood: a neutral phrase from an anxious sentence got tagged 担忧. And I never browsed by scene — when I wanted a card, I searched." data-zh="实际使用中，标签总被整句的情绪带偏：一个中性短语因为句子听起来焦虑就被标成「担忧」。而且我从不按场景浏览——想找卡片时，我用搜索。">In use, the labels bent toward the sentence's mood: a neutral phrase from an anxious sentence got tagged 担忧. And I never browsed by scene — when I wanted a card, I searched.</p>
+                        <p class="verdict cut" data-en="Removed the tab, the field, and half the prompt in the iOS rewrite. Wrote a 'do not rebuild this' rule into the project notes." data-zh="iOS 重写时删掉了标签页、字段和一半的 prompt，并在项目笔记里写下「不要重做」的规则。">Removed the tab, the field, and half the prompt in the iOS rewrite. Wrote a 'do not rebuild this' rule into the project notes.</p>
+                    </div>
+                </div>
+                <div class="ck-iter">
+                    <div class="ck-iter-when">V2</div>
+                    <div>
+                        <h4 data-en="A deliberately simple scheduler" data-zh="刻意简化的排期算法">A deliberately simple scheduler</h4>
+                        <p data-en="Standard SM-2 has a 0–5 grade and a formula nobody can predict in their head. I kept three grades and intervals I could explain in one sentence: forgot resets to a day; got it doubles-ish, then multiplies." data-zh="标准 SM-2 有 0–5 六档评分和一个没人能心算的公式。我保留了三档，以及一句话能说清的间隔：忘了回到一天；记住先翻倍，再按系数放大。">Standard SM-2 has a 0–5 grade and a formula nobody can predict in their head. I kept three grades and intervals I could explain in one sentence: forgot resets to a day; got it doubles-ish, then multiplies.</p>
+                        <p class="verdict keep" data-en="Kept. Predictability mattered more than optimality for a deck this size." data-zh="保留。对这个规模的卡组，可预测比最优更重要。">Kept. Predictability mattered more than optimality for a deck this size.</p>
+                    </div>
+                </div>
+                <div class="ck-iter">
+                    <div class="ck-iter-when">V3 · iOS</div>
+                    <div>
+                        <h4 data-en="Native rewrite, because the PWA proved the product" data-zh="原生重写，因为 PWA 已验证了产品">Native rewrite, because the PWA proved the product</h4>
+                        <p data-en="After months of daily use the shape was settled: four tabs, gestures for grading, offline-first. That's when it earned a SwiftUI rewrite — real swipes, real local storage, and a proper scheduler (FSRS) that migrates the old cards' history instead of resetting it." data-zh="几个月的日常使用后，形态定了：四个标签页、手势评分、离线优先。这时它才配得上 SwiftUI 重写——真实滑动、真实本地存储，以及一个会迁移旧卡历史而非清零的正经排期器（FSRS）。">After months of daily use the shape was settled: four tabs, gestures for grading, offline-first. That's when it earned a SwiftUI rewrite — real swipes, real local storage, and a proper scheduler (FSRS) that migrates the old cards' history instead of resetting it.</p>
+                        <p class="verdict keep" data-en="In progress. Translate, library and sync are done; review and App Store submission are next." data-zh="进行中。翻译、卡片库和同步已完成；复习页和 App Store 提交是下一步。">In progress. Translate, library and sync are done; review and App Store submission are next.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── Under the hood ─── -->
+    <section class="project-section bg-dark ck-hood">
+        <div class="project-container">
+            <div class="section-eyebrow" data-en="UNDER THE HOOD" data-zh="技术实现">UNDER THE HOOD</div>
+            <h2 class="project-h2" data-en="Small enough to hold in one head." data-zh="小到一个人能全部装在脑子里。">
+                Small enough to hold in one head.
+            </h2>
+            <p class="project-lead" data-en="Two clients, one thin backend. The PWA is three files of vanilla JS with no build step; the iOS app is SwiftUI + SwiftData. Both talk to a single Cloudflare Worker that proxies the AI, keeps the keys server-side, and syncs cards to D1 with last-write-wins. Tap a node for the reasoning." data-zh="两个客户端，一个极薄的后端。PWA 是三个无构建步骤的原生 JS 文件；iOS 端是 SwiftUI + SwiftData。两者都通过同一个 Cloudflare Worker 代理 AI、在服务端保管密钥、并以「最后写入者胜」把卡片同步到 D1。点击节点看原因。">
+                Two clients, one thin backend. The PWA is three files of vanilla JS with no build step; the iOS app is SwiftUI + SwiftData. Both talk to a single Cloudflare Worker that proxies the AI, keeps the keys server-side, and syncs cards to D1 with last-write-wins. Tap a node for the reasoning.
+            </p>
+            <div class="ck-stack-row">
+                <span>VANILLA JS PWA</span><span>SWIFTUI · SWIFTDATA</span><span>CLOUDFLARE WORKER</span><span>D1 (SQLITE)</span><span>CLAUDE · DEEPSEEK</span><span>SM-2 → FSRS</span><span>OFFLINE-FIRST · LWW SYNC</span>
+            </div>
 
             <div class="arch-interactive" id="arch-diagram">
                 <div class="arch-stage">
@@ -207,38 +492,7 @@
                         <p data-en="Click on any block in the diagram to see what it does and why I picked it." data-zh="点击图里的任意方块，看它的职责，以及我为什么选它。">Click on any block in the diagram to see what it does and why I picked it.</p>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ─── Decisions ─── -->
-    <section class="project-section bg-dark">
-        <div class="project-container">
-            <div class="section-eyebrow" data-en="DECISIONS" data-zh="设计取舍">DECISIONS</div>
-            <h2 class="project-h2" data-en="Three calls that shaped it." data-zh="三个决定了它形态的取舍。">
-                Three calls that shaped it.
-            </h2>
-
-            <div class="features-grid">
-                <div class="feature">
-                    <div class="feature-num">01</div>
-                    <h3 class="feature-title" data-en="Last-write-wins over CRDT" data-zh="LWW 而不是 CRDT">Last-write-wins over CRDT</h3>
-                    <p class="feature-body" data-en="One user, multiple devices — the odds of editing the same card on two devices at once are tiny. LWW is three lines of merge code on each client plus one WHERE clause on the server. I accepted losing one side in that rare race, and skipped vector clocks entirely." data-zh="单用户、多设备——两台设备同时编辑同一张卡的概率极低。LWW 在每个客户端只是三行合并代码，服务端只是一个 WHERE 子句。我接受了极端竞态下丢一边更新的代价，彻底绕开了向量时钟。">One user, multiple devices — the odds of editing the same card on two devices at once are tiny. LWW is three lines of merge code on each client plus one WHERE clause on the server. I accepted losing one side in that rare race, and skipped vector clocks entirely.</p>
-                </div>
-
-                <div class="feature">
-                    <div class="feature-num">02</div>
-                    <h3 class="feature-title" data-en="Soft deletes, because the cursor demands it" data-zh="软删除，是同步游标逼的">Soft deletes, because the cursor demands it</h3>
-                    <p class="feature-body" data-en="Sync pulls rows where updated_at is newer than the cursor. A hard delete produces no row — the other device would never find out. So deletion is a tombstone flag plus a timestamp bump, and the UI filters instead of the store. The cost: every query must exclude tombstones, forever." data-zh="同步是按 updated_at 比游标新来拉取的。硬删除不产生任何行——另一台设备永远不会知道。所以删除是墓碑标记加时间戳更新，由 UI 过滤而不是存储层。代价是：每个查询都要排除墓碑，永远如此。">Sync pulls rows where updated_at is newer than the cursor. A hard delete produces no row — the other device would never find out. So deletion is a tombstone flag plus a timestamp bump, and the UI filters instead of the store. The cost: every query must exclude tombstones, forever.</p>
-                </div>
-
-                <div class="feature">
-                    <div class="feature-num">03</div>
-                    <h3 class="feature-title" data-en="I shipped auto-tagging, then killed it" data-zh="我上线了自动标签，然后删了它">I shipped auto-tagging, then killed it</h3>
-                    <p class="feature-body" data-en="Cards used to get an automatic scene tag. In real use the labels bent to sentence emotion — a neutral phrase tagged as 'worry' because the sentence felt anxious — and I found myself searching, never browsing by scene. Cut it from the iOS rewrite, and wrote a do-not-rebuild rule into the project doc." data-zh="卡片曾经会自动打场景标签。真实使用中标签总被整句情绪带偏——一个中性短语因为句子听着焦虑就被标成"担忧"——而且我发现自己只用搜索，从不按场景翻。iOS 重写时删掉了它，并在项目文档里写下"不要重做"的规则。">Cards used to get an automatic scene tag. In real use the labels bent to sentence emotion — a neutral phrase tagged as 'worry' because the sentence felt anxious — and I found myself searching, never browsing by scene. Cut it from the iOS rewrite, and wrote a do-not-rebuild rule into the project doc.</p>
-                </div>
-            </div>
-        </div>
+            </div>        </div>
     </section>
 
     <section class="project-end">
@@ -250,6 +504,7 @@
 
     <script src="../script.js"></script>
     <script src="chunks.js"></script>
+    <script src="chunks-demo.js"></script>
     <script>
         document.body.classList.add('loaded');
         const loaderEl = document.querySelector('.loader');

@@ -2046,3 +2046,103 @@
 
     .vp-screen-map { grid-template-columns: 1fr; }
 }
+<<<<<<< Updated upstream
+=======
+
+/* ── Real WebGL 3D map (vivid-map3d.js) ───────────────────────── */
+
+.vp-map3d {
+    position: absolute;
+    inset: 0;
+}
+
+.vp-map3d canvas {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.vp-map3d-loading {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    color: #8ea0c0;
+    background: linear-gradient(180deg, #050218 0%, #02010c 100%);
+    z-index: 2;
+    pointer-events: none;
+}
+
+.vp-map3d-spinner {
+    width: 26px;
+    height: 26px;
+    border: 2px solid rgba(44, 217, 255, 0.18);
+    border-top-color: #2cd9ff;
+    border-radius: 50%;
+    animation: vpMapSpin 0.9s linear infinite;
+}
+
+@keyframes vpMapSpin {
+    to { transform: rotate(360deg); }
+}
+
+.vp-map3d-loading.failed {
+    color: #c0c0c8;
+    letter-spacing: 0.06em;
+}
+
+.vp-map3d-hints {
+    position: absolute;
+    left: 14px;
+    bottom: 12px;
+    display: flex;
+    gap: 8px;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.vp-map3d-hints span {
+    font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    color: #8ea0c0;
+    background: rgba(8, 10, 22, 0.7);
+    border: 1px solid rgba(44, 217, 255, 0.25);
+    border-radius: 20px;
+    padding: 4px 10px;
+    backdrop-filter: blur(4px);
+}
+
+.vp-map3d-compass {
+    position: absolute;
+    top: 12px;
+    left: 14px;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: #8ea0c0;
+    background: rgba(8, 10, 22, 0.7);
+    border: 1px solid rgba(44, 217, 255, 0.25);
+    border-radius: 10px;
+    padding: 6px 9px 4px;
+    pointer-events: none;
+    line-height: 1.1;
+}
+
+.vp-compass-arrow {
+    color: #2cd9ff;
+    font-size: 9px;
+    display: inline-block;       /* rotated by vivid-map3d.js as the camera orbits */
+    will-change: transform;
+}
+>>>>>>> Stashed changes

@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a0a12"/><stop offset="0.6" stop-color="#0b1330"/><stop offset="1" stop-color="#0a2a5e"/></linearGradient>
+    <radialGradient id="g1" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#0a84ff" stop-opacity="0.5"/><stop offset="1" stop-color="#0a84ff" stop-opacity="0"/></radialGradient>
+    <linearGradient id="screen" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f7f7fa"/><stop offset="1" stop-color="#e9e9ef"/></linearGradient>
+    <filter id="sh" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="24" stdDeviation="22" flood-color="#000" flood-opacity="0.5"/></filter>
+    <filter id="sh2" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#000" flood-opacity="0.35"/></filter>
+    <clipPath id="pc"><rect x="0" y="0" width="340" height="720" rx="42"/></clipPath>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <circle cx="800" cy="480" r="560" fill="url(#g1)"/>
+
+  <!-- phone (slightly rotated) -->
+  <g transform="translate(630 100)">
+    <g filter="url(#sh)"><rect x="-14" y="-14" width="368" height="748" rx="56" fill="#15151c"/></g>
+    <rect x="-11" y="-11" width="362" height="742" rx="54" fill="#08080c"/>
+    <rect x="0" y="0" width="340" height="720" rx="42" fill="url(#screen)"/>
+    <rect x="120" y="14" width="100" height="28" rx="14" fill="#08080c"/>
+    <g clip-path="url(#pc)" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'PingFang SC', 'Helvetica Neue', sans-serif">
+      <text x="26" y="36" fill="#000" font-size="14" font-weight="600">9:41</text>
+      <text x="20" y="110" fill="#000" font-size="30" font-weight="700" letter-spacing="-0.6">Chunks</text>
+      <rect x="20" y="130" width="300" height="82" rx="14" fill="#fff"/>
+      <text x="36" y="164" fill="#000" font-size="16">我今天有点不在状态，</text>
+      <text x="36" y="191" fill="#000" font-size="16">能不能改天再聊？</text>
+      <rect x="20" y="224" width="300" height="48" rx="14" fill="#007aff"/>
+      <text x="170" y="255" text-anchor="middle" fill="#fff" font-size="16" font-weight="600">Translate</text>
+      <rect x="20" y="286" width="300" height="90" rx="14" fill="#fff"/>
+      <text x="36" y="317" fill="#000" font-size="17" font-weight="600">I'm a bit off today —</text>
+      <text x="36" y="340" fill="#000" font-size="17" font-weight="600">can we pick this up</text>
+      <text x="36" y="363" fill="#000" font-size="17" font-weight="600">another day?</text>
+      <text x="24" y="416" fill="#6c6c76" font-size="11" letter-spacing="1">CHUNKS</text>
+      <rect x="20" y="426" width="300" height="170" rx="14" fill="#fff"/>
+      <text x="36" y="456" fill="#000" font-size="16" font-weight="600">a bit off</text>
+      <text x="36" y="477" fill="#6c6c76" font-size="13">不在状态</text>
+      <line x1="36" y1="508" x2="304" y2="508" stroke="#3c3c43" stroke-opacity="0.14"/>
+      <text x="36" y="538" fill="#000" font-size="16" font-weight="600">pick this up another day</text>
+      <text x="36" y="559" fill="#6c6c76" font-size="13">改天再聊</text>
+      <rect x="0" y="646" width="340" height="74" fill="#fff" fill-opacity="0.9"/>
+      <rect x="44" y="660" width="22" height="16" rx="4" fill="#007aff"/><rect x="159" y="660" width="22" height="16" rx="4" fill="#c7c7cc"/><rect x="274" y="660" width="22" height="16" rx="4" fill="#c7c7cc"/>
+      <circle cx="298" cy="658" r="8" fill="#ff3b30"/><text x="298" y="662" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">3</text>
+    </g>
+  </g>
+
+  <!-- floating: saved pill -->
+  <g transform="translate(1050 560) rotate(3)" filter="url(#sh2)" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'PingFang SC', 'Helvetica Neue', sans-serif">
+    <rect x="0" y="0" width="280" height="62" rx="31" fill="#34c759"/>
+    <circle cx="31" cy="31" r="16" fill="#fff" fill-opacity="0.25"/>
+    <text x="31" y="38" text-anchor="middle" fill="#fff" font-size="18" font-weight="700">✓</text>
+    <text x="60" y="39" fill="#fff" font-size="20" font-weight="600">2 cards saved</text>
+  </g>
+
+  <!-- floating: flashcard flipping -->
+  <g transform="translate(1050 230) rotate(3)" filter="url(#sh)" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'PingFang SC', 'Helvetica Neue', sans-serif">
+    <rect x="0" y="0" width="330" height="200" rx="22" fill="#fff"/>
+    <text x="165" y="86" text-anchor="middle" fill="#000" font-size="30" font-weight="700">改天再聊</text>
+    <text x="165" y="118" text-anchor="middle" fill="#9a9aa4" font-size="13">tap to reveal</text>
+    <rect x="22" y="146" width="88" height="36" rx="10" fill="#ff3b30" fill-opacity="0.12"/><text x="66" y="169" text-anchor="middle" fill="#ff3b30" font-size="14" font-weight="600">Forgot</text>
+    <rect x="121" y="146" width="88" height="36" rx="10" fill="#ff9500" fill-opacity="0.14"/><text x="165" y="169" text-anchor="middle" fill="#ff9500" font-size="14" font-weight="600">Fuzzy</text>
+    <rect x="220" y="146" width="88" height="36" rx="10" fill="#34c759" fill-opacity="0.16"/><text x="264" y="169" text-anchor="middle" fill="#34c759" font-size="14" font-weight="600">Got it</text>
+  </g>
+
+  <!-- floating: phrase card -->
+  <g transform="translate(230 250) rotate(-3)" filter="url(#sh)" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'PingFang SC', 'Helvetica Neue', sans-serif">
+    <rect x="0" y="0" width="330" height="130" rx="20" fill="#fff"/>
+    <text x="24" y="50" fill="#000" font-size="22" font-weight="700">pick this up another day</text>
+    <text x="24" y="78" fill="#6c6c76" font-size="15">改天再聊</text>
+    <text x="24" y="106" fill="#9a9aa4" font-size="13" font-style="italic">It's late — let's pick this up another day.</text>
+  </g>
+
+
+  <!-- floating: Chinese input bubble -->
+  <g transform="translate(270 560) rotate(-3)" filter="url(#sh2)" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'PingFang SC', 'Helvetica Neue', sans-serif">
+    <rect x="0" y="0" width="280" height="62" rx="31" fill="#007aff"/>
+    <text x="28" y="39" fill="#fff" font-size="19">房东又涨房租了…</text>
+  </g>
+</svg>

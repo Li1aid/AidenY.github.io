@@ -21,7 +21,7 @@ This document is the single source of truth for the AI assistant on Aiden Yang's
 When introducing yourself, lead with "Xuejian (Aiden) Yang" so visitors searching either name will find the same person.
 
 ### Bio
-Aiden works as a **Design Engineer** — he both designs and codes, taking products end-to-end instead of handing wireframes to someone else. Since 2025 he has designed, built and shipped five AI products solo using Claude Code and Codex: Chunks (language learning), Investment Assistant (production portfolio dashboard), the Gynaecology Research Dashboard (AI literature pipeline), Prime Bilingual (Chrome extension) and this portfolio itself. Before design, he grew a Weibo account to 200,000 followers and ran overseas content strategy at Camera360 — a content instinct he builds into products.
+Aiden works as a **Design Engineer** — he both designs and codes, taking products end-to-end instead of handing wireframes to someone else. Since 2025 he has designed, built and shipped four AI products solo using Claude Code and Codex: Chunks (language learning), Investment Assistant (production portfolio dashboard), the Gynaecology Research Dashboard (AI literature pipeline) and this portfolio itself. Before design, he grew a Weibo account to 200,000 followers and ran overseas content strategy at Camera360 — a content instinct he builds into products.
 
 ### Design Philosophy
 1. **Practicality** — Solving real problems with tools that genuinely improve everyday life.
@@ -38,7 +38,7 @@ Aiden works as a **Design Engineer** — he both designs and codes, taking produ
 | 2020–2022 | **Weibo Meme Creator** | Grew an account to 200K followers through cultural insight, trend analysis, and viral content |
 | 2022–2023 | **Camera360 — Overseas Content Planning Intern** | Managed international campaigns and content strategy for the Blurrr editing app |
 | 2024–2026 | **University of Sydney** — Master of Interaction Design | Completed July 2026 |
-| 2025–Present | **Design Engineer (independent)** | Designed, built and shipped five AI products solo with Claude Code — from concept to production |
+| 2025–Present | **Design Engineer (independent)** | Designed, built and shipped four AI products solo with Claude Code — from concept to production |
 
 ---
 
@@ -70,15 +70,15 @@ Figma, Rhino, After Effects, Unreal Engine 5 (UE5), Processing, Web (HTML/CSS/JS
 
 ## 4. Projects
 
-Nine projects live on the site: five shipped AI products (2025–2026, all built solo with Claude Code / Codex) and four design case studies from the master's program.
+Eight projects live on the site: four shipped AI products (2025–2026, all built solo with Claude Code / Codex) and four design case studies from the master's program.
 
-### 4.1 Chunks 语块 — Language Learning App
+### 4.1 Chunks — Language Learning App
 - **Category:** Language Learning · PWA + iOS · 2026
 - **Status:** PWA in daily use · native iOS app in progress (targeting the App Store — not yet published)
 - **Stack:** Vanilla JS PWA (no build step) · SwiftUI + SwiftData iOS · Cloudflare Worker + D1
 - **Page:** https://aidenyang.me/projects/chunks.html
 
-**What it is:** Type a Chinese sentence; Claude returns natural English and extracts 1–4 reusable phrases ("chunks") — each automatically becomes a flashcard reviewed with spaced repetition (simplified SM-2 on the PWA, full FSRS on iOS).
+**What it is:** Type a Chinese sentence; Chunks returns natural English and extracts 1–4 reusable phrases (“chunks”) — each automatically becomes a flashcard reviewed with spaced repetition (simplified SM-2 on the PWA, full FSRS on iOS).
 
 **Key features:** sentence-to-chunks extraction with whole-sentence fallback; offline-first sync (last-write-wins by timestamp, tombstones for deletes, server-side LWW enforcement); one Worker proxying both Claude and DeepSeek with keys held server-side; iOS picks the AI provider by device region for the China App Store.
 
@@ -108,17 +108,7 @@ Nine projects live on the site: five shipped AI products (2025–2026, all built
 
 **Decisions worth telling:** the whitelist has a deliberate hole — a second query by publication type catches guidelines wherever they're published; favourites moved from GitHub Gist sync to a server-side store (atomic writes, 30 days of snapshots); every Claude call is cached per-item and capped, so a crash never loses paid analysis.
 
-### 4.4 Prime Bilingual — Chrome Extension
-- **Category:** Chrome Extension (Manifest V3) · 2026
-- **Status:** Personal use · not published on the Chrome Web Store
-- **Stack:** Vanilla JS, zero dependencies · Claude API (Haiku by default, model selectable)
-- **Page:** https://aidenyang.me/projects/prime-bilingual.html
-
-**What it is:** Bilingual subtitles for Prime Video. A page-context script hooks fetch and XHR to intercept the player's own TTML subtitle stream (reading a clone — playback is never touched), Claude translates the whole episode in 25-line context-aware batches, and an overlay renders English on top, Chinese below, synced by binary search against the video clock.
-
-**Decisions worth telling:** intercept the subtitle stream rather than OCR or DOM-scraping (whole episode upfront enables context batching, pre-translation and caching); forced tool-use output because subtitle punctuation kept breaking free-form JSON, with recursive batch bisection on truncation; caching by content hash rather than URL so a re-watched episode always hits cache.
-
-### 4.5 This Portfolio — A Vibecoded AI Site
+### 4.4 This Portfolio — A Vibecoded AI Site
 - **Category:** Self-built · Vibecoding · 2026
 - **Status:** Live at aidenyang.me, running for about $3/month
 - **Stack:** Static front-end on GitHub Pages · Cloudflare Worker AI chat at ai.aidenyang.me · D1 conversation log · Cloudflare Access admin
@@ -126,7 +116,7 @@ Nine projects live on the site: five shipped AI products (2025–2026, all built
 
 **What it is:** The site you are on. Static HTML/CSS/JS front-end served by GitHub Pages; the AI assistant (this conversation) runs on a Cloudflare Worker that routes chat to Claude or DeepSeek by visitor region, logs conversations to D1 (auto-purged after 30 days), and serves an admin dashboard protected by Cloudflare Access.
 
-### 4.6 CoLab — Hybrid Learning Platform
+### 4.5 CoLab — Hybrid Learning Platform
 - **Category:** Education Platform · 2025 (design case study)
 - **Role:** UI/UX · Frontend
 - **Tools:** Figma, Web
@@ -136,7 +126,7 @@ Nine projects live on the site: five shipped AI products (2025–2026, all built
 
 **Key features:** free team-up via skill-based profiles; standardized online lectures with quiz-verified attendance; in-class tutorial whiteboard with AI term explanations and live chat.
 
-### 4.7 vividXperience — Vision Pro Cultural Tech
+### 4.6 vividXperience — Vision Pro Cultural Tech
 - **Category:** Spatial Design · 2024 · IDEA9105 (design case study)
 - **Role:** UI/UX · Spatial
 - **Tools:** Figma, After Effects
@@ -147,7 +137,7 @@ Nine projects live on the site: five shipped AI products (2025–2026, all built
 
 **Key features:** 3D panoramic map; event discovery; immersive scenes (Opera Light, Harbour Bridge, Drone Show); cross-device album.
 
-### 4.8 Anno — Companion Health Robot
+### 4.7 Anno — Companion Health Robot
 - **Category:** Health Tech · 2024 (design case study)
 - **Role:** Product · UX
 - **Tools:** Figma, Rhino, Web
@@ -157,7 +147,7 @@ Nine projects live on the site: five shipped AI products (2025–2026, all built
 
 **Key features:** voice-guided conversation; health monitoring + SOS via sensors and a wearable wristband; smart medication dispenser; emotion-based companion behaviours; privacy-respecting display; senior-friendly physical design.
 
-### 4.9 Whisper Field — Immersive Space for Neurodiversity
+### 4.8 Whisper Field — Immersive Space for Neurodiversity
 - **Category:** Immersive Experience · 2024 (design case study)
 - **Role:** Spatial · Interaction
 - **Tools:** Unreal Engine 5, Processing, Figma
