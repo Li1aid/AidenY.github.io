@@ -522,3 +522,63 @@
     font-family: ui-monospace, monospace;
 }
 
+
+/* ── Demo: P&L calendar (Investment Assistant) ─────────────────── */
+
+.demo-cal {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    margin-top: 4px;
+}
+
+.demo-cal-hd {
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    color: #666;
+    text-align: center;
+    padding: 2px 0 6px;
+    font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+}
+
+.demo-cal-cell {
+    min-height: 40px;
+    border-radius: 6px;
+    background: #101018;
+    border: 1px solid #1f1f2c;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1px;
+    font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+}
+
+.demo-cal-cell.empty {
+    background: transparent;
+    border-color: transparent;
+}
+
+.demo-cal-cell.off { opacity: 0.35; }
+
+.demo-cal-cell .d {
+    font-size: 9px;
+    color: #777;
+}
+
+.demo-cal-cell .v {
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.demo-cal-cell.pos { border-color: rgba(74, 222, 128, 0.35); }
+.demo-cal-cell.pos .v { color: #4ade80; }
+.demo-cal-cell.neg { border-color: rgba(248, 113, 113, 0.35); }
+.demo-cal-cell.neg .v { color: #f87171; }
+
+.demo-cal-foot {
+    margin-top: 10px;
+    font-size: 11px;
+    color: #888;
+    font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+}

@@ -1,6 +1,9 @@
 /* ── Investment Assistant · interactive demo ──────────────────────
-   Bilingual (EN / 中). All dynamically-generated strings live in T().
-   Listens to the global language toggle to re-render on switch. */
+   Bilingual (EN / 中). All dynamically-generated strings live in t().
+   Listens to the global language toggle to re-render on switch.
+   Mirrors only features that exist in the real app: holdings with
+   live ticks, currency switch (CNY/AUD like the real toggle),
+   transactions ledger, and the P&L calendar. */
 
 (function () {
     // ── Synthetic portfolio (entirely fictional) ──────────────────
@@ -18,7 +21,6 @@
 
     let displayCcy = 'CNY';
     let refreshTimer = null;
-    let adviceBusy = false;
 
     // Initial action log (relative dates use bilingual buckets)
     const actionLog = [
@@ -33,17 +35,17 @@
         priceUpdated:    { en: 'Prices updated just now · 1 AUD = 4.72 CNY', zh: '行情更新于刚刚 · 1 AUD = 4.72 CNY' },
         cost:            { en: 'Cost',  zh: '成本' },
         pnl:             { en: 'P&L',   zh: '盈亏' },
-        generating:      { en: 'Generating…', zh: '生成中…' },
-        generateBtn:     { en: "Generate today's advice", zh: '生成今日建议' },
-        notAdvice:       { en: 'Not financial advice. Demo only.', zh: '不构成投资建议。仅为演示。' },
-        todayPrefix:     { en: 'Today', zh: '今日' },
+        emptyLog:        { en: 'No actions yet.', zh: '暂无操作。' },
+        sideBuy:         { en: 'BUY', zh: '买入' },
+        sideSell:        { en: 'SELL', zh: '卖出' },
         days: {
             en: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
             zh: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
         },
-        emptyLog:        { en: 'No actions yet.', zh: '暂无操作。' },
-        sideBuy:         { en: 'BUY', zh: '买入' },
-        sideSell:        { en: 'SELL', zh: '卖出' },
+        calFoot: {
+            en: (win, loss, total) => `${win} green days · ${loss} red days · month ${total}`,
+            zh: (win, loss, total) => `${win} 个盈利日 · ${loss} 个亏损日 · 本月 ${total}`,
+        },
         dateLabels: {
             d5:    { en: '5d ago', zh: '5 天前' },
             d4:    { en: '4d ago', zh: '4 天前' },
@@ -52,62 +54,6 @@
             now:   { en: 'just now', zh: '刚刚' },
         },
     };
-
-    // AI advice lines (also bilingual)
-    const ADVICE_LINES = [
-        {
-            en: "**Acme A-Share ETF (510TEST)** — Strong momentum after breaking MA20. Hold the position; trim 15% if RSI14 exceeds 72.",
-            zh: "**Acme A 股 ETF (510TEST)** — 突破 MA20 后动能强劲。建议持有；若 RSI14 超过 72，减仓 15%。",
-        },
-        {
-            en: "**Phoenix Industries (PHX.AX)** — Earnings beat consensus by 8%. Continue holding. Watch AUD strengthening as a tailwind.",
-            zh: "**Phoenix 工业 (PHX.AX)** — 财报超预期 8%。继续持有。关注澳元走强带来的顺风。",
-        },
-        {
-            en: "**Onyx Tech Group (0788.HK)** — Sector rotation pressure. Reduce exposure by 20–30% to free capital for opportunities elsewhere.",
-            zh: "**Onyx 科技 (0788.HK)** — 板块轮动压力。建议减仓 20–30%，释放资金寻找其他机会。",
-        },
-        {
-            en: "**Crimson Growth Fund (008812)** — Steady NAV uptrend. No action needed. Small add on any 3%+ pullback.",
-            zh: "**Crimson 成长基金 (008812)** — 净值稳步上行。无需操作。回调 3% 以上可少量加仓。",
-        },
-        {
-            en: "**Aurum Gold (Au99.99)** — Approaching resistance. Hold — this is a hedge, not a trade. Don't time it.",
-            zh: "**Aurum 黄金 (Au99.99)** — 接近阻力位。持有——这是对冲不是交易。不要做择时。",
-        },
-        {
-            en: "**Beacon Resources (BEA.AX)** — Underperforming. If conviction in commodity cycle remains, hold; otherwise rotate out within 2 weeks.",
-            zh: "**Beacon 资源 (BEA.AX)** — 表现不佳。若对大宗周期仍有信心，持有；否则两周内换仓。",
-        },
-    ];
-
-    // Synthetic news (bilingual)
-    const NEWS = [
-        {
-            tagEn: 'A-share', tagZh: 'A 股',
-            titleEn: 'Mainland ETF inflows hit a 6-week high as policy support firms up.',
-            titleZh: '政策预期回暖，内地 ETF 净流入创 6 周新高。',
-            metaEn: 'Synthetic News · 2h ago', metaZh: '虚构新闻 · 2 小时前',
-        },
-        {
-            tagEn: 'ASX', tagZh: '澳股',
-            titleEn: 'Phoenix Industries posts H1 earnings 8% above guidance.',
-            titleZh: 'Phoenix 工业上半年盈利超指引 8%。',
-            metaEn: 'Synthetic Wire · 5h ago', metaZh: '虚构通讯 · 5 小时前',
-        },
-        {
-            tagEn: 'HK tech', tagZh: '港股科技',
-            titleEn: 'Onyx Tech Group flagged in HK regulatory review of cloud spend.',
-            titleZh: 'Onyx 科技被纳入港交所对云支出的合规审查名单。',
-            metaEn: 'Synthetic News · 7h ago', metaZh: '虚构新闻 · 7 小时前',
-        },
-        {
-            tagEn: 'Gold', tagZh: '黄金',
-            titleEn: 'Spot gold pauses near multi-month resistance after rapid run-up.',
-            titleZh: '现货黄金在多月高点附近受阻，快速反弹后稍作停顿。',
-            metaEn: 'Synthetic Markets · 1d ago', metaZh: '虚构市场 · 1 天前',
-        },
-    ];
 
     // ── Helpers ───────────────────────────────────────────────────
     const $ = (id) => document.getElementById(id);
@@ -193,66 +139,49 @@
         }).join('');
     }
 
-    // ── Equity curve ──────────────────────────────────────────────
-    function generateCurveData() {
-        const days = 30;
-        let cny = 100, aud = 100;
-        const cnyData = [], audData = [];
-        for (let i = 0; i < days; i++) {
-            cny += (Math.sin(i * 0.4) * 0.7) + ((i % 7 === 0) ? 1.5 : 0) + (Math.cos(i * 0.31) * 0.4);
-            aud += (Math.cos(i * 0.55) * 0.6) - ((i % 9 === 0) ? 0.8 : 0) + (Math.sin(i * 0.27) * 0.5);
-            cnyData.push(cny);
-            audData.push(aud);
-        }
-        return { cnyData, audData };
+    // ── P&L calendar (mirrors the real app's month view) ─────────
+    // Deterministic synthetic month: weekday cells get a pseudo-random
+    // P&L; weekends stay empty (no US trading day = no P&L row).
+    function calDayPnl(day) {
+        const x = Math.sin(day * 12.9898) * 43758.5453;
+        const frac = x - Math.floor(x);
+        return Math.round((frac - 0.42) * 900); // CNY, mildly positive-biased
     }
 
-    function renderCurve() {
-        const svg = $('demo-curve');
-        const { cnyData, audData } = generateCurveData();
-        const W = 800, H = 160, pad = { top: 16, right: 12, bottom: 22, left: 12 };
-        const plotW = W - pad.left - pad.right;
-        const plotH = H - pad.top - pad.bottom;
-        const all = [...cnyData, ...audData];
-        const min = Math.min(...all), max = Math.max(...all);
-        const range = max - min || 1;
-
-        function pathFor(data) {
-            return data.map((v, i) => {
-                const x = pad.left + (plotW / (data.length - 1)) * i;
-                const y = pad.top + plotH - ((v - min) / range) * plotH;
-                return (i === 0 ? 'M' : 'L') + x.toFixed(1) + ',' + y.toFixed(1);
-            }).join(' ');
-        }
-        function areaFor(data) {
-            const linePath = pathFor(data);
-            const lastX = pad.left + plotW;
-            const firstX = pad.left;
-            const baseY = pad.top + plotH;
-            return linePath + ` L${lastX},${baseY} L${firstX},${baseY} Z`;
-        }
-
-        let grid = '';
-        for (let i = 0; i <= 3; i++) {
-            const y = pad.top + (plotH / 3) * i;
-            grid += `<line x1="${pad.left}" y1="${y}" x2="${pad.left + plotW}" y2="${y}" stroke="#1f1f2c" stroke-width="1"/>`;
-        }
+    function renderCalendar() {
+        const box = $('demo-cal');
         const L = lang();
-        const labelDays = L === 'zh' ? ['30 天前', '20 天前', '10 天前', '今天'] : ['30d', '20d', '10d', 'now'];
-        let xLabels = '';
-        labelDays.forEach((d, i) => {
-            const x = pad.left + (plotW / 3) * i;
-            xLabels += `<text x="${x}" y="${H - 6}" fill="#666" font-size="9" font-family="ui-monospace" text-anchor="${i === 0 ? 'start' : i === labelDays.length - 1 ? 'end' : 'middle'}">${d}</text>`;
-        });
+        const daysHdr = STRINGS.days[L] || STRINGS.days.en;
+        const DAYS_IN_MONTH = 30;
+        const FIRST_WEEKDAY = 0; // Monday-first grid, month starts Monday
 
-        svg.innerHTML = `
-            ${grid}
-            <path d="${areaFor(cnyData)}" fill="#ffffff" fill-opacity="0.08"/>
-            <path d="${areaFor(audData)}" fill="#888888" fill-opacity="0.06"/>
-            <path d="${pathFor(cnyData)}" stroke="#ffffff" stroke-width="1.7" fill="none"/>
-            <path d="${pathFor(audData)}" stroke="#888888" stroke-width="1.5" fill="none" stroke-dasharray="3 3" stroke-opacity="0.85"/>
-            ${xLabels}
-        `;
+        let html = daysHdr.map(d => `<div class="demo-cal-hd">${d}</div>`).join('');
+        let win = 0, loss = 0, total = 0;
+
+        for (let cell = 0; cell < 35; cell++) {
+            const day = cell - FIRST_WEEKDAY + 1;
+            if (day < 1 || day > DAYS_IN_MONTH) {
+                html += '<div class="demo-cal-cell empty"></div>';
+                continue;
+            }
+            const weekend = cell % 7 >= 5;
+            if (weekend) {
+                html += `<div class="demo-cal-cell off"><span class="d">${day}</span></div>`;
+                continue;
+            }
+            const pnl = calDayPnl(day);
+            total += pnl;
+            const cls = pnl >= 0 ? 'pos' : 'neg';
+            if (pnl >= 0) win++; else loss++;
+            html += `
+                <div class="demo-cal-cell ${cls}">
+                    <span class="d">${day}</span>
+                    <span class="v">${pnl >= 0 ? '+' : '−'}${Math.abs(Math.round(pnl / FX[displayCcy]))}</span>
+                </div>`;
+        }
+        box.innerHTML = html;
+        const footFn = STRINGS.calFoot[L] || STRINGS.calFoot.en;
+        $('demo-cal-foot').textContent = footFn(win, loss, withSym(inDisplay(total)));
     }
 
     // ── Currency switcher ─────────────────────────────────────────
@@ -262,7 +191,7 @@
             b.classList.toggle('active', b.dataset.ccy === c));
         renderTotals();
         renderRows();
-        renderMonthStats();
+        renderCalendar();
     }
 
     // ── Live price ticks ──────────────────────────────────────────
@@ -276,49 +205,7 @@
         $('demo-meta').textContent = t('priceUpdated');
     }
 
-    // ── AI advice generator ──────────────────────────────────────
-    async function generateAdvice() {
-        if (adviceBusy) return;
-        adviceBusy = true;
-        const btn = $('demo-advice-btn'), body = $('demo-advice-body');
-        const L = lang();
-        btn.disabled = true; btn.textContent = t('generating');
-        body.innerHTML = '<p class="demo-cursor"></p>';
-        await wait(1100);
-
-        const dateStr = new Date().toLocaleDateString(L === 'zh' ? 'zh-CN' : 'en-US',
-            { month: 'short', day: 'numeric', year: 'numeric' });
-        body.innerHTML = `<p><em>${t('todayPrefix')} · ${dateStr}</em></p>`;
-        const out = document.createElement('div');
-        body.appendChild(out);
-
-        for (const lineObj of ADVICE_LINES) {
-            const line = L === 'zh' ? lineObj.zh : lineObj.en;
-            const p = document.createElement('p');
-            p.className = 'demo-cursor';
-            out.appendChild(p);
-            for (let i = 0; i < line.length; i++) {
-                p.innerHTML = mdInline(line.slice(0, i + 1));
-                await wait(6);
-            }
-            p.classList.remove('demo-cursor');
-            p.innerHTML = mdInline(line);
-            await wait(120);
-        }
-        const foot = document.createElement('p');
-        foot.innerHTML = `<em>${t('notAdvice')}</em>`;
-        out.appendChild(foot);
-
-        btn.disabled = false; btn.textContent = t('generateBtn');
-        adviceBusy = false;
-    }
-
-    function mdInline(s) {
-        return s.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/_(.+?)_/g, '<em>$1</em>');
-    }
-    function wait(ms) { return new Promise(r => setTimeout(r, ms)); }
-
-    // ── Action log + monthly totals ──────────────────────────────
+    // ── Transactions ledger ──────────────────────────────────────
     function dateLabel(key) {
         const v = STRINGS.dateLabels[key];
         if (v) return v[lang()] || v.en;
@@ -341,19 +228,6 @@
                 </li>
             `).join('');
         }
-        renderMonthStats();
-    }
-
-    function renderMonthStats() {
-        let buyCny = 0, sellCny = 0;
-        actionLog.forEach(a => {
-            const h = holdings.find(h => h.ticker === a.ticker);
-            const ccy = h ? h.ccy : 'CNY';
-            const cny = a.qty * a.price * FX[ccy];
-            if (a.side === 'buy') buyCny += cny; else sellCny += cny;
-        });
-        $('month-buy').textContent  = withSym(inDisplay(buyCny));
-        $('month-sell').textContent = withSym(inDisplay(sellCny));
     }
 
     function populateLogSymbolSelect() {
@@ -378,27 +252,13 @@
         });
     }
 
-    // ── News feed ─────────────────────────────────────────────────
-    function renderNews() {
-        const L = lang();
-        $('demo-news').innerHTML = NEWS.map(n => `
-            <li class="demo-news-item">
-                <div class="demo-news-tag">${L === 'zh' ? n.tagZh : n.tagEn}</div>
-                <div class="demo-news-title">${L === 'zh' ? n.titleZh : n.titleEn}</div>
-                <div class="demo-news-meta">${L === 'zh' ? n.metaZh : n.metaEn}</div>
-            </li>
-        `).join('');
-    }
-
     // ── Full re-render on language change ────────────────────────
     function rerenderAll() {
         renderTotals();
         renderRows();
-        renderCurve();
+        renderCalendar();
         renderLog();
-        renderNews();
         populateLogSymbolSelect();
-        // Refresh meta text
         $('demo-meta').textContent = t('priceUpdated');
     }
 
@@ -412,7 +272,6 @@
 
         document.querySelectorAll('.demo-ccy').forEach(b =>
             b.addEventListener('click', () => setCcy(b.dataset.ccy)));
-        $('demo-advice-btn').addEventListener('click', generateAdvice);
         $('demo-refresh-btn').addEventListener('click', () => { tickPrices(); tickPrices(); });
 
         // Auto price tick only when demo is in viewport
@@ -427,12 +286,8 @@
         }, { threshold: 0.15 });
         io.observe(root);
 
-        // Listen to language toggle (the main script.js already updates
-        // .lang-option.active class). When user clicks either option,
-        // re-render every dynamic string.
         document.querySelectorAll('.lang-option').forEach(opt => {
             opt.addEventListener('click', () => {
-                // The main script applies new lang first; we defer slightly
                 setTimeout(rerenderAll, 30);
             });
         });
