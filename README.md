@@ -1,44 +1,44 @@
 # aidenyang.me
 
-Personal portfolio of **Xuejian (Aiden) Yang** — Sydney-based design engineer.
+Bilingual portfolio of **Xuejian (Aiden) Yang**, Design Engineer in Sydney — with an AI assistant that answers questions about the work.
 
-Live at **[aidenyang.me](https://aidenyang.me)** · Bilingual (EN / 中文)
+<img src="Assets/this-site.svg" width="720">
 
-## Architecture
+**Live:** [aidenyang.me](https://aidenyang.me) · EN / 中文
+**Case study:** [aidenyang.me/projects/this-site.html](https://aidenyang.me/projects/this-site.html)
 
-- **Static site** — plain HTML/CSS/JS, hosted on GitHub Pages (this repo), custom domain via `CNAME`
-- **AI chatbot** — Cloudflare Worker (`worker/`) at `ai.aidenyang.me`, proxying the Anthropic API
-  - Knowledge base: `knowledge.md` (single source of truth for what the bot can say)
-  - Conversation log: Cloudflare D1, auto-purged after 30 days (cron)
-  - Admin dashboard on `/admin/*`, protected by Cloudflare Access
-- **Animations** — GSAP + ScrollTrigger, canvas particle effects
-- **Availability badge** — driven by `status.json`, editable from the worker admin panel
+## What's in it
 
-## Structure
+- **Homepage** — eight case studies: four shipped products and four design projects.
+- **Interactive case studies** — each product page has a clickable architecture diagram; the Chunks page has a working replica of the app.
+- **AI assistant** — a chat widget grounded in `knowledge.md`, running on a Cloudflare Worker. Costs about $3 a month.
+- **Bilingual** — every piece of copy carries `data-en` / `data-zh`; the toggle swaps them in place.
+
+## How it works
 
 ```
-index.html, style.css, script.js   # homepage
-projects/                          # case-study pages (one html/css/js set per project)
-Assets/                            # images used by the site
-worker/                            # Cloudflare Worker source (deployed separately)
-knowledge.md                       # chatbot knowledge base
-sitemap.xml, robots.txt            # SEO
+GitHub Pages (this repo)  ──►  static HTML / CSS / JS, no build step
+Cloudflare Worker (worker/) ──►  proxies the Anthropic API · logs chats to D1 · admin behind Cloudflare Access
 ```
 
-## Projects on the site
+- **Front-end** — vanilla HTML/CSS/JS with GSAP for scroll animation and a canvas particle background.
+- **Chatbot** — `knowledge.md` is the single source of truth for what it may say; conversations are stored in D1 and purged after 30 days.
+- **Status badge** — the "open to work" pill reads `status.json`, editable from the Worker admin panel.
 
-1. **Chunks** — language-learning app; Claude extracts phrases into SRS flashcards (PWA + iOS)
-2. **Investment Assistant** — production portfolio dashboard (Flask + SQLite on Railway)
-3. **Gyn Research Dashboard** — AI literature radar built for a medical researcher (Python + Claude)
-5. **This Portfolio** — the site itself as a vibecoding case study
-6. **CoLab** — hybrid learning platform for international design students
-7. **ANNO** — companion health robot for older adults
-8. **vividXperience** — Vision Pro spatial experience for Vivid Sydney
-9. **Whisperfield** — ADHD-focused immersive meditation installation
+## Layout
 
-## Development
+```
+index.html · style.css · script.js    homepage
+projects/                             one html/css/js set per case study
+Assets/                               posters and images
+knowledge.md                          chatbot knowledge base
+worker/                               Cloudflare Worker (deployed separately)
+sitemap.xml · robots.txt              SEO
+```
 
-Static site: open `index.html` in a browser — no build step.
+## Develop
+
+Site: open `index.html` in a browser. That's it.
 
 Worker:
 
@@ -49,21 +49,16 @@ npx wrangler dev      # local
 npx wrangler deploy   # production
 ```
 
-The Anthropic API key is set via `wrangler secret put`, never committed.
+The Anthropic key is set with `wrangler secret put` and never committed.
 
-## Bilingual content
-
-All translatable elements carry `data-en` / `data-zh` attributes:
+## Adding copy in both languages
 
 ```html
-<element data-en="English text" data-zh="中文文本">English text</element>
+<p data-en="English text" data-zh="中文文本">English text</p>
 ```
 
 ## Contact
 
-- Email: aidenyang5995@gmail.com
-- LinkedIn: [aiden-yang-ty](https://www.linkedin.com/in/aiden-yang-ty)
+aidenyang5995@gmail.com · [LinkedIn](https://www.linkedin.com/in/aiden-yang-ty)
 
----
-
-© 2026 Xuejian (Aiden) Yang. All rights reserved.
+© 2026 Xuejian (Aiden) Yang
