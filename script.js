@@ -1063,6 +1063,7 @@ class AIChatbot {
                 placeholder: 'Ask me anything…',
                 send: 'Send',
                 error: 'Sorry, something went wrong. Please try again.',
+                ratelimited: "You're sending messages a bit fast — give it a minute and try again.",
                 misconfigured: 'Chat is not configured yet. Set CHATBOT_WORKER_URL in script.js.',
             },
             zh: {
@@ -1072,6 +1073,7 @@ class AIChatbot {
                 placeholder: '随便问问吧…',
                 send: '发送',
                 error: '抱歉，出错了。请重试。',
+                ratelimited: '发得有点快了，稍等一分钟再试。',
                 misconfigured: '聊天功能还没配置。请在 script.js 里设置 worker URL。',
             },
         };
@@ -1170,7 +1172,7 @@ class AIChatbot {
             });
             thinking.remove();
             if (!res.ok) {
-                this.addMessage(this.t('error'), 'bot', { skipHistory: true });
+                this.addMessage(this.t(res.status === 429 ? 'ratelimited' : 'error'), 'bot', { skipHistory: true });
                 return;
             }
             const data = await res.json();

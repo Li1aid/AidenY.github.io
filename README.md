@@ -45,11 +45,11 @@ Worker:
 ```bash
 cd worker
 npm install
-npx wrangler dev      # local
-npx wrangler deploy   # production
+npm run dev       # local
+npm run deploy    # production
 ```
 
-The Anthropic key is set with `wrangler secret put` and never committed.
+`npm run deploy` rebuilds `src/knowledge.js` from `knowledge.md` first, so the chatbot never drifts from the site copy. The Anthropic key is set with `wrangler secret put` and never committed.
 
 ## Adding copy in both languages
 
