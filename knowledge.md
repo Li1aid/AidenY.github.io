@@ -51,12 +51,9 @@ Aiden works as a **Design Engineer** — he both designs and codes, taking produ
 - Design systems (设计系统)
 
 ### Build
-- Claude Code / Codex
-- HTML · CSS · JS
-- Python · Flask
-- SwiftUI
-- Cloudflare Workers · D1
-- Railway
+- Vibecoding with Claude Code / Codex — designs in Figma, then builds and ships with AI
+- Cloudflare (Workers, D1, Pages), Railway, GitHub Pages
+- HTML · CSS · JS (hands-on); Python and Swift are AI-assisted (reads, reviews and directs rather than hand-writes)
 
 ### Content (内容)
 - Content strategy (内容策划)
