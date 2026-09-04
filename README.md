@@ -1,6 +1,6 @@
 # aidenyang.me
 
-Personal portfolio of **Xuejian (Aiden) Yang** — Sydney-based design engineer & AIGC creator.
+Personal portfolio of **Xuejian (Aiden) Yang** — Sydney-based design engineer.
 
 Live at **[aidenyang.me](https://aidenyang.me)** · Bilingual (EN / 中文)
 
@@ -27,12 +27,15 @@ sitemap.xml, robots.txt            # SEO
 
 ## Projects on the site
 
-1. **This Portfolio** — the site itself as a vibecoding case study
-2. **Investment Assistant** — private portfolio tracker (Flask + SQLite + Cloudflare Tunnel)
-3. **CoLab** — hybrid learning platform for international design students
-4. **vividXperience** — Vision Pro spatial experience for Vivid Sydney
-5. **ANNO** — companion health robot for older adults
-6. **Whisperfield** — ADHD-focused immersive meditation installation
+1. **Chunks 语块** — language-learning app; Claude extracts phrases into SRS flashcards (PWA + iOS)
+2. **Investment Assistant** — production portfolio dashboard (Flask + SQLite on Railway)
+3. **Gyn Research Dashboard** — AI literature radar built for a medical researcher (Python + Claude)
+4. **Prime Bilingual** — Chrome MV3 extension: Claude-translated bilingual subtitles for Prime Video
+5. **This Portfolio** — the site itself as a vibecoding case study
+6. **CoLab** — hybrid learning platform for international design students
+7. **ANNO** — companion health robot for older adults
+8. **vividXperience** — Vision Pro spatial experience for Vivid Sydney
+9. **Whisperfield** — ADHD-focused immersive meditation installation
 
 ## Development
 
